@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Who's in the booth?</title>
+
+    <style>
+        body {
+            background-color: azure;
+            padding: 0%;
+            margin: 0%;
+        }
+        .div1 {
+            display: flex; 
+            justify-content: center; 
+            text-align: center;
+            }
+            .div2 {
+                padding-left: 50pt;
+                padding-right: 50pt;
+            }
+            header {
+                color: azure;
+                font-size: xx-large;
+                padding: 15pt;
+                background-color: black;
+            }
+            footer {
+                float: right; 
+                padding: 10pt;
+                padding-top: 50pt;
+            }
+    </style>
+
+  </head>
+  <body>
+
+    <header style="text-align: center">
+        Who's in the booth?
+    </header>
+
+    <button id="refresh" style="position: fixed; margin: 2%;" onclick="refresh_page()">REFRESH</button>
+
+    <div class="div1">
+        <h1>
+            {{hour}}
+        </h1>
+    </div>
+    
+    <div class="div1">
+        <div class="div2">
+        <h1>
+            Booth 1
+            <h2 id="Booth1_data">{{booth1}}</h2>
+        </h1>
+        </div>
+
+        <div class="div2">
+        <h1>
+            Booth 2
+            <h2 id="Booth2_data" >{{booth2}}</h2>
+        </h1>
+        </div>
+
+        <div class="div2">
+        <h1>
+            Booth 3
+            <h2 id="Booth3_data">{{booth3}}</h2>
+        </h1>
+        </div>
+    </div>
+
+    <hr style="width: 70%;">
+
+    <footer>
+        <img src="https://tlpod.s3.amazonaws.com/NTL-512x512.png" height="150" width="150">
+    </footer>
+    
+	
+  </body>
+
+  <script>
+      function italicizeMe(x) {
+      var me = document.getElementById(x).textContent;
+      if (me == "Empty") {
+      document.getElementById(x).style.fontStyle = 'italic';
+        }
+      }
+      italicizeMe("Booth1_data")
+      italicizeMe("Booth2_data")
+      italicizeMe("Booth3_data")
+  </script>
+
+  <script>
+      function refresh_page(){
+          window.location.reload();
+      }
+    //   setInterval(refresh_page, 60000)
+  </script>
+
+</html>
