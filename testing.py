@@ -1,7 +1,7 @@
 import os
 from datetime import datetime
-from random import triangular
 from selenium import webdriver
+from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
 
 
@@ -9,6 +9,8 @@ def now():
     current_hour = datetime.now().strftime('%H')
 
     if int(current_hour) <= 11:
+        if int(current_hour) == 8:
+            lead_hour = '9:00 a -'
         lead_hour = f'{current_hour}:00 a - '.lstrip('0')
     else:
         lead_hour = int(current_hour) - 12
@@ -25,7 +27,9 @@ def now():
         trail_hour = f'{trail_hour}:00 p'.lstrip('0')
 
     #3-4:30pm is a special case. deal with this separately.
-    if int(current_hour) == 15:
+    
+    if int(current_hour) ==15 or int(current_hour) == 16:
+        lead_hour = '3:00 p - '
         trail_hour = '4:30 p'
 
     final_hour = f'{lead_hour}{trail_hour}'
@@ -35,7 +39,14 @@ print(now())
 
 def scrape():
 
-    driver = webdriver.Firefox()
+    opsys = os.name
+    cd = os.getcwd()
+    if opsys == 'nt':
+        service = Service(executable_path=f"{cd}/geckodriver.exe")
+    else:
+        service = Service(executable_path=f"{cd}/geckodriver")
+
+    driver = webdriver.Firefox(service=service)
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
     email = driver.find_element(by=By.NAME, value="LN")

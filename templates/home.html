@@ -41,6 +41,8 @@
         Who's in the booth?
     </header>
 
+    {% block content %}
+
     <button id="refresh" style="position: fixed; margin: 2%;" onclick="refresh_page()">REFRESH</button>
 
     <div class="div1">
@@ -73,6 +75,8 @@
     </div>
 
     <hr style="width: 70%;">
+
+    {% endblock %}
 
     <footer>
         <img src="https://tlpod.s3.amazonaws.com/NTL-512x512.png" height="150" width="150">

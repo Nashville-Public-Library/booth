@@ -2322,3 +2322,178 @@ DevTools listening on ws://127.0.0.1:23800/devtools/browser/83efd229-2b92-4fba-b
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
 console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
 1664915276138	Marionette	INFO	Stopped listening on port 23807
+1664919461443	geckodriver	INFO	Listening on 127.0.0.1:24501
+1664919461951	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "24502" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileQNHx3u"
+1664919462552	Marionette	INFO	Marionette enabled
+1664919462557	Marionette	INFO	Listening on port 24509
+Read port: 24509
+WebDriver BiDi listening on ws://127.0.0.1:24502
+1664919462630	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileQNHx3u\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:24502/devtools/browser/2cc2205d-4216-40a3-b438-38db095788da
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664919474678	Marionette	INFO	Stopped listening on port 24509
+!!! error running onStopped callback: TypeError: callback is not a function
+[Parent 67128, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+1664919492876	geckodriver	INFO	Listening on 127.0.0.1:24566
+1664919493376	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "24567" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilekggSM9"
+1664919493691	Marionette	INFO	Marionette enabled
+1664919493696	Marionette	INFO	Listening on port 24574
+WebDriver BiDi listening on ws://127.0.0.1:24567
+Read port: 24574
+1664919494784	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilekggSM9\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:24567/devtools/browser/6349cb1c-dc9a-40ad-b20e-b9e8f57ae688
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664919505169	Marionette	INFO	Stopped listening on port 24574
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+1664919647774	geckodriver	INFO	Listening on 127.0.0.1:24715
+1664919648286	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "24716" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileZiz3oc"
+1664919648648	Marionette	INFO	Marionette enabled
+1664919648652	Marionette	INFO	Listening on port 24723
+WebDriver BiDi listening on ws://127.0.0.1:24716
+Read port: 24723
+1664919649102	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileZiz3oc\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:24716/devtools/browser/cae371af-b0bc-4dc8-98d7-30eed52a85d6
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664919659870	Marionette	INFO	Stopped listening on port 24723
+[Parent 114844, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+1664919762040	geckodriver	INFO	Listening on 127.0.0.1:24783
+1664919762542	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "24784" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileAvxDb4"
+1664919762862	Marionette	INFO	Marionette enabled
+1664919762867	Marionette	INFO	Listening on port 24791
+WebDriver BiDi listening on ws://127.0.0.1:24784
+Read port: 24791
+1664919763907	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileAvxDb4\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:24784/devtools/browser/0b7c3940-d016-4486-9b55-8ebdeab3b0ff
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664919775511	Marionette	WARN	TimedPromise timed out after 500 ms: stacktrace:
+TimedPromise/<@chrome://remote/content/marionette/sync.js:236:24
+TimedPromise@chrome://remote/content/marionette/sync.js:221:10
+interaction.flushEventLoop@chrome://remote/content/marionette/interaction.js:431:10
+webdriverClickElement@chrome://remote/content/marionette/interaction.js:179:31
+1664919779952	Marionette	INFO	Stopped listening on port 24791
+[Parent 136760, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1664919811298	geckodriver	INFO	Listening on 127.0.0.1:24845
+1664919811799	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "24846" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilesmCzf1"
+1664919812116	Marionette	INFO	Marionette enabled
+1664919812120	Marionette	INFO	Listening on port 24853
+WebDriver BiDi listening on ws://127.0.0.1:24846
+Read port: 24853
+1664919813129	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilesmCzf1\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:24846/devtools/browser/27448e6b-0409-4954-b95b-aecf7c468a5a
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664919824651	Marionette	INFO	Stopped listening on port 24853
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+1664920447374	geckodriver	INFO	Listening on 127.0.0.1:25029
+1664920447886	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "25030" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileI73x8g"
+1664920448237	Marionette	INFO	Marionette enabled
+1664920448242	Marionette	INFO	Listening on port 25037
+WebDriver BiDi listening on ws://127.0.0.1:25030
+Read port: 25037
+1664920449357	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileI73x8g\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:25030/devtools/browser/e36a073a-1e92-4f18-b42d-9e4586eeccb1
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664920459274	Marionette	INFO	Stopped listening on port 25037
+[Parent 132136, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+1664921076730	geckodriver	INFO	Listening on 127.0.0.1:25260
+1664921077230	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "25261" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofile3reEXT"
+1664921077550	Marionette	INFO	Marionette enabled
+1664921077554	Marionette	INFO	Listening on port 25271
+WebDriver BiDi listening on ws://127.0.0.1:25261
+Read port: 25271
+1664921078575	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofile3reEXT\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:25261/devtools/browser/7b4beec9-6937-4a52-a8f6-e1c2ed32d68f
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664921088845	Marionette	INFO	Stopped listening on port 25271
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+[Parent 132456, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1664922131332	geckodriver	INFO	Listening on 127.0.0.1:25494
+1664922131851	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "25495" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofiledrI1OM"
+1664922132581	Marionette	INFO	Marionette enabled
+1664922132585	Marionette	INFO	Listening on port 25504
+WebDriver BiDi listening on ws://127.0.0.1:25495
+Read port: 25504
+1664922133549	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofiledrI1OM\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:25495/devtools/browser/cb3574f8-45cf-4ddd-8bb7-c5c6855aef5d
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664922144193	Marionette	INFO	Stopped listening on port 25504
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+[Parent 133724, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1664922160409	geckodriver	INFO	Listening on 127.0.0.1:25556
+1664922160910	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "25557" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileqMJ1Pw"
+1664922161233	Marionette	INFO	Marionette enabled
+1664922161237	Marionette	INFO	Listening on port 25564
+WebDriver BiDi listening on ws://127.0.0.1:25557
+Read port: 25564
+1664922162163	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileqMJ1Pw\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:25557/devtools/browser/7cf0ab79-2791-4183-ba5c-5f596e1dd726
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664922172545	Marionette	INFO	Stopped listening on port 25564
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+[Parent 123476, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1664922204952	geckodriver	INFO	Listening on 127.0.0.1:25616
+1664922205459	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "25617" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofile40O6Vy"
+1664922205776	Marionette	INFO	Marionette enabled
+1664922205781	Marionette	INFO	Listening on port 25624
+WebDriver BiDi listening on ws://127.0.0.1:25617
+Read port: 25624
+1664922206825	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofile40O6Vy\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:25617/devtools/browser/fc63286e-56ca-49c5-89bb-775743320f47
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664922217141	Marionette	INFO	Stopped listening on port 25624
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+[Parent 71576, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1664922238311	geckodriver	INFO	Listening on 127.0.0.1:25675
+1664922238820	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "25676" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilewfYqHt"
+1664922239164	Marionette	INFO	Marionette enabled
+1664922239168	Marionette	INFO	Listening on port 25683
+WebDriver BiDi listening on ws://127.0.0.1:25676
+Read port: 25683
+1664922239595	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilewfYqHt\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:25676/devtools/browser/041e62cc-449c-470d-9fd2-71a4a682d4bf
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664922249507	Marionette	INFO	Stopped listening on port 25683
+!!! error running onStopped callback: TypeError: callback is not a function
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+1664922281764	geckodriver	INFO	Listening on 127.0.0.1:25735
+1664922282265	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "25736" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileG8e9NM"
+1664922282585	Marionette	INFO	Marionette enabled
+1664922282590	Marionette	INFO	Listening on port 25743
+WebDriver BiDi listening on ws://127.0.0.1:25736
+Read port: 25743
+1664922283531	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileG8e9NM\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:25736/devtools/browser/4304693d-b137-45cf-b1ea-ee187b3929b3
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664922294190	Marionette	INFO	Stopped listening on port 25743
+!!! error running onStopped callback: TypeError: callback is not a function
+[Parent 136856, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
