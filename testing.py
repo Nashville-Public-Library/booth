@@ -15,9 +15,13 @@ def now():
     current_hour = datetime.now().strftime('%H')
 
     if int(current_hour) <= 11:
+        # booth schedule begins at 9am, but we want to start showing the schedule at 8am
         if int(current_hour) == 8:
-            lead_hour = '9:00 a -'
-        lead_hour = f'{current_hour}:00 a - '.lstrip('0')
+            lead_hour = '9:00 a - '
+        else:
+            lead_hour = f'{current_hour}:00 a - '.lstrip('0')
+    elif int(current_hour) == 12:
+        lead_hour = '12:00 p - '
     else:
         lead_hour = int(current_hour) - 12
         lead_hour = f'{lead_hour}:00 p - '.lstrip('0')
@@ -41,7 +45,6 @@ def now():
     final_hour = f'{lead_hour}{trail_hour}'
     return final_hour
 
-print(now())
 
 def scrape():
 

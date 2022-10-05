@@ -8,7 +8,7 @@ application = Flask(__name__)
 
 @application.route('/')
 def homepage():
-    if int(current_hour) < 9 or int(current_hour) > 16 :
+    if int(current_hour) < 8 or int(current_hour) > 16 :
         return render_template('closed.html')
     booth1, booth2, booth3 = scrape()
     return render_template('home.html', booth1=booth1, booth2=booth2, booth3=booth3, hour=now())
