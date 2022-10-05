@@ -1,5 +1,9 @@
 # booth
- web app to assist with TL booth schedule
+ a simple web app to assist with TL booth schedule
+
+ ----
+
+ DON'T FORGET TO SET ENVIRONMENT VARIABLES AS EXPLAINED IN THE `.EBEXTENSIONS` SECTION BELOW
 
  ## notes on deploying to AWS EB
 
@@ -12,9 +16,8 @@
  once I got this working, Chrome still complained. the error was `Chrome failed to start: exited abnormally.` this has something to do with the virtual display settings. the solution was provided on [SO](https://stackoverflow.com/questions/22424737/unknown-error-chrome-failed-to-start-exited-abnormally). also note that according to one commentator, `no-sandbox` needs to be passed in as the first argument (I don't know why.)
 
  ### .ebextensions
-TIMEZONE
 
- our EC2 instance defaults to UTC (I think). we could deal with this in the code directly, but that seems messy; we don't want to have to change the code directly depending on where it's run. instead we're able to change our instance's timezone with a `.config` file.
+ our EC2 instance defaults to a different time zone (It's UTC, i think). we could deal with this in the code directly, but that seems messy; we don't want to have to change things directly depending on where it's run. instead we're able to change our instance's timezone with a `.config` file.
 
  the `options.config` file sets the environment variables, so our VIC username/password are not stored in the source.
 
@@ -31,4 +34,4 @@ nothing should be enclosed in quotes.
 
 ### Misc
 
-don't forget to continually update your `requirement.txt` file as you go.
+don't forget to continually update your `requirement.txt` file as you go (via `pip freeze > requirements.txt`).
