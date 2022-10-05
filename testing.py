@@ -1,8 +1,14 @@
 import os
 from datetime import datetime
+
+
 from selenium import webdriver
-from selenium.webdriver.firefox.service import Service
 from selenium.webdriver.common.by import By
+from selenium.webdriver.chrome.service import Service as ChromiumService
+from webdriver_manager.chrome import ChromeDriverManager
+from webdriver_manager.core.utils import ChromeType
+
+from pyvirtualdisplay import Display
 
 
 def now():
@@ -39,14 +45,17 @@ print(now())
 
 def scrape():
 
-    opsys = os.name
-    cd = os.getcwd()
-    if opsys == 'nt':
-        service = Service(executable_path=f"{cd}/geckodriver.exe")
-    else:
-        service = Service(executable_path=f"{cd}/geckodriver")
+    # cd = os.getcwd()
+    # driver_location = f'{cd}/geckodriver'
 
-    driver = webdriver.Firefox(service=service)
+    chrome_options = webdriver.ChromeOptions()
+    chrome_options.add_argument('--no-sandbox')
+    chrome_options.add_argument('--window-size=1420,1080')
+    chrome_options.add_argument('--headless')
+    chrome_options.add_argument('--disable-gpu')
+
+    driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), chrome_options=chrome_options)
+    
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
     email = driver.find_element(by=By.NAME, value="LN")
@@ -70,7 +79,8 @@ def scrape():
     for i in a:
         today = i.find_elements(By.CLASS_NAME, value='e')
         for n in today:
-            if n.text == '4':
+            day_as_number = datetime.now().strftime('%d').lstrip('0')
+            if n.text == day_as_number:
                 b = i.find_elements(By.TAG_NAME, value='td')
                 for c in b:
                     c = c.text

@@ -1,4 +1,1 @@
-import os
-
-cd = os.name
-print(cd)
+import webdriver_manager

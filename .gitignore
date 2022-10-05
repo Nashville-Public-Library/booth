@@ -2,3 +2,6 @@
 __pycache__
 
 venv
+
+#environment variables. remember to make a note about this in the README !!
+/.ebextensions/options.config

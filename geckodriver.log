@@ -2497,3 +2497,48 @@ console.warn: LoginRecipes: "Falling back to a synchronous message for: https://
 1664922294190	Marionette	INFO	Stopped listening on port 25743
 !!! error running onStopped callback: TypeError: callback is not a function
 [Parent 136856, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
+1664978649816	geckodriver	INFO	Listening on 127.0.0.1:31606
+1664978650339	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "31607" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilepWZaHd"
+1664978650685	Marionette	INFO	Marionette enabled
+1664978650689	Marionette	INFO	Listening on port 31620
+WebDriver BiDi listening on ws://127.0.0.1:31607
+Read port: 31620
+1664978651849	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilepWZaHd\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:31607/devtools/browser/3d7c3ae3-87e2-4026-902c-a4f53ab17c97
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664978664938	Marionette	INFO	Stopped listening on port 31620
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+1664978996146	geckodriver	INFO	Listening on 127.0.0.1:31844
+1664978996645	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "31845" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofilekkclAv"
+1664978997008	Marionette	INFO	Marionette enabled
+1664978997013	Marionette	INFO	Listening on port 31852
+Read port: 31852
+WebDriver BiDi listening on ws://127.0.0.1:31845
+1664978997410	RemoteAgent	WARN	TLS certificate errors will b1664978997833	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "31856" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileJ5DWJ6"
+1664978998192	Marionette	INFO	Marionette enabled
+1664978998198	Marionette	INFO	Listening on port 31863
+Read port: 31863
+WebDriver BiDi listening on ws://127.0.0.1:31856
+1664978998898	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileJ5DWJ6\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:31856/devtools/browser/88b3d970-76f3-4f1e-be02-f07d5f3efb12
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664979011674	Marionette	INFO	Stopped listening on port 31863
+JavaScript error: resource://services-settings/Utils.jsm, line 239: TypeError: NetworkError: Network request failed
+!!! error running onStopped callback: TypeError: callback is not a function
+1664980969992	geckodriver	INFO	Listening on 127.0.0.1:32489
+1664980970013	mozrunner::runner	INFO	Running command: "C:\\Program Files\\Mozilla Firefox\\firefox.exe" "--marionette" "--remote-debugging-port" "32490" "--remote-allow-hosts" "localhost" "-no-remote" "-profile" "C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileoveqzf"
+1664980970767	Marionette	INFO	Marionette enabled
+1664980970771	Marionette	INFO	Listening on port 32497
+Read port: 32497
+WebDriver BiDi listening on ws://127.0.0.1:32490
+1664980971223	RemoteAgent	WARN	TLS certificate errors will be ignored for this session
+console.warn: SearchSettings: "get: No settings file exists, new profile?" (new NotFoundError("Could not open the file at C:\\Users\\wrprod\\AppData\\Local\\Temp\\rust_mozprofileoveqzf\\search.json.mozlz4", (void 0)))
+DevTools listening on ws://127.0.0.1:32490/devtools/browser/d9e457f1-bd2b-48a0-9964-76cf3fb9405e
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+console.warn: LoginRecipes: "Falling back to a synchronous message for: https://www.volgistics.com."
+1664980983281	Marionette	INFO	Stopped listening on port 32497
+[Parent 131340, IPC I/O Parent] WARNING: file /builds/worker/checkouts/gecko/ipc/chromium/src/base/process_util_win.cc:167
