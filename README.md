@@ -22,7 +22,6 @@
  the `options.config` file sets the environment variables, so our VIC username/password are not stored in the source.
 
  IMPORTANT: If you do not see a `options.config` file inside the `.ebestensions` folder it's because I decided to `gitignore` this file. here's what the file should look like:
-    ````
 
     option_settings:
       - option_name:  VIC_user
