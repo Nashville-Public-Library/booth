@@ -30,7 +30,7 @@ def now():
     if int(current_hour) == 12:
         trail_hour = int(current_hour) - 11
         trail_hour = f'{trail_hour}:00 p'
-    elif int(current_hour) <= 11:
+    elif int(current_hour) < 11:
         if int(current_hour) == 8:
             trail_hour = '10:00 a'
             print('wooo')
@@ -38,6 +38,8 @@ def now():
             trail_hour = int(current_hour) + 1
             trail_hour = f'{trail_hour}:00 a'.lstrip('0')
             print('booo')
+    elif int(current_hour) == 11:
+        trail_hour = '12:00 p'
     else:
         trail_hour = int(current_hour) - 11
         trail_hour = f'{trail_hour}:00 p'.lstrip('0')
