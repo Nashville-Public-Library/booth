@@ -28,4 +28,3 @@ urllib3==1.26.12
 webdriver-manager==3.8.3
 Werkzeug==2.2.2
 wsproto==1.2.0
-xvfbwrapper==0.2.9

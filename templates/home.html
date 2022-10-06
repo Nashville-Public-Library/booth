@@ -12,14 +12,13 @@
             padding: 0%;
             margin: 0%;
         }
-        .div1 {
-            display: flex; 
-            justify-content: center; 
+        .div1 { 
             text-align: center;
             }
             .div2 {
-                padding-left: 50pt;
-                padding-right: 50pt;
+                display: inline-block;
+                margin-left: 40pt;
+                margin-right: 40pt;
             }
             header {
                 color: azure;
@@ -27,10 +26,8 @@
                 padding: 15pt;
                 background-color: black;
             }
-            footer {
-                float: right; 
-                padding: 10pt;
-                padding-top: 50pt;
+            footer { 
+                margin-top: 8%;
             }
     </style>
 
@@ -76,25 +73,61 @@
 
     <hr style="width: 70%;">
 
+    <div class="div1">
+        <h1>
+            {{hour2}}
+        </h1>
+    </div>
+
+    <div class="div1">
+        <div class="div2">
+        <h1>
+            Booth 1
+            <h2 id="Booth1_2_data">{{booth1_2}}</h2>
+        </h1>
+        </div>
+
+        <div class="div2">
+        <h1>
+            Booth 2
+            <h2 id="Booth2_2_data">{{booth2_2}}</h2>
+        </h1>
+        </div>
+
+        <div class="div2">
+        <h1>
+            Booth 3
+            <h2 id="Booth3_2_data">{{booth3_2}}</h2>
+        </h1>
+        </div>
+    </div>
+
     {% endblock %}
 
     <footer>
-        <img src="https://tlpod.s3.amazonaws.com/NTL-512x512.png" height="150" width="150">
+        <div style="text-align: center;">
+        <img src="{{url_for('static', filename='NTL.png')}}" height="120" width="120" style="margin-right: 10pt; margin-left: 10pt;">
+        <img src="{{url_for('static', filename='NPL.png')}}" height="120" width="142" style="margin-right: 10pt; margin-left: 10pt;">
+        </div>
     </footer>
-    
+
 	
   </body>
 
   <script>
       function italicizeMe(x) {
       var me = document.getElementById(x).textContent;
-      if (me == "Empty") {
+      if ( (me == "Empty") || (me == "CLOSED") ) {
       document.getElementById(x).style.fontStyle = 'italic';
         }
       }
       italicizeMe("Booth1_data")
       italicizeMe("Booth2_data")
       italicizeMe("Booth3_data")
+      italicizeMe("Booth1_2_data")
+      italicizeMe("Booth2_2_data")
+      italicizeMe("Booth3_2_data")
+
   </script>
 
   <script>

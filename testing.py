@@ -12,7 +12,9 @@ from selenium.webdriver.chrome.service import Service as ChromiumService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
-def now():
+from pyvirtualdisplay import Display
+
+def hour1():
     current_hour = datetime.now().strftime('%H')
 
     if int(current_hour) <= 11:
@@ -33,11 +35,9 @@ def now():
     elif int(current_hour) < 11:
         if int(current_hour) == 8:
             trail_hour = '10:00 a'
-            print('wooo')
         else:
             trail_hour = int(current_hour) + 1
             trail_hour = f'{trail_hour}:00 a'.lstrip('0')
-            print('booo')
     elif int(current_hour) == 11:
         trail_hour = '12:00 p'
     else:
@@ -45,8 +45,46 @@ def now():
         trail_hour = f'{trail_hour}:00 p'.lstrip('0')
 
     #3-4:30pm is a special case. deal with this separately.
-    
     if int(current_hour) == 15 or int(current_hour) == 16:
+        lead_hour = '3:00 p - '
+        trail_hour = '4:30 p'
+
+    final_hour = f'{lead_hour}{trail_hour}'
+    return final_hour
+
+def hour2():
+    current_hour = datetime.now().strftime('%H')
+    current_hour = int(current_hour) + 1
+
+    if current_hour <= 11:
+        # booth schedule begins at 9am, but we want to start showing the schedule at 8am
+        if current_hour == 9:
+            lead_hour = '10:00 a - '
+        else:
+            lead_hour = f'{current_hour}:00 a - '.lstrip('0')
+    elif (current_hour) == 13:
+        lead_hour = '1:00 p - '
+    else:
+        lead_hour = (current_hour) - 12
+        lead_hour = f'{lead_hour}:00 p - '.lstrip('0')
+
+    if current_hour == 13:
+        trail_hour = (current_hour) - 11
+        trail_hour = f'{trail_hour}:00 p'.lstrip('0')
+    elif current_hour < 11:
+        if current_hour == 9:
+            trail_hour = '11:00 a'
+        else:
+            trail_hour = (current_hour) + 1
+            trail_hour = f'{trail_hour}:00 a'.lstrip('0')
+    elif (current_hour) == 11:
+        trail_hour = '12:00 p'
+    else:
+        trail_hour = (current_hour) - 11
+        trail_hour = f'{trail_hour}:00 p'.lstrip('0')
+
+    #3-4:30pm is a special case. deal with this separately.
+    if current_hour == 15:
         lead_hour = '3:00 p - '
         trail_hour = '4:30 p'
 
@@ -62,7 +100,7 @@ def scrape():
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
 
-    driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), chrome_options=chrome_options)
+    driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=chrome_options)
     
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
@@ -98,22 +136,46 @@ def scrape():
                     booth1 = 'Booth 1'
                     booth2 = 'Booth 2'
                     booth3 = 'Booth 3'
+
                 
-                    if (booth1 in c) and (now() in c):
+                    if (booth1 in c) and (hour1() in c):
                         booth1_return = c
                         booth1_return = booth1_return.replace(booth1, '')
-                        booth1_return = booth1_return.replace(now(), '')
+                        booth1_return = booth1_return.replace(hour1(), '')
                         booth1_return = booth1_return.strip()
-                    if (booth2 in c) and (now() in c):
+
+                    if (booth2 in c) and (hour1() in c):
                         booth2_return = c
                         booth2_return = booth2_return.replace(booth2, '')
-                        booth2_return = booth2_return.replace(now(), '')
+                        booth2_return = booth2_return.replace(hour1(), '')
                         booth2_return = booth2_return.strip()
-                    if (booth3 in c) and (now() in c):
+
+                    if (booth3 in c) and (hour1() in c):
                         booth3_return = c
                         booth3_return = booth3_return.replace(booth3, '')
-                        booth3_return = booth3_return.replace(now(), '')
+                        booth3_return = booth3_return.replace(hour1(), '')
                         booth3_return = booth3_return.strip()
+
+                    #SECOND HOUR
+                    
+                    if (booth1 in c) and (hour2() in c):
+                        booth1_return2 = c
+                        booth1_return2 = booth1_return2.replace(booth1, '')
+                        booth1_return2 = booth1_return2.replace(hour2(), '')
+                        booth1_return2 = booth1_return2.strip()
+
+                    if (booth2 in c) and (hour2() in c):
+
+                        booth2_return2 = c
+                        booth2_return2 = booth2_return2.replace(booth2, '')
+                        booth2_return2 = booth2_return2.replace(hour2(), '')
+                        booth2_return2 = booth2_return2.strip()
+
+                    if (booth3 in c) and (hour2() in c):
+                        booth3_return2 = c
+                        booth3_return2 = booth3_return2.replace(booth3, '')
+                        booth3_return2 = booth3_return2.replace(hour2(), '')
+                        booth3_return2 = booth3_return2.strip()
 
     driver.quit()
 
@@ -124,4 +186,27 @@ def scrape():
     if booth3_return == '':
         booth3_return = 'Empty'
 
-    return booth1_return, booth2_return, booth3_return
+    if 'booth1_return2' in locals():
+        print('booth 1 here')
+        if booth1_return2 == '':
+            booth1_return2 = 'Empty'
+    else: 
+        booth1_return2 = 'CLOSED'
+
+    if 'booth2_return2' in locals():
+        print('booth 2 here')
+        if booth2_return2 == '':
+            booth2_return2 = 'Empty'
+    else: 
+        booth2_return2 = 'CLOSED'
+
+    if 'booth3_return2' in locals():
+        print('booth 3 here')
+        if booth3_return2 == '':
+            booth3_return2 = 'Empty'
+    else: 
+        booth3_return2 = 'CLOSED'
+
+
+    return booth1_return, booth2_return, booth3_return, booth1_return2, booth2_return2, booth3_return2
+
