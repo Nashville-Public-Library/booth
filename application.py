@@ -1,5 +1,11 @@
+'''
+© Nashville Public Library
+© Ben Weddle is to blame for this code. Anyone is free to use it.
+'''
+
 from flask import Flask, render_template
 from datetime import datetime
+
 from testing import scrape, now
 
 current_hour = datetime.now().strftime('%H')

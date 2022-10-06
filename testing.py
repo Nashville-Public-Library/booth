@@ -1,15 +1,16 @@
+'''
+© Nashville Public Library
+© Ben Weddle is to blame for this code. Anyone is free to use it.
+'''
+
 import os
 from datetime import datetime
-
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromiumService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
-
-from pyvirtualdisplay import Display
-
 
 def now():
     current_hour = datetime.now().strftime('%H')
@@ -30,15 +31,20 @@ def now():
         trail_hour = int(current_hour) - 11
         trail_hour = f'{trail_hour}:00 p'
     elif int(current_hour) <= 11:
-        trail_hour = int(current_hour) + 1
-        trail_hour = f'{trail_hour}:00 a'.lstrip('0')
+        if int(current_hour) == 8:
+            trail_hour = '10:00 a'
+            print('wooo')
+        else:
+            trail_hour = int(current_hour) + 1
+            trail_hour = f'{trail_hour}:00 a'.lstrip('0')
+            print('booo')
     else:
         trail_hour = int(current_hour) - 11
         trail_hour = f'{trail_hour}:00 p'.lstrip('0')
 
     #3-4:30pm is a special case. deal with this separately.
     
-    if int(current_hour) ==15 or int(current_hour) == 16:
+    if int(current_hour) == 15 or int(current_hour) == 16:
         lead_hour = '3:00 p - '
         trail_hour = '4:30 p'
 
@@ -47,9 +53,6 @@ def now():
 
 
 def scrape():
-
-    # cd = os.getcwd()
-    # driver_location = f'{cd}/geckodriver'
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--no-sandbox')
