@@ -62,8 +62,8 @@ def hour2():
             lead_hour = '10:00 a - '
         else:
             lead_hour = f'{current_hour}:00 a - '.lstrip('0')
-    elif (current_hour) == 13:
-        lead_hour = '1:00 p - '
+    elif current_hour == 12:
+        lead_hour = '12:00 p - '
     else:
         lead_hour = (current_hour) - 12
         lead_hour = f'{lead_hour}:00 p - '.lstrip('0')

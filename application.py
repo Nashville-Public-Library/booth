@@ -10,10 +10,22 @@ from testing import scrape, hour1, hour2
 
 application = Flask(__name__)
 
+def are_we_closed():
+    current_hour = datetime.now().strftime('%H')
+    current_hour = int(current_hour)
+
+    current_day = datetime.now().strftime('%a')
+    weekend = ['Sat', 'Sun']
+
+    if current_day in weekend:
+        return True
+    if current_hour < 8 or current_hour > 16:
+        return True
+
 @application.route('/')
 def homepage():
-    current_hour = datetime.now().strftime('%H')
-    if int(current_hour) < 8 or int(current_hour) > 16 :
+    
+    if are_we_closed():
         return render_template('closed.html')
 
     booth1, booth2, booth3, booth1_2, booth2_2, booth3_2 = scrape()
@@ -36,4 +48,4 @@ def handle_exception(e):
     return render_template("broken.html", e=e), 500
 
 if __name__ == '__main__':
-    application.run()
+    application.run(debug=True)
