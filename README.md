@@ -25,9 +25,9 @@
 
     option_settings:
       - option_name:  VIC_user
-        value:  <your_VIC_username>
+        value:  your_VIC_username
       - option_name:  VIC_password
-        value:  <your_VIC_password>
+        value:  your_VIC_password
 
 nothing should be enclosed in quotes.
 

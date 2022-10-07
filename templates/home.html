@@ -38,11 +38,11 @@
         Who's in the booth?
     </header>
 
+    <h2 style="text-align: left;margin: 0; margin-left: 5pt; margin-bottom: 0%; padding-bottom: 0%;" id="date"></h2>
+
     {% block content %}
 
-    <button id="refresh" style="position: fixed; margin: 2%;" onclick="refresh_page()">REFRESH</button>
-
-    <div class="div1">
+    <div class="div1" style="padding-top: 0; margin-top: 0%;">
         <h1>
             {{hour}}
         </h1>
@@ -130,11 +130,24 @@
 
   </script>
 
-  <script>
+  <!-- <script>
       function refresh_page(){
           window.location.reload();
       }
     //   setInterval(refresh_page, 60000)
+  </script> -->
+
+  <script>
+    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+    const m = new Date();
+    let month = months[m.getMonth()];
+
+    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    const d = new Date();
+    let day = days[d.getDay()];
+    let dateNumber = d.getDate()
+
+    document.getElementById('date').innerHTML = day + " " + month + " " + dateNumber
   </script>
 
 </html>
