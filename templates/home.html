@@ -1,37 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
     <title>Who's in the booth?</title>
 
-    <style>
-        body {
-            background-color: azure;
-            padding: 0%;
-            margin: 0%;
-        }
-        .div1 { 
-            text-align: center;
-            }
-            .div2 {
-                display: inline-block;
-                margin-left: 40pt;
-                margin-right: 40pt;
-            }
-            header {
-                color: azure;
-                font-size: xx-large;
-                padding: 15pt;
-                background-color: black;
-            }
-            footer { 
-                margin-top: 8%;
-            }
-    </style>
-
   </head>
+
   <body>
 
     <header style="text-align: center">
@@ -50,55 +28,41 @@
     
     <div class="div1">
         <div class="div2">
-        <h1>
-            Booth 1
-            <h2 id="Booth1_data">{{booth1}}</h2>
-        </h1>
+        <h1>Booth 1</h1>
+        <h2 id="Booth1_data">{{booth1}}</h2>
         </div>
 
         <div class="div2">
-        <h1>
-            Booth 2
-            <h2 id="Booth2_data" >{{booth2}}</h2>
-        </h1>
+        <h1>Booth 2</h1>
+        <h2 id="Booth2_data" >{{booth2}}</h2>
         </div>
 
         <div class="div2">
-        <h1>
-            Booth 3
-            <h2 id="Booth3_data">{{booth3}}</h2>
-        </h1>
+        <h1>Booth 3</h1>
+        <h2 id="Booth3_data">{{booth3}}</h2>
         </div>
     </div>
 
     <hr style="width: 70%;">
 
     <div class="div1">
-        <h1>
-            {{hour2}}
-        </h1>
+        <h1>{{hour2}}</h1>
     </div>
 
     <div class="div1">
         <div class="div2">
-        <h1>
-            Booth 1
-            <h2 id="Booth1_2_data">{{booth1_2}}</h2>
-        </h1>
+        <h1>Booth 1</h1>
+        <h2 id="Booth1_2_data">{{booth1_2}}</h2>
         </div>
 
         <div class="div2">
-        <h1>
-            Booth 2
-            <h2 id="Booth2_2_data">{{booth2_2}}</h2>
-        </h1>
+        <h1>Booth 2</h1>
+        <h2 id="Booth2_2_data">{{booth2_2}}</h2>
         </div>
 
         <div class="div2">
-        <h1>
-            Booth 3
-            <h2 id="Booth3_2_data">{{booth3_2}}</h2>
-        </h1>
+        <h1>Booth 3</h1>
+        <h2 id="Booth3_2_data">{{booth3_2}}</h2>
         </div>
     </div>
 
@@ -111,24 +75,12 @@
         </div>
     </footer>
 
-	
+	<script src="{{ url_for('static', filename='misc.js') }}"></script>
+
+    {% block misc %}
+    {% endblock %}
+
   </body>
-
-  <script>
-      function italicizeMe(x) {
-      var me = document.getElementById(x).textContent;
-      if ( (me == "Empty") || (me == "CLOSED") ) {
-      document.getElementById(x).style.fontStyle = 'italic';
-        }
-      }
-      italicizeMe("Booth1_data")
-      italicizeMe("Booth2_data")
-      italicizeMe("Booth3_data")
-      italicizeMe("Booth1_2_data")
-      italicizeMe("Booth2_2_data")
-      italicizeMe("Booth3_2_data")
-
-  </script>
 
   <!-- <script>
       function refresh_page(){
@@ -136,18 +88,5 @@
       }
     //   setInterval(refresh_page, 60000)
   </script> -->
-
-  <script>
-    const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-    const m = new Date();
-    let month = months[m.getMonth()];
-
-    const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-    const d = new Date();
-    let day = days[d.getDay()];
-    let dateNumber = d.getDate()
-
-    document.getElementById('date').innerHTML = day + " " + month + " " + dateNumber
-  </script>
 
 </html>

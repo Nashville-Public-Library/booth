@@ -87,6 +87,10 @@ def hour2():
     if current_hour == 15:
         lead_hour = '3:00 p - '
         trail_hour = '4:30 p'
+    
+    if current_hour >= 16:
+        lead_hour = 'Rest of Day'
+        trail_hour = ''
 
     final_hour = f'{lead_hour}{trail_hour}'
     return final_hour
