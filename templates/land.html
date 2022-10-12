@@ -8,7 +8,7 @@
         Just a moment
     </h1>
     <br>
-    <div class="dot-elastic" style="display: inline-block;">  </div>
+    <div class="dot-elastic" style="display: inline-block;"></div>
 </div>
 
 {% endblock %}
@@ -18,7 +18,8 @@
 <script>
     setTimeout(function(){
         window.location.replace("{{ url_for('homepage')}}")
-    }, 100);
+    }, 200);
+    // 1000 = 1 second
 </script>
 
 {% endblock %}

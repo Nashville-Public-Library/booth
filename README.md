@@ -44,6 +44,8 @@
 
 Nothing in this file should be enclosed in quotes.
 
+Alternatively, you can set environment variables from the EB console.
+
 ### Misc
 
 don't forget to continually update your `requirement.txt` file as you go (via `pip freeze > requirements.txt`).
