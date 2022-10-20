@@ -8,8 +8,9 @@ body {
     }
 .div2 {
         display: inline-block;
-        margin-left: 40pt;
-        margin-right: 40pt;
+        /* margin-left: 40pt;
+        margin-right: 40pt; */
+        width: 220pt;
     }
 header {
         color: azure;

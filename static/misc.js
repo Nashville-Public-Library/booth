@@ -17,9 +17,9 @@ function italicizeMe(x) {
     document.getElementById(x).style.fontStyle = 'italic';
       }
     }
-    italicizeMe("Booth1_data")
-    italicizeMe("Booth2_data")
-    italicizeMe("Booth3_data")
-    italicizeMe("Booth1_2_data")
-    italicizeMe("Booth2_2_data")
-    italicizeMe("Booth3_2_data")
+italicizeMe("Booth1_data")
+italicizeMe("Booth2_data")
+italicizeMe("Booth3_data")
+italicizeMe("Booth1_2_data")
+italicizeMe("Booth2_2_data")
+italicizeMe("Booth3_2_data")

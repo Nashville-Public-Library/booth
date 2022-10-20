@@ -12,8 +12,6 @@ from selenium.webdriver.chrome.service import Service as ChromiumService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
-from pyvirtualdisplay import Display
-
 def hour1():
     current_hour = datetime.now().strftime('%H')
 
@@ -194,23 +192,22 @@ def scrape():
         print('booth 1 here')
         if booth1_return2 == '':
             booth1_return2 = 'Empty'
-    else: 
+    else:
         booth1_return2 = 'CLOSED'
 
     if 'booth2_return2' in locals():
         print('booth 2 here')
         if booth2_return2 == '':
             booth2_return2 = 'Empty'
-    else: 
+    else:
         booth2_return2 = 'CLOSED'
 
     if 'booth3_return2' in locals():
         print('booth 3 here')
         if booth3_return2 == '':
             booth3_return2 = 'Empty'
-    else: 
+    else:
         booth3_return2 = 'CLOSED'
 
 
     return booth1_return, booth2_return, booth3_return, booth1_return2, booth2_return2, booth3_return2
-
