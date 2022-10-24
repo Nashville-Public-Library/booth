@@ -17,11 +17,16 @@
         Who's in the booth?
     </header>
 
-    <h2 style="text-align: left;margin: 0; margin-left: 5pt; margin-bottom: 0%; padding-bottom: 0%;" id="date"></h2>
+<div style="display: block; overflow: auto;">
+    <h2 style="float: left; margin-left: 5pt; margin-bottom: 0%; padding-bottom: 0%;"
+        id="date"></h2>
+    <h2 style="float: right; margin-right: 5pt; margin-bottom: 0%; padding-bottom: 0%;"
+        id="time"></h2>
+</div>
 
     {% block content %}
 
-    <div class="div1" style="padding-top: 0; margin-top: 0%;">
+    <div class="div1">
         <h1>
             {{hour}}
         </h1>
@@ -81,13 +86,24 @@
     {% block misc %}
     {% endblock %}
 
-  </body>
+    {% block refresh %}
+    <script>
+        // move this script up to the main content block. that way, it is shown only on this page, 
+        // and is overwritten by the other pages
+        function refresh_page() {
+            window.location.reload();
+        }
+        function check_time() {
+            const current_time = new Date()
+            var minute = current_time.getMinutes()
+            if (minute == 0) {
+                refresh_page()
+            }
+        }
+        setInterval(check_time, 60500)
+    </script>
+    {% endblock %}
 
-  <!-- <script>
-      function refresh_page(){
-          window.location.reload();
-      }
-    //   setInterval(refresh_page, 60000)
-  </script> -->
+  </body>
 
 </html>

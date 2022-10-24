@@ -1,14 +1,40 @@
-//output date to top of screen
+// output date to top left
+const today = new Date();
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-const m = new Date();
-let month = months[m.getMonth()];
-
 const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-const d = new Date();
-let day = days[d.getDay()];
-let dateNumber = d.getDate()
+
+let month = months[today.getMonth()];
+let day = days[today.getDay()];
+let dateNumber = today.getDate();
 
 document.getElementById('date').innerHTML = day + " " + month + " " + dateNumber
+
+// output current time to top right
+function realtime() {
+const now = new Date();
+var hour = now.getHours()
+if (hour == 12) {
+  ampm = 'pm'
+} else if (hour > 12) {
+  if (hour > 12) {
+  hour = hour - 12
+  ampm = 'pm'
+} else {
+  ampm = 'am'
+}
+}
+
+var minute = now.getMinutes()
+if (minute < 10) {
+  minute = '0' + minute
+}
+
+var realtime = hour + ':' + minute + ampm
+
+document.getElementById('time').innerHTML = realtime
+}
+realtime()
+setInterval(realtime, 4000) 
 
 // italicize empty/closed booth fields
 function italicizeMe(x) {

@@ -7,9 +7,12 @@
         Yep, that's a 404 error.
     </h1>
 
-    <h2 style="text-align: left;">
-        Sorry, there's nothing to see here. This is a single page web app. Try <a href="{{url_for('dot')}}">starting over.</a>
+    <h2 style="text-align: left; margin-left: 5pt">
+        Sorry, there's nothing to see here. Try <a href="{{url_for('dot')}}">starting over.</a>
     </h2>
 </div>
 
+{% endblock %}
+
+{% block refresh %}
 {% endblock %}
