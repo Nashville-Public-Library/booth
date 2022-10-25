@@ -109,8 +109,12 @@ def scrape():
     but that version of the browser was in beta only. Therefore, our 'Yum Install' command
     on Linux wouldn't download it. So, for now, just use a recent known working version.
     '''
-    driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version='106.0.5249.61').install()), options=chrome_options)
-    
+    os_name = os.name
+    if os_name == 'nt':
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version='106.0.5249.61').install()), options=chrome_options)
+    else:
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=chrome_options)
+
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
     email = driver.find_element(by=By.NAME, value="LN")
