@@ -102,7 +102,14 @@ def scrape():
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
 
-    driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=chrome_options)
+    '''
+    need to declare a specific version here. if you leave this blank, 
+    it will automatically use the latest version. This caused an issues recently.
+    The newest version of the driver only supported the newest version of the browser,
+    but that version of the browser was in beta only. Therefore, our 'Yum Install' command
+    on Linux wouldn't download it. So, for now, just use a recent known working version.
+    '''
+    driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version='106.0.5249.61').install()), options=chrome_options)
     
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
