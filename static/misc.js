@@ -16,13 +16,12 @@ var hour = now.getHours()
 if (hour == 12) {
   ampm = 'pm'
 } else if (hour > 12) {
-  if (hour > 12) {
   hour = hour - 12
   ampm = 'pm'
 } else {
   ampm = 'am'
 }
-}
+
 
 var minute = now.getMinutes()
 if (minute < 10) {
