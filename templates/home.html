@@ -72,6 +72,21 @@
         </div>
     </div>
 
+    <script>
+        // refresh page
+        function refresh_page() {
+            window.location.reload();
+        }
+        function check_time() {
+            const current_time = new Date()
+            var minute = current_time.getMinutes()
+            if (minute == 0) {
+                refresh_page()
+            }
+        }
+        setInterval(check_time, 60000)
+    </script>
+
     {% endblock %}
 
     <footer>
@@ -86,23 +101,6 @@
     {% block misc %}
     {% endblock %}
 
-    {% block refresh %}
-    <script>
-        // move this script up to the main content block. that way, it is shown only on this page, 
-        // and is overwritten by the other pages
-        function refresh_page() {
-            window.location.reload();
-        }
-        function check_time() {
-            const current_time = new Date()
-            var minute = current_time.getMinutes()
-            if (minute == 0) {
-                refresh_page()
-            }
-        }
-        setInterval(check_time, 60500)
-    </script>
-    {% endblock %}
 
   </body>
 

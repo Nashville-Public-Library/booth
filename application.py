@@ -36,7 +36,7 @@ def homepage():
 @application.route('/health')
 def health_check():
     '''for AWS EB's health check'''
-    return 'here i am'
+    return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
 
 @application.route('/')
 def dot():

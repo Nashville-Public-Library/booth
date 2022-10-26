@@ -9,6 +9,7 @@ let dateNumber = today.getDate();
 
 document.getElementById('date').innerHTML = day + " " + month + " " + dateNumber
 
+
 // output current time to top right
 function realtime() {
 const now = new Date();
@@ -21,19 +22,17 @@ if (hour == 12) {
 } else {
   ampm = 'am'
 }
-
-
 var minute = now.getMinutes()
 if (minute < 10) {
   minute = '0' + minute
 }
-
 var realtime = hour + ':' + minute + ampm
 
 document.getElementById('time').innerHTML = realtime
 }
 realtime()
-setInterval(realtime, 4000) 
+setInterval(realtime, 3000) 
+
 
 // italicize empty/closed booth fields
 function italicizeMe(x) {
