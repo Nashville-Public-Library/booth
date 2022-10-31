@@ -111,9 +111,9 @@ def scrape():
     '''
     os_name = os.name
     if os_name == 'nt':
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, version='106.0.5249.61').install()), options=chrome_options)
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=30, version='106.0.5249.61').install()), options=chrome_options)
     else:
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM).install()), options=chrome_options)
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=30).install()), options=chrome_options)
 
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
