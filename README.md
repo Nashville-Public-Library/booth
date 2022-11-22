@@ -1,5 +1,7 @@
 # booth
 
+[ntlbooth.com](http://ntlbooth.com)
+
  a simple web app to assist with TL booth schedule
 
  ----
@@ -18,7 +20,9 @@
 
  It SEEMS you only need to do this when you first create your EB environment; if you're just updating your code and redeploying, the previous settings for this will remain. In other words, you don't need to go do this each time you update your source code. I'm just putting this note here for future reference. It took a looooong time to figure out why the app worked for only the first few minutes it was deployed.
 
- A more elegant solution to this would be to create a proper landing page at the home route (`/`) that displays something like "just a moment..." then put some JS on the page which will load another page with the booth schedule.
+ UPDATE: We have now added a proper landing page, which, after loading, will redirect to the homepage with the Selenium magic. Still, as I'm not sure whether EB's health feature will actually cause Flask to start up Selenium, since the landing page does call the homepage, I'm leaving the `/health` route intact and in use for the health checks.
+
+ ...change the rest of the above to explain the landing page...
 
  ### Selenium
 
