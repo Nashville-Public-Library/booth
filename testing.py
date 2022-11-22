@@ -146,10 +146,10 @@ def scrape():
                     c = c.replace('[Other - Talking Library\\', '')
                     c = c.replace('Staff Service]', '')
                     c = c.replace('Collection Service]', '')
+
                     booth1 = 'Booth 1'
                     booth2 = 'Booth 2'
                     booth3 = 'Booth 3'
-
                 
                     if (booth1 in c) and (hour1() in c):
                         booth1_return = c
@@ -192,29 +192,41 @@ def scrape():
 
     driver.quit()
 
-    if booth1_return == '':
-        booth1_return = 'Empty'
-    if booth2_return == '':
-        booth2_return = 'Empty'
-    if booth3_return == '':
-        booth3_return = 'Empty'
+    # first hour
+
+    if 'booth1_return' in locals():
+        if booth1_return == '':
+            booth1_return = 'Empty'
+    else:
+        booth1_return = 'CLOSED'
+
+    if 'booth2_return' in locals():
+        if booth2_return == '':
+            booth2_return = 'Empty'
+    else:
+        booth2_return = 'CLOSED'
+
+    if 'booth3_return' in locals():
+        if booth3_return == '':
+            booth3_return = 'Empty'
+    else:
+        booth3_return = 'CLOSED'
+    
+    # second hour
 
     if 'booth1_return2' in locals():
-        print('booth 1 here')
         if booth1_return2 == '':
             booth1_return2 = 'Empty'
     else:
         booth1_return2 = 'CLOSED'
 
     if 'booth2_return2' in locals():
-        print('booth 2 here')
         if booth2_return2 == '':
             booth2_return2 = 'Empty'
     else:
         booth2_return2 = 'CLOSED'
 
     if 'booth3_return2' in locals():
-        print('booth 3 here')
         if booth3_return2 == '':
             booth3_return2 = 'Empty'
     else:

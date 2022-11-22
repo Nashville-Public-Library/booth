@@ -11,15 +11,8 @@
     <div class="dot-elastic" style="display: inline-block;"></div>
 </div>
 
-{% endblock %}
-
-{% block misc %}
-
 <script>
-    setTimeout(function(){
-        window.location.replace("{{ url_for('homepage')}}")
-    }, 500);
-    // 1000 = 1 second
+    window.onload =  function redirect (){window.location.replace("{{ url_for('homepage')}}")};
 </script>
 
 {% endblock %}
