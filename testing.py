@@ -111,9 +111,9 @@ def scrape():
     '''
     os_name = os.name
     if os_name == 'nt':
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=30, version='106.0.5249.61').install()), options=chrome_options)
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=300).install()), options=chrome_options)
     else:
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=30).install()), options=chrome_options)
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=300, version='103.0.5060.134/chromedriver_linux64.zip').install()), options=chrome_options)
 
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
@@ -151,6 +151,7 @@ def scrape():
                     booth2 = 'Booth 2'
                     booth3 = 'Booth 3'
                 
+                    # all of this is to remove the extra text so we're only returning the name of the volunteer
                     if (booth1 in c) and (hour1() in c):
                         booth1_return = c
                         booth1_return = booth1_return.replace(booth1, '')
