@@ -134,6 +134,7 @@ def scrape():
     my_schedule = driver.find_element(by=By.NAME, value='Sch')
     my_schedule.click()
 
+    '''this is so ugly. TODO REFACTOR so it makes sense!'''
     a = driver.find_elements(By.CLASS_NAME, value='a')
     for i in a:
         today = i.find_elements(By.CLASS_NAME, value='e')
@@ -143,6 +144,7 @@ def scrape():
                 b = i.find_elements(By.TAG_NAME, value='td')
                 for c in b:
                     c = c.text
+                    # strip out text we don't want/need
                     c = c.replace('[Other - Talking Library\\', '')
                     c = c.replace('Staff Service]', '')
                     c = c.replace('Collection Service]', '')
