@@ -10,19 +10,13 @@
 
  ### Health Checks
 
- First, some Background. When you go to the home route (`/`), unless the TL is closed, the first thing that happens is we're calling up Selenium to do its thing. It takes time for Selenium to load a page, log in, click a few links, and search through the HTML. Sometimes up to 8+ seconds. In other words, nothing is returned to the client until after Selenium has finished processing.
+ When we initially created this app, the home route `/` would immediately call up Selenium to do its thing. The problem was that was a slow process; we call up Selenium, it pulls up the scheduling website, logs in, clicks a button, then scrapes the HTML and returns the data, the we do our processing on the data, this return the HTML. It could take 8+ seconds to do all of this, only after which does the app return a proper HTTP response.
 
- EB's health check feature defaults to returning a warning if the app doesn't give a proper response within a few seconds. It keeps sending more checks to the server, and eventually this consumes more and more of the CPU & RAM, and the instance becomes unusable.
+ We've since changed this to have a 'landing' page, which will indeed immediately return a response, then redirects to start the Selenium process. Still, though, I'd prefer the Health Check to avoid the cumbersome part of this app. I just want to know whether the server is up or not.
 
- The fix for this is to adjust the health checks paramaters. Once you deploy the app on EB, head to the EC2 dashboard. On the left column, go down to the Load Balancing tab, and under that click Target Groups. Once there, select the target group. Under the Health Checks tab, click Edit. Once there, (you may need to select Advanced Settings) change the Health check path to `/health`. I added this route specifically for this purpose. When you visit the URL, Flask immediately returns some plain text, which takes no time. This way the health check will not throw any errors.
+ The fix for this is to adjust the health checks paramaters. Once you deploy the app on EB, head to the EC2 dashboard. On the left column, go down to the Load Balancing tab, and under that click Target Groups. Once there, select the target group. Under the Health Checks tab, click Edit. Once there, (you may need to select Advanced Settings) change the Health check path to `/health`. I added this route specifically for this purpose. When you visit the URL, Flask immediately returns some plain text, which takes no time.
 
- You need to make this change immediately after deploying, or else the health checks will begin failing immediately and the resources will start draining. 
-
- It SEEMS you only need to do this when you first create your EB environment; if you're just updating your code and redeploying, the previous settings for this will remain. In other words, you don't need to go do this each time you update your source code. I'm just putting this note here for future reference. It took a looooong time to figure out why the app worked for only the first few minutes it was deployed.
-
- UPDATE: We have now added a proper landing page, which, after loading, will redirect to the homepage with the Selenium magic. Still, as I'm not sure whether EB's health feature will actually cause Flask to start up Selenium, since the landing page does call the homepage, I'm leaving the `/health` route intact and in use for the health checks.
-
- ...change the rest of the above to explain the landing page...
+ You need to make this change immediately after deploying. It SEEMS you only need to do this when you first create your EB environment; if you're just updating your code and redeploying, the previous settings for this will remain. In other words, you don't need to go do this each time you update your source code. I'm just putting this note here for future reference.
 
  ### Selenium
 
