@@ -31,7 +31,7 @@ var realtime = hour + ':' + minute + ampm
 document.getElementById('time').innerHTML = realtime
 }
 realtime()
-setInterval(realtime, 3000) 
+setInterval(realtime, 1500)
 
 
 // italicize empty/closed booth fields
