@@ -22,6 +22,11 @@ if (hour == 12) {
 } else {
   ampm = 'am'
 }
+
+// need a fix for midnight. we don't want to display the time as 00:00. we want 12:00
+if (hour == 0) {
+  hour = 12
+}
 var minute = now.getMinutes()
 if (minute < 10) {
   minute = '0' + minute
