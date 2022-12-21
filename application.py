@@ -45,19 +45,16 @@ def dot():
 
     return render_template('land.html')
 
+# do something to explicitly handle HTTP errors so we don't get some general nginx page
+
 @application.errorhandler(404)
 def page_not_found(e):
-    # note that we set the 404 status explicitly
     return render_template('404.html', e=e), 404
 
 @application.errorhandler(500)
 def handle_exception(e):
-    # pass through HTTP errors
-    # if isinstance(e, HTTPException):
-    #     return e
-
-    # now you're handling non-HTTP exceptions only
     return render_template("broken.html", e=e), 500
+    
 
 if __name__ == '__main__':
     application.run()
