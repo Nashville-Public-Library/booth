@@ -10,7 +10,7 @@
 
  ### Health Checks
 
- When we initially created this app, the home route `/` would immediately call up Selenium to do its thing. The problem was that was a slow process; we call up Selenium, it pulls up the scheduling website, logs in, clicks a button, then scrapes the HTML and returns the data, the we do our processing on the data, this return the HTML. It could take 8+ seconds to do all of this, only after which does the app return a proper HTTP response.
+ When we initially created this app, the home route `/` would immediately call up Selenium to do its thing. The problem was: that was a slow process; we call up Selenium, it pulls up the scheduling website, logs in, clicks a button, then scrapes the HTML and returns the data, then we do our processing on the data, then return the HTML. It could take 8+ seconds to do all of this, only after which app returns a proper HTTP response.
 
  We've since changed this to have a 'landing' page, which will indeed immediately return a response, then redirects to start the Selenium process. Still, though, I'd prefer the Health Check to avoid the cumbersome part of this app. I just want to know whether the server is up or not.
 
