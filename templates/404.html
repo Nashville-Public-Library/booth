@@ -2,14 +2,25 @@
 
 {% block content %}
 
-<div style="text-align: center; padding-top: 50pt;">
-    <h1 style="color: brown;">
-        Yep, that's a 404 error.
-    </h1>
 
-    <h2 style="text-align: left; margin-left: 5pt">
-        Sorry, there's nothing to see here. Try <a href="{{url_for('dot')}}">starting over.</a>
+<div style="text-align: center;">
+
+    <img src="{{ url_for('static', filename='404.gif') }}" width="380" height="380" style="vertical-align: middle;">
+
+</div>
+
+<br>
+
+<div style="text-align: left; margin-left: 5pt; margin-top: 0%; padding-top: 0%;">
+
+    <h2 style="color: brown; display: inline-block;">
+        Yep, that's a 404 error.
     </h2>
+
+    <h2 style="display: inline-block;">
+        There's nothing to see here, but you could try <a href="{{url_for('dot')}}">starting over.</a>
+    </h2>
+
 </div>
 
 {% endblock %}
