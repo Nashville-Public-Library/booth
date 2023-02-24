@@ -80,7 +80,7 @@
         function check_time() {
             const current_time = new Date()
             var minute = current_time.getMinutes()
-            if (minute == 0) {
+            if (minute == 0 || minute == 30) {
                 refresh_page()
             }
         }
