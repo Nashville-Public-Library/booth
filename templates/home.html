@@ -26,6 +26,18 @@
 
     {% block content %}
 
+    <div class="banner" role="alert" id="banner">
+        {{banner}}
+    </div>
+
+    <script>
+        const banner = document.getElementById('banner').innerText
+        console.log(banner)
+        if (banner === "") {
+            document.getElementById('banner').remove()
+        }
+    </script>
+
     <div class="div1">
         <h1>
             {{hour}}

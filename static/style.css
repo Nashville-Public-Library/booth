@@ -18,6 +18,7 @@ header {
         padding: 15pt;
         background-color: black;
     }
+
 footer { 
         margin-top: 8%;
         margin-bottom: 1%;
@@ -28,6 +29,16 @@ footer {
     footer {
         margin-top: 2%;
     }
+}
+
+.banner {
+    text-align: left;
+    background-color: rgba(165, 42, 42, 0.774);
+    margin-left: 10%;
+    margin-right: 10%;
+    padding: 2%;
+    overflow: auto;
+    font-size: 20pt;
 }
 
 .dot-elastic {

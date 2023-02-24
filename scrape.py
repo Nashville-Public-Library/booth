@@ -237,3 +237,12 @@ def scrape():
 
 
     return booth1_return, booth2_return, booth3_return, booth1_return2, booth2_return2, booth3_return2
+
+def check_banner():
+    try:
+        banner = open('message.txt', 'r')
+        banner = banner.read()
+    except:
+        banner = ''
+
+    return banner

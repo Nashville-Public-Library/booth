@@ -3,10 +3,11 @@
 © Ben Weddle is to blame for this code. Anyone is free to use it.
 '''
 
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from datetime import datetime
 
-from testing import scrape, hour1, hour2
+from scrape import scrape, hour1, hour2
+from scrape import check_banner
 
 application = Flask(__name__)
 
@@ -31,7 +32,7 @@ def homepage():
     booth1, booth2, booth3, booth1_2, booth2_2, booth3_2 = scrape()
     
     return render_template('home.html', booth1=booth1, booth2=booth2, booth3=booth3,\
-        booth1_2=booth1_2, booth2_2=booth2_2, booth3_2=booth3_2, hour=hour1(), hour2=hour2())
+        booth1_2=booth1_2, booth2_2=booth2_2, booth3_2=booth3_2, hour=hour1(), hour2=hour2(), banner=check_banner())
 
 @application.route('/health')
 def health_check():
@@ -44,6 +45,28 @@ def dot():
         return render_template('closed.html')
 
     return render_template('land.html')
+
+'''
+just using this route for testing styles and such so we don't
+need to run selenium every time we want to reload the page.
+'''
+# @application.route('/test')
+# def testing():
+#     return render_template('home.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
+#         booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour='1:00 p - 2:00 p', hour2='2:00 p - 3:00 p', banner=check_banner())
+
+@application.route('/banner', methods=['GET', 'POST'])
+def banner():
+    if request.method == 'POST':
+        user = request.form['user']
+        message = request.form['message']
+        if user == 'changethissoon':
+            with open('message.txt', 'w') as text:
+                text.write(message)
+                text.close()
+        else:
+            return render_template('banner.html', emoji='&#128078;')
+    return render_template('banner.html')
 
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
 
