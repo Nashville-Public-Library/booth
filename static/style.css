@@ -23,7 +23,7 @@ footer {
         margin-bottom: 1%;
     }
 
-/* for TL iPad */
+/* for TL iPad (Gen2) */
 @media screen and (device-width:768px) {
     footer {
         margin-top: 2%;
