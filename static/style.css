@@ -23,6 +23,13 @@ footer {
         margin-bottom: 1%;
     }
 
+/* for TL iPad */
+@media screen and (device-width:768px) {
+    footer {
+        margin-top: 2%;
+    }
+}
+
 .dot-elastic {
     position: relative;
     width: 10px;
