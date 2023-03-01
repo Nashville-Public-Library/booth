@@ -34,7 +34,14 @@
         const banner = document.getElementById('banner').innerText
         console.log(banner)
         if (banner === "") {
-            document.getElementById('banner').remove()
+            
+            /* 
+            old iPads don't support the remove() method.
+            change this once we no longer need the old Gen2 iPad!
+            */
+
+            // document.getElementById('banner').remove()
+            document.getElementById('banner').style.display = 'none'
         }
     </script>
 
