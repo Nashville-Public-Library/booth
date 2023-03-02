@@ -26,24 +26,13 @@
 
     {% block content %}
 
+    {% if banner %}
+
     <div class="banner" role="alert" id="banner">
         {{banner}}
     </div>
 
-    <script>
-        const banner = document.getElementById('banner').innerText
-        console.log(banner)
-        if (banner === "") {
-            
-            /* 
-            old iPads don't support the remove() method.
-            change this once we no longer need the old Gen2 iPad!
-            */
-
-            // document.getElementById('banner').remove()
-            document.getElementById('banner').style.display = 'none'
-        }
-    </script>
+    {% endif %}
 
     <div class="div1">
         <h1>
