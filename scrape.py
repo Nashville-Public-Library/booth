@@ -135,60 +135,60 @@ def scrape():
     my_schedule.click()
 
     '''this is so ugly. TODO REFACTOR so it makes sense!'''
-    a = driver.find_elements(By.CLASS_NAME, value='a')
-    for i in a:
-        today = i.find_elements(By.CLASS_NAME, value='e')
-        for n in today:
-            day_as_number = datetime.now().strftime('%d').lstrip('0')
-            if n.text == day_as_number:
-                b = i.find_elements(By.TAG_NAME, value='td')
-                for c in b:
-                    c = c.text
+    days = driver.find_elements(By.CLASS_NAME, value='a')
+    for day in days:
+        day_of_month = day.find_elements(By.CLASS_NAME, value='e')
+        for i in day_of_month:
+            day_as_number_to_match = datetime.now().strftime('%d').lstrip('0')
+            if i.text == day_as_number_to_match:
+                assignments = day.find_elements(By.TAG_NAME, value='td')
+                for assignment in assignments:
+                    assignment = assignment.text
                     # strip out text we don't want/need
-                    c = c.replace('[Other - Talking Library\\', '')
-                    c = c.replace('Staff Service]', '')
-                    c = c.replace('Collection Service]', '')
+                    assignment = assignment.replace('[Other - Talking Library\\', '')
+                    assignment = assignment.replace('Staff Service]', '')
+                    assignment = assignment.replace('Collection Service]', '')
 
                     booth1 = 'Booth 1'
                     booth2 = 'Booth 2'
                     booth3 = 'Booth 3'
                 
                     # all of this is to remove the extra text so we're only returning the name of the volunteer
-                    if (booth1 in c) and (hour1() in c):
-                        booth1_return = c
+                    if (booth1 in assignment) and (hour1() in assignment):
+                        booth1_return = assignment
                         booth1_return = booth1_return.replace(booth1, '')
                         booth1_return = booth1_return.replace(hour1(), '')
                         booth1_return = booth1_return.strip()
 
-                    if (booth2 in c) and (hour1() in c):
-                        booth2_return = c
+                    if (booth2 in assignment) and (hour1() in assignment):
+                        booth2_return = assignment
                         booth2_return = booth2_return.replace(booth2, '')
                         booth2_return = booth2_return.replace(hour1(), '')
                         booth2_return = booth2_return.strip()
 
-                    if (booth3 in c) and (hour1() in c):
-                        booth3_return = c
+                    if (booth3 in assignment) and (hour1() in assignment):
+                        booth3_return = assignment
                         booth3_return = booth3_return.replace(booth3, '')
                         booth3_return = booth3_return.replace(hour1(), '')
                         booth3_return = booth3_return.strip()
 
                     #SECOND HOUR
                     
-                    if (booth1 in c) and (hour2() in c):
-                        booth1_return2 = c
+                    if (booth1 in assignment) and (hour2() in assignment):
+                        booth1_return2 = assignment
                         booth1_return2 = booth1_return2.replace(booth1, '')
                         booth1_return2 = booth1_return2.replace(hour2(), '')
                         booth1_return2 = booth1_return2.strip()
 
-                    if (booth2 in c) and (hour2() in c):
+                    if (booth2 in assignment) and (hour2() in assignment):
 
-                        booth2_return2 = c
+                        booth2_return2 = assignment
                         booth2_return2 = booth2_return2.replace(booth2, '')
                         booth2_return2 = booth2_return2.replace(hour2(), '')
                         booth2_return2 = booth2_return2.strip()
 
-                    if (booth3 in c) and (hour2() in c):
-                        booth3_return2 = c
+                    if (booth3 in assignment) and (hour2() in assignment):
+                        booth3_return2 = assignment
                         booth3_return2 = booth3_return2.replace(booth3, '')
                         booth3_return2 = booth3_return2.replace(hour2(), '')
                         booth3_return2 = booth3_return2.strip()
