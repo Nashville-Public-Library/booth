@@ -1,4 +1,6 @@
-// output date to top left
+/*
+output date to top left
+*/
 function real_date() {
 const today = new Date();
 const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -14,7 +16,9 @@ real_date()
 setInterval(real_date, 60000)
 
 
-// output current time to top right
+/*
+output current time to top right
+*/
 function real_time() {
 const now = new Date();
 var hour = now.getHours()
@@ -43,7 +47,9 @@ real_time()
 setInterval(real_time, 1000)
 
 
-// italicize empty/closed booth fields
+/*
+italicize empty/closed booth fields
+*/
 function italicizeMe(x) {
     var me = document.getElementById(x).textContent;
     if ( (me == "Empty") || (me == "CLOSED") ) {
