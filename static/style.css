@@ -8,8 +8,6 @@ body {
     }
 .div2 {
         display: inline-block;
-        /* margin-left: 40pt;
-        margin-right: 40pt; */
         width: 220pt;
     }
 header {
@@ -20,7 +18,7 @@ header {
     }
 
 footer { 
-        margin-top: 8%;
+        margin-top: 7%;
         margin-bottom: 1%;
     }
 
