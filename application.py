@@ -50,10 +50,10 @@ def dot():
 just using this route for testing styles and such so we don't
 need to run selenium every time we want to reload the page.
 '''
-@application.route('/test')
-def testing():
-    return render_template('home.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
-        booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour='1:00 p - 2:00 p', hour2='2:00 p - 3:00 p', banner=check_banner())
+# @application.route('/test')
+# def testing():
+#     return render_template('home.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
+#         booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour='1:00 p - 2:00 p', hour2='2:00 p - 3:00 p', banner=check_banner())
 
 @application.route('/banner', methods=['GET', 'POST'])
 def banner():
