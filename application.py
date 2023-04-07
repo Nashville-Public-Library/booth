@@ -50,10 +50,10 @@ def dot():
 just using this route for testing styles and such so we don't
 need to run selenium every time we want to reload the page.
 '''
-# @application.route('/test')
-# def testing():
-#     return render_template('home.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
-#         booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour='1:00 p - 2:00 p', hour2='2:00 p - 3:00 p', banner=check_banner())
+@application.route('/test')
+def testing():
+    return render_template('home.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
+        booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour='1:00 p - 2:00 p', hour2='2:00 p - 3:00 p', banner=check_banner())
 
 @application.route('/banner', methods=['GET', 'POST'])
 def banner():
@@ -64,8 +64,9 @@ def banner():
             with open('message.txt', 'w') as text:
                 text.write(message)
                 text.close()
+            return render_template('banner.html', emoji='&#128077;') # thumbs up
         else:
-            return render_template('banner.html', emoji='&#128078;')
+            return render_template('banner.html', emoji='&#128078;') # thumbs down
     return render_template('banner.html')
 
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
@@ -80,4 +81,4 @@ def handle_exception(e):
     
 
 if __name__ == '__main__':
-    application.run()
+    application.run(debug=True)
