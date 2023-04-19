@@ -22,10 +22,40 @@ footer {
         margin-bottom: 1%;
     }
 
+.footer_image {
+        height: 120px;
+        margin-right: 10pt;
+        margin-left: 10pt;
+    }
+
 /* for TL iPad (Gen2) */
 @media screen and (device-width:768px) {
     footer {
         margin-top: 1.5%;
+    }
+}
+
+/* for BrightSign) */
+@media screen and (device-width:1920px) {
+    header {
+        font-size: 30pt;
+    }    
+    h1 {
+        font-size: 33pt;
+    }
+    h2 {
+        font-size: 28pt;
+    }
+    .div2 {
+        width: 235pt;
+    }
+    footer {
+        margin-top: 4%;
+    }
+    .footer_image {
+        height: 175px;
+        margin-right: 35pt;
+        margin-left: 35pt;
     }
 }
 
