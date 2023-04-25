@@ -53,7 +53,7 @@ need to run selenium every time we want to reload the page.
 @application.route('/test')
 def testing():
     return render_template('home.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
-        booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour='1:00 p - 2:00 p', hour2='2:00 p - 3:00 p', banner=check_banner())
+        booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour=hour1(), hour2=hour2(), banner=check_banner())
 
 @application.route('/banner', methods=['GET', 'POST'])
 def banner():
@@ -81,4 +81,4 @@ def handle_exception(e):
     
 
 if __name__ == '__main__':
-    application.run()
+    application.run(debug=True)
