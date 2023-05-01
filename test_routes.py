@@ -54,6 +54,11 @@ def test_banner_post_no_data(client):
     response = client.post('/banner')
     assert response.status_code == 400
 
+def test_banner_post_missing_data(client):
+    '''should fail if SOME form data is missing'''
+    response = client.post('/banner', data={"user": ""})
+    assert response.status_code == 400
+
 '''
 POST non-POST routes
 '''
