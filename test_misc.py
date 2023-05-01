@@ -18,14 +18,14 @@ def test_home(client):
     resp = client.get('/')
     assert resp.status_code == 200
 
-# def test_live(client):
-#     '''
-#     Home route forwards here, the main page. 
-#     This calls the selenium script, which can take a while,
-#     so don't be alarmed if it takes 10+ seconds to run this test.
-#     '''
-#     resp = client.get('/live')
-#     assert resp.status_code == 200
+def test_live(client):
+    '''
+    Home route forwards here, the main page. 
+    This calls the selenium script, which can take a while,
+    so don't be alarmed if it takes 10+ seconds to run this test.
+    '''
+    resp = client.get('/live')
+    assert resp.status_code == 200
 
 def test_banner(client):
     response = client.get('/banner')
