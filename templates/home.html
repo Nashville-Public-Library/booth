@@ -26,14 +26,6 @@
 
     {% block content %}
 
-    {% if banner %}
-
-    <div class="banner" role="alert" id="banner">
-        {{banner}}
-    </div>
-
-    {% endif %}
-
     <div class="div1">
         <h1>
             {{hour}}
@@ -80,6 +72,14 @@
         </div>
     </div>
 
+    {% if banner %}
+    <br>
+    <div class="banner" role="alert" id="banner">
+        {{banner}}
+    </div>
+
+    {% endif %}
+
     <script>
         // refresh page
         function refresh_page() {
@@ -97,12 +97,29 @@
 
     {% endblock %}
 
-    <footer>
+    <footer id="footer">
         <div style="text-align: center;">
         <img src="{{url_for('static', filename='NTL.png')}}" class="footer_image" alt="NTL logo">
         <img src="{{url_for('static', filename='NPL.png')}}" class="footer_image" alt="NPL logo">
         </div>
     </footer>
+
+    <script>
+        /*
+        If banner element is on the page, remove footer/images BUT only for BrightSign, 
+        which we target below. We blew up the font for BrightSign so big (staff request) that
+        we can't fit everything on the screen.
+
+        This feels hacky, sorry.
+        */ 
+
+        const screen_width = document.documentElement.clientWidth
+        const no_hover = window.matchMedia("(hover: none)").matches
+
+        if (screen_width == 1920 && no_hover == true) {
+        document.getElementById('footer').remove();
+        }
+    </script>
 
 	<script src="{{ url_for('static', filename='misc.js') }}"></script>
 
