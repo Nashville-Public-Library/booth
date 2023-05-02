@@ -8,16 +8,6 @@
 
  ## Read this before deploying!
 
- ### Health Checks
-
- When we initially created this app, the home route `/` would immediately call up Selenium to do its thing. The problem was: that was a slow process; we call up Selenium, it pulls up the scheduling website, logs in, clicks a button, then scrapes the HTML and returns the data, then we do our processing on the data, then return the HTML. It could take 8+ seconds to do all of this, only after which app returns a proper HTTP response.
-
- We've since changed this to have a 'landing' page, which will indeed immediately return a response, then redirects to start the Selenium process. Still, though, I'd prefer the Health Check to avoid the cumbersome part of this app. I just want to know whether the server is up or not.
-
- The fix for this is to adjust the health checks paramaters. Once you deploy the app on EB, head to the EC2 dashboard. On the left column, go down to the Load Balancing tab, and under that click Target Groups. Once there, select the target group. Under the Health Checks tab, click Edit. Once there, (you may need to select Advanced Settings) change the Health check path to `/health`. I added this route specifically for this purpose. When you visit the URL, Flask immediately returns some plain text, which takes no time.
-
- You need to make this change immediately after deploying. It SEEMS you only need to do this when you first create your EB environment; if you're just updating your code and redeploying, the previous settings for this will remain. In other words, you don't need to go do this each time you update your source code. I'm just putting this note here for future reference.
-
  ### Selenium
 
  I tried uploading a linux binary of the chrome driver at root of project and passing in that location when creating the `driver = webdriver.Chrome(...)` instance. this did not work. long story short, I found [selenium's preferred method](https://www.selenium.dev/documentation/webdriver/getting_started/install_drivers/#1-driver-management-software) is using [webdriver manager](https://github.com/SergeyPirogov/webdriver_manager). this will install it for you, and also keep it up to date with the latest version.
