@@ -104,6 +104,8 @@
         </div>
     </footer>
 
+    {% if banner %}
+
     <script>
         /*
         If banner element is on the page, remove footer/images BUT only for BrightSign, 
@@ -115,11 +117,13 @@
 
         const screen_width = document.documentElement.clientWidth
         const no_hover = window.matchMedia("(hover: none)").matches
-
+        
         if (screen_width == 1920 && no_hover == true) {
-        document.getElementById('footer').remove();
+        document.getElementById('footer').style.visibility = 'hidden';
         }
     </script>
+
+    {% endif %}
 
 	<script src="{{ url_for('static', filename='misc.js') }}"></script>
 
