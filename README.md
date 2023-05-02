@@ -34,6 +34,9 @@ Nothing in this file should be enclosed in quotes.
 
 Alternatively, you can set environment variables from the EB console. Just make sure to set them immediately upon deployment.
 
+### Testing
+Run `pytest` at the top level directory to run the basic tests.
+
 ### Misc
 
 Don't forget to continually update your `requirement.txt` file as you go (via `pip freeze > requirements.txt`).
