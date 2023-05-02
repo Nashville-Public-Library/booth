@@ -115,10 +115,10 @@
         This feels hacky, sorry.
         */ 
 
-        const screen_width = document.documentElement.clientWidth
-        const no_hover = window.matchMedia("(hover: none)").matches
-        
-        if (screen_width == 1920 && no_hover == true) {
+        is_BrightSign = window.navigator.userAgent.includes('Bright');
+        console.log(is_BrightSign)
+
+        if (is_BrightSign) {
         document.getElementById('footer').style.visibility = 'hidden';
         }
     </script>
