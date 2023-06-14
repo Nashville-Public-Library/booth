@@ -23,6 +23,8 @@ def are_we_closed():
 
     if current_day in weekend:
         return True
+    
+    return False
 
 @application.route('/live')
 def homepage():
