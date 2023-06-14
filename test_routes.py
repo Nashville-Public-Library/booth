@@ -56,7 +56,10 @@ POST real POST routes
 
 def test_banner_post(client):
     '''this is NOT testing whether the credentials are correct! only if the post request is formatted correctly'''
-    response = client.post('/banner', data={"user": "","message": "",})
+    response = client.post('/banner', data=
+                           {"user": "something",
+                            "message": "something",
+                            })
     assert response.status_code == 200
 
 def test_banner_post_no_data(client):
@@ -82,3 +85,22 @@ def test_home_post_2(client):
     '''should fail for non-POST routes'''
     response = client.post('/live')
     assert response.status_code == 405
+
+
+'''MISC Functions'''
+
+def test_are_we_closed_1():
+    from application import are_we_closed
+    assert type(are_we_closed()) == bool
+
+def test_hour_1_1():
+    from scrape import hour1
+    assert type(hour1()) == str
+
+def test_hour_2_1():
+    from scrape import hour2
+    assert type(hour2()) == str
+
+def test_check_banner():
+    from scrape import check_banner
+    assert type(check_banner()) == bool or str
