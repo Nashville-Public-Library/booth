@@ -11,6 +11,7 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromiumService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
+from webdriver_manager.core.utils import read_version_from_cmd, PATTERN
 
 def hour1():
     current_hour = datetime.now().strftime('%H')
@@ -113,7 +114,8 @@ def scrape():
     if os_name == 'nt':
         driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=300).install()), options=chrome_options)
     else:
-        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=300, version='112.0.5615.49').install()), options=chrome_options)
+        version = read_version_from_cmd("/usr/bin/chromium-browser --version", PATTERN["chromium"])
+        driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=300, version=version).install()), options=chrome_options)
 
     driver.get('https://www.volgistics.com/ex/portal.dll/?FROM=15495')
 
