@@ -44,7 +44,7 @@ def scrape():
     '''
     COME UP WITH SOMETHING ELSE FOR THIS BELOW!!!
     '''
-    time.sleep(2)
+    driver.implicitly_wait(3)
     '''
     COME UP WITH SOMETHING ELSE FOR THIS ABOVE!!!
     '''
@@ -63,7 +63,7 @@ def scrape():
 
     # now we're logged in
 
-    time.sleep(4)
+    driver.implicitly_wait(5)
 
     '''this is so ugly. TODO REFACTOR so it makes sense!'''
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
