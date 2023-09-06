@@ -38,7 +38,8 @@ def scrape():
     else:
         driver = webdriver.Chrome(service=ChromiumService(ChromeDriverManager(chrome_type=ChromeType.CHROMIUM, cache_valid_range=300, version='114.0.5735.16').install()), options=chrome_options)
 
-    driver.get('https://www.volgistics.com/vicnet/15495/schedule')
+    date_for_URL = datetime.now().strftime('%m%d%Y')
+    driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date_for_URL}')
 
     '''
     COME UP WITH SOMETHING ELSE FOR THIS BELOW!!!
@@ -57,69 +58,66 @@ def scrape():
     email.send_keys(VIC_user)
     password.send_keys(VIC_pass)
 
-    # submit = driver.find_element(by=By.CLASS_NAME, value="mat-mdc-raised-button")
-    # submit.click()
+    submit = driver.find_element(by=By.CLASS_NAME, value="mat-mdc-raised-button")
+    submit.click()
 
     # now we're logged in
 
+    time.sleep(4)
+
     '''this is so ugly. TODO REFACTOR so it makes sense!'''
-    days = driver.find_elements(By.CLASS_NAME, value='a')
-    for day in days:
-        day_of_month = day.find_elements(By.CLASS_NAME, value='e')
-        for i in day_of_month:
-            day_as_number_to_match = datetime.now().strftime('%d').lstrip('0')
-            if i.text == day_as_number_to_match:
-                assignments = day.find_elements(By.TAG_NAME, value='td')
-                for assignment in assignments:
-                    assignment = assignment.text
-                    # strip out text we don't want/need
-                    assignment = assignment.replace('[Other - Talking Library\\', '')
-                    assignment = assignment.replace('Staff Service]', '')
-                    assignment = assignment.replace('Collection Service]', '')
+    shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
+    for shift in shifts:
+        shift = shift.text.replace('• Other - Talking Library\Staff Service', '')
+        shift = shift.replace('• Other - Talking Library\Collection Service', '')
+        shift = shift.replace('AM Newspaper Reading', '')
+        shift = shift.replace('The Tennessean', '')
+        shift = shift.replace('1 more needed', '')
 
-                    booth1 = 'Booth 1'
-                    booth2 = 'Booth 2'
-                    booth3 = 'Booth 3'
-                
-                    # all of this is to remove the extra text so we're only returning the name of the volunteer
-                    if (booth1 in assignment) and (hour1() in assignment):
-                        booth1_return = assignment
-                        booth1_return = booth1_return.replace(booth1, '')
-                        booth1_return = booth1_return.replace(hour1(), '')
-                        booth1_return = booth1_return.strip()
+        booth1 = 'Booth 1'
+        booth2 = 'Booth 2'
+        booth3 = 'Booth 3'
+        
+        print(hour1(), booth1)
+        # all of this is to remove the extra text so we're only returning the name of the volunteer
+        if (booth1 in shift) and (hour1() in shift):
+            booth1_return = shift
+            booth1_return = booth1_return.replace(booth1, '')
+            booth1_return = booth1_return.replace(hour1(), '')
+            booth1_return = booth1_return.strip()
 
-                    if (booth2 in assignment) and (hour1() in assignment):
-                        booth2_return = assignment
-                        booth2_return = booth2_return.replace(booth2, '')
-                        booth2_return = booth2_return.replace(hour1(), '')
-                        booth2_return = booth2_return.strip()
+        if (booth2 in shift) and (hour1() in shift):
+            booth2_return = shift
+            booth2_return = booth2_return.replace(booth2, '')
+            booth2_return = booth2_return.replace(hour1(), '')
+            booth2_return = booth2_return.strip()
 
-                    if (booth3 in assignment) and (hour1() in assignment):
-                        booth3_return = assignment
-                        booth3_return = booth3_return.replace(booth3, '')
-                        booth3_return = booth3_return.replace(hour1(), '')
-                        booth3_return = booth3_return.strip()
+        if (booth3 in shift) and (hour1() in shift):
+            booth3_return = shift
+            booth3_return = booth3_return.replace(booth3, '')
+            booth3_return = booth3_return.replace(hour1(), '')
+            booth3_return = booth3_return.strip()
 
-                    #SECOND HOUR
-                    
-                    if (booth1 in assignment) and (hour2() in assignment):
-                        booth1_return2 = assignment
-                        booth1_return2 = booth1_return2.replace(booth1, '')
-                        booth1_return2 = booth1_return2.replace(hour2(), '')
-                        booth1_return2 = booth1_return2.strip()
+        #SECOND HOUR
 
-                    if (booth2 in assignment) and (hour2() in assignment):
+        if (booth1 in shift) and (hour2() in shift):
+            booth1_return2 = shift
+            booth1_return2 = booth1_return2.replace(booth1, '')
+            booth1_return2 = booth1_return2.replace(hour2(), '')
+            booth1_return2 = booth1_return2.strip()
 
-                        booth2_return2 = assignment
-                        booth2_return2 = booth2_return2.replace(booth2, '')
-                        booth2_return2 = booth2_return2.replace(hour2(), '')
-                        booth2_return2 = booth2_return2.strip()
+        if (booth2 in shift) and (hour2() in shift):
 
-                    if (booth3 in assignment) and (hour2() in assignment):
-                        booth3_return2 = assignment
-                        booth3_return2 = booth3_return2.replace(booth3, '')
-                        booth3_return2 = booth3_return2.replace(hour2(), '')
-                        booth3_return2 = booth3_return2.strip()
+            booth2_return2 = shift
+            booth2_return2 = booth2_return2.replace(booth2, '')
+            booth2_return2 = booth2_return2.replace(hour2(), '')
+            booth2_return2 = booth2_return2.strip()
+
+        if (booth3 in shift) and (hour2() in shift):
+            booth3_return2 = shift
+            booth3_return2 = booth3_return2.replace(booth3, '')
+            booth3_return2 = booth3_return2.replace(hour2(), '')
+            booth3_return2 = booth3_return2.strip()
 
     driver.quit()
 
