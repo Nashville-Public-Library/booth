@@ -6,34 +6,34 @@ def hour1():
     if int(current_hour) <= 11:
         # booth schedule begins at 9am, but we want to start showing the schedule at 8am
         if int(current_hour) == 8:
-            lead_hour = '9:00 a - '
+            lead_hour = '9:00 am - '
         else:
-            lead_hour = f'{current_hour}:00 a - '.lstrip('0')
+            lead_hour = f'{current_hour}:00 am - '.lstrip('0')
     elif int(current_hour) == 12:
-        lead_hour = '12:00 p - '
+        lead_hour = '12:00 pm - '
     else:
         lead_hour = int(current_hour) - 12
-        lead_hour = f'{lead_hour}:00 p - '.lstrip('0')
+        lead_hour = f'{lead_hour}:00 pm - '.lstrip('0')
 
     if int(current_hour) == 12:
         trail_hour = int(current_hour) - 11
-        trail_hour = f'{trail_hour}:00 p'
+        trail_hour = f'{trail_hour}:00 pm'
     elif int(current_hour) < 11:
         if int(current_hour) == 8:
-            trail_hour = '10:00 a'
+            trail_hour = '10:00 am'
         else:
             trail_hour = int(current_hour) + 1
-            trail_hour = f'{trail_hour}:00 a'.lstrip('0')
+            trail_hour = f'{trail_hour}:00 am'.lstrip('0')
     elif int(current_hour) == 11:
-        trail_hour = '12:00 p'
+        trail_hour = '12:00 pm'
     else:
         trail_hour = int(current_hour) - 11
-        trail_hour = f'{trail_hour}:00 p'.lstrip('0')
+        trail_hour = f'{trail_hour}:00 pm'.lstrip('0')
 
     #3-4:30pm is a special case. deal with this separately.
     if int(current_hour) == 15 or int(current_hour) == 16:
-        lead_hour = '3:00 p - '
-        trail_hour = '4:30 p'
+        lead_hour = '3:00 pm - '
+        trail_hour = '4:30 pm'
 
     final_hour = f'{lead_hour}{trail_hour}'
     return final_hour
@@ -45,34 +45,34 @@ def hour2():
     if current_hour <= 11:
         # booth schedule begins at 9am, but we want to start showing the schedule at 8am
         if current_hour == 9:
-            lead_hour = '10:00 a - '
+            lead_hour = '10:00 am - '
         else:
-            lead_hour = f'{current_hour}:00 a - '.lstrip('0')
+            lead_hour = f'{current_hour}:00 am - '.lstrip('0')
     elif current_hour == 12:
-        lead_hour = '12:00 p - '
+        lead_hour = '12:00 pm - '
     else:
         lead_hour = (current_hour) - 12
-        lead_hour = f'{lead_hour}:00 p - '.lstrip('0')
+        lead_hour = f'{lead_hour}:00 pm - '.lstrip('0')
 
     if current_hour == 13:
         trail_hour = (current_hour) - 11
-        trail_hour = f'{trail_hour}:00 p'.lstrip('0')
+        trail_hour = f'{trail_hour}:00 pm'.lstrip('0')
     elif current_hour < 11:
         if current_hour == 9:
-            trail_hour = '11:00 a'
+            trail_hour = '11:00 am'
         else:
             trail_hour = (current_hour) + 1
-            trail_hour = f'{trail_hour}:00 a'.lstrip('0')
+            trail_hour = f'{trail_hour}:00 am'.lstrip('0')
     elif (current_hour) == 11:
-        trail_hour = '12:00 p'
+        trail_hour = '12:00 pm'
     else:
         trail_hour = (current_hour) - 11
-        trail_hour = f'{trail_hour}:00 p'.lstrip('0')
+        trail_hour = f'{trail_hour}:00 pm'.lstrip('0')
 
     #3-4:30pm is a special case. deal with this separately.
     if current_hour == 15:
-        lead_hour = '3:00 p - '
-        trail_hour = '4:30 p'
+        lead_hour = '3:00 pm - '
+        trail_hour = '4:30 pm'
     
     if current_hour >= 16:
         lead_hour = 'Rest of Day'
