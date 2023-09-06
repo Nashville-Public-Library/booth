@@ -78,7 +78,6 @@ def scrape():
         booth2 = 'Booth 2'
         booth3 = 'Booth 3'
         
-        print(hour1(), booth1)
         # all of this is to remove the extra text so we're only returning the name of the volunteer
         if (booth1 in shift) and (hour1() in shift):
             booth1_return = shift
