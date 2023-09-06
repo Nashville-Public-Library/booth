@@ -41,13 +41,7 @@ def scrape():
     date_for_URL = datetime.now().strftime('%m%d%Y')
     driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date_for_URL}')
 
-    '''
-    COME UP WITH SOMETHING ELSE FOR THIS BELOW!!!
-    '''
     driver.implicitly_wait(3)
-    '''
-    COME UP WITH SOMETHING ELSE FOR THIS ABOVE!!!
-    '''
 
     email = driver.find_element(by=By.NAME, value="email")
     password = driver.find_element(by=By.NAME, value="password")
@@ -68,6 +62,7 @@ def scrape():
     '''this is so ugly. TODO REFACTOR so it makes sense!'''
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
     for shift in shifts:
+        # strip out non-needed text
         shift = shift.text.replace('• Other - Talking Library\Staff Service', '')
         shift = shift.replace('• Other - Talking Library\Collection Service', '')
         shift = shift.replace('AM Newspaper Reading', '')
