@@ -62,7 +62,7 @@ def banner():
     if request.method == 'POST':
         user = request.form['user']
         message = request.form['message']
-        if user == 'changethissoon':
+        if user == 'talk5874':
             with open('message.txt', 'w') as text:
                 text.write(message)
                 text.close()
