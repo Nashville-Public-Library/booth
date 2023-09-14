@@ -3,11 +3,11 @@
 © Ben Weddle is to blame for this code. Anyone is free to use it.
 '''
 
-from flask import Flask, render_template, request
 from datetime import datetime
+from flask import Flask, render_template, request
 
-from scrape import scrape, hour1, hour2
-from scrape import check_banner
+from hours import hour1, hour2
+from scrape import scrape, check_banner
 
 application = Flask(__name__)
 
