@@ -8,6 +8,7 @@ from flask import Flask, render_template, request
 
 from hours import hour1, hour2
 from scrape import scrape, check_banner
+from icecast import icecast_now_playing
 
 application = Flask(__name__)
 
@@ -70,6 +71,10 @@ def banner():
         else:
             return render_template('banner.html', emoji='&#128078;') # thumbs down
     return render_template('banner.html')
+
+@application.route('/nowplaying')
+def now_playing():
+    return icecast_now_playing()
 
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
 
