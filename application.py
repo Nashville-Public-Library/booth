@@ -7,8 +7,8 @@ from datetime import datetime
 from flask import Flask, render_template, request, make_response
 
 from hours import hour1, hour2
-from scrape import scrape, check_banner
 from icecast import icecast_now_playing
+from scrape import scrape, check_banner
 
 application = Flask(__name__)
 
