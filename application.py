@@ -4,7 +4,7 @@
 '''
 
 from datetime import datetime
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, make_response
 
 from hours import hour1, hour2
 from scrape import scrape, check_banner
@@ -74,7 +74,13 @@ def banner():
 
 @application.route('/nowplaying')
 def now_playing():
-    return icecast_now_playing()
+    response = make_response(icecast_now_playing())
+    response.headers['customHeader'] = 'Darth Vader'
+    response.status_code = 200
+    response.content_type = 'text/html'
+    response.access_control_allow_origin = '*'
+    return response
+
 
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
 
