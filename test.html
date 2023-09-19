@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Testing Now Playing</title>
+</head>
+
+<body>
+
+    <div style="display: block;">
+        <h1 style="display: inline-block;">Now Playing</h1>
+        <h2 style="display: inline-block; border-style:solid; border-color: brown; border-radius: 50px; padding: 10px;"
+            id="nowPlaying"></h2>
+    </div>
+
+    <script>
+        const headers = {
+            'mode': 'no-cors',
+        };
+
+        let response = fetch("http://127.0.0.1:5000/nowplaying");
+        response.then(res => res.text())
+            .then(d => {
+                let div = document.getElementById('nowPlaying');
+                div.innerHTML = d
+                console.log(d)
+            })
+
+    </script>
+    
+    </body>
+    
+    </html>
