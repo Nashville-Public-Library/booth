@@ -20,6 +20,8 @@ def homepage():
 @app.route('/health')
 def health_check():
     '''for AWS EB's health check'''
+    if request.headers.get('User-Agent') == 'test':
+        return 'la dee dah'
     return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
 
 @app.route('/')
