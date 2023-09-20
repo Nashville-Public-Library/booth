@@ -2,24 +2,10 @@ from datetime import datetime
 from flask import render_template, request, make_response
 
 from app import app
+from app.utils import are_we_closed, check_banner
 from app.booth.hours import hour1, hour2
 from app.booth.icecast import icecast_now_playing
-from app.booth.scrape import scrape, check_banner
-
-def are_we_closed():
-    current_hour = datetime.now().strftime('%H')
-    current_hour = int(current_hour)
-
-    current_day = datetime.now().strftime('%a')
-    weekend = ['Sat', 'Sun']
-
-    if current_hour < 8 or current_hour > 16:
-        return True
-
-    if current_day in weekend:
-        return True
-    
-    return False
+from app.booth.scrape import scrape
 
 @app.route('/live')
 def homepage():
