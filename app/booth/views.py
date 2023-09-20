@@ -46,7 +46,6 @@ def banner():
         if user == 'talk5874':
             with open('message.txt', 'w') as text:
                 text.write(message)
-                text.close()
             return render_template('banner.html', emoji='&#128077;') # thumbs up
         else:
             return render_template('banner.html', emoji='&#128078;') # thumbs down
