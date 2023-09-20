@@ -6,9 +6,9 @@
 from datetime import datetime
 from flask import Flask, render_template, request, make_response
 
-from app.hours import hour1, hour2
-from app.icecast import icecast_now_playing
-from app.scrape import scrape, check_banner
+from app.booth.hours import hour1, hour2
+from app.booth.icecast import icecast_now_playing
+from app.booth.scrape import scrape, check_banner
 
 app = Flask(__name__)
 
