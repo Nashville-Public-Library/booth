@@ -12,9 +12,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service as ChromiumService
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
-from webdriver_manager.core.utils import read_version_from_cmd, PATTERN
 
-from hours import hour1, hour2
+from app.booth.hours import hour1, hour2
 
 
 def scrape():
@@ -27,7 +26,7 @@ def scrape():
 
     '''
     need to declare a specific version here. if you leave this blank, 
-    it will automatically use the latest version. This caused an issues recently.
+    it will automatically use the latest version. This caused an issues.
     The newest version of the driver only supported the newest version of the browser,
     but that version of the browser was in beta only. Therefore, our 'Yum Install' command
     on Linux wouldn't download it. So, for now, just use a recent known working version.
@@ -157,12 +156,3 @@ def scrape():
 
 
     return booth1_return, booth2_return, booth3_return, booth1_return2, booth2_return2, booth3_return2
-
-def check_banner():
-    banner = open('message.txt', 'r')
-    banner = banner.read()
-
-    if banner == '':
-        banner == False
-        
-    return banner
