@@ -16,14 +16,16 @@
     </div>
 
     <script>
-        fetch("http://ntlbooth.com/nowplaying")
-            .then(res => res.text())
-            .then(d => {
-                let div = document.getElementById('nowPlaying');
-                div.innerHTML = d
+        fetch("http://127.0.0.1:5000/nowplaying")
+            .then(response => response.text())
+            .then(response => {
+                const json_response = JSON.parse(response);
+                current = json_response.current;
+                let nowPlaying = document.getElementById('nowPlaying');
+                nowPlaying.innerHTML = current
             })
     </script>
 
-</body> 
+</body>
 
 </html>
