@@ -1,4 +1,4 @@
-from flask import render_template, request, make_response, jsonify
+from flask import render_template, request, make_response
 
 from app import app
 from app.utils import are_we_closed, check_banner
