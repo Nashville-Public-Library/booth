@@ -1,4 +1,4 @@
-from flask import render_template, request, make_response
+from flask import render_template, request, make_response, jsonify
 
 from app import app
 from app.utils import are_we_closed, check_banner
@@ -54,10 +54,11 @@ def banner():
 
 @app.route('/nowplaying')
 def now_playing():
-    response = make_response(icecast_now_playing())
+    icecast = {'current': icecast_now_playing()}
+    response = make_response(icecast)
     response.headers['customHeader'] = 'Darth Vader'
     response.status_code = 200
-    response.content_type = 'text/html'
+    response.content_type = 'application/json '
     response.access_control_allow_origin = '*'
     return response
 
