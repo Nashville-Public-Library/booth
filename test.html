@@ -10,26 +10,20 @@
 <body>
 
     <div style="display: block;">
-        <h1 style="display: inline-block;">Now Playing</h1>
-        <h2 style="display: inline-block; border-style:solid; border-color: brown; border-radius: 50px; padding: 10px;"
-            id="nowPlaying"></h2>
+        <h1 style="display: inline-block;">Now Playing: </h1>
+        <h1 style="display: inline-block; border-style:solid; border-color: brown; border-radius: 50px; padding: 10px;"
+            id="nowPlaying"></h1>
     </div>
 
     <script>
-        const headers = {
-            'mode': 'no-cors',
-        };
-
-        let response = fetch("http://127.0.0.1:5000/nowplaying");
-        response.then(res => res.text())
+        fetch("http://ntlbooth.com/nowplaying")
+            .then(res => res.text())
             .then(d => {
                 let div = document.getElementById('nowPlaying');
                 div.innerHTML = d
-                console.log(d)
             })
-
     </script>
-    
-    </body>
-    
-    </html>
+
+</body> 
+
+</html>
