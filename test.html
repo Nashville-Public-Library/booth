@@ -16,14 +16,17 @@
     </div>
 
     <script>
+        function nowPlaying() {
         fetch("http://127.0.0.1:5000/nowplaying")
             .then(response => response.text())
             .then(response => {
-                const json_response = JSON.parse(response);
-                current = json_response.current;
                 let nowPlaying = document.getElementById('nowPlaying');
-                nowPlaying.innerHTML = current
+                nowPlaying.innerText = response
+                console.log(response)
             })
+        }
+        nowPlaying()
+        setInterval(nowPlaying, 30000)
     </script>
 
 </body>
