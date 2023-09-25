@@ -5,18 +5,23 @@
 <br>
 
 <div style="text-align: center">
-    <form method="post">
-        <input type="password" name="user">
-        <br><br><br>
-        <textarea id="message" name="message" style="width: 50%; height: 100px;"></textarea>
+    <form method="post" id="banner">
+        <input type="password" name="password" id="password" placeholder="password">
         <br><br>
-        <input type="submit" value="hmmmm" style="width: 100px; height: 30px;">
+        <textarea id="message" name="message" style="width: 50%; height: 100px;"
+            placeholder="your message here (or leave blank to clear existing message)">{{ banner_text }}</textarea>
+        <br><br>
     </form>
+    <button onclick="validateBanner()" style="width: 100px; height: 30px;">SUBMIT</button>
 </div>
 
 <br>
 
-<div style="font-size: 85pt; text-align: center;">{{ emoji|safe }}</div>
+<div style="font-size: 85pt; text-align: center;" id="emoji">{{ emoji|safe }}</div>
+<div class="bannerForgotPassword"
+    id="success">
+    you forgot the password</div>
 
+<script src="{{url_for('static', filename='banner.js')}}"></script>
 
 {% endblock %}

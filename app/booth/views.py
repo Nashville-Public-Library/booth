@@ -42,15 +42,15 @@ def testing():
 @app.route('/banner', methods=['GET', 'POST'])
 def banner():
     if request.method == 'POST':
-        user = request.form['user']
+        password = request.form['password']
         message = request.form['message']
-        if user == 'talk5874':
+        if password == 'talk5874':
             with open('message.txt', 'w') as text:
                 text.write(message)
-            return render_template('banner.html', emoji='&#128077;') # thumbs up
+            return render_template('banner.html', emoji='&#128077;', banner_text=check_banner()) # emoji = thumbs up
         else:
-            return render_template('banner.html', emoji='&#128078;') # thumbs down
-    return render_template('banner.html')
+            return render_template('banner.html', emoji='&#128078;', banner_text=check_banner()) # emoji thumbs down
+    return render_template('banner.html', banner_text=check_banner())
 
 @app.route('/nowplaying')
 def now_playing():

@@ -65,6 +65,16 @@ footer {
     font-size: 21pt;
 }
 
+.bannerForgotPassword {
+    font-size: 20pt;
+    text-align: center;
+    background-color: rgb(196, 64, 64);
+    width: max-content;
+    margin: auto;
+    padding: 1%;
+    display: none; 
+}
+
 .dot-elastic {
     position: relative;
     width: 10px;
