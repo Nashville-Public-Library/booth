@@ -12,19 +12,24 @@
     <div style="display: block;">
         <h1 style="display: inline-block;">Now Playing: </h1>
         <h1 style="display: inline-block; border-style:solid; border-color: brown; border-radius: 50px; padding: 10px;"
-            id="nowPlaying"></h1>
+            id="title"></h1>
     </div>
 
     <script>
-        function nowPlaying() {
-        fetch("http://127.0.0.1:5000/nowplaying")
-            .then(response => response.text())
-            .then(response => {
-                let nowPlaying = document.getElementById('nowPlaying');
-                nowPlaying.innerText = response
-                console.log(response)
-            })
+        async function nowPlaying() {
+            let titleElement = document.getElementById('title');
+            try {
+                var response = await fetch("http://127.0.0.1:5000/nowplaying");
+                var icecast = await response.json()
+                var nowPlaying = icecast.nowPlaying;
+                titleElement.innerText = nowPlaying
+                console.log(nowPlaying)
+            }
+            catch (err) {
+                titleElement.innerText = 'Not Available'
+            }
         }
+
         nowPlaying()
         setInterval(nowPlaying, 30000)
     </script>
