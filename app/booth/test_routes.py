@@ -57,7 +57,7 @@ POST real POST routes
 def test_banner_post(client):
     '''this is NOT testing whether the credentials are correct! only if the post request is formatted correctly'''
     response = client.post('/banner', data=
-                           {"user": "something",
+                           {"password": "something",
                             "message": "something",
                             })
     assert response.status_code == 200
