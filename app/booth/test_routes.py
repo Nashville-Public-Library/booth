@@ -36,6 +36,14 @@ def test_banner(client):
     response = client.get('/banner')
     assert response.status_code == 200
 
+def test_stream_1(client):
+    response = client.get('/stream')
+    assert response.status_code == 200
+
+def test_stream_2(client):
+    response = client.get('/stream')
+    assert response.content_type == 'application/json'
+
 '''
 GET non-GET routes
 '''
@@ -86,6 +94,11 @@ def test_home_post_2(client):
     response = client.post('/live')
     assert response.status_code == 405
 
+def test_home_post_3(client):
+    '''should fail for non-POST routes'''
+    response = client.post('/stream')
+    assert response.status_code == 405
+
 
 '''MISC Functions'''
 
@@ -104,3 +117,7 @@ def test_hour_2_1():
 def test_check_banner():
     from app.utils import check_banner
     assert type(check_banner()) == bool or str
+
+def test_check_icecast():
+    from app.booth.icecast import icecast_now_playing
+    assert type(icecast_now_playing()) == str
