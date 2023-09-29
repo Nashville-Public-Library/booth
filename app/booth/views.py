@@ -52,7 +52,7 @@ def banner():
             return render_template('banner.html', emoji='&#128078;', banner_text=check_banner()) # emoji thumbs down
     return render_template('banner.html', banner_text=check_banner())
 
-@app.route('/nowplaying')
+@app.route('/stream')
 def now_playing():
     icecast = {'nowPlaying': icecast_now_playing()}
     response = make_response(icecast)
