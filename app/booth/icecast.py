@@ -3,12 +3,12 @@ import xml.etree.ElementTree as ET
 
 import requests
 
-from app.ev import icecast_user, icecast_pass
+from app.ev import EV
 
 def get_tree_from_icecast():
     icecast_URL = 'http://npl.streamguys1.com:/admin/stats.xml'
 
-    tree = requests.get(icecast_URL, auth=(icecast_user, icecast_pass))
+    tree = requests.get(icecast_URL, auth=(EV().icecast_user, EV().icecast_pass))
     if tree.status_code == 200:
         return tree.text
     else: return 'hmmmmm'
