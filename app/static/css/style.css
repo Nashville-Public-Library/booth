@@ -28,6 +28,20 @@ footer {
         margin-left: 10pt;
     }
 
+.home_header {
+    text-align: center;
+    font-size: 25pt;
+    margin: 50pt;
+    color: rgb(196, 64, 64);
+}
+
+.home_text {
+    text-align: left;
+    margin-left: 5pt;
+    font-size: 12pt;
+    color: black;
+}
+
 /* for BrightSign */
 @media screen and (device-width:1920px) and (hover: none) {
     header {

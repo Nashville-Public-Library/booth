@@ -1,6 +1,12 @@
-from flask import render_template
+from flask import render_template, request, redirect
 
 from app import app
+
+@app.route('/')
+def home():
+    if 'Bright' in request.headers.get('User-Agent'):
+        return redirect('/booth')
+    return render_template('home.html')
 
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
 
