@@ -15,11 +15,8 @@ def homepage():
     return render_template('booth.html', booth1=booth1, booth2=booth2, booth3=booth3,\
         booth1_2=booth1_2, booth2_2=booth2_2, booth3_2=booth3_2, hour=hour1(), hour2=hour2(), banner=check_banner())
 
-@app.route('/health')
+@app.route('/health', methods=['GET', 'POST'])
 def health_check():
-    '''for AWS EB's health check'''
-    if request.headers.get('User-Agent') == 'test':
-        return redirect('/booth')
     return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
 
 @app.route('/booth')
