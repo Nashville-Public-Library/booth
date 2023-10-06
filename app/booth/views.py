@@ -22,7 +22,7 @@ def health_check():
         return 'la dee dah'
     return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
 
-@app.route('/booth/')
+@app.route('/booth')
 def dot():
     if are_we_closed():
         return render_template('closed.html')
