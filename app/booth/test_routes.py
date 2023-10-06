@@ -119,5 +119,5 @@ def test_check_banner():
     assert type(check_banner()) == bool or str
 
 def test_check_icecast():
-    from app.booth.icecast import icecast_now_playing
+    from app.stream.icecast import icecast_now_playing
     assert type(icecast_now_playing()) == str
