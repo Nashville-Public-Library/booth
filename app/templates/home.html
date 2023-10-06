@@ -5,8 +5,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='dots.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dots.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='NTL_fav.png') }}">
     <title>Who's in the booth?</title>
 
@@ -81,7 +81,7 @@
 
     {% endif %}
 
-    <script src="{{url_for('static', filename='refresh.js')}}"></script>
+    <script src="{{url_for('static', filename='js/refresh.js')}}"></script>
 
     {% endblock %}
 
@@ -112,7 +112,7 @@
 
     {% endif %}
 
-	<script src="{{ url_for('static', filename='misc.js') }}"></script>
+	<script src="{{ url_for('static', filename='js/misc.js') }}"></script>
 
   </body>
 
