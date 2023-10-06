@@ -1,4 +1,4 @@
-from flask import render_template, request
+from flask import render_template, request, redirect, url_for
 
 from app import app
 from app.utils import are_we_closed, check_banner
@@ -19,7 +19,7 @@ def homepage():
 def health_check():
     '''for AWS EB's health check'''
     if request.headers.get('User-Agent') == 'test':
-        return 'la dee dah'
+        return redirect('/booth')
     return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
 
 @app.route('/booth')
