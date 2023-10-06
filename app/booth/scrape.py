@@ -13,6 +13,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
 from app.booth.hours import hour1, hour2
+from app.ev import EV
 
 
 def scrape():
@@ -44,11 +45,8 @@ def scrape():
     email = driver.find_element(by=By.NAME, value="email")
     password = driver.find_element(by=By.NAME, value="password")
 
-    VIC_user = os.environ['VIC_user']
-    VIC_pass = os.environ['VIC_password']
-
-    email.send_keys(VIC_user)
-    password.send_keys(VIC_pass)
+    email.send_keys(EV().VIC_user)
+    password.send_keys(EV().VIC_pass)
 
     submit = driver.find_element(by=By.CLASS_NAME, value="mat-mdc-raised-button")
     submit.click()
