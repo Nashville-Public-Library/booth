@@ -53,14 +53,14 @@ italicize empty/closed booth fields
 function italicizeMe(x) {
   try {
     var me = document.getElementById(x).textContent;
-    if ( (me == "Empty") || (me == "CLOSED") ) {
-    document.getElementById(x).style.fontStyle = 'italic';
-      }
+    if ((me == "Empty") || (me == "CLOSED")) {
+      document.getElementById(x).style.fontStyle = 'italic';
     }
-    catch {
-      console.log('oh well')
-    }
-    }
+  }
+  catch {
+    console.log('oh well')
+  }
+}
 italicizeMe("Booth1_data")
 italicizeMe("Booth2_data")
 italicizeMe("Booth3_data")
