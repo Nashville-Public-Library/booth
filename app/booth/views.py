@@ -12,7 +12,7 @@ def homepage():
 
     booth1, booth2, booth3, booth1_2, booth2_2, booth3_2 = scrape()
     
-    return render_template('home.html', booth1=booth1, booth2=booth2, booth3=booth3,\
+    return render_template('booth.html', booth1=booth1, booth2=booth2, booth3=booth3,\
         booth1_2=booth1_2, booth2_2=booth2_2, booth3_2=booth3_2, hour=hour1(), hour2=hour2(), banner=check_banner())
 
 @app.route('/health')
@@ -35,7 +35,7 @@ need to run selenium every time we want to reload the page.
 '''
 @app.route('/booth/test')
 def testing():
-    return render_template('home.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
+    return render_template('booth.html', booth1='Test Nobody', booth2='Test Nobody', booth3='Test Nobody',\
         booth1_2='Test Nobody', booth2_2='Test Nobody', booth3_2='Test Nobody', hour=hour1(), hour2=hour2(), banner=check_banner())
 
 @app.route('/booth/banner', methods=['GET', 'POST'])
