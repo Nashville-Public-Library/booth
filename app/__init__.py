@@ -8,3 +8,4 @@ from flask import Flask
 app = Flask(__name__)
 
 from app.booth import views
+from app.stream import views
