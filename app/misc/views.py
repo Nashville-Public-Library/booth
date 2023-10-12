@@ -14,6 +14,10 @@ def home():
 def page_not_found(e):
     return render_template('404.html', e=e), 404
 
+@app.errorhandler(405)
+def page_not_found(e):
+    return "you're no good, you're no good"
+
 @app.errorhandler(500)
 def handle_exception(e):
     return render_template("broken.html", e=e), 500
