@@ -1,0 +1,84 @@
+{% extends 'home.html' %}
+
+{% block header %} Who's in the booth? {% endblock %}
+
+    {% block content %}
+
+    <div class="div1">
+        <h1>
+            {{hour}}
+        </h1>
+    </div>
+    
+    <div class="div1">
+        <div class="div2">
+        <h1>Booth 1</h1>
+        <h2 id="Booth1_data">{{booth1}}</h2>
+        </div>
+
+        <div class="div2">
+        <h1>Booth 2</h1>
+        <h2 id="Booth2_data" >{{booth2}}</h2>
+        </div>
+
+        <div class="div2">
+        <h1>Booth 3</h1>
+        <h2 id="Booth3_data">{{booth3}}</h2>
+        </div>
+    </div>
+
+    <hr style="width: 78%;">
+
+    <div class="div1">
+        <h1>{{hour2}}</h1>
+    </div>
+
+    <div class="div1">
+        <div class="div2">
+        <h1>Booth 1</h1>
+        <h2 id="Booth1_2_data">{{booth1_2}}</h2>
+        </div>
+
+        <div class="div2">
+        <h1>Booth 2</h1>
+        <h2 id="Booth2_2_data">{{booth2_2}}</h2>
+        </div>
+
+        <div class="div2">
+        <h1>Booth 3</h1>
+        <h2 id="Booth3_2_data">{{booth3_2}}</h2>
+        </div>
+    </div>
+
+    {% if banner %}
+    <br>
+    <div class="banner" role="alert" id="banner">
+        {{banner}}
+    </div>
+
+    {% endif %}
+
+    {% if banner %}
+
+<script>
+    /*
+    If banner element is on the page, remove footer/images BUT only for BrightSign, 
+    which we target below. We blew up the font for BrightSign so big (staff request) that
+    we can't fit everything on the screen.
+
+    This feels hacky, sorry.
+    */ 
+
+    is_BrightSign = window.navigator.userAgent.includes('Bright');
+
+    if (is_BrightSign) {
+    document.getElementById('footer').style.visibility = 'hidden';
+    }
+</script>
+
+{% endif %}
+
+    <script src="{{url_for('static', filename='js/refresh.js')}}"></script>
+
+    {% endblock %}
+

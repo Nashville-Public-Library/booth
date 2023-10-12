@@ -15,12 +15,12 @@ GET real GET routes
 
 def test_home_1(client):
     '''home/landing route'''
-    resp = client.get('/')
+    resp = client.get('/booth')
     assert resp.status_code == 200
 
 def test_home_2(client):
     '''booth assignments should always be present, unless we're closed, then closed should be there'''
-    resp = client.get('/')
+    resp = client.get('/booth/live')
     assert 'booth' or 'closed' in resp.text
 
 def test_live(client):
@@ -29,11 +29,11 @@ def test_live(client):
     This calls the selenium script, which can take a while,
     so don't be alarmed if it takes 10+ seconds to run this test.
     '''
-    resp = client.get('/live')
+    resp = client.get('/booth/live')
     assert resp.status_code == 200
 
 def test_banner(client):
-    response = client.get('/banner')
+    response = client.get('/booth/banner')
     assert response.status_code == 200
 
 def test_stream_1(client):
@@ -64,7 +64,7 @@ POST real POST routes
 
 def test_banner_post(client):
     '''this is NOT testing whether the credentials are correct! only if the post request is formatted correctly'''
-    response = client.post('/banner', data=
+    response = client.post('/booth/banner', data=
                            {"password": "something",
                             "message": "something",
                             })
@@ -72,12 +72,12 @@ def test_banner_post(client):
 
 def test_banner_post_no_data(client):
     '''should fail if form data is missing'''
-    response = client.post('/banner')
+    response = client.post('/booth/banner')
     assert response.status_code == 400
 
 def test_banner_post_missing_data(client):
     '''should fail if SOME form data is missing'''
-    response = client.post('/banner', data={"user": ""})
+    response = client.post('/booth/banner', data={"user": ""})
     assert response.status_code == 400
 
 '''
@@ -86,12 +86,12 @@ POST non-POST routes
 
 def test_home_post_1(client):
     '''should fail for non-POST routes'''
-    response = client.post('/')
+    response = client.post('/booth')
     assert response.status_code == 405
 
 def test_home_post_2(client):
     '''should fail for non-POST routes'''
-    response = client.post('/live')
+    response = client.post('/booth/live')
     assert response.status_code == 405
 
 def test_home_post_3(client):
@@ -119,5 +119,5 @@ def test_check_banner():
     assert type(check_banner()) == bool or str
 
 def test_check_icecast():
-    from app.booth.icecast import icecast_now_playing
+    from app.stream.icecast import icecast_now_playing
     assert type(icecast_now_playing()) == str

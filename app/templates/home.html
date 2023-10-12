@@ -5,8 +5,8 @@
 
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='dots.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/dots.css') }}">
     <link rel="shortcut icon" href="{{ url_for('static', filename='NTL_fav.png') }}">
     <title>Who's in the booth?</title>
 
@@ -15,7 +15,7 @@
   <body>
 
     <header style="text-align: center">
-        Who's in the booth?
+        {% block header %} YOU ARE IN THE WRONG PLACE {% endblock %}
     </header>
 
 <div style="display: block; overflow: auto;">
@@ -25,95 +25,21 @@
         id="time"></h2>
 </div>
 
-    {% block content %}
+{% block content %}
+<div class="home_header">
+    Perhaps you are looking for <a href="{{url_for('dot')}}">Booth Finder</a>?
+</div>
+{% endblock %}
 
-    <div class="div1">
-        <h1>
-            {{hour}}
-        </h1>
+<footer id="footer">
+    <div style="text-align: center;">
+    <img src="{{url_for('static', filename='NTL.png')}}" class="footer_image" alt="NTL logo">
+    <img src="{{url_for('static', filename='NPL.png')}}" class="footer_image" alt="NPL logo">
     </div>
-    
-    <div class="div1">
-        <div class="div2">
-        <h1>Booth 1</h1>
-        <h2 id="Booth1_data">{{booth1}}</h2>
-        </div>
+</footer>
 
-        <div class="div2">
-        <h1>Booth 2</h1>
-        <h2 id="Booth2_data" >{{booth2}}</h2>
-        </div>
+<script src="{{ url_for('static', filename='js/misc.js') }}"></script>
 
-        <div class="div2">
-        <h1>Booth 3</h1>
-        <h2 id="Booth3_data">{{booth3}}</h2>
-        </div>
-    </div>
-
-    <hr style="width: 78%;">
-
-    <div class="div1">
-        <h1>{{hour2}}</h1>
-    </div>
-
-    <div class="div1">
-        <div class="div2">
-        <h1>Booth 1</h1>
-        <h2 id="Booth1_2_data">{{booth1_2}}</h2>
-        </div>
-
-        <div class="div2">
-        <h1>Booth 2</h1>
-        <h2 id="Booth2_2_data">{{booth2_2}}</h2>
-        </div>
-
-        <div class="div2">
-        <h1>Booth 3</h1>
-        <h2 id="Booth3_2_data">{{booth3_2}}</h2>
-        </div>
-    </div>
-
-    {% if banner %}
-    <br>
-    <div class="banner" role="alert" id="banner">
-        {{banner}}
-    </div>
-
-    {% endif %}
-
-    <script src="{{url_for('static', filename='refresh.js')}}"></script>
-
-    {% endblock %}
-
-    <footer id="footer">
-        <div style="text-align: center;">
-        <img src="{{url_for('static', filename='NTL.png')}}" class="footer_image" alt="NTL logo">
-        <img src="{{url_for('static', filename='NPL.png')}}" class="footer_image" alt="NPL logo">
-        </div>
-    </footer>
-
-    {% if banner %}
-
-    <script>
-        /*
-        If banner element is on the page, remove footer/images BUT only for BrightSign, 
-        which we target below. We blew up the font for BrightSign so big (staff request) that
-        we can't fit everything on the screen.
-
-        This feels hacky, sorry.
-        */ 
-
-        is_BrightSign = window.navigator.userAgent.includes('Bright');
-
-        if (is_BrightSign) {
-        document.getElementById('footer').style.visibility = 'hidden';
-        }
-    </script>
-
-    {% endif %}
-
-	<script src="{{ url_for('static', filename='misc.js') }}"></script>
-
-  </body>
+</body>
 
 </html>
