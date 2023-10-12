@@ -19,7 +19,7 @@
         async function nowPlaying() {
             let titleElement = document.getElementById('title');
             try {
-                var response = await fetch("http://127.0.0.1:5000/nowplaying");
+                var response = await fetch("http://127.0.0.1:5000/stream");
                 var icecast = await response.json()
                 var nowPlaying = icecast.nowPlaying;
                 titleElement.innerText = nowPlaying
