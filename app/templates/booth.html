@@ -1,29 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
+{% extends 'home.html' %}
 
-  <head>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='css/dots.css') }}">
-    <link rel="shortcut icon" href="{{ url_for('static', filename='NTL_fav.png') }}">
-    <title>Who's in the booth?</title>
-
-  </head>
-
-  <body>
-
-    <header style="text-align: center">
-        Who's in the booth?
-    </header>
-
-<div style="display: block; overflow: auto;">
-    <h2 style="float: left; margin-left: 5pt; margin-bottom: 0%; padding-bottom: 0%;"
-        id="date"></h2>
-    <h2 style="float: right; margin-right: 5pt; margin-bottom: 0%; padding-bottom: 0%;"
-        id="time"></h2>
-</div>
+{% block header %} Who's in the booth? {% endblock %}
 
     {% block content %}
 
@@ -85,35 +62,3 @@
 
     {% endblock %}
 
-    <footer id="footer">
-        <div style="text-align: center;">
-        <img src="{{url_for('static', filename='NTL.png')}}" class="footer_image" alt="NTL logo">
-        <img src="{{url_for('static', filename='NPL.png')}}" class="footer_image" alt="NPL logo">
-        </div>
-    </footer>
-
-    {% if banner %}
-
-    <script>
-        /*
-        If banner element is on the page, remove footer/images BUT only for BrightSign, 
-        which we target below. We blew up the font for BrightSign so big (staff request) that
-        we can't fit everything on the screen.
-
-        This feels hacky, sorry.
-        */ 
-
-        is_BrightSign = window.navigator.userAgent.includes('Bright');
-
-        if (is_BrightSign) {
-        document.getElementById('footer').style.visibility = 'hidden';
-        }
-    </script>
-
-    {% endif %}
-
-	<script src="{{ url_for('static', filename='js/misc.js') }}"></script>
-
-  </body>
-
-</html>
