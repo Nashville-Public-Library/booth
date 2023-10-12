@@ -1,4 +1,4 @@
-from flask import make_response
+from flask import make_response, redirect
 
 from app import app
 from app.stream.icecast import icecast_now_playing
@@ -12,3 +12,7 @@ def now_playing():
     response.content_type = 'application/json'
     response.access_control_allow_origin = '*'
     return response
+
+@app.route('/stream/livestream.mp3')
+def livestream():
+    return redirect('https://npl.streamguys1.com/live')
