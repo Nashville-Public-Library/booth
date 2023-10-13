@@ -56,27 +56,23 @@
         {{banner}}
     </div>
 
+    <script>
+        /*
+        If banner element is on the page, remove footer/images BUT only for BrightSign, 
+        which we target below. We blew up the font for BrightSign so big (staff request) that
+        we can't fit everything on the screen.
+    
+        This feels hacky, sorry.
+        */ 
+    
+        is_BrightSign = window.navigator.userAgent.includes('Bright');
+    
+        if (is_BrightSign) {
+        document.getElementById('footer').style.visibility = 'hidden';
+        }
+    </script>
+
     {% endif %}
-
-    {% if banner %}
-
-<script>
-    /*
-    If banner element is on the page, remove footer/images BUT only for BrightSign, 
-    which we target below. We blew up the font for BrightSign so big (staff request) that
-    we can't fit everything on the screen.
-
-    This feels hacky, sorry.
-    */ 
-
-    is_BrightSign = window.navigator.userAgent.includes('Bright');
-
-    if (is_BrightSign) {
-    document.getElementById('footer').style.visibility = 'hidden';
-    }
-</script>
-
-{% endif %}
 
     <script src="{{url_for('static', filename='js/refresh.js')}}"></script>
 
