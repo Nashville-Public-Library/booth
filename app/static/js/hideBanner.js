@@ -12,7 +12,6 @@ function hide_footer() {
     is_BrightSign = window.navigator.userAgent.includes('Mozilla');
 
     if (is_BrightSign) {
-        console.log(window.navigator.userAgent)
         document.getElementById('footer').style.visibility = 'hidden';
     }
 }
