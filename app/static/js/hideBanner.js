@@ -9,7 +9,7 @@ This feels hacky, sorry.
 window.onload = hide_footer()
 
 function hide_footer() {
-    is_BrightSign = window.navigator.userAgent.includes('Mozilla');
+    is_BrightSign = window.navigator.userAgent.includes('Bright');
 
     if (is_BrightSign) {
         document.getElementById('footer').style.visibility = 'hidden';
