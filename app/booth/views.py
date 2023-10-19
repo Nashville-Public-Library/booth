@@ -1,7 +1,7 @@
 from flask import render_template, request
 
 from app import app
-from app.utils import are_we_closed, check_banner
+from app.booth.utils import are_we_closed, check_banner
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import scrape
 
