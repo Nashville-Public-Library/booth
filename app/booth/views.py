@@ -1,4 +1,4 @@
-from flask import render_template, request, redirect, url_for
+from flask import render_template, request
 
 from app import app
 from app.utils import are_we_closed, check_banner
