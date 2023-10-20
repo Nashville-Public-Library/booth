@@ -103,7 +103,7 @@ def test_home_post_3(client):
 '''MISC Functions'''
 
 def test_are_we_closed_1():
-    from app.utils import are_we_closed
+    from app.booth.utils import are_we_closed
     assert type(are_we_closed()) == bool
 
 def test_hour_1_1():
@@ -115,7 +115,7 @@ def test_hour_2_1():
     assert type(hour2()) == str
 
 def test_check_banner():
-    from app.utils import check_banner
+    from app.booth.utils import check_banner
     assert type(check_banner()) == bool or str
 
 def test_check_icecast():
