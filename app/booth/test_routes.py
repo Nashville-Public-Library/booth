@@ -23,15 +23,6 @@ def test_home_2(client):
     resp = client.get('/booth/live')
     assert 'booth' or 'closed' in resp.text
 
-def test_live(client):
-    '''
-    Home route forwards here, the main page. 
-    This calls the selenium script, which can take a while,
-    so don't be alarmed if it takes 10+ seconds to run this test.
-    '''
-    resp = client.get('/booth/live')
-    assert resp.status_code == 200
-
 def test_banner(client):
     response = client.get('/booth/banner')
     assert response.status_code == 200
@@ -47,6 +38,10 @@ def test_stream_2(client):
 '''
 GET non-GET routes
 '''
+
+def test_booth_data_1(client):
+    response = client.get('/booth/data')
+    assert response.status_code == 405
 
 def test_fake_url_1(client):
     '''non routes should return 404'''
@@ -87,11 +82,6 @@ POST non-POST routes
 def test_home_post_1(client):
     '''should fail for non-POST routes'''
     response = client.post('/booth')
-    assert response.status_code == 405
-
-def test_home_post_2(client):
-    '''should fail for non-POST routes'''
-    response = client.post('/booth/live')
     assert response.status_code == 405
 
 def test_home_post_3(client):
