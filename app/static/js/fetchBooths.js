@@ -1,3 +1,4 @@
+// fetch booth data and populate elements
 async function fetchBooths() {
     const booth1_1_display = document.getElementById('Booth1_data');
     const booth2_1_display = document.getElementById('Booth2_data');
@@ -10,6 +11,7 @@ async function fetchBooths() {
         var response = await fetch(url);
         var responseJSON = await response.json()
 
+        // remove dot-elastic from all elements
         let dots = document.querySelectorAll('.dot-elastic');
         for (let i = 0; i < dots.length; i++) {
             dots[i].classList.remove('dot-elastic')
@@ -22,6 +24,7 @@ async function fetchBooths() {
         booth2_2_display.innerText = responseJSON.booth2_2;
         booth3_2_display.innerText = responseJSON.booth3_2;
 
+        // wait until all elements are populated to italicize
         italicizeMe("Booth1_data")
         italicizeMe("Booth2_data")
         italicizeMe("Booth3_data")
