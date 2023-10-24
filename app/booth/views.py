@@ -1,19 +1,21 @@
-from flask import render_template, request
+from flask import render_template, request, make_response
 
 from app import app
 from app.booth.utils import are_we_closed, check_banner
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import scrape
 
-@app.route('/booth/live')
+@app.route('/booth/data')
 def homepage():
-    if are_we_closed():
-        return render_template('closed.html')
-
-    booth1, booth2, booth3, booth1_2, booth2_2, booth3_2 = scrape()
-    
-    return render_template('booth.html', booth1=booth1, booth2=booth2, booth3=booth3,\
-        booth1_2=booth1_2, booth2_2=booth2_2, booth3_2=booth3_2, hour=hour1(), hour2=hour2(), banner=check_banner())
+    response = make_response(scrape())
+    # response = {'booth1_1': 'mah', 'booth2_1': 'mahh', 'booth3_1': 'mahhh', 'booth1_2': 'mahhhh', 'booth2_2': 'mahhh', 'booth3_2': 'mahhh'}
+    response = make_response(response)
+    response.headers['customHeader'] = 'Darth Vader'
+    response.status_code = 200
+    response.content_type = 'application/json'
+    response.access_control_allow_origin = '*'
+    print(response)
+    return response
 
 @app.route('/health', methods=['GET', 'POST'])
 def health_check():
@@ -24,7 +26,7 @@ def dot():
     if are_we_closed():
         return render_template('closed.html')
 
-    return render_template('land.html')
+    return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
 
 '''
 just using this route for testing styles and such so we don't
