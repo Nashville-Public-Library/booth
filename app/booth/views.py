@@ -5,6 +5,13 @@ from app.booth.utils import are_we_closed, check_banner
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import scrape
 
+@app.route('/booth')
+def dot():
+    if are_we_closed():
+        return render_template('closed.html')
+
+    return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
+
 @app.route('/booth/data')
 def homepage():
     response = make_response(scrape())
@@ -20,13 +27,6 @@ def homepage():
 @app.route('/health', methods=['GET', 'POST'])
 def health_check():
     return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
-
-@app.route('/booth')
-def dot():
-    if are_we_closed():
-        return render_template('closed.html')
-
-    return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
 
 '''
 just using this route for testing styles and such so we don't
