@@ -8,7 +8,7 @@ async function fetchBooths() {
     const booth3_2_display = document.getElementById('Booth3_2_data');
     try {
         var url = "/booth/data"
-        var response = await fetch(url);
+        var response = await fetch(url, {method: "POST"})
         var responseJSON = await response.json()
 
         // remove dot-elastic from all elements

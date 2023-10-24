@@ -12,7 +12,7 @@ def dot():
 
     return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
 
-@app.route('/booth/data')
+@app.route('/booth/data', methods=['POST'])
 def homepage():
     response = make_response(scrape())
     # response = {'booth1_1': 'mah', 'booth2_1': 'mahh', 'booth3_1': 'mahhh', 'booth1_2': 'mahhhh', 'booth2_2': 'mahhh', 'booth3_2': 'mahhh'}
