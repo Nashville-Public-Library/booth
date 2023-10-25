@@ -1,4 +1,5 @@
 .dot-elastic {
+    display: inline-block;
     position: relative;
     width: 10px;
     height: 10px;

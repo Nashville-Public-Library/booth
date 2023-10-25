@@ -152,4 +152,5 @@ def scrape():
         booth3_return2 = 'CLOSED'
 
 
-    return booth1_return, booth2_return, booth3_return, booth1_return2, booth2_return2, booth3_return2
+    return {'booth1_1': booth1_return, 'booth2_1': booth2_return,'booth3_1': booth3_return, 
+            'booth1_2': booth1_return2, 'booth2_2': booth2_return2, 'booth3_2': booth3_return2}
