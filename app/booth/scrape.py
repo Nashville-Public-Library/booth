@@ -64,6 +64,7 @@ def scrape():
         shift = shift.replace('AM Newspaper Reading', '')
         shift = shift.replace('The Tennessean', '')
         shift = shift.replace('1 more needed', '')
+        shift = shift.replace('Account Staff', '')
 
         booth1 = 'Booth 1'
         booth2 = 'Booth 2'
