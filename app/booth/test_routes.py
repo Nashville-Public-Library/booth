@@ -13,26 +13,26 @@ def client():
 GET real GET routes
 '''
 
-def test_home_1(client):
+def test_home_get_1(client):
+    '''home/landing route'''
+    resp = client.get('/')
+    assert resp.status_code == 200
+
+def test_booth_get_1(client):
     '''home/landing route'''
     resp = client.get('/booth')
     assert resp.status_code == 200
     assert 'booth' in resp.text
 
-def test_home_2(client):
-    '''booth assignments should always be present, unless we're closed, then closed should be there'''
-    resp = client.get('/booth/live')
-    assert 'booth' or 'closed' in resp.text
-
-def test_banner(client):
+def test_banner_get_1(client):
     response = client.get('/booth/banner')
     assert response.status_code == 200
 
-def test_stream_1(client):
+def test_stream_get_1(client):
     response = client.get('/stream')
     assert response.status_code == 200
 
-def test_stream_2(client):
+def test_stream_get_2(client):
     response = client.get('/stream')
     assert response.content_type == 'application/json'
 
@@ -41,6 +41,7 @@ GET non-GET routes
 '''
 
 def test_booth_data_1(client):
+    '''post only'''
     response = client.get('/booth/data')
     assert response.status_code == 405
 
@@ -85,12 +86,12 @@ def test_home_post_1(client):
     response = client.post('/')
     assert response.status_code == 405
 
-def test_home_post_2(client):
+def test_booth_post_1(client):
     '''should fail for non-POST routes'''
     response = client.post('/booth')
     assert response.status_code == 405
 
-def test_home_post_3(client):
+def test_strea_post_1(client):
     '''should fail for non-POST routes'''
     response = client.post('/stream')
     assert response.status_code == 405
