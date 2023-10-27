@@ -17,6 +17,7 @@ def test_home_1(client):
     '''home/landing route'''
     resp = client.get('/booth')
     assert resp.status_code == 200
+    assert 'booth' in resp.text
 
 def test_home_2(client):
     '''booth assignments should always be present, unless we're closed, then closed should be there'''
