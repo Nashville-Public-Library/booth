@@ -7,14 +7,14 @@ async function fetchBooths() {
     const booth2_2_display = document.getElementById('Booth2_2_data');
     const booth3_2_display = document.getElementById('Booth3_2_data');
     try {
-        var url = "/booth/data"
-        var response = await fetch(url, {method: "POST"})
-        var responseJSON = await response.json()
+        const url = "/booth/data";
+        var response = await fetch(url, {method: "POST"});
+        var responseJSON = await response.json();
 
         // remove dot-elastic from all elements
         let dots = document.querySelectorAll('.dot-elastic');
         for (let i = 0; i < dots.length; i++) {
-            dots[i].classList.remove('dot-elastic')
+            dots[i].classList.remove('dot-elastic');
         }
 
         booth1_1_display.innerText = responseJSON.booth1_1;
