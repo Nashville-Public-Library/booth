@@ -40,7 +40,7 @@ def scrape():
     date_for_URL = datetime.now().strftime('%m%d%Y')
     driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date_for_URL}')
 
-    driver.implicitly_wait(3)
+    driver.implicitly_wait(5)
 
     email = driver.find_element(by=By.NAME, value="email")
     password = driver.find_element(by=By.NAME, value="password")
@@ -53,7 +53,7 @@ def scrape():
 
     # now we're logged in
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
 
     '''this is so ugly. TODO REFACTOR so it makes sense!'''
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
