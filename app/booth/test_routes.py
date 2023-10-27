@@ -82,6 +82,11 @@ POST non-POST routes
 
 def test_home_post_1(client):
     '''should fail for non-POST routes'''
+    response = client.post('/')
+    assert response.status_code == 405
+
+def test_home_post_2(client):
+    '''should fail for non-POST routes'''
     response = client.post('/booth')
     assert response.status_code == 405
 
