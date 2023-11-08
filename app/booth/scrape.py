@@ -61,22 +61,28 @@ def scrape():
     return shifts
 
 def filter_data(booth: str, shift: str, hour: str):
-    remove_list = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
+    text_to_remove = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
                 'AM Newspaper Reading', 'The Tennessean', '1 more needed', 'Account Staff', booth, hour)
-    for remove in remove_list:
-        shift = shift.replace(remove, '')
+    for text in text_to_remove:
+        shift = shift.replace(text, '')
     booth_return = shift.strip()
     if booth_return == '':
         booth_return = 'Empty'
     return booth_return
 
 def get_scrape_and_filter():
-    shifts = scrape()
+    '''
+    get all the elements via selenium and loop through them to match booth numbers and hours. start out assuming all booths are closed,
+    and update the dictionary only when there is a match.
+    '''
     booth1 = "Booth 1"
     booth2 = "Booth 2"
     booth3 = "Booth 3"
+
     schedule = {'booth1_1': "CLOSED", 'booth2_1': "CLOSED",'booth3_1': "CLOSED",
                 'booth1_2': "CLOSED", 'booth2_2': "CLOSED", 'booth3_2': "CLOSED"}
+    
+    shifts = scrape()
     for shift in shifts:
         shift = shift.text
         if (booth1 in shift) and (hour1() in shift):
