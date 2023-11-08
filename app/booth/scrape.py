@@ -87,22 +87,21 @@ def get_scrape_and_filter():
         shift = shift.text
         if (booth1 in shift) and (hour1() in shift):
             schedule['booth1_1'] = filter_data(booth=booth1, shift=shift, hour=hour1())
-        print(schedule)
+
         if (booth2 in shift) and (hour1() in shift):
             schedule['booth2_1'] = filter_data(booth=booth2, shift=shift, hour=hour1())
-        print(schedule)
+
         if (booth3 in shift) and (hour1() in shift):
             schedule['booth3_1'] = filter_data(booth=booth3, shift=shift, hour=hour1())
-        print(schedule)
+
 
         if (booth1 in shift) and (hour2() in shift):
             schedule['booth1_2'] = filter_data(booth=booth1, shift=shift, hour=hour2())
-        print(schedule)
+
         if (booth2 in shift) and (hour2() in shift):
             schedule['booth2_2'] = filter_data(booth=booth2, shift=shift, hour=hour2())
-        print(schedule)
+
         if (booth3 in shift) and (hour2() in shift):
             schedule['booth3_2'] = filter_data(booth=booth3, shift=shift, hour=hour2())
-        print(schedule)
 
     return schedule
