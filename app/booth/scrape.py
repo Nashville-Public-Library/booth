@@ -58,13 +58,12 @@ def scrape():
     '''this is so ugly. TODO REFACTOR so it makes sense!'''
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
     for shift in shifts:
+        shift = shift.text
         # strip out non-needed text
-        shift = shift.text.replace('• Other - Talking Library\Staff Service', '')
-        shift = shift.replace('• Other - Talking Library\Collection Service', '')
-        shift = shift.replace('AM Newspaper Reading', '')
-        shift = shift.replace('The Tennessean', '')
-        shift = shift.replace('1 more needed', '')
-        shift = shift.replace('Account Staff', '')
+        remove_list = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
+                  'AM Newspaper Reading', 'The Tennessean', '1 more needed', 'Account Staff')
+        for remove in remove_list:
+            shift = shift.replace(remove, '')
 
         booth1 = 'Booth 1'
         booth2 = 'Booth 2'
