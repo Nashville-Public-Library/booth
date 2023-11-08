@@ -3,7 +3,7 @@ from flask import render_template, request, make_response
 from app import app
 from app.booth.utils import are_we_closed, check_banner
 from app.booth.hours import hour1, hour2
-from app.booth.scrape import scrape
+from app.booth.scrape import get_scrape_and_filter
 
 @app.route('/booth')
 def dot():
@@ -14,7 +14,7 @@ def dot():
 
 @app.route('/booth/data', methods=['POST'])
 def homepage():
-    response = make_response(scrape())
+    response = make_response(get_scrape_and_filter())
     # response = {'booth1_1': 'mah', 'booth2_1': 'mahh', 'booth3_1': 'mahhh', 'booth1_2': 'mahhhh', 'booth2_2': 'mahhh', 'booth3_2': 'mahhh'}
     response = make_response(response)
     response.headers['customHeader'] = 'Darth Vader'

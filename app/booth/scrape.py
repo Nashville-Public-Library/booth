@@ -57,100 +57,46 @@ def scrape():
 
     '''this is so ugly. TODO REFACTOR so it makes sense!'''
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
+    # driver.quit()
+    return shifts
+
+def filter_data(booth: str, shift: str, hour: str):
+    remove_list = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
+                'AM Newspaper Reading', 'The Tennessean', '1 more needed', 'Account Staff', booth, hour)
+    for remove in remove_list:
+        shift = shift.replace(remove, '')
+    booth_return = shift.strip()
+    if booth_return == '':
+        booth_return = 'Empty'
+    return booth_return
+
+def get_scrape_and_filter():
+    shifts = scrape()
+    booth1 = "Booth 1"
+    booth2 = "Booth 2"
+    booth3 = "Booth 3"
+    schedule = {'booth1_1': "CLOSED", 'booth2_1': "CLOSED",'booth3_1': "CLOSED",
+                'booth1_2': "CLOSED", 'booth2_2': "CLOSED", 'booth3_2': "CLOSED"}
     for shift in shifts:
         shift = shift.text
-        # strip out non-needed text
-        remove_list = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
-                  'AM Newspaper Reading', 'The Tennessean', '1 more needed', 'Account Staff')
-        for remove in remove_list:
-            shift = shift.replace(remove, '')
-
-        booth1 = 'Booth 1'
-        booth2 = 'Booth 2'
-        booth3 = 'Booth 3'
-        
-        # all of this is to remove the extra text so we're only returning the name of the volunteer
         if (booth1 in shift) and (hour1() in shift):
-            booth1_return = shift
-            booth1_return = booth1_return.replace(booth1, '')
-            booth1_return = booth1_return.replace(hour1(), '')
-            booth1_return = booth1_return.strip()
-
+            schedule['booth1_1'] = filter_data(booth=booth1, shift=shift, hour=hour1())
+        print(schedule)
         if (booth2 in shift) and (hour1() in shift):
-            booth2_return = shift
-            booth2_return = booth2_return.replace(booth2, '')
-            booth2_return = booth2_return.replace(hour1(), '')
-            booth2_return = booth2_return.strip()
-
+            schedule['booth2_1'] = filter_data(booth=booth2, shift=shift, hour=hour1())
+        print(schedule)
         if (booth3 in shift) and (hour1() in shift):
-            booth3_return = shift
-            booth3_return = booth3_return.replace(booth3, '')
-            booth3_return = booth3_return.replace(hour1(), '')
-            booth3_return = booth3_return.strip()
-
-        #SECOND HOUR
+            schedule['booth3_1'] = filter_data(booth=booth3, shift=shift, hour=hour1())
+        print(schedule)
 
         if (booth1 in shift) and (hour2() in shift):
-            booth1_return2 = shift
-            booth1_return2 = booth1_return2.replace(booth1, '')
-            booth1_return2 = booth1_return2.replace(hour2(), '')
-            booth1_return2 = booth1_return2.strip()
-
+            schedule['booth1_2'] = filter_data(booth=booth1, shift=shift, hour=hour2())
+        print(schedule)
         if (booth2 in shift) and (hour2() in shift):
-
-            booth2_return2 = shift
-            booth2_return2 = booth2_return2.replace(booth2, '')
-            booth2_return2 = booth2_return2.replace(hour2(), '')
-            booth2_return2 = booth2_return2.strip()
-
+            schedule['booth2_2'] = filter_data(booth=booth2, shift=shift, hour=hour2())
+        print(schedule)
         if (booth3 in shift) and (hour2() in shift):
-            booth3_return2 = shift
-            booth3_return2 = booth3_return2.replace(booth3, '')
-            booth3_return2 = booth3_return2.replace(hour2(), '')
-            booth3_return2 = booth3_return2.strip()
+            schedule['booth3_2'] = filter_data(booth=booth3, shift=shift, hour=hour2())
+        print(schedule)
 
-    driver.quit()
-
-    # first hour
-
-    if 'booth1_return' in locals():
-        if booth1_return == '':
-            booth1_return = 'Empty'
-    else:
-        booth1_return = 'CLOSED'
-
-    if 'booth2_return' in locals():
-        if booth2_return == '':
-            booth2_return = 'Empty'
-    else:
-        booth2_return = 'CLOSED'
-
-    if 'booth3_return' in locals():
-        if booth3_return == '':
-            booth3_return = 'Empty'
-    else:
-        booth3_return = 'CLOSED'
-    
-    # second hour
-
-    if 'booth1_return2' in locals():
-        if booth1_return2 == '':
-            booth1_return2 = 'Empty'
-    else:
-        booth1_return2 = 'CLOSED'
-
-    if 'booth2_return2' in locals():
-        if booth2_return2 == '':
-            booth2_return2 = 'Empty'
-    else:
-        booth2_return2 = 'CLOSED'
-
-    if 'booth3_return2' in locals():
-        if booth3_return2 == '':
-            booth3_return2 = 'Empty'
-    else:
-        booth3_return2 = 'CLOSED'
-
-
-    return {'booth1_1': booth1_return, 'booth2_1': booth2_return,'booth3_1': booth3_return, 
-            'booth1_2': booth1_return2, 'booth2_2': booth2_return2, 'booth3_2': booth3_return2}
+    return schedule
