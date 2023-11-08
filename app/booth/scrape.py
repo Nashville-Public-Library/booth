@@ -16,7 +16,7 @@ from app.booth.hours import hour1, hour2
 from app.ev import EV
 
 
-def scrape():
+def scrape_VIC():
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--no-sandbox')
@@ -60,7 +60,7 @@ def scrape():
     # driver.quit()
     return shifts
 
-def filter_data(booth: str, shift: str, hour: str):
+def remove_extra_text(booth: str, shift: str, hour: str):
     text_to_remove = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
                 'AM Newspaper Reading', 'The Tennessean', '1 more needed', 'Account Staff', booth, hour)
     for text in text_to_remove:
@@ -82,26 +82,26 @@ def get_scrape_and_filter():
     schedule = {'booth1_1': "CLOSED", 'booth2_1': "CLOSED",'booth3_1': "CLOSED",
                 'booth1_2': "CLOSED", 'booth2_2': "CLOSED", 'booth3_2': "CLOSED"}
     
-    shifts = scrape()
+    shifts = scrape_VIC()
     for shift in shifts:
         shift = shift.text
         if (booth1 in shift) and (hour1() in shift):
-            schedule['booth1_1'] = filter_data(booth=booth1, shift=shift, hour=hour1())
+            schedule['booth1_1'] = remove_extra_text(booth=booth1, shift=shift, hour=hour1())
 
         if (booth2 in shift) and (hour1() in shift):
-            schedule['booth2_1'] = filter_data(booth=booth2, shift=shift, hour=hour1())
+            schedule['booth2_1'] = remove_extra_text(booth=booth2, shift=shift, hour=hour1())
 
         if (booth3 in shift) and (hour1() in shift):
-            schedule['booth3_1'] = filter_data(booth=booth3, shift=shift, hour=hour1())
+            schedule['booth3_1'] = remove_extra_text(booth=booth3, shift=shift, hour=hour1())
 
 
         if (booth1 in shift) and (hour2() in shift):
-            schedule['booth1_2'] = filter_data(booth=booth1, shift=shift, hour=hour2())
+            schedule['booth1_2'] = remove_extra_text(booth=booth1, shift=shift, hour=hour2())
 
         if (booth2 in shift) and (hour2() in shift):
-            schedule['booth2_2'] = filter_data(booth=booth2, shift=shift, hour=hour2())
+            schedule['booth2_2'] = remove_extra_text(booth=booth2, shift=shift, hour=hour2())
 
         if (booth3 in shift) and (hour2() in shift):
-            schedule['booth3_2'] = filter_data(booth=booth3, shift=shift, hour=hour2())
+            schedule['booth3_2'] = remove_extra_text(booth=booth3, shift=shift, hour=hour2())
 
     return schedule
