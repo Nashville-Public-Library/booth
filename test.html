@@ -24,7 +24,6 @@
                 var icecast = await response.json()
                 var nowPlaying = icecast.nowPlaying;
                 titleElement.innerText = nowPlaying
-                console.log(nowPlaying)
             }
             catch (err) {
                 titleElement.innerText = 'Not Available'
