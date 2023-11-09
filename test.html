@@ -18,15 +18,21 @@
     <script>
         async function nowPlaying() {
             let titleElement = document.getElementById('title');
+            let notAvailable = "Program Name Not Available";
             try {
-                var url = "http://127.0.0.1:5000/stream"
-                var response = await fetch(url);
-                var icecast = await response.json()
-                var nowPlaying = icecast.nowPlaying;
-                titleElement.innerText = nowPlaying
+                const url = "http://127.0.0.1:5000/stream";
+                let response = await fetch(url);
+                let icecast = await response.json();
+                let nowPlaying = icecast.nowPlaying;
+                if (nowPlaying.trim() == "") {
+                    titleElement.innerText = notAvailable
+                }
+                else {
+                    titleElement.innerText = nowPlaying
+                }
             }
-            catch (err) {
-                titleElement.innerText = 'Not Available'
+            catch (whoops) {
+                titleElement.innerText = notAvailable;
             }
         }
 
