@@ -42,6 +42,7 @@ def banner():
     if request.method == 'POST':
         password = request.form['password']
         message = request.form['message']
+        message = message.strip()
         if password == 'talk5874':
             with open('message.txt', 'w') as text:
                 text.write(message)
