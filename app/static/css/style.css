@@ -18,12 +18,18 @@ header {
     }
 
 footer { 
-        margin-top: 7%;
+        margin-top: 6.5%;
         margin-bottom: 1%;
     }
 
-.footer_image {
-        height: 120px;
+.footer_image_NPL {
+        height: 145px;
+        margin-right: 10pt;
+        margin-left: 10pt;
+    }
+
+.footer_image_NTL {
+        height: 155px;
         margin-right: 10pt;
         margin-left: 10pt;
     }
