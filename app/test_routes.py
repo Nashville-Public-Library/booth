@@ -8,6 +8,10 @@ def client():
 
     with app.test_client() as client:
         yield client
+    
+    # one of the tests writes a banner message. erase it.
+    with open('message.txt', 'w') as banner:
+        banner = banner.write('')
 
 '''
 GET real GET routes
@@ -76,6 +80,15 @@ def test_banner_post_missing_data(client):
     '''should fail if SOME form data is missing'''
     response = client.post('/booth/banner', data={"user": ""})
     assert response.status_code == 400
+
+def test_banner_message(client):
+    from app.booth.utils import check_banner
+    message = "some message here"
+    response = client.post('/booth/banner', data=
+                           {"password": "talk5874",
+                            "message": message,
+                            })
+    assert check_banner() == message
 
 '''
 POST non-POST routes
