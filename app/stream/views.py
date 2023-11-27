@@ -3,7 +3,7 @@ from flask import make_response, redirect
 from app import app
 from app.stream.icecast import icecast_now_playing
 
-@app.route('/stream')
+@app.route('/stream', methods=['POST'])
 def now_playing():
     icecast = {'nowPlaying': icecast_now_playing()}
     response = make_response(icecast)
