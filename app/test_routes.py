@@ -32,14 +32,6 @@ def test_banner_get_1(client):
     response = client.get('/booth/banner')
     assert response.status_code == 200
 
-def test_stream_get_1(client):
-    response = client.get('/stream')
-    assert response.status_code == 200
-
-def test_stream_get_2(client):
-    response = client.get('/stream')
-    assert response.content_type == 'application/json'
-
 '''
 GET non-GET routes
 '''
@@ -58,6 +50,10 @@ def test_fake_url_2(client):
     '''we always want to include '404' somewhere on the page, for clarity to user'''
     response = client.get('/maaah')
     assert '404' in response.text
+
+def test_stream_get_1(client):
+    response = client.get('/stream')
+    assert response.status_code == 405
 
 '''
 POST real POST routes
@@ -90,6 +86,12 @@ def test_banner_message(client):
                             })
     assert check_banner() == message
 
+def test_strea_post_1(client):
+    '''should fail for non-POST routes'''
+    response = client.post('/stream')
+    assert response.status_code == 200
+    assert response.content_type == 'application/json'
+
 '''
 POST non-POST routes
 '''
@@ -102,11 +104,6 @@ def test_home_post_1(client):
 def test_booth_post_1(client):
     '''should fail for non-POST routes'''
     response = client.post('/booth')
-    assert response.status_code == 405
-
-def test_strea_post_1(client):
-    '''should fail for non-POST routes'''
-    response = client.post('/stream')
     assert response.status_code == 405
 
 
