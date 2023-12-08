@@ -55,9 +55,12 @@ def banner():
 
 @app.route('/booth/weather')
 def weather():
-    a = requests.get('https://api.weather.gov/gridpoints/OHX/50,57/forecast')
+    request = requests.get('https://api.weather.gov/gridpoints/OHX/50,57/forecast')
     
-    a = a.json()
-    a = a['properties']['periods'][0]['temperature']  
+    weather = request.json()
+    temp = weather['properties']['periods'][0]['temperature']
+    photo = weather['properties']['periods'][0]['icon']
+    photo = photo.replace('medium', 'large')
+    response = {'temp': temp, 'photo': photo}
 
-    return str(a)
+    return response
