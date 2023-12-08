@@ -1,5 +1,7 @@
 from flask import render_template, request, make_response
 
+import requests
+
 from app import app
 from app.booth.utils import are_we_closed, check_banner
 from app.booth.hours import hour1, hour2
@@ -50,3 +52,12 @@ def banner():
         else:
             return render_template('banner.html', emoji='&#128078;', banner_text=check_banner()) # emoji thumbs down
     return render_template('banner.html', banner_text=check_banner())
+
+@app.route('/booth/weather')
+def weather():
+    a = requests.get('https://api.weather.gov/gridpoints/OHX/50,57/forecast')
+    
+    a = a.json()
+    a = a['properties']['periods'][0]['temperature']  
+
+    return str(a)
