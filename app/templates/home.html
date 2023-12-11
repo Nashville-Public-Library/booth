@@ -14,15 +14,17 @@
 
   <body>
 
-    <header style="text-align: center">
+    <header>
         {% block header %} YOU ARE IN THE WRONG PLACE {% endblock %}
     </header>
 
-<div style="display: block; overflow: auto;">
-    <h2 style="float: left; margin-left: 5pt; margin-bottom: 0%; padding-bottom: 0%;"
-        id="date"></h2>
-    <h2 style="float: right; margin-right: 5pt; margin-bottom: 0%; padding-bottom: 0%;"
-        id="time"></h2>
+<div class="dateTimeWeather_container">
+    <h2 id="date"></h2>
+        <div style="display: inline-block; flex-grow: 0;">
+            <h2 id="weather" style="margin-right: 10pt; float: left;"></h2>
+            <img id="weatherIMG" src="">
+        </div>
+    <h2 id="time"></h2>
 </div>
 
 {% block content %}

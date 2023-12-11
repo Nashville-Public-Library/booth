@@ -45,3 +45,17 @@ document.getElementById('time').innerHTML = realtime
 }
 real_time()
 setInterval(real_time, 1000)
+
+async function weather() {
+  const url = "/booth/weather";
+        let response = await fetch(url, {method: "POST"});
+        let responseJSON = await response.json();
+
+        let temp = document.getElementById('weather')
+        let weatherIMG = document.getElementById('weatherIMG')
+        let degree = '&deg'
+
+        temp.innerHTML = `${responseJSON.temp}&deg`
+        weatherIMG.src = responseJSON.photo
+} 
+weather()
