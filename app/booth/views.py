@@ -53,14 +53,15 @@ def banner():
             return render_template('banner.html', emoji='&#128078;', banner_text=check_banner()) # emoji thumbs down
     return render_template('banner.html', banner_text=check_banner())
 
-@app.route('/booth/weather')
+@app.route('/booth/weather', methods=['GET', 'POST'])
 def weather():
-    request = requests.get('https://api.weather.gov/gridpoints/OHX/50,57/forecast')
+    request = requests.get('https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly')
     
     weather = request.json()
     temp = weather['properties']['periods'][0]['temperature']
     photo = weather['properties']['periods'][0]['icon']
-    photo = photo.replace('medium', 'large')
+    photo = photo.replace('medium', 'small')
+    photo = photo.replace(',0', '') #seems to be an error with API...
     response = {'temp': temp, 'photo': photo}
 
     return response
