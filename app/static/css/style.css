@@ -19,7 +19,7 @@ header {
     }
 .dateTimeWeather_container {
     padding: .5%;
-    padding-top: 0%;
+    padding-top: 5pt;
     padding-bottom: 0%;
     display: flex;
     flex-wrap: wrap;
