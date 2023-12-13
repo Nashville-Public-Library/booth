@@ -23,6 +23,8 @@ async function fetchBooths() {
         booth1_2_display.innerText = responseJSON.booth1_2;
         booth2_2_display.innerText = responseJSON.booth2_2;
         booth3_2_display.innerText = responseJSON.booth3_2;
+        
+        document.getElementById('refresh').remove()
 
         // wait until all elements are populated to italicize
         italicizeMe("Booth1_data")

@@ -21,9 +21,21 @@ header {
     padding: .5%;
     padding-top: 5pt;
     padding-bottom: 0%;
+    margin-bottom: 0%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+}
+
+.refresh {
+    position:absolute;
+    text-align: center;
+    left: 0%;
+    right: 0%;
+    font-size: 25pt;
+    color: crimson;
+    animation: blink-animation 1s steps(5, start) infinite;
+    -webkit-animation: blink-animation .5s steps(5, start) infinite;
 }
 
 footer { 
@@ -103,3 +115,14 @@ footer {
     padding: 1%;
     display: none; 
 }
+
+@keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
+  @-webkit-keyframes blink-animation {
+    to {
+      visibility: hidden;
+    }
+  }
