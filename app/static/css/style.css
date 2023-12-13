@@ -34,8 +34,7 @@ header {
     right: 0%;
     font-size: 25pt;
     color: crimson;
-    animation: blink-animation 1s steps(5, start) infinite;
-    -webkit-animation: blink-animation .5s steps(5, start) infinite;
+    animation: blink-animation .5s steps(5, start) infinite;
 }
 
 footer { 
@@ -117,11 +116,6 @@ footer {
 }
 
 @keyframes blink-animation {
-    to {
-      visibility: hidden;
-    }
-  }
-  @-webkit-keyframes blink-animation {
     to {
       visibility: hidden;
     }
