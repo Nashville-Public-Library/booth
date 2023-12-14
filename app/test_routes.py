@@ -87,9 +87,19 @@ def test_banner_message(client):
     assert check_banner() == message
 
 def test_stream_post_1(client):
-    '''should fail for non-POST routes'''
     response = client.post('/stream')
     assert response.status_code == 200
+
+def test_stream_post_2(client):
+    response = client.post('/stream')
+    assert response.content_type == 'application/json'
+
+def test_weather_post_1(client):
+    response = client.post('/booth/weather')
+    assert response.status_code == 200
+
+def test_weather_post_2(client):
+    response = client.post('/booth/weather')
     assert response.content_type == 'application/json'
 
 '''
