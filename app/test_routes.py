@@ -128,3 +128,7 @@ def test_check_banner():
 def test_check_icecast():
     from app.stream.icecast import icecast_now_playing
     assert type(icecast_now_playing()) == str
+
+def test_scrape():
+    from app.booth.scrape import get_scrape_and_filter
+    assert type(get_scrape_and_filter()) == dict
