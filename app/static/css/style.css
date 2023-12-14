@@ -3,20 +3,24 @@ body {
     padding: 0%;
     margin: 0%;
 }
-.div1 { 
+
+.div1 {
     text-align: center;
-    }
+}
+
 .div2 {
-        display: inline-block;
-        width: 220pt;
-    }
+    display: inline-block;
+    width: 220pt;
+}
+
 header {
-        text-align: center;
-        color: azure;
-        font-size: xx-large;
-        padding: 15pt;
-        background-color: black;
-    }
+    text-align: center;
+    color: azure;
+    font-size: xx-large;
+    padding: 15pt;
+    background-color: black;
+}
+
 .dateTimeWeather_container {
     padding: .5%;
     padding-top: 5pt;
@@ -24,7 +28,7 @@ header {
     margin-bottom: 0%;
     display: flex;
     flex-wrap: wrap;
-    justify-content:space-evenly;
+    justify-content: space-evenly;
     align-items: center;
 }
 
@@ -37,22 +41,22 @@ header {
     animation: blink-animation .5s steps(5, start) infinite;
 }
 
-footer { 
-        margin-top: 6.5%;
-        margin-bottom: 1%;
-    }
+footer {
+    margin-top: 6.5%;
+    margin-bottom: 1%;
+}
 
 .footer_image_NPL {
-        height: 145px;
-        margin-right: 10pt;
-        margin-left: 10pt;
-    }
+    height: 145px;
+    margin-right: 10pt;
+    margin-left: 10pt;
+}
 
 .footer_image_NTL {
-        height: 155px;
-        margin-right: 10pt;
-        margin-left: 10pt;
-    }
+    height: 155px;
+    margin-right: 10pt;
+    margin-left: 10pt;
+}
 
 .home_header {
     text-align: center;
@@ -72,19 +76,24 @@ footer {
 @media screen and (device-width:1920px) and (hover: none) {
     header {
         font-size: 30pt;
-    }    
+    }
+
     h1 {
         font-size: 33.5pt;
     }
+
     h2 {
         font-size: 28.5pt;
     }
+
     .div2 {
         width: 390pt;
     }
+
     footer {
         margin-top: 3%;
     }
+
     .footer_image {
         height: 165px;
         margin-right: 35pt;
@@ -112,11 +121,11 @@ footer {
     width: max-content;
     margin: auto;
     padding: 1%;
-    display: none; 
+    display: none;
 }
 
 @keyframes blink-animation {
     to {
-      visibility: hidden;
+        visibility: hidden;
     }
-  }
+}
