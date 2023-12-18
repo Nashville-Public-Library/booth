@@ -44,7 +44,9 @@ def banner():
 
 @app.route('/booth/weather', methods=['GET', 'POST'])
 def weather():
-    request = requests.get('https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly')
+    url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
+    header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
+    request = requests.get(url=url, headers=header)
     
     weather = request.json()
     temp = weather['properties']['periods'][0]['temperature']
