@@ -17,7 +17,6 @@ def dot():
 @app.route('/booth/data', methods=['POST'])
 def homepage():
     response = make_response(get_scrape_and_filter())
-    response = make_response(response)
     response.headers['customHeader'] = 'Darth Vader'
     response.status_code = 200
     response.content_type = 'application/json'
