@@ -1,6 +1,6 @@
 from datetime import datetime
 
-def hour1():
+def hour1() -> str:
     current_hour = datetime.now().strftime('%H')
 
     if int(current_hour) <= 11:
@@ -38,7 +38,7 @@ def hour1():
     final_hour = f'{lead_hour}{trail_hour}'
     return final_hour
 
-def hour2():
+def hour2() -> str:
     current_hour = datetime.now().strftime('%H')
     current_hour = int(current_hour) + 1
 

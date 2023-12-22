@@ -1,6 +1,7 @@
 from datetime import datetime
 
-def are_we_closed():
+def are_we_closed() -> bool:
+    '''if today is not a weekday or time is before x or after y, return True'''
     current_hour = datetime.now().strftime('%H')
     current_hour = int(current_hour)
 

@@ -60,7 +60,7 @@ def scrape_VIC():
     # driver.quit()
     return shifts
 
-def remove_extra_text(booth: str, shift: str, hour: str):
+def remove_extra_text(booth: str, shift: str, hour: str) -> str:
     text_to_remove = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
                 'AM Newspaper Reading', 'The Tennessean', '1 more needed', 'Account Staff', booth, hour)
     for text in text_to_remove:
@@ -70,7 +70,7 @@ def remove_extra_text(booth: str, shift: str, hour: str):
         booth_return = 'Empty'
     return booth_return
 
-def get_scrape_and_filter():
+def get_scrape_and_filter() -> dict:
     '''
     get all the elements via selenium and loop through them to match booth numbers and hours. start out assuming all booths are closed,
     and update the dictionary only when there is a match.
