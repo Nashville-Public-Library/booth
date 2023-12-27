@@ -46,12 +46,14 @@ def weather():
     url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
     header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
     request = requests.get(url=url, headers=header)
-    
-    weather = request.json()
-    temp = weather['properties']['periods'][0]['temperature']
-    photo = weather['properties']['periods'][0]['icon']
-    photo = photo.replace('medium', 'small')
-    photo = photo.replace(',0', '') #seems to be an error with API...
-    response = {'temp': temp, 'photo': photo}
+    try:
+        weather = request.json()
+        temp = weather['properties']['periods'][0]['temperature']
+        photo = weather['properties']['periods'][0]['icon']
+        photo = photo.replace('medium', 'small')
+        photo = photo.replace(',0', '') #seems to be an error with API...
+        response = {'temp': temp, 'photo': photo}
+    except:
+        response = 'failed', 500
 
     return response
