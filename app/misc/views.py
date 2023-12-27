@@ -12,7 +12,7 @@ def home():
 
 @app.errorhandler(404)
 def not_found(e):
-    return render_template('404.html', e=e), 404
+    return render_template('404.html'), 404
 
 @app.errorhandler(405)
 def not_allowed(e):
@@ -20,4 +20,4 @@ def not_allowed(e):
 
 @app.errorhandler(500)
 def handle_exception(e):
-    return render_template("broken.html", e=e), 500
+    return render_template("broken.html"), 500
