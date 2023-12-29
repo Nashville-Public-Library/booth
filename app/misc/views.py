@@ -8,6 +8,10 @@ def home():
         return redirect('/booth')
     return render_template('home.html')
 
+@app.route('/health', methods=['GET', 'POST'])
+def health_check():
+    return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
+
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
 
 @app.errorhandler(404)

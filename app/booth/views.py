@@ -23,10 +23,6 @@ def homepage():
     response.access_control_allow_origin = '*'
     return response
 
-@app.route('/health', methods=['GET', 'POST'])
-def health_check():
-    return "<div style='font-size: 85pt; text-align: center;'>I AM WORKING FINE</div>" 
-
 @app.route('/booth/banner', methods=['GET', 'POST'])
 def banner():
     if request.method == 'POST':
