@@ -1,5 +1,7 @@
 from datetime import datetime
 
+import requests
+
 def are_we_closed() -> bool:
     '''if today is not a weekday or time is before x or after y, return True'''
     current_hour = datetime.now().strftime('%H')
@@ -24,3 +26,18 @@ def check_banner():
         banner == False
         
     return banner
+
+def get_weather():
+    url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
+    header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
+    request = requests.get(url=url, headers=header)
+    try:
+        weather = request.json()
+        temp = weather['properties']['periods'][0]['temperature']
+        photo = weather['properties']['periods'][0]['icon']
+        photo = photo.replace('medium', 'small')
+        photo = photo.replace(',0', '') #seems to be an error with API...
+        response = {'temp': temp, 'photo': photo}
+    except:
+        response = 'failed', 500
+    return response

@@ -3,7 +3,7 @@ from flask import render_template, request, make_response
 import requests
 
 from app import app
-from app.booth.utils import are_we_closed, check_banner
+from app.booth.utils import are_we_closed, check_banner, get_weather
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 
@@ -39,17 +39,4 @@ def banner():
 
 @app.route('/booth/weather', methods=['GET', 'POST'])
 def weather():
-    url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
-    header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
-    request = requests.get(url=url, headers=header)
-    try:
-        weather = request.json()
-        temp = weather['properties']['periods'][0]['temperature']
-        photo = weather['properties']['periods'][0]['icon']
-        photo = photo.replace('medium', 'small')
-        photo = photo.replace(',0', '') #seems to be an error with API...
-        response = {'temp': temp, 'photo': photo}
-    except:
-        response = 'failed', 500
-
-    return response
+    return get_weather()
