@@ -14,6 +14,10 @@ def health_check():
 
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
 
+@app.errorhandler(400)
+def not_allowed(e):
+    return "you're no good, you're no good", 405
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
