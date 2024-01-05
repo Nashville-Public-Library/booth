@@ -1,7 +1,5 @@
 from flask import render_template, request, make_response
 
-import requests
-
 from app import app
 from app.booth.utils import are_we_closed, check_banner, get_weather
 from app.booth.hours import hour1, hour2
