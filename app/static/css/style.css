@@ -55,6 +55,12 @@ header {
     animation: blink-animation .5s steps(5, start) infinite;
 }
 
+.weatherIMG {
+    margin-right: 5pt;
+    min-height: auto;
+    min-width: auto;
+}
+
 footer {
     margin-top: 6.5%;
     margin-bottom: 1%;
