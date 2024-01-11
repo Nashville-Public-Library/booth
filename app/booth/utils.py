@@ -1,6 +1,13 @@
 from datetime import datetime
 
+import holidays
 import requests
+
+
+def is_holiday():
+    holiday = holidays.US()
+    today = datetime.now().strftime('%Y-%m-%d') # YYYY-MM-DD
+    return holiday.get(today)
 
 def are_we_closed() -> bool:
     '''if today is not a weekday or time is before x or after y, return True'''
@@ -14,6 +21,9 @@ def are_we_closed() -> bool:
         return True
 
     if current_day in weekend:
+        return True
+    
+    if is_holiday() != None:
         return True
     
     return False
