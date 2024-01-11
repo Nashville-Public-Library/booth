@@ -35,7 +35,7 @@ def banner():
 def weather():
     return get_weather()
 
-@app.route('/booth/holiday', methods=['GET', 'POST'])
+@app.route('/booth/holiday', methods=['POST'])
 def holiday():
     holiday = is_holiday()
     return {'holiday': holiday}
