@@ -59,3 +59,17 @@ async function weather() {
         weatherIMG.src = responseJSON.photo
 } 
 weather()
+
+async function holiday() {
+  const url = "/booth/holiday";
+        let response = await fetch(url, {method: "POST"});
+        let responseJSON = await response.json();
+        
+        // holiday element only present on closed.html
+        try {
+        let holidayElement = document.getElementById('holiday')
+        holidayElement.innerHTML = responseJSON.holiday
+        }
+        catch {'oh well'}
+} 
+holiday()

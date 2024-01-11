@@ -1,7 +1,7 @@
 from flask import render_template, request, make_response
 
 from app import app
-from app.booth.utils import are_we_closed, check_banner, get_weather
+from app.booth.utils import are_we_closed, check_banner, get_weather, is_holiday
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 
@@ -34,3 +34,8 @@ def banner():
 @app.route('/booth/weather', methods=['POST'])
 def weather():
     return get_weather()
+
+@app.route('/booth/holiday', methods=['GET', 'POST'])
+def holiday():
+    holiday = is_holiday()
+    return {'holiday': holiday}
