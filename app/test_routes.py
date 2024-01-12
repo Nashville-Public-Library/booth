@@ -70,12 +70,12 @@ def test_banner_post(client):
 def test_banner_post_no_data(client):
     '''should fail if form data is missing'''
     response = client.post('/booth/banner')
-    assert response.status_code == 405
+    assert response.status_code == 400
 
 def test_banner_post_missing_data(client):
     '''should fail if SOME form data is missing'''
     response = client.post('/booth/banner', data={"user": ""})
-    assert response.status_code == 405
+    assert response.status_code == 400
 
 def test_banner_message(client):
     from app.booth.utils import check_banner
