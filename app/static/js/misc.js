@@ -52,11 +52,9 @@ async function weather() {
         let responseJSON = await response.json();
 
         let temp = document.getElementById('weather')
-        let weatherIMG = document.getElementById('weatherIMG')
         let degree = '&deg'
 
-        temp.innerHTML = `${responseJSON.temp}&deg`
-        weatherIMG.src = responseJSON.photo
+        temp.innerHTML = `${responseJSON.temp}&deg | `
 } 
 weather()
 
