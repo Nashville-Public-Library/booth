@@ -51,10 +51,10 @@ async function weather() {
         let response = await fetch(url, {method: "POST"});
         let responseJSON = await response.json();
 
-        let temp = document.getElementById('weather')
-        let degree = '&deg'
+        let temp = document.getElementById('weather');
+        let degree = '&deg';
 
-        temp.innerHTML = `${responseJSON.temp}&deg | `
+        temp.innerHTML = `${responseJSON.temp}&deg | `;
 } 
 weather()
 
@@ -65,9 +65,9 @@ async function holiday() {
         
         // holiday element only present on closed.html
         try {
-        let holidayElement = document.getElementById('holiday')
-        holidayElement.innerHTML = responseJSON.holiday
+        let holidayElement = document.getElementById('holiday');
+        holidayElement.innerHTML = responseJSON.holiday;
         }
-        catch {'oh well'}
+        catch {'oh well'};
 } 
 holiday()
