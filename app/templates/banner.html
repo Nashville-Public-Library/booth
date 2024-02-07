@@ -8,12 +8,29 @@
 
 <div style="text-align: center">
     <form method="post" id="banner">
-        <input type="password" name="password" id="password" placeholder="password">
+        <select name="selectMessage" id="selectMessage" style="width: 50%;">
+            <option value="" selected disabled hidden>Select</option>
+            <option 
+                value="TL Volunteers: Michael is out of the office today. If you need help, please feel free to check with Ben: ben.weddle@nashville.gov OR 615-862-5804 x73856">
+                Michael out
+            </option>
+            <option 
+            value="TL Volunteers: Michael is helping in the 2nd floor studio this morning. If you need help, please feel free to check with Ben: ben.weddle@nashville.gov OR 615-862-5804 x73856">
+            Michael Studio
+        </option>
+            <option 
+            value="TL Volunteers: We are having network issues and you cannot save your file to the usual place.
+PLEASE SAVE YOUR FILE TO THE DESKTOP">
+            Save to desktop
+        </option>
+        </select>
         <br><br>
         <textarea id="message" name="message" style="width: 50%; height: 100px;"
             placeholder="your message here (or leave blank to clear existing message)">{{ banner_text }}</textarea>
         <br><br>
+        <input type="password" name="password" id="password" placeholder="password" style="text-align: start;">
     </form>
+    <br><br>
     <button onclick="validateBanner()" style="width: 100px; height: 30px;">SUBMIT</button>
 </div>
 
