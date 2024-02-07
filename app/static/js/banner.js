@@ -14,11 +14,10 @@ function validateBanner() {
 }
 
 const selectMessage = document.getElementById("selectMessage");
-selectMessage.addEventListener('click', fillBanner)
+selectMessage.addEventListener('change', fillBanner)
 function fillBanner() {
-    const x = document.getElementById("selectMessage");
-    const y = x.value
-    const box = document.getElementById("message");
-    box.value = x.value;
+    let selectMessage = document.getElementById("selectMessage");
+    let box = document.getElementById("message");
+    box.value = selectMessage.value;
     console.log(x.value)
 }
