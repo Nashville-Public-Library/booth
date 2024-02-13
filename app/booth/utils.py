@@ -29,7 +29,7 @@ def are_we_closed() -> bool:
     
     return False
 
-def check_banner():
+def check_banner() -> bool | str:
     banner = open('message.txt', 'r')
     banner = banner.read()
 
