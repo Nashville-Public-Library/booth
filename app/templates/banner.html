@@ -10,19 +10,22 @@
     <form method="post" id="banner">
         <select name="selectMessage" id="selectMessage" style="width: 50%;">
             <option value="" selected disabled hidden>Select</option>
-            <option 
-                value="TL Volunteers: Michael is out of the office today. If you need help, please feel free to check with Ben: ben.weddle@nashville.gov OR 615-862-5804 x73856">
+            <option
+                value="TL Volunteers: Michael is out of the office today.">
                 Michael out
             </option>
-            <option 
-            value="TL Volunteers: Michael is helping in the 2nd floor studio this morning. If you need help, please feel free to check with Ben: ben.weddle@nashville.gov OR 615-862-5804 x73856">
-            Michael Studio
+            <option
+            value="TL Volunteers: Michael is out of the office today. If you need help, please feel free to check with Ben: ben.weddle@nashville.gov OR 615-862-5804 x73856">
+            Michael out, Contact Ben
         </option>
-            <option 
-            value="TL Volunteers: We are having network issues and you cannot save your file to the usual place.
+            <option
+                value="TL Volunteers: Michael is helping in the 2nd floor studio this morning. If you need help, please feel free to check with Ben: ben.weddle@nashville.gov OR 615-862-5804 x73856">
+                Michael Studio
+            </option>
+            <option value="TL Volunteers: We are having network issues and you cannot save your file to the usual place.
 PLEASE SAVE YOUR FILE TO THE DESKTOP">
-            Save to desktop
-        </option>
+                Save to desktop
+            </option>
         </select>
         <br><br>
         <textarea id="message" name="message" style="width: 50%; height: 100px;"
@@ -37,8 +40,7 @@ PLEASE SAVE YOUR FILE TO THE DESKTOP">
 <br>
 
 <div style="font-size: 85pt; text-align: center;" id="emoji">{{ emoji|safe }}</div>
-<div class="bannerForgotPassword"
-    id="success">
+<div class="bannerForgotPassword" id="success">
     you forgot the password</div>
 
 <script src="{{url_for('static', filename='js/banner.js')}}"></script>
