@@ -26,8 +26,6 @@ class Icecast:
     
     def parse_mount_for_elements(self) -> dict:
         mount = self.parse_full_tree_for_live_mount()
-        yp_currently_playing = mount.find('yp_currently_playing')
-        yp_currently_playing = yp_currently_playing.text
-        title = mount.find('title')
-        title = title.text
+        yp_currently_playing = mount.find('yp_currently_playing').text
+        title = mount.find('title').text
         return {'yp_currently_playing': yp_currently_playing, 'title': title}
