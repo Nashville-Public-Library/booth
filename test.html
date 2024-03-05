@@ -23,7 +23,7 @@
                 const url = "http://127.0.0.1:5000/stream";
                 let response = await fetch(url, {method: "POST"});
                 let icecast = await response.json();
-                let nowPlaying = icecast.nowPlaying;
+                let nowPlaying = icecast.title;
                 if (nowPlaying.trim() == "") {
                     titleElement.innerText = notAvailable
                 }
