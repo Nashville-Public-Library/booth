@@ -16,7 +16,7 @@ def health_check():
 @app.route('/twilio', methods=['post'])
 def twilio_response():
     resp = MessagingResponse()
-    resp.message("Messages sent to this number are not monitored. Please contact Ben if you need something.")
+    resp.message("Messages sent to this number are not monitored. Please contact Ben directly if you need something.")
 
     return str(resp)
 
