@@ -140,5 +140,6 @@ def test_check_icecast():
     assert type(icecast_now_playing()) == str
 
 def test_scrape():
+    '''test comment for CD pipeline'''
     from app.booth.scrape import get_scrape_and_filter
     assert type(get_scrape_and_filter()) == dict
