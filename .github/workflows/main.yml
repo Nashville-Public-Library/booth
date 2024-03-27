@@ -1,0 +1,35 @@
+name: Deploy
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: prep action  
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+
+      - name: Generate deployment package
+        run: zip -r deploy.zip . -x "*.git*" "venv/*" ".pytest_cache/*" "__pycache__/*" "chromedriver.exe" "test.html"
+
+      - name: Deploy to AWS
+        uses: einaregilsson/beanstalk-deploy@v21
+        with:
+          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          application_name: ntlbooth
+          environment_name: Ntlbooth-env
+          version_label: ${{ github.sha }}
+          region: us-east-2
+          deployment_package: deploy.zip
