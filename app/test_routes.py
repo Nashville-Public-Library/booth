@@ -1,18 +1,24 @@
 import pytest
+from unittest.mock import patch
 
 from app import app
 from flask.testing import FlaskClient
 
+env_vars = {
+        'VIC_user': 'nothing',
+        'VIC_password': 'mocked_value2'
+    }
+
 @pytest.fixture
 def client():
     app.testing = True
-
-    with app.test_client() as client:
+    with patch.dict('os.environ', env_vars):
+        client =  app.test_client()
         yield client
-    
-    # one of the tests writes a banner message. erase it.
-    with open('message.txt', 'w') as banner:
-        banner = banner.write('')
+        
+        # one of the tests writes a banner message. erase it.
+        with open('message.txt', 'w') as banner:
+            banner = banner.write('')
 
 '''
 GET real GET routes
