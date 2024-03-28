@@ -149,5 +149,6 @@ def test_check_banner():
     assert type(check_banner()) == bool or str
 
 def test_check_icecast():
-    from app.stream.icecast import Icecast
-    assert type(Icecast().now_playing) == dict
+    with patch.dict('os.environ', env_vars):
+        from app.stream.icecast import Icecast
+        assert type(Icecast().now_playing) == dict
