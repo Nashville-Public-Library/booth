@@ -11,6 +11,10 @@ permissions:
 jobs:
   test:
     runs-on: ubuntu-latest
+    env:
+      icecast_user: ${{ secrets.icecast_user }}
+      icecast_pass: ${{ secrets.icecast_pass }}
+
     steps:
 
     - name: prep action  
