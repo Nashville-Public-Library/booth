@@ -37,7 +37,7 @@ def test_booth_data_1(client: FlaskClient):
     assert response.status_code == 405
 
 def test_fake_url_1(client: FlaskClient):
-    '''non routes should return 404'''
+    '''non routes should return 404 no matter the request type'''
     response = client.get('/maaah')
     assert response.status_code == 404
 
@@ -48,6 +48,10 @@ def test_fake_url_2(client: FlaskClient):
 
 def test_stream_get_1(client: FlaskClient):
     response = client.get('/stream')
+    assert response.status_code == 405
+
+def test_twilio_get_1(client: FlaskClient):
+    response = client.get('/twilio')
     assert response.status_code == 405
 
 '''
@@ -96,6 +100,14 @@ def test_weather_post_1(client: FlaskClient):
 def test_weather_post_2(client: FlaskClient):
     response = client.post('/booth/weather')
     assert response.content_type == 'application/json'
+
+def test_twilio_post_1(client: FlaskClient):
+    response = client.post('/twilio')
+    assert response.status_code == 200
+
+def test_twilio_post_2(client: FlaskClient):
+    response = client.post('/twilio')
+    assert 'text/html' in response.content_type
 
 '''
 POST non-POST routes
