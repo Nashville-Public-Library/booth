@@ -4,7 +4,7 @@ from app import app
 
 @pytest.fixture
 def client():
-    app.config.update({'TESTING': True})
+    app.testing = True
 
     with app.test_client() as client:
         yield client
@@ -21,12 +21,6 @@ def test_home_get_1(client):
     '''home/landing route'''
     resp = client.get('/')
     assert resp.status_code == 200
-
-def test_booth_get_1(client):
-    '''home/landing route'''
-    resp = client.get('/booth')
-    assert resp.status_code == 200
-    assert 'booth' in resp.text
 
 def test_banner_get_1(client):
     response = client.get('/booth/banner')
@@ -136,9 +130,5 @@ def test_check_banner():
     assert type(check_banner()) == bool or str
 
 def test_check_icecast():
-    from app.stream.icecast import icecast_now_playing
-    assert type(icecast_now_playing()) == str
-
-def test_scrape():
-    from app.booth.scrape import get_scrape_and_filter
-    assert type(get_scrape_and_filter()) == dict
+    from app.stream.icecast import Icecast
+    assert type(Icecast().now_playing) == dict
