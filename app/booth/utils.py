@@ -44,11 +44,18 @@ def get_weather():
     request = requests.get(url=url, headers=header)
     try:
         weather = request.json()
+
         temp = weather['properties']['periods'][0]['temperature']
-        photo = weather['properties']['periods'][0]['icon']
+
+        forcast = weather['properties']['periods'][0]['shortForecast']
+
+        chance_of_rain = weather['properties']['periods'][0]['probabilityOfPrecipitation']['value']
+
+        photo:str = weather['properties']['periods'][0]['icon']
         photo = photo.replace('medium', 'small')
         photo = photo.replace(',0', '') #seems to be an error with API...
-        response = {'temp': temp, 'photo': photo}
+
+        response = {'temp': temp, 'photo': photo, 'forcast': forcast, 'chance_of_rain': chance_of_rain}
     except:
         response = 'failed', 500
     return response
