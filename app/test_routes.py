@@ -115,6 +115,14 @@ def test_twilio_post_2(client: FlaskClient):
     response = client.post('/twilio')
     assert 'text/html' in response.content_type
 
+def test_holiday_post_1(client: FlaskClient):
+    response = client.post('/booth/holiday')
+    assert response.status_code == 200
+
+def test_holiday_post_2(client: FlaskClient):
+    response = client.post('/booth/holiday')
+    assert response.content_type == 'application/json'
+
 '''
 POST non-POST routes
 '''
