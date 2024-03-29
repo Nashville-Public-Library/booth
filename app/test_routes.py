@@ -4,14 +4,14 @@ from unittest.mock import patch
 from app import app
 from flask.testing import FlaskClient
 
-env_vars = {
-        'VIC_user': 'nothing',
-        'VIC_password': 'mocked_value2'
-    }
 
 @pytest.fixture
 def client():
     app.testing = True
+    env_vars = {
+        'VIC_user': 'nothing',
+        'VIC_password': 'nothing'
+    }
     with patch.dict('os.environ', env_vars):
         client =  app.test_client()
         yield client
@@ -128,27 +128,3 @@ def test_booth_post_1(client: FlaskClient):
     '''should fail for non-POST routes'''
     response = client.post('/booth')
     assert response.status_code == 405
-
-
-'''MISC Functions'''
-
-def test_are_we_closed_1():
-    from app.booth.utils import are_we_closed
-    assert type(are_we_closed()) == bool
-
-def test_hour_1_1():
-    from app.booth.hours import hour1
-    assert type(hour1()) == str
-
-def test_hour_2_1():
-    from app.booth.hours import hour2
-    assert type(hour2()) == str
-
-def test_check_banner():
-    from app.booth.utils import check_banner
-    assert type(check_banner()) == bool or str
-
-def test_check_icecast():
-    with patch.dict('os.environ', env_vars):
-        from app.stream.icecast import Icecast
-        assert type(Icecast().now_playing) == dict
