@@ -22,20 +22,6 @@
 
  It SEEMS all EC2 instances default to a different time zone (It's UTC, i think). We're able to change our instance's timezone with a `.config` file. This is the `change_timezone.config` file in the `.ebextensions` folder.
 
- Another config file, `options.config` in the `.ebextensions` folder sets the environment variables, so our VIC credentials are not stored in the source.
-
- IMPORTANT: We are ignoring via `.gitignore` the `options.config` file inside the `.ebestensions` folder. Here's what the file should look like:
-
-    option_settings:
-      - option_name:  VIC_user
-        value:  this_is_your_VIC_username
-      - option_name:  VIC_password
-        value:  this_is_your_VIC_password
-
-Nothing in this file should be enclosed in quotes.
-
-Alternatively, you can set environment variables from the EB console. Just make sure to set them immediately upon deployment.
-
 ### Testing
 Run `pytest` at the top level directory to run the basic tests.
 
