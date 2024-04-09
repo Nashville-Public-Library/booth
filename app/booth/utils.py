@@ -7,7 +7,6 @@ import requests
 def is_holiday():
     '''returns None if not a holiday'''
     holiday: dict = holidays.US()
-    print(holiday)
     today = datetime.now().strftime('%Y-%m-%d') # YYYY-MM-DD
     return holiday.get(today)
 
