@@ -4,6 +4,10 @@ from app import app
 from app.stream.icecast import Icecast
 
 @app.route('/stream', methods=['POST'])
+def hmm():
+    return "these aren't the droids you're looking for"
+
+@app.route('/stream/status', methods=['POST'])
 def now_playing():
     response = make_response(Icecast().now_playing)
     response.headers['customHeader'] = 'Darth Vader'
