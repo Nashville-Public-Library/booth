@@ -96,7 +96,16 @@ def test_stream_post_1(client: FlaskClient):
     assert response.status_code == 200
 
 def test_stream_post_2(client: FlaskClient):
+    '''should return plain text'''
     response = client.post('/stream')
+    assert 'text/html' in response.content_type
+
+def test_stream_status_post_1(client: FlaskClient):
+    response = client.post('stream/status')
+    assert response.status_code == 200
+
+def test_stream_status_post_2(client: FlaskClient):
+    response = client.post('stream/status')
     assert response.content_type == 'application/json'
 
 def test_weather_post_1(client: FlaskClient):
