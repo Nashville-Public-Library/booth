@@ -33,6 +33,8 @@ async function fetchBooths() {
         italicizeMe("Booth1_2_data")
         italicizeMe("Booth2_2_data")
         italicizeMe("Booth3_2_data")
+
+        nowPlaying()
     }
     catch (err) {
         console.log(err)
@@ -53,5 +55,28 @@ function italicizeMe(x) {
         console.log('oh well')
     }
 }
+
+async function nowPlaying() {
+    let titleElement = document.getElementById('nowPlaying');
+    let notAvailable = "Program Name Not Available";
+    try {
+        const url = "/stream/status";
+        let response = await fetch(url, {method: "POST"});
+        let icecast = await response.json();
+        let nowPlaying = icecast.title;
+        if (nowPlaying.trim() == "") {
+            titleElement.innerText = notAvailable;
+            document.getElementById('nowPlayingContainer').style.display = 'block';
+        }
+        else {
+            titleElement.innerText = nowPlaying;
+            document.getElementById('nowPlayingContainer').style.display = 'block';
+        }
+    }
+    catch (whoops) {
+        titleElement.innerText = notAvailable;
+        document.getElementById('nowPlayingContainer').style.display = 'block';
+    }
+  }
 
 fetchBooths()

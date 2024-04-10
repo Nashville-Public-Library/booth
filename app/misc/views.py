@@ -5,8 +5,6 @@ from app import app
 
 @app.route('/')
 def home():
-    if 'Bright' in request.headers.get('User-Agent'):
-        return redirect('/booth')
     return render_template('home.html')
 
 @app.route('/health', methods=['GET', 'POST'])
