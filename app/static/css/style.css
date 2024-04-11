@@ -93,7 +93,7 @@ footer {
     */
     display: none;
     text-align: center;
-    position: fixed;
+    position: absolute;
 }
 
 .nowPlaying {
