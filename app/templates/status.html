@@ -4,13 +4,26 @@
 
 {% block content %}
 
-<div>
+<div> PING
     <div id="streamGuys">StreamGuys</div>
     <div id="wpln">WPLN</div>
     <div id="SGmetadata">SGmetadata</div>
+    <div id="metro">Metro</div>
+</div>
+
+<br>
+
+<div>Mountpoints</div>
+<div id="mountpoints"></div>
+
+<br>
+
+<div>Global Listeners
+    <div id="listenerCount"></div>
 </div>
 
 
 
+<script src="{{ url_for('static', filename='js/status.js') }}"></script>
 
 {% endblock %}
