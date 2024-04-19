@@ -6,7 +6,9 @@ from app.status.ping import ping, check_mounts, listeners
 
 @app.route('/status')
 def status():
-    return render_template('status.html')
+    ip = request.remote_addr
+    if ip == '127.0.0.1' or '170.190.43.1':
+        return render_template('status.html')
 
 @app.route('/status/ping', methods=['POST'])
 def ping_ip():
