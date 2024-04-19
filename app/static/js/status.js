@@ -45,10 +45,31 @@ async function listeners() {
     listenerElement.innerText = responseJSON.listeners
 }
 
+async function nowPlaying() {
+    let titleElement = document.getElementById('nowPlaying');
+    let notAvailable = "Program Name Not Available";
+    try {
+        const url = "/stream/status";
+        let response = await fetch(url, {method: "POST"});
+        let icecast = await response.json();
+        let nowPlaying = icecast.title;
+        if (nowPlaying.trim() == "") {
+            titleElement.innerText = notAvailable;
+        }
+        else {
+            titleElement.innerText = nowPlaying;
+        }
+    }
+    catch (whoops) {
+        titleElement.innerText = notAvailable;
+    }
+  }
+
 function main() {
     ping();
     listeners();
     mountpoints();
+    nowPlaying()
 }
 
 main()
