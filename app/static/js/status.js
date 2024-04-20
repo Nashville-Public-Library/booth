@@ -12,10 +12,10 @@ async function ping() {
 function redGreen(responseIsTrue, id) {
     element = document.getElementById(id)
     if (responseIsTrue) {
-        element.classList.add('statusGreen')
+        element.style.color = 'green'
     }
     else {
-        element.classList.add('statusRed')
+        element.style.color = 'red'
     }
 }
 
