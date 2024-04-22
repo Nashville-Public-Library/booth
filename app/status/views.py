@@ -12,11 +12,11 @@ def status():
 
 @app.route('/status/ping', methods=['POST'])
 def ping_ip():
-    streamGuys = ping(host='npl.streamguys1.com')
+    icecast = ping(host='npl.streamguys1.com')
     wpln = ping(host='12.247.152.50')
     SGmetadata = ping(host='204.93.152.147')
     metro = ping(host='170.190.43.1')
-    return {'streamGuys': streamGuys, 'wpln': wpln, 'SGmetadata': SGmetadata, 'metro': metro}
+    return {'icecast': icecast, 'wpln': wpln, 'SGmetadata': SGmetadata, 'metro': metro}
 
 @app.route('/status/stream', methods=['POST'])
 def stream():

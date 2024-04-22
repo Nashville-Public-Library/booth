@@ -3,7 +3,7 @@ async function ping() {
           let response = await fetch(url, {method: "POST"});
           let responseJSON = await response.json();
 
-          redGreen(responseJSON.streamGuys, 'streamGuys');
+          redGreen(responseJSON.icecast, 'icecast');
           redGreen(responseJSON.wpln, 'wpln');
           redGreen(responseJSON.SGmetadata, 'SGmetadata');
           redGreen(responseJSON.metro, 'metro')
