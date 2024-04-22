@@ -103,12 +103,15 @@ footer {
     padding: 10px;
 }
 
-.statusGreen {
-    color:green;
+.statsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content:space-evenly;
 }
 
-.statusRed {
-    color: crimson;
+.stats {
+    display: flex;
 }
 
 /* for BrightSign */

@@ -31,7 +31,6 @@ async function mountpoints() {
         let newElement = document.createElement("div");
         let newContent = document.createTextNode(mount);
         newElement.appendChild(newContent);
-        newElement.classList.add('statusGreen')
         mountpointElement.appendChild(newElement)
     });
 }
@@ -65,6 +64,21 @@ async function nowPlaying() {
     }
   }
 
+  async function schedule() {
+    const url = "/booth/data";
+    let response = await fetch(url, {method: "POST"});
+    let responseJSON = await response.json();
+    document.getElementById("newspaper").innerText = `Newspaper: ${responseJSON.newspaper}`;
+    document.getElementById("9").innerText = `09am: ${responseJSON[9].booth1}, ${responseJSON[9].booth2}, ${responseJSON[9].booth3}`;
+    document.getElementById("10").innerText = `10am: ${responseJSON[10].booth1}, ${responseJSON[10].booth2}, ${responseJSON[10].booth3}`;
+    document.getElementById("11").innerText = `11am: ${responseJSON[11].booth1}, ${responseJSON[11].booth2}, ${responseJSON[11].booth3}`;
+    document.getElementById("12").innerText = `12pm: ${responseJSON[12].booth1}, ${responseJSON[12].booth2}, ${responseJSON[12].booth3}`;
+    document.getElementById("13").innerText = `01pm: ${responseJSON[13].booth1}, ${responseJSON[13].booth2}, ${responseJSON[13].booth3}`;
+    document.getElementById("14").innerText = `02pm: ${responseJSON[14].booth1}, ${responseJSON[14].booth2}, ${responseJSON[14].booth3}`;
+    document.getElementById("15").innerText = `03pm: ${responseJSON[15].booth1}, ${responseJSON[15].booth2}, ${responseJSON[15].booth3}`;
+
+}
+
 function main() {
     ping();
     listeners();
@@ -74,3 +88,5 @@ function main() {
 
 main()
 setInterval(main, 30000)
+schedule()
+setInterval(schedule, 30000)
