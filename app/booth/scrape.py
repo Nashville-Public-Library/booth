@@ -78,30 +78,104 @@ def get_scrape_and_filter() -> dict:
     booth1 = "Booth 1"
     booth2 = "Booth 2"
     booth3 = "Booth 3"
+    newspaper = "AM Newspaper Reading"
 
-    schedule = {'booth1_1': "CLOSED", 'booth2_1': "CLOSED",'booth3_1': "CLOSED",
-                'booth1_2': "CLOSED", 'booth2_2': "CLOSED", 'booth3_2': "CLOSED"}
+    # schedule = {'booth1_1': "CLOSED", 'booth2_1': "CLOSED",'booth3_1': "CLOSED",
+    #             'booth1_2': "CLOSED", 'booth2_2': "CLOSED", 'booth3_2': "CLOSED"}
+    
+    schedule = {
+        "newspaper": [],
+        "9": {"booth1": "closed", "booth2": "closed", "booth3": "closed"},
+        "10": {"booth1": "closed", "booth2": "closed", "booth3": "closed"},
+        "11": {"booth1": "closed", "booth2": "closed", "booth3": "closed"},
+        "12": {"booth1": "closed", "booth2": "closed", "booth3": "closed"},
+        "13": {"booth1": "closed", "booth2": "closed", "booth3": "closed"},
+        "14": {"booth1": "closed", "booth2": "closed", "booth3": "closed"},
+        "15": {"booth1": "closed", "booth2": "closed", "booth3": "closed"}
+    }
+
+    nine = "9:00am - 10:00am"
+    ten = "10:00am - 11:00am"
+    eleven = "11:00am - 12:00pm"
+    twelve = "12:00pm - 1:00pm"
+    one = "1:00pm - 2:00pm"
+    two = "2:00pm - 3:00pm"
+    three = "3:00pm - 4:30pm"
     
     shifts = scrape_VIC()
     for shift in shifts:
         shift = shift.text
-        if (booth1 in shift) and (hour1() in shift):
-            schedule['booth1_1'] = remove_extra_text(booth=booth1, shift=shift, hour=hour1())
 
-        if (booth2 in shift) and (hour1() in shift):
-            schedule['booth2_1'] = remove_extra_text(booth=booth2, shift=shift, hour=hour1())
+        if newspaper in shift:
+            schedule["newspaper"].append(remove_extra_text(booth=newspaper, shift=shift, hour="9:00am - 11:00am"))
 
-        if (booth3 in shift) and (hour1() in shift):
-            schedule['booth3_1'] = remove_extra_text(booth=booth3, shift=shift, hour=hour1())
+        if (booth1 in shift) and (nine in shift):
+            schedule['9']['booth1'] = remove_extra_text(booth=booth1, shift=shift, hour=nine)
+
+        if (booth2 in shift) and (nine in shift):
+            schedule['9']["booth2"] = remove_extra_text(booth=booth2, shift=shift, hour=nine)
+
+        if (booth3 in shift) and (nine in shift):
+            schedule['9']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=nine)
+
+        
+        if (booth1 in shift) and (ten in shift):
+            schedule['10']['booth1'] = remove_extra_text(booth=booth1, shift=shift, hour=ten)
+
+        if (booth2 in shift) and (ten in shift):
+            schedule['10']["booth2"] = remove_extra_text(booth=booth2, shift=shift, hour=ten)
+
+        if (booth3 in shift) and (ten in shift):
+            schedule['10']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=ten)
+
+        
+        if (booth1 in shift) and (eleven in shift):
+            schedule['11']['booth1'] = remove_extra_text(booth=booth1, shift=shift, hour=eleven)
+
+        if (booth2 in shift) and (eleven in shift):
+            schedule['11']["booth2"] = remove_extra_text(booth=booth2, shift=shift, hour=eleven)
+
+        if (booth3 in shift) and (eleven in shift):
+            schedule['11']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=eleven)
+
+        
+        if (booth1 in shift) and (twelve in shift):
+            schedule['12']['booth1'] = remove_extra_text(booth=booth1, shift=shift, hour=twelve)
+
+        if (booth2 in shift) and (twelve in shift):
+            schedule['12']["booth2"] = remove_extra_text(booth=booth2, shift=shift, hour=twelve)
+
+        if (booth3 in shift) and (twelve in shift):
+            schedule['12']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=twelve)
+
+        
+        if (booth1 in shift) and (one in shift):
+            schedule['13']['booth1'] = remove_extra_text(booth=booth1, shift=shift, hour=one)
+
+        if (booth2 in shift) and (one in shift):
+            schedule['13']["booth2"] = remove_extra_text(booth=booth2, shift=shift, hour=one)
+
+        if (booth3 in shift) and (one in shift):
+            schedule['13']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=one)
 
 
-        if (booth1 in shift) and (hour2() in shift):
-            schedule['booth1_2'] = remove_extra_text(booth=booth1, shift=shift, hour=hour2())
+        if (booth1 in shift) and (two in shift):
+            schedule['14']['booth1'] = remove_extra_text(booth=booth1, shift=shift, hour=two)
 
-        if (booth2 in shift) and (hour2() in shift):
-            schedule['booth2_2'] = remove_extra_text(booth=booth2, shift=shift, hour=hour2())
+        if (booth2 in shift) and (two in shift):
+            schedule['14']["booth2"] = remove_extra_text(booth=booth2, shift=shift, hour=two)
 
-        if (booth3 in shift) and (hour2() in shift):
-            schedule['booth3_2'] = remove_extra_text(booth=booth3, shift=shift, hour=hour2())
+        if (booth3 in shift) and (two in shift):
+            schedule['14']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=two)
+        
 
-    return schedule
+        if (booth1 in shift) and (three in shift):
+            schedule['15']['booth1'] = remove_extra_text(booth=booth1, shift=shift, hour=three)
+
+        if (booth2 in shift) and (three in shift):
+            schedule['15']["booth2"] = remove_extra_text(booth=booth2, shift=shift, hour=three)
+
+        if (booth3 in shift) and (three in shift):
+            schedule['15']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=three)
+   
+    return(schedule) 

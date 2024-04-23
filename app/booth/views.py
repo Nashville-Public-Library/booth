@@ -4,6 +4,7 @@ from app import app
 from app.booth.utils import are_we_closed, check_banner, get_weather, is_holiday
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
+from app.ev import EV
 
 @app.route('/booth')
 def dot():
@@ -23,7 +24,7 @@ def banner():
         password = request.form['password']
         message = request.form['message']
         message = message.strip()
-        if password == 'talk5874':
+        if password == EV().BF_pass:
             with open('message.txt', 'w') as text:
                 text.write(message)
             return render_template('banner.html', emoji='&#128077;', banner_text=check_banner()) # emoji = thumbs up
