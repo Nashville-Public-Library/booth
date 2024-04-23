@@ -7,6 +7,10 @@ async function fetchBooths() {
         currentHour = 9;
         nextHour = 10
     }
+    if (currentHour == 16) {
+        currentHour = 15;
+        nextHour = 16;
+    }
     const booth1_1_display = document.getElementById('Booth1_data');
     const booth2_1_display = document.getElementById('Booth2_data');
     const booth3_1_display = document.getElementById('Booth3_data');
@@ -23,7 +27,6 @@ async function fetchBooths() {
         for (let i = 0; i < dots.length; i++) {
             dots[i].classList.remove('dot-elastic');
         }
-
         booth1_1_display.innerText = responseJSON[currentHour].booth1;
         booth2_1_display.innerText = responseJSON[currentHour].booth2;
         booth3_1_display.innerText = responseJSON[currentHour].booth3;
