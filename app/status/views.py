@@ -1,9 +1,9 @@
 from functools import wraps
 
 from flask import render_template, request, Response
-import requests
 
 from app import app
+from app.ev import EV
 from app.status.ping import ping, check_mounts, listeners
 
 def authenticate():
@@ -13,24 +13,24 @@ def authenticate():
     401,
     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
-def requires_auth(f):
+def requires_auth(mah):
     """A decorator function that wraps other routes to check authentication"""
-    @wraps(f)
-    def decorated(*args, **kwargs):
+    @wraps(mah)
+    def decorated():
         ip = request.remote_addr
         if ip == '127.0.0.1' or '170.190.43.1':
-             return f(*args, **kwargs)
+             return mah()
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
             return authenticate()
-        return f(*args, **kwargs)
+        return mah()
     return decorated
 
 def check_auth(username: str, password: str):
     """This function is called to check if a username /
     password combination is valid.
     """
-    return username.lower() == 'admin' and password.lower() == 'testing'
+    return username.lower() == 'admin' and password.lower() == EV().BF_pass
 
 @app.route('/status')
 @requires_auth
