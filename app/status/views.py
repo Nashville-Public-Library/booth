@@ -18,7 +18,7 @@ def requires_auth(mah):
     @wraps(mah)
     def decorated():
         ip = request.remote_addr
-        if ip == '127.0.0.1' or '170.190.43.1':
+        if ip in ('170.190.43.1', '127.0.0.1'):
              return mah()
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
