@@ -178,5 +178,4 @@ def get_scrape_and_filter() -> dict:
         if (booth3 in shift) and (three in shift):
             schedule['15']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=three)
    
-    print(schedule)
     return(schedule) 
