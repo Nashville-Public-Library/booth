@@ -17,7 +17,7 @@ def requires_auth(mah):
     """A decorator function that wraps other routes to check authentication"""
     @wraps(mah)
     def decorated():
-        ip = request.environ['REMOTE_ADDR']
+        ip = request.headers.get('X-Forwarded-For', request.remote_addr)
         print(ip)
         if ip in ('170.190.43.1', '127.0.0.1'):
              return mah()
@@ -37,6 +37,11 @@ def check_auth(username: str, password: str):
 @requires_auth
 def status():
         return render_template('status.html')
+
+@app.route('/del')
+@requires_auth
+def delete():
+        return request.headers.get('X-Forwarded-For', request.remote_addr)
 
 @app.route('/status/ping', methods=['POST'])
 def ping_ip():
