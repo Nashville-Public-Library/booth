@@ -18,11 +18,15 @@ def requires_auth(mah):
     @wraps(mah)
     def decorated():
         ip = request.remote_addr
-        if ip in ('170.190.43.1', '127.0.0.1'):
+        print(ip)
+        if ip == '170.190.43.1':
+             print('ip is true')
              return mah()
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
+            print('auth not true')
             return authenticate()
+        print('returning mah()')
         return mah()
     return decorated
 
@@ -36,6 +40,11 @@ def check_auth(username: str, password: str):
 @requires_auth
 def status():
         return render_template('status.html')
+
+@app.route('/del')
+@requires_auth
+def delete():
+        return ('status.html')
 
 @app.route('/status/ping', methods=['POST'])
 def ping_ip():
