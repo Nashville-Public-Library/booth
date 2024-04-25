@@ -44,7 +44,7 @@ def status():
 @app.route('/del')
 @requires_auth
 def delete():
-        return ('status.html')
+        return request.remote_addr
 
 @app.route('/status/ping', methods=['POST'])
 def ping_ip():
