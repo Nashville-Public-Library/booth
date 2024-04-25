@@ -52,6 +52,8 @@ async function nowPlaying() {
         let response = await fetch(url, {method: "POST"});
         let icecast = await response.json();
         let nowPlaying = icecast.title;
+        let metadata_updated = icecast.metadata_updated
+        document.getElementById("metadata_updated").innerText = metadata_updated
         if (nowPlaying.trim() == "") {
             titleElement.innerText = notAvailable;
         }
