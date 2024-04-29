@@ -26,7 +26,7 @@ def requires_auth(mah):
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
             return authenticate()
-        return mah()
+        return f"tuple type: ip: {ip}, ip[0]: {ip[0]}"
     return decorated
 
 def check_auth(username: str, password: str):
