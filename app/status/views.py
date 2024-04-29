@@ -22,11 +22,13 @@ def requires_auth(mah):
              if ip[0] in ('170.190.43.1', '127.0.0.1'):
                 return f"first. type(ip): {type(ip)}, ip: {ip}, ip[0]: {ip[0]}"
         if ip == '170.190.43.1' or ip == '127.0.0.1':
+             print(type(ip))
              return f"second. type(ip): {type(ip)}, ip: {ip}, ip[0]: {ip[0]}"
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
             return authenticate()
-        return f"third. type(ip): {type(ip)}, ip: {ip}, ip[0]: {ip[0]}"
+        a = type(ip)
+        return f"third. type(ip): {a}, ip: {ip}, ip[0]: {ip[0]}"
     return decorated
 
 def check_auth(username: str, password: str):
