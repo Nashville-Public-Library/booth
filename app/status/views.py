@@ -1,46 +1,14 @@
-from functools import wraps
-
-from flask import render_template, request, Response
+from flask import render_template, request
 
 from app import app
 from app.ev import EV
 from app.status.ping import ping, check_mounts, listeners
-
-def authenticate():
-    """Sends a 401 response that enables basic auth"""
-    return Response(
-    'whoops, you must supply credentials', 
-    401,
-    {'WWW-Authenticate': 'Basic realm="Login Required"'})
-
-def requires_auth(mah):
-    """A decorator function that wraps other routes to check authentication"""
-    @wraps(mah)
-    def decorated():
-        ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')
-        if ip[0] == '170.190.43.1':
-             return mah()
-        auth = request.authorization
-        if not auth or not check_auth(auth.username, auth.password):
-            return authenticate()
-        return mah()
-    return decorated
-
-def check_auth(username: str, password: str):
-    """This function is called to check if a username /
-    password combination is valid.
-    """
-    return username.lower() == 'admin' and password.lower() == EV().BF_pass
+from app.auth import requires_auth
 
 @app.route('/status')
 @requires_auth
 def status():
         return render_template('status.html')
-
-@app.route('/del')
-@requires_auth
-def delete():
-        return request.headers.get('X-Forwarded-For', request.remote_addr)
 
 @app.route('/status/ping', methods=['POST'])
 def ping_ip():

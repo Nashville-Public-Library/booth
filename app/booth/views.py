@@ -5,8 +5,10 @@ from app.booth.utils import are_we_closed, check_banner, get_weather, is_holiday
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 from app.ev import EV
+from app.auth import requires_auth
 
 @app.route('/booth')
+@requires_auth
 def dot():
     if are_we_closed():
         return render_template('closed.html')
