@@ -28,7 +28,8 @@ def requires_auth(mah):
         if not auth or not check_auth(auth.username, auth.password):
             return authenticate()
         a = type(ip)
-        return f"third. type(ip): {a}, ip: {ip}, ip[0]: {ip[0]}"
+        return f"{request.headers.get('X-Forwarded-For', request.remote_addr)}, \
+        type: {type(request.headers.get('X-Forwarded-For', request.remote_addr))}    " 
     return decorated
 
 def check_auth(username: str, password: str):
