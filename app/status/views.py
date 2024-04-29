@@ -18,7 +18,7 @@ def requires_auth(mah):
     @wraps(mah)
     def decorated():
         ip = request.headers.get('X-Forwarded-For', request.remote_addr)
-        if type(ip) == list:
+        if type(ip) == tuple:
              if ip[0] in ('170.190.43.1', '127.0.0.1'):
                 return mah()
         if ip == '170.190.43.1' or ip == '127.0.0.1':
