@@ -17,19 +17,13 @@ def requires_auth(mah):
     """A decorator function that wraps other routes to check authentication"""
     @wraps(mah)
     def decorated():
-        ip = request.headers.get('X-Forwarded-For', request.remote_addr)
-        if type(ip) == tuple:
-             if ip[0] in ('170.190.43.1', '127.0.0.1'):
-                return f"first. type(ip): {type(ip)}, ip: {ip}, ip[0]: {ip[0]}"
-        if ip == '170.190.43.1' or ip == '127.0.0.1':
-             print(type(ip))
-             return f"second. type(ip): {type(ip)}, ip: {ip}, ip[0]: {ip[0]}"
+        ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')
+        if ip[0] == '170.190.43.1':
+             return mah()
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
             return authenticate()
-        a = type(ip)
-        return f"{request.headers.get('X-Forwarded-For', request.remote_addr)}, \
-        type: {type(request.headers.get('X-Forwarded-For', request.remote_addr))}    " 
+        return mah()
     return decorated
 
 def check_auth(username: str, password: str):
