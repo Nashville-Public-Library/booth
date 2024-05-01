@@ -18,6 +18,3 @@ sudo yum install -y \
 # Download and install Chrome
 wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 sudo yum localinstall -y google-chrome-stable_current_x86_64.rpm
-
-# change permissions
-sudo chmod +x /var/app/current/chromedriver
