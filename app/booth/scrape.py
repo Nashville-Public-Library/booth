@@ -36,6 +36,10 @@ def scrape_VIC():
     if os_name == 'nt':
         driver = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
     else:
+        print('CWD')
+        print(os.getcwd())
+        print('chromedriver')
+        print(os.path.isfile('chromedriver'))
         driver = webdriver.Chrome(executable_path='chromedriver', options=chrome_options)
 
     date_for_URL = datetime.now().strftime('%m%d%Y')
