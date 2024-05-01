@@ -21,6 +21,7 @@ sudo yum localinstall -y google-chrome-stable_current_x86_64.rpm
 
 
 
+sudo chmod 777 /var/app/current/chromedriverdir
 sudo chmod 777 /var/app/current/chromedriverdir/chromedriver
 # Directory containing Chromedriver
 chromedriver_dir="/var/app/current/chromedriverdir"
