@@ -18,8 +18,9 @@
 # Download and install Chrome
 wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.91/linux64/chrome-linux64.zip
 unzip chrome-linux64.zip
-sudo mv -f chrome-linux64 /opt/google/chrome
-sudo ln -s /opt/google/chrome/chrome /usr/local/bin/chrome
+sudo mkdir -p /opt/google-chrome
+sudo mv chrome-linux64 /opt/google/chrome
+sudo ln -s /opt/google-chrome/chrome /usr/local/bin/chrome
 
 # Change ownership of chromedriver and its containing directory
 sudo chown -R webapp:webapp /var/app/current/chromedriver
