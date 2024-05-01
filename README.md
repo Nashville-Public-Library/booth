@@ -4,7 +4,7 @@
 
 [api.nashvilletalkinglibrary.com](https://api.nashvilletalkinglibrary.com)
 
- a simple web app to assist with TL booth schedule
+ a simple web app to assist with TL booth schedule, and for other purposes...
 
  ----
 
