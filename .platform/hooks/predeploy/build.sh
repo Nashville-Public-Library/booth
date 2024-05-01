@@ -16,7 +16,7 @@ wget "$CHROME_URL" -P "$DOWNLOAD_DIR"
 # Unzip Chrome
 echo "Installing Chrome..."
 sudo mkdir -p "$INSTALL_DIR"
-sudo unzip -o "$DOWNLOAD_DIR/chrome-linux64.zip" -d "$INSTALL_DIR"
+sudo unzip -o "$DOWNLOAD_DIR/chromedriver-linux64.zip" -d "$INSTALL_DIR"
 
 # Create a symbolic link to Chrome binary (optional)
 sudo ln -sf "$INSTALL_DIR/chrome" /usr/local/bin/chrome
