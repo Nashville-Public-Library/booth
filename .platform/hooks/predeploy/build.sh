@@ -16,7 +16,7 @@ sudo yum install -y \
     xorg-x11-fonts-misc
 
 # Download and install Chrome
-wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.91/linux64/chrome-linux64.zip
 sudo yum localinstall -y google-chrome-stable_current_x86_64.rpm
 
 # Change ownership of chromedriver and its containing directory
