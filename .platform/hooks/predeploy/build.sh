@@ -1,8 +1,28 @@
 #!/bin/bash
-sudo amazon-linux-extras install epel
-# this version is reallyyyyy important.
-# don't change unless you've a great reason to do so
-sudo yum install -y chromium
+
+# URL of the Chrome zip file
+CHROME_URL="https://storage.googleapis.com/chrome-for-testing-public/125.0.6375.0/linux64/chrome-linux64.zip"
+
+# Directory to download Chrome zip file
+DOWNLOAD_DIR="/tmp"
+
+# Directory to install Chrome
+INSTALL_DIR="/opt/google/chrome"
+
+# Download Chrome zip file
+echo "Downloading Chrome..."
+wget "$CHROME_URL" -P "$DOWNLOAD_DIR"
+
+# Unzip Chrome
+echo "Installing Chrome..."
+sudo mkdir -p "$INSTALL_DIR"
+sudo unzip -o "$DOWNLOAD_DIR/chrome.zip" -d "$INSTALL_DIR"
+
+# Create a symbolic link to Chrome binary (optional)
+sudo ln -sf "$INSTALL_DIR/chrome" /usr/local/bin/chrome
+
+echo "Chrome installation complete."
+
 
 # Directory containing Chromedriver
 chromedriver_dir="/var/app/current/chromedriver"
