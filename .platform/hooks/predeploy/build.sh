@@ -2,4 +2,4 @@
 sudo amazon-linux-extras install epel
 # this version is reallyyyyy important.
 # don't change unless you've a great reason to do so
-sudo yum install -y chromium-121.0.6141.1
+sudo yum install -y chromium
