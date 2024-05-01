@@ -20,26 +20,5 @@ wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
 sudo yum localinstall -y google-chrome-stable_current_x86_64.rpm
 
 
-sudo chmod +x /var/app/current/chromedriverdir/chromedriver
-sudo chmod 777 /var/app/current/chromedriverdir
-sudo chmod 777 /var/app/current/chromedriverdir/chromedriver
-sudo chmod +x /var/app/current/chromedriverdir/chromedriver
-sudo chmod +rwx /var/app/current/chromedriverdir/
-# Directory containing Chromedriver
-chromedriver_dir="/var/app/current/chromedriverdir"
-
-# Check if the directory exists
-if [ -d "$chromedriver_dir" ]; then
-    # Add directory to PATH if it's not already there
-    if [[ ":$PATH:" != *":$chromedriver_dir:"* ]]; then
-        export PATH="$chromedriver_dir:$PATH"
-        echo "Chromedriver directory added to PATH."
-    else
-        echo "Chromedriver directory is already in PATH."
-    sudo chmod 777 /var/app/current/chromedriverdir/chromedriver
-    fi
-else
-    echo "Chromedriver directory not found: $chromedriver_dir"
-fi
-
-sudo chmod 777 /var/app/current/chromedriverdir/chromedriver
+sudo chmod 777 /var/app/current/chromedriver
+sudo chmod +rwx /var/app/current/
