@@ -34,7 +34,7 @@ def scrape_VIC():
     '''
     os_name = os.name
     if os_name == 'nt':
-        driver = webdriver.Chrome(service=ChromiumService(executable_path='chromedriver.exe'), options=chrome_options)
+        driver = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
     else:
         driver = webdriver.Chrome(executable_path='chromedriver', options=chrome_options)
 
