@@ -15,10 +15,10 @@ if [ -d "$chromedriver_dir" ]; then
         echo "Chromedriver directory added to PATH."
     else
         echo "Chromedriver directory is already in PATH."
-    chmod 777 /var/app/current/chromedriver/chromedriver
+    sudo chmod 777 /var/app/current/chromedriver/chromedriver
     fi
 else
     echo "Chromedriver directory not found: $chromedriver_dir"
 fi
 
-chmod 777 /var/app/current/chromedriver/chromedriver
+sudo chmod 777 /var/app/current/chromedriver/chromedriver
