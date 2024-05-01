@@ -20,3 +20,5 @@ if [ -d "$chromedriver_dir" ]; then
 else
     echo "Chromedriver directory not found: $chromedriver_dir"
 fi
+
+chmod 777 /var/app/current/chromedriver/chromedriver
