@@ -2,7 +2,7 @@
 
 ![tests](https://github.com/Nashville-Public-Library/booth/actions/workflows/main.yml/badge.svg)
 
-[api.nashvilletalkinglibrary.com](http://api.nashvilletalkinglibrary.com)
+[api.nashvilletalkinglibrary.com](https://api.nashvilletalkinglibrary.com)
 
  a simple web app to assist with TL booth schedule
 
