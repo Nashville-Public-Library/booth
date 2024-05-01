@@ -24,6 +24,7 @@ sudo chmod +x /var/app/current/chromedriverdir/chromedriver
 sudo chmod 777 /var/app/current/chromedriverdir
 sudo chmod 777 /var/app/current/chromedriverdir/chromedriver
 sudo chmod +x /var/app/current/chromedriverdir/chromedriver
+sudo chmod +rwx /var/app/current/chromedriverdir/
 # Directory containing Chromedriver
 chromedriver_dir="/var/app/current/chromedriverdir"
 
