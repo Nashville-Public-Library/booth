@@ -1,33 +1,28 @@
 #!/bin/bash
 
-# URL of the Chrome zip file
-CHROME_URL="https://storage.googleapis.com/chrome-for-testing-public/125.0.6375.0/linux64/chrome-linux64.zip"
+# Install dependencies required for Chrome
+sudo yum install -y \
+    libX11 \
+    GConf2 \
+    alsa-lib \
+    atk \
+    gtk3 \
+    ipa-gothic-fonts \
+    xorg-x11-fonts-100dpi \
+    xorg-x11-fonts-75dpi \
+    xorg-x11-utils \
+    xorg-x11-fonts-cyrillic \
+    xorg-x11-fonts-Type1 \
+    xorg-x11-fonts-misc
 
-# Directory to download Chrome zip file
-DOWNLOAD_DIR="/tmp"
+# Download and install Chrome
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_x86_64.rpm
+sudo yum localinstall -y google-chrome-stable_current_x86_64.rpm
 
-# Directory to install Chrome
-INSTALL_DIR="/opt/google/chrome"
-
-# Download Chrome zip file
-echo "Downloading Chrome..."
-wget "$CHROME_URL" -P "$DOWNLOAD_DIR"
-
-# Unzip Chrome
-echo "make directory"
-sudo mkdir -p "$INSTALL_DIR"
-echo "unzip file"
-sudo unzip -o "$DOWNLOAD_DIR/chrome-linux64.zip" -d "$INSTALL_DIR"
-
-# Create a symbolic link to Chrome binary (optional)
-echo "sym link"
-sudo ln -sf "$INSTALL_DIR/chrome" /usr/local/bin/chrome
-
-echo "Chrome installation complete."
 
 
 # Directory containing Chromedriver
-chromedriver_dir="/var/app/current/chromedriver"
+chromedriver_dir="/var/app/current/chromedriverdir"
 
 # Check if the directory exists
 if [ -d "$chromedriver_dir" ]; then
@@ -37,10 +32,10 @@ if [ -d "$chromedriver_dir" ]; then
         echo "Chromedriver directory added to PATH."
     else
         echo "Chromedriver directory is already in PATH."
-    sudo chmod 777 /var/app/current/chromedriver/chromedriver
+    sudo chmod 777 /var/app/current/chromedriverdir/chromedriver
     fi
 else
     echo "Chromedriver directory not found: $chromedriver_dir"
 fi
 
-sudo chmod 777 /var/app/current/chromedriver/chromedriver
+sudo chmod 777 /var/app/current/chromedriverdir/chromedriver
