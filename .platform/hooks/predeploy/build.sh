@@ -16,7 +16,7 @@ sudo yum install -y \
     xorg-x11-fonts-misc
 
 # Download and install Chrome
-wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.91/linux64/chrome-linux64.zip
+wget https://storage.googleapis.com/chrome-for-testing-public/114.0.5696.0/linux64/chrome-linux64.zip
 unzip chrome-linux64.zip
 echo "make dir"
 sudo mkdir -p /opt/google-chrome
