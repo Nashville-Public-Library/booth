@@ -20,5 +20,5 @@ wget https://storage.googleapis.com/chrome-for-testing-public/124.0.6367.91/linu
 unzip chrome-linux64.zip
 echo "make dir"
 sudo mkdir -p /opt/google-chrome
-sudo mv -f chrome-linux64 /opt/google-chrome
+sudo mv -f chrome-linux64 /opt/google-chrome/chrome-linux64
 sudo ln -s -f /opt/google-chrome/chrome-linux64/chrome /usr/local/bin/chrome
