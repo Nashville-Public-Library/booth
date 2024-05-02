@@ -13,8 +13,7 @@ def dot():
     if are_we_closed():
         return render_template('closed.html')
 
-    # return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
-    return "<div style='font-size: 55pt; text-align: center;'>Booth Finder is not working right now! Sorry!</div>"
+    return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
 
 @app.route('/booth/data', methods=['POST'])
 def homepage():
