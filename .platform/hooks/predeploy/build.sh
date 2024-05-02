@@ -19,6 +19,6 @@ sudo yum install -y \
 wget https://storage.googleapis.com/chrome-for-testing-public/114.0.5696.0/linux64/chrome-linux64.zip
 unzip chrome-linux64.zip
 echo "make dir"
-sudo mkdir -p /opt/google-chrome
-sudo mv chrome-linux64/* /opt/google-chrome/
+sudo rm -r /opt/google-chrome/
+sudo mv chrome-linux64 /opt/google-chrome/
 sudo ln -s -f /opt/google-chrome/chrome-linux64/chrome /usr/local/bin/chrome
