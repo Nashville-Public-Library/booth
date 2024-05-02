@@ -40,7 +40,7 @@ def scrape_VIC():
         print(os.getcwd())
         print('chromedriver')
         print(os.path.isfile('chromedriver'))
-        driver = webdriver.Chrome(executable_path='chromedriver', options=chrome_options)
+        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
     date_for_URL = datetime.now().strftime('%m%d%Y')
     driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date_for_URL}')
