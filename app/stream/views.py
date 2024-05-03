@@ -17,5 +17,13 @@ def now_playing():
     return response
 
 @app.route('/stream/livestream.mp3')
-def livestream():
+def livestream_live():
     return redirect('https://npl.streamguys1.com/live')
+
+@app.route('/stream/wpln.mp3')
+def livestream_wpln():
+    return redirect('https://npl.streamguys1.com/wpln')
+
+@app.route('/stream/fallback.mp3')
+def livestream_fallback():
+    return redirect('https://npl.streamguys1.com/NPL-Fallback-for-WPLN-mount')

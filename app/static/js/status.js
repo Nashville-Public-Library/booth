@@ -81,6 +81,80 @@ async function nowPlaying() {
 
 }
 
+ function meters (audioElement, meterElement) {
+    var audio = audioElement;
+    var meter = meterElement;
+    var meterWidth = 900; // Adjust meter width as needed
+
+    // Function to update the meter
+    function updateMeter(analyser) {
+        var dataArray = new Uint8Array(analyser.frequencyBinCount);
+        analyser.getByteFrequencyData(dataArray);
+        
+        // Calculate average amplitude
+        var sum = dataArray.reduce((a, b) => a + b, 0);
+        var average = sum / dataArray.length;
+
+        // Update meter display
+        meter.style.width = (average / 255 * meterWidth) + 'px';
+
+        requestAnimationFrame(function() {
+            updateMeter(analyser);
+        });
+    }
+
+    // Function to create AudioContext and start audio playback
+    function startAudio() {
+        var audioContext = new (window.AudioContext || window.webkitAudioContext)();
+        var analyser = audioContext.createAnalyser();
+        var source = audioContext.createMediaElementSource(audio);
+
+        // Connect the audio element to the analyser
+        source.connect(analyser);
+        analyser.connect(audioContext.destination);
+
+        // Start updating the meter
+        updateMeter(analyser);
+    }
+
+   startAudio()
+}
+
+function meterButton() {
+    let live = document.getElementById("audio-live");
+    let liveMeter = document.getElementById("audio-live-meter");
+    liveMeter.classList.add("meter")
+    if (live.paused) {
+        live.play();
+        meters(audioElement=live, meterElement=liveMeter);
+    }
+    else {
+        live.pause()
+    }
+
+    let wpln = document.getElementById("audio-wpln");
+    let wplnMeter = document.getElementById("audio-wpln-meter");
+    wplnMeter.classList.add("meter")
+    if (wpln.paused) {
+        wpln.play();
+        meters(audioElement=wpln, meterElement=wplnMeter);
+    }
+    else {
+        wpln.pause()
+    }
+
+    let fallback = document.getElementById("audio-fallback");
+    let fallbackMeter = document.getElementById("audio-fallback-meter")
+    fallbackMeter.classList.add("meter")
+    if (fallback.paused) {
+        fallback.play()
+        meters(audioElement=fallback, meterElement=fallbackMeter)
+    }
+    else {
+        fallback.pause()
+    }
+}
+
 function main() {
     ping();
     listeners();
