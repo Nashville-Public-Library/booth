@@ -119,6 +119,21 @@ footer {
     border: 5px solid #ccc; /* Border of the meter */
 }
 
+.schedule-top {
+    display: inline-block;
+    width: 170pt;
+}
+
+.schedule-border {
+    border-style:solid; 
+    border-color: brown; 
+    border-radius: 50px; 
+    padding: 10px;
+}
+
+.schedule-fonts {
+    font-size: larger;
+}
 
 /* for BrightSign */
 @media screen and (device-width:1920px) and (hover: none) {

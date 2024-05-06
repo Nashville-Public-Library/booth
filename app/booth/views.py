@@ -15,8 +15,13 @@ def dot():
 
     return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
 
+@app.route('/booth/schedule')
+@requires_auth
+def schedule():
+    return render_template('schedule.html')
+
 @app.route('/booth/data', methods=['POST'])
-def homepage():
+def booth_data():
     response = make_response(get_scrape_and_filter())
     return response
 
