@@ -41,7 +41,18 @@ async function schedule() {
     // add border to current hour
     const date = new Date();
     const hour = date.getHours();
+    try {
+        if (hour == 8) {
+            hour = 9
+        }
+        if (hour == 16) {
+            hour = 15
+        }
     document.getElementById(hour).classList.add("schedule-border");
+    }
+    catch {
+        console.log('before 8am, after 5pm')
+    }
 }
 
 function check_time() {
