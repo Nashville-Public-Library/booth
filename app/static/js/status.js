@@ -165,4 +165,4 @@ function main() {
 main()
 setInterval(main, 30000)
 schedule()
-setInterval(schedule, 150000)
+setInterval(schedule, 900000)
