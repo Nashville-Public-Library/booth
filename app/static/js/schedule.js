@@ -32,6 +32,9 @@ async function schedule() {
     document.getElementById("15-booth2").innerText = responseJSON[15].booth2;
     document.getElementById("15-booth3").innerText = responseJSON[15].booth3;
 
+    //remove "dots" from page
+    document.getElementById("dots").remove()
+
     // remove border from ALL elements
     var allElements = document.getElementsByTagName('div');
     for (var i = 0; i < allElements.length; i++) {
