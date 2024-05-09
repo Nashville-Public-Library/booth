@@ -1,4 +1,5 @@
 async function schedule() {
+    document.getElementById("dots").style.display = 'block'
     const url = "/booth/data";
     let response = await fetch(url, { method: "POST" });
     let responseJSON = await response.json();
@@ -33,7 +34,7 @@ async function schedule() {
     document.getElementById("15-booth3").innerText = responseJSON[15].booth3;
 
     //remove "dots" from page
-    document.getElementById("dots").remove()
+    document.getElementById("dots").style.display = 'none'
 
 }
 
