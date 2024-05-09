@@ -121,18 +121,11 @@ footer {
 
 .schedule-top {
     display: inline-block;
-    width: 170pt;
-}
-
-.schedule-border {
-    border-style:solid; 
-    border-color: brown; 
-    border-radius: 50px; 
-    padding: 10px;
+    width: 185pt;
 }
 
 .schedule-fonts {
-    font-size: larger;
+    font-size: 17pt;
 }
 
 /* for BrightSign */

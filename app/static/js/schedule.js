@@ -35,27 +35,6 @@ async function schedule() {
     //remove "dots" from page
     document.getElementById("dots").remove()
 
-    // remove border from ALL elements
-    var allElements = document.getElementsByTagName('div');
-    for (var i = 0; i < allElements.length; i++) {
-        allElements[i].classList.remove('schedule-border');
-    }
-
-    // add border to current hour
-    const date = new Date();
-    const hour = date.getHours();
-    try {
-        if (hour == 8) {
-            hour = 9
-        }
-        if (hour == 16) {
-            hour = 15
-        }
-    document.getElementById(hour).classList.add("schedule-border");
-    }
-    catch {
-        console.log('before 8am, after 5pm')
-    }
 }
 
 function check_time() {
