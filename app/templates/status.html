@@ -6,8 +6,14 @@
 
 <div class="statsContainer">
 
-    <div> Ping
-        <div style="color: yellow;">
+    <div style="text-align: center;">Mountpoints
+        <div class="statsContainer" id="mountpoints"></div>
+    </div>
+
+    <br>
+    <div style="text-align: center;"> Ping
+
+        <div style="color: yellow; text-align: left;" class="border">
             <div id="icecast">Icecast</div>
             <div id="wpln">WPLN</div>
             <div id="SGmetadata">SGmetadata</div>
@@ -17,65 +23,54 @@
 
     <br>
 
-    <div>Mountpoints
-        <div class="statsContainer">
-            <div id="mountpoints"></div>
-        </div>
-    </div>
-
-    <br>
-
-    <div>Now Playing
-        <div class="statsContainer" id="nowPlaying"></div>
-    </div>
-
-    <br>
-
-    <div> Metadata Updated
-        <div class="statsContainer" id="metadata_updated"></div>
+    <div style="text-align: center;">Server Start
+        <div class="statsContainer border" id="serverStart"></div>
     </div>
 
     <br>
 
     <div>Global Listeners
-        <div class="statsContainer" id="listenerCount"></div>
+        <div class="statsContainer border" id="listenerCount"></div>
     </div>
 
     <br>
 
-    <div>Schedule
-        <div id="newspaper">?</div>
-        <div id="9"></div>
-        <div id="10"></div>
-        <div id="11"></div>
-        <div id="12"></div>
-        <div id="13"></div>
-        <div id="14"></div>
-        <div id="15"></div>
+    <div style="text-align: center;">Schedule
+        <div style="text-align: left;" class="border">
+            <div class="dot-elastic" id="dots"></div>
+            <div id="newspaper"></div>
+            <div id="9"></div>
+            <div id="10"></div>
+            <div id="11"></div>
+            <div id="12"></div>
+            <div id="13"></div>
+            <div id="14"></div>
+            <div id="15"></div>
+        </div>
     </div>
 
+</div>
 
 <br>
-
-</div>
+<br>
 
 <div style="text-align: center;">
-<button onclick="meterButton()" style="display: inline-block;">meters</button>
-<div style="display: inline-block; width: 300pt; text-align: start;">
-<div>/live</div>
-<audio id="audio-live" crossorigin="anonymous" src="/stream/livestream.mp3"></audio>
-<div  id="audio-live-meter"></div>
-</div>
-<div style="display: inline-block; width: 300pt; text-align: start;">
-<div>/wpln</div>
-<audio id="audio-wpln" crossorigin="anonymous" src="/stream/wpln.mp3"></audio>
-<div  id="audio-wpln-meter"></div>
-</div>
-<div style="display: inline-block; width: 300pt; text-align: start;">
-<div>/NPL-Fallback-for-WPLN-mount</div>
-<audio id="audio-fallback" crossorigin="anonymous" src="/stream/fallback.mp3"></audio>
-<div  id="audio-fallback-meter"></div>
-</div>
+    <button onclick="meterButton()" style="display: inline-block;">meters</button>
+    <div style="display: inline-block; width: 300pt; text-align: start;">
+        <div>/live</div>
+        <audio id="audio-live" crossorigin="anonymous" src="/stream/livestream.mp3"></audio>
+        <div id="audio-live-meter"></div>
+    </div>
+    <div style="display: inline-block; width: 300pt; text-align: start;">
+        <div>/wpln</div>
+        <audio id="audio-wpln" crossorigin="anonymous" src="/stream/wpln.mp3"></audio>
+        <div id="audio-wpln-meter"></div>
+    </div>
+    <div style="display: inline-block; width: 300pt; text-align: start;">
+        <div>/NPL-Fallback-for-WPLN-mount</div>
+        <audio id="audio-fallback" crossorigin="anonymous" src="/stream/fallback.mp3"></audio>
+        <div id="audio-fallback-meter"></div>
+    </div>
 </div>
 
 

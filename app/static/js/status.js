@@ -20,56 +20,65 @@ function redGreen(responseIsTrue, id) {
 }
 
 async function mountpoints() {
+    console.log('starting up')
+    // yeah this isn't a mess AT ALL
     const url = "/status/stream";
     let response = await fetch(url, {method: "POST"});
     let responseJSON = await response.json();
-    let mounts = responseJSON.mounts;
-    mountpointElement = document.getElementById('mountpoints');
-    mountpointElement.innerText = ''
 
+    const listenerCountElement = document.getElementById('listenerCount');
+    listenerCountElement.innerText = responseJSON.listeners
+
+    const serverStartElement = document.getElementById("serverStart");
+    serverStartElement.innerText = responseJSON.serverStart
+
+    const mountpointElement = document.getElementById('mountpoints');
+    mountpointElement.innerHTML = ''
+    let mounts = responseJSON.mounts;
     mounts.forEach(mount => {
-        let newElement = document.createElement("div");
-        let newContent = document.createTextNode(mount);
-        newElement.appendChild(newContent);
-        mountpointElement.appendChild(newElement)
+        let containerElement = document.createElement("div")
+        containerElement.classList.add("border")
+
+        let nameElement = document.createElement("div");
+        var name = document.createTextNode(`Name: ${mount['mount']['name']}`);
+        nameElement.appendChild(name);
+
+        let streamStartElement = document.createElement("div");
+        var streamStart = document.createTextNode(`Stream Start: ${mount['mount']['stream_start']}`);
+        streamStartElement.appendChild(streamStart);
+
+        let listenersElement = document.createElement("div");
+        var listeners = document.createTextNode(`Listeners: ${mount['mount']['listeners']}`);
+        listenersElement.appendChild(listeners);
+
+        let titleElement = document.createElement("div");
+        var title = document.createTextNode(`Title: ${mount['mount']['title']}`);
+        titleElement.appendChild(title);
+
+        let metadata_updatedElement = document.createElement("div");
+        var metadata_updated = document.createTextNode(`Metadata Updated: ${mount['mount']['metadata_updated']}`);
+        metadata_updatedElement.appendChild(metadata_updated);
+
+
+        containerElement.appendChild(nameElement)
+        containerElement.appendChild(streamStartElement)
+        containerElement.appendChild(listenersElement)
+        containerElement.appendChild(titleElement)
+        containerElement.appendChild(metadata_updatedElement)
+        mountpointElement.appendChild(containerElement)
     });
 }
 
-async function listeners() {
-    const url = "/status/stream";
-    let response = await fetch(url, {method: "POST"});
-    let responseJSON = await response.json();
-
-    const listenerElement = document.getElementById('listenerCount');
-    listenerElement.innerText = responseJSON.listeners
-}
-
-async function nowPlaying() {
-    let titleElement = document.getElementById('nowPlaying');
-    let notAvailable = "Program Name Not Available";
-    try {
-        const url = "/stream/status";
-        let response = await fetch(url, {method: "POST"});
-        let icecast = await response.json();
-        let nowPlaying = icecast.title;
-        let metadata_updated = icecast.metadata_updated
-        document.getElementById("metadata_updated").innerText = metadata_updated
-        if (nowPlaying.trim() == "") {
-            titleElement.innerText = notAvailable;
-        }
-        else {
-            titleElement.innerText = nowPlaying;
-        }
-    }
-    catch (whoops) {
-        titleElement.innerText = notAvailable;
-    }
-  }
 
   async function schedule() {
     const url = "/booth/data";
     let response = await fetch(url, {method: "POST"});
     let responseJSON = await response.json();
+
+    // remove loading indicator 'dots' CSS from element
+    const dots = document.getElementById("dots")
+    dots.remove()
+
     document.getElementById("newspaper").innerText = `Newspaper: ${responseJSON.newspaper}`;
     document.getElementById("9").innerText = `09am: 1: ${responseJSON[9].booth1} 2: ${responseJSON[9].booth2} 3: ${responseJSON[9].booth3}`;
     document.getElementById("10").innerText = `10am: 1: ${responseJSON[10].booth1} 2: ${responseJSON[10].booth2} 3: ${responseJSON[10].booth3}`;
@@ -157,9 +166,7 @@ function meterButton() {
 
 function main() {
     ping();
-    listeners();
     mountpoints();
-    nowPlaying()
 }
 
 main()

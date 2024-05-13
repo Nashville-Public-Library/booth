@@ -2,7 +2,7 @@ from flask import render_template, request
 
 from app import app
 from app.ev import EV
-from app.status.ping import ping, check_mounts, listeners
+from app.status.ping import ping, check_mounts, listeners, server_start
 from app.auth import requires_auth
 
 @app.route('/status')
@@ -20,4 +20,4 @@ def ping_ip():
 
 @app.route('/status/stream', methods=['POST'])
 def stream():
-    return {'mounts': check_mounts(), 'listeners': listeners()}
+    return {'mounts': check_mounts(), 'listeners': listeners(), 'serverStart': server_start()}

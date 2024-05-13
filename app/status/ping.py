@@ -18,19 +18,42 @@ def check_mounts():
     mount_list = []
     icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
     ev = EV()
-    tree = requests.get("http://npl.streamguys1.com:/admin/stats.xml", auth=(ev.icecast_user, ev.icecast_pass))
+    tree = requests.get(icecast_URL, auth=(ev.icecast_user, ev.icecast_pass))
     tree = tree.text
     tree = ET.fromstring(tree)
     mountpoints = tree.findall('source')
     for mount in mountpoints:
-        mount_list.append(mount.get('mount'))
+        try:
+            mount_list.append({"mount": {"name": mount.get('mount'),
+                           "stream_start": mount.find("stream_start").text,
+                           "listeners": mount.find("listeners").text,
+                           "title": mount.find('title').text,
+                           "metadata_updated": mount.find("metadata_updated").text}})
+        except: #some mountpoints may not have 'title' or 'metadata_updated' tags, which could cause an error
+            mount_list.append({"mount": {"name": mount.get('mount'), 
+                            "stream_start": mount.find("stream_start").text,
+                            "listeners": mount.find("listeners").text,
+                            "title": '-',
+                            "metadata_updated": "-"}})
+
+
     return mount_list
 
 def listeners():
     icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
     ev = EV()
-    tree = requests.get("http://npl.streamguys1.com:/admin/stats.xml", auth=(ev.icecast_user, ev.icecast_pass))
+    tree = requests.get(icecast_URL, auth=(ev.icecast_user, ev.icecast_pass))
     tree = tree.text
     tree = ET.fromstring(tree)
     listeners = tree.find('listeners').text
     return listeners
+
+def server_start():
+    icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
+    ev = EV()
+    tree = requests.get(icecast_URL, auth=(ev.icecast_user, ev.icecast_pass))
+    tree = tree.text
+    tree = ET.fromstring(tree)
+    server_start = tree.find('server_start').text
+    print(server_start)
+    return server_start
