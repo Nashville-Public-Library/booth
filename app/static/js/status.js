@@ -90,6 +90,22 @@ async function mountpoints() {
 
 }
 
+async function banner() {
+    const url = "/booth/banner/content";
+    let response = await fetch(url, {method: "POST"});
+    let responseJSON = await response.json();
+
+    const banner = responseJSON.banner
+    const bannerElement = document.getElementById("banner");
+    if (banner) {
+        bannerElement.innerText = banner
+    }
+    else {
+        bannerElement.innerText = 'none'
+    }
+
+}
+
  function meters (audioElement, meterElement) {
     var audio = audioElement;
     var meter = meterElement;
@@ -167,6 +183,7 @@ function meterButton() {
 function main() {
     ping();
     mountpoints();
+    banner()
 }
 
 main()

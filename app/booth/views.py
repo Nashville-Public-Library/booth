@@ -39,6 +39,10 @@ def banner():
             return render_template('banner.html', emoji='&#128078;', banner_text=check_banner()) # emoji thumbs down
     return render_template('banner.html', banner_text=check_banner())
 
+@app.route('/booth/banner/content', methods=['POST'])
+def banner_content():
+    return {'banner': check_banner()}
+
 @app.route('/booth/weather', methods=['POST'])
 def weather():
     return get_weather()
