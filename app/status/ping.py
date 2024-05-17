@@ -55,5 +55,13 @@ def server_start():
     tree = tree.text
     tree = ET.fromstring(tree)
     server_start = tree.find('server_start').text
-    print(server_start)
     return server_start
+
+def outgoing_kbitrate():
+    icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
+    ev = EV()
+    tree = requests.get(icecast_URL, auth=(ev.icecast_user, ev.icecast_pass))
+    tree = tree.text
+    tree = ET.fromstring(tree)
+    bitrate = tree.find('outgoing_kbitrate').text
+    return bitrate

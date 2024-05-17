@@ -33,6 +33,9 @@ async function mountpoints() {
     const serverStartElement = document.getElementById("serverStart");
     serverStartElement.innerText = responseJSON.serverStart
 
+    const outgoing_kbitrateElement = document.getElementById('outgoing_kbitrate');
+    outgoing_kbitrateElement.innerText = responseJSON.outgoing_kbitrate
+
     const mountpointElement = document.getElementById('mountpoints');
     mountpointElement.innerHTML = ''
     let mounts = responseJSON.mounts;
