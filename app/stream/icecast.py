@@ -24,6 +24,11 @@ class Icecast:
                 return mount
     
     def parse_mount_for_elements(self) -> dict:
+        '''
+        This one is for the NPL website. PLEASE LEAVE AS-IS.
+        If you need to extend functionality, please add new methods, 
+        or else submit a patch to the NPL web team.
+        '''
         mount = self.parse_full_tree_for_live_mount()
         yp_currently_playing = mount.find('yp_currently_playing').text
         title = mount.find('title').text
