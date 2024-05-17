@@ -16,7 +16,8 @@ def ping_ip():
     wpln = ping(host='12.247.152.50')
     SGmetadata = ping(host='204.93.152.147')
     metro = ping(host='170.190.43.1')
-    return {'icecast': icecast, 'wpln': wpln, 'SGmetadata': SGmetadata, 'metro': metro}
+    npl = ping(host='library.nashville.org')
+    return {'icecast': icecast, 'wpln': wpln, 'SGmetadata': SGmetadata, 'metro': metro, 'npl': npl}
 
 @app.route('/status/stream', methods=['POST'])
 def stream():

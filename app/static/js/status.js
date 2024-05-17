@@ -6,7 +6,8 @@ async function ping() {
           redGreen(responseJSON.icecast, 'icecast');
           redGreen(responseJSON.wpln, 'wpln');
           redGreen(responseJSON.SGmetadata, 'SGmetadata');
-          redGreen(responseJSON.metro, 'metro')
+          redGreen(responseJSON.metro, 'metro');
+          redGreen(responseJSON.npl, 'npl')
           }
 
 function redGreen(responseIsTrue, id) {
@@ -188,5 +189,5 @@ function main() {
 
 main()
 setInterval(main, 30000)
-schedule()
-setInterval(schedule, 900000)
+// schedule()
+// setInterval(schedule, 900000)
