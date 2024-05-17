@@ -55,6 +55,10 @@ async function mountpoints() {
         var listeners = document.createTextNode(`Listeners: ${mount['mount']['listeners']}`);
         listenersElement.appendChild(listeners);
 
+        let outgoing_kbitrateElement = document.createElement("div");
+        var outgoing_kbitrate = document.createTextNode(`Outgoing Bitrate: ${mount['mount']['outgoing_kbitrate']}kbps`);
+        outgoing_kbitrateElement.appendChild(outgoing_kbitrate);
+
         let titleElement = document.createElement("div");
         var title = document.createTextNode(`Title: ${mount['mount']['title']}`);
         titleElement.appendChild(title);
@@ -67,6 +71,7 @@ async function mountpoints() {
         containerElement.appendChild(nameElement)
         containerElement.appendChild(streamStartElement)
         containerElement.appendChild(listenersElement)
+        containerElement.appendChild(outgoing_kbitrateElement)
         containerElement.appendChild(titleElement)
         containerElement.appendChild(metadata_updatedElement)
         mountpointElement.appendChild(containerElement)

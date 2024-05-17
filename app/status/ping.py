@@ -24,17 +24,25 @@ def check_mounts():
     mountpoints = tree.findall('source')
     for mount in mountpoints:
         try:
-            mount_list.append({"mount": {"name": mount.get('mount'),
-                           "stream_start": mount.find("stream_start").text,
-                           "listeners": mount.find("listeners").text,
-                           "title": mount.find('title').text,
-                           "metadata_updated": mount.find("metadata_updated").text}})
+            mount_list.append({"mount": 
+                    {"name": mount.get('mount'),
+                    "stream_start": mount.find("stream_start").text,
+                    "listeners": mount.find("listeners").text,
+                    "outgoing_kbitrate": mount.find("outgoing_kbitrate").text,
+                    "title": mount.find('title').text,
+                    "metadata_updated": mount.find("metadata_updated").text
+                    }
+                    })
         except: #some mountpoints may not have 'title' or 'metadata_updated' tags, which could cause an error
-            mount_list.append({"mount": {"name": mount.get('mount'), 
-                            "stream_start": mount.find("stream_start").text,
-                            "listeners": mount.find("listeners").text,
-                            "title": '-',
-                            "metadata_updated": "-"}})
+            mount_list.append({"mount": 
+                    {"name": mount.get('mount'), 
+                    "stream_start": mount.find("stream_start").text,
+                    "listeners": mount.find("listeners").text,
+                    "outgoing_kbitrate": mount.find("outgoing_kbitrate").text,
+                    "title": '-',
+                    "metadata_updated": "-"
+                    }
+                    })
 
 
     return mount_list
