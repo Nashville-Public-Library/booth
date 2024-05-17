@@ -7,7 +7,7 @@
 <div class="statsContainer">
 
     <div style="text-align: center;">Mountpoints
-        <div class="statsContainer" id="mountpoints"></div>
+        <div class="statsContainer border" id="mountpoints"></div>
     </div>
 
     <br>
@@ -58,17 +58,17 @@
     <button onclick="meterButton()" style="display: inline-block;">meters</button>
     <div style="display: inline-block; width: 300pt; text-align: start;">
         <div>/live</div>
-        <audio id="audio-live" crossorigin="anonymous" src="/stream/livestream.mp3"></audio>
+        <audio id="audio-live" crossorigin="anonymous" src="/stream/livestream.mp3" preload="none"></audio>
         <div id="audio-live-meter"></div>
     </div>
     <div style="display: inline-block; width: 300pt; text-align: start;">
         <div>/wpln</div>
-        <audio id="audio-wpln" crossorigin="anonymous" src="/stream/wpln.mp3"></audio>
+        <audio id="audio-wpln" crossorigin="anonymous" src="/stream/wpln.mp3" preload="none"></audio>
         <div id="audio-wpln-meter"></div>
     </div>
     <div style="display: inline-block; width: 300pt; text-align: start;">
         <div>/NPL-Fallback-for-WPLN-mount</div>
-        <audio id="audio-fallback" crossorigin="anonymous" src="/stream/fallback.mp3"></audio>
+        <audio id="audio-fallback" crossorigin="anonymous" src="/stream/fallback.mp3" preload="none"></audio>
         <div id="audio-fallback-meter"></div>
     </div>
 </div>
