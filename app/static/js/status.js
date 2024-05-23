@@ -80,12 +80,12 @@ async function mountpoints() {
 
 
   async function schedule() {
+
+    document.getElementById("dots").style.display = 'block'
     const url = "/booth/data";
     let response = await fetch(url, {method: "POST"});
     let responseJSON = await response.json();
 
-    // remove loading indicator 'dots' CSS from element
-    document.getElementById("dots").remove()
 
     document.getElementById("newspaper").innerText = `Newspaper: ${responseJSON.newspaper}`;
     document.getElementById("9").innerText = `09am: 1: ${responseJSON[9].booth1} 2: ${responseJSON[9].booth2} 3: ${responseJSON[9].booth3}`;
@@ -96,6 +96,8 @@ async function mountpoints() {
     document.getElementById("14").innerText = `02pm: 1: ${responseJSON[14].booth1} 2: ${responseJSON[14].booth2} 3: ${responseJSON[14].booth3}`;
     document.getElementById("15").innerText = `03pm: 1: ${responseJSON[15].booth1} 2: ${responseJSON[15].booth2} 3: ${responseJSON[15].booth3}`;
 
+    // remove loading indicator 'dots' CSS from element
+    document.getElementById("dots").style.display = 'none'
 }
 
 async function banner() {
@@ -188,6 +190,14 @@ function meterButton() {
     }
 }
 
+function check_time() {
+    const current_time = new Date()
+    var minute = current_time.getMinutes()
+    if (minute == 0 || minute == 15 || minute == 30 || minute == 45) {
+        schedule()
+    }
+}
+
 function main() {
     ping();
     mountpoints();
@@ -197,4 +207,4 @@ function main() {
 main()
 setInterval(main, 30000)
 schedule()
-setInterval(schedule, 900000)
+setInterval(check_time, 60000)
