@@ -1,7 +1,6 @@
-from flask import render_template, request
+from flask import render_template
 
 from app import app
-from app.ev import EV
 from app.status.ping import ping, check_mounts, listeners, server_start, outgoing_kbitrate
 from app.auth import requires_auth
 
@@ -17,7 +16,12 @@ def ping_ip():
     SGmetadata = ping(host='204.93.152.147')
     metro = ping(host='170.190.43.1')
     npl = ping(host='library.nashville.org')
-    return {'icecast': icecast, 'wpln': wpln, 'SGmetadata': SGmetadata, 'metro': metro, 'npl': npl}
+    return {
+        'icecast': icecast, 
+        'wpln': wpln, 
+        'SGmetadata': SGmetadata, 
+        'metro': metro, 
+        'npl': npl}
 
 @app.route('/status/stream', methods=['POST'])
 def stream():

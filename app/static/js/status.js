@@ -85,8 +85,7 @@ async function mountpoints() {
     let responseJSON = await response.json();
 
     // remove loading indicator 'dots' CSS from element
-    const dots = document.getElementById("dots")
-    dots.remove()
+    document.getElementById("dots").remove()
 
     document.getElementById("newspaper").innerText = `Newspaper: ${responseJSON.newspaper}`;
     document.getElementById("9").innerText = `09am: 1: ${responseJSON[9].booth1} 2: ${responseJSON[9].booth2} 3: ${responseJSON[9].booth3}`;
