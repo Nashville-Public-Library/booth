@@ -100,9 +100,6 @@ def get_scrape_and_filter() -> dict:
         "15": {"booth1": "closed", "booth2": "closed", "booth3": "closed"}
     }
 
-    if are_we_closed():
-        return schedule
-
     nine = "9:00am - 10:00am"
     ten = "10:00am - 11:00am"
     eleven = "11:00am - 12:00pm"
