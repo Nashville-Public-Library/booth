@@ -14,6 +14,7 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
 from app.booth.hours import hour1, hour2
+from app.booth.utils import are_we_closed
 from app.ev import EV
 from app.booth.utils import is_weekend
 
