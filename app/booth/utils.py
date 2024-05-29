@@ -10,21 +10,28 @@ def is_holiday():
     today = datetime.now().strftime('%Y-%m-%d') # YYYY-MM-DD
     return holiday.get(today)
 
-def are_we_closed() -> bool:
-    '''if today is not a weekday or time is before x or after y, return True'''
-    current_hour = datetime.now().strftime('%H')
-    current_hour = int(current_hour)
-
+def is_weekend() -> bool:
     current_day = datetime.now().strftime('%a')
     weekend = ['Sat', 'Sun']
+    
+    if current_day in weekend:
+        return True
+    
+def is_outside_business_hours() -> bool:
+    current_hour = datetime.now().strftime('%H')
+    current_hour = int(current_hour)
 
     if current_hour < 8 or current_hour > 16:
         return True
 
-    if current_day in weekend:
+def are_we_closed() -> bool:    
+    if is_holiday() != None:
         return True
     
-    if is_holiday() != None:
+    if is_weekend():
+        return True
+    
+    if is_outside_business_hours():
         return True
     
     return False

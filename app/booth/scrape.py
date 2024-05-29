@@ -15,6 +15,7 @@ from webdriver_manager.core.utils import ChromeType
 
 from app.booth.hours import hour1, hour2
 from app.ev import EV
+from app.booth.utils import is_weekend
 
 
 def scrape_VIC():
@@ -84,9 +85,6 @@ def get_scrape_and_filter() -> dict:
     booth2 = "Booth 2"
     booth3 = "Booth 3"
     newspaper = "AM Newspaper Reading"
-
-    # schedule = {'booth1_1': "CLOSED", 'booth2_1': "CLOSED",'booth3_1': "CLOSED",
-    #             'booth1_2': "CLOSED", 'booth2_2': "CLOSED", 'booth3_2': "CLOSED"}
     
     schedule = {
         "newspaper": [],
@@ -98,6 +96,10 @@ def get_scrape_and_filter() -> dict:
         "14": {"booth1": "closed", "booth2": "closed", "booth3": "closed"},
         "15": {"booth1": "closed", "booth2": "closed", "booth3": "closed"}
     }
+
+    # no need to run this function on weekends
+    if is_weekend():
+        return schedule
 
     nine = "9:00am - 10:00am"
     ten = "10:00am - 11:00am"
