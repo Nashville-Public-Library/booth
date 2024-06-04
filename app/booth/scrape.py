@@ -19,7 +19,7 @@ from app.ev import EV
 from app.booth.utils import is_weekend
 
 
-def scrape_VIC():
+def scrape_VIC(date):
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--no-sandbox')
@@ -44,8 +44,7 @@ def scrape_VIC():
         print(os.path.isfile('chromedriver'))
         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
-    date_for_URL = datetime.now().strftime('%m%d%Y')
-    driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date_for_URL}')
+    driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
 
     driver.implicitly_wait(5)
 
@@ -77,10 +76,10 @@ def remove_extra_text(booth: str, shift: str, hour: str) -> str:
         booth_return = 'Empty'
     return booth_return
 
-def get_scrape_and_filter() -> dict:
+def get_scrape_and_filter(date) -> dict:
     '''
     get all the elements via selenium and loop through them to match booth numbers and hours. start out assuming all booths are closed,
-    and update the dictionary only when there is a match.
+    and update the dictionary only when there is a match.p
     '''
     booth1 = "Booth 1"
     booth2 = "Booth 2"
@@ -110,7 +109,7 @@ def get_scrape_and_filter() -> dict:
     two = "2:00pm - 3:00pm"
     three = "3:00pm - 4:30pm"
     
-    shifts = scrape_VIC()
+    shifts = scrape_VIC(date)
     for shift in shifts:
         shift = shift.text
 

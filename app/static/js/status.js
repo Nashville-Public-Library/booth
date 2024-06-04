@@ -21,7 +21,6 @@ function redGreen(responseIsTrue, id) {
 }
 
 async function mountpoints() {
-    console.log('starting up')
     // yeah this isn't a mess AT ALL
     const url = "/status/stream";
     let response = await fetch(url, {method: "POST"});

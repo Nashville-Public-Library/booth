@@ -1,3 +1,5 @@
+from datetime import datetime
+
 from flask import render_template, request, make_response
 
 from app import app
@@ -22,8 +24,15 @@ def schedule():
 
 @app.route('/booth/data', methods=['POST'])
 def booth_data():
-    response = make_response(get_scrape_and_filter())
-    return response
+    try:
+        date: dict = request.get_json()
+        date = date.get('date') # date sent from front end
+        response = make_response(get_scrape_and_filter(date=date))
+        return response
+    except:
+        date = datetime.now().strftime('%m%d%Y') # today
+        response = make_response(get_scrape_and_filter(date=date))
+        return response
 
 @app.route('/booth/banner', methods=['GET', 'POST'])
 def banner():
