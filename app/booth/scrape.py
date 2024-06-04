@@ -5,7 +5,6 @@
 
 import os
 from datetime import datetime
-import subprocess
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,7 +13,6 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
 from app.booth.hours import hour1, hour2
-from app.booth.utils import are_we_closed
 from app.ev import EV
 from app.booth.utils import is_weekend
 
@@ -38,10 +36,6 @@ def scrape_VIC(date):
     if os_name == 'nt':
         driver = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
     else:
-        print('CWD')
-        print(os.getcwd())
-        print('chromedriver')
-        print(os.path.isfile('chromedriver'))
         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
     driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
@@ -61,9 +55,8 @@ def scrape_VIC(date):
 
     driver.implicitly_wait(10)
 
-    '''this is so ugly. TODO REFACTOR so it makes sense!'''
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
-    # driver.quit()
+
     return shifts
 
 def remove_extra_text(booth: str, shift: str, hour: str) -> str:
@@ -185,4 +178,4 @@ def get_scrape_and_filter(date) -> dict:
         if (booth3 in shift) and (three in shift):
             schedule['15']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=three)
    
-    return(schedule) 
+    return schedule
