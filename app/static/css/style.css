@@ -138,7 +138,7 @@ footer {
 }
 
 /* for BrightSign */
-@media screen and (device-width:1920px) and (hover: none) {
+/* @media screen and (device-width:1920px) and (hover: none) {
     header {
         font-size: 30pt;
     }
@@ -164,7 +164,7 @@ footer {
         margin-right: 35pt;
         margin-left: 35pt;
     }
-}
+} */
 
 @media screen and (max-width: 1200px) {
     .refresh {
