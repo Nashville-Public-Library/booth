@@ -140,13 +140,18 @@ footer {
 /* for BrightSign */
 @media screen and (device-width:1920px) and (hover: none) {
 
-    h1 {
-        font-size: 34pt;
+    .booth_label {
+        font-size: 33.5pt;
     }
 
-    h2 {
-        font-size: 29pt;
+    .booth_data {
+        font-size: 28.5pt;
     }
+
+    .div2 {
+        width: 390pt;
+    }
+
 }
 
 @media screen and (max-width: 1200px) {
