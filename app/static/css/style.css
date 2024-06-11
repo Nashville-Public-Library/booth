@@ -138,33 +138,16 @@ footer {
 }
 
 /* for BrightSign */
-/* @media screen and (device-width:1920px) and (hover: none) {
-    header {
-        font-size: 30pt;
-    }
+@media screen and (device-width:3840px) and (hover: none) {
 
     h1 {
-        font-size: 33.5pt;
+        font-size: 34pt;
     }
 
     h2 {
-        font-size: 28.5pt;
+        font-size: 29pt;
     }
-
-    .div2 {
-        width: 390pt;
-    }
-
-    footer {
-        margin-top: 3%;
-    }
-
-    .footer_image {
-        height: 165px;
-        margin-right: 35pt;
-        margin-left: 35pt;
-    }
-} */
+}
 
 @media screen and (max-width: 1200px) {
     .refresh {
