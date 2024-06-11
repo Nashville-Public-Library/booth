@@ -6,11 +6,21 @@ body {
 
 .div1 {
     text-align: center;
+    margin-bottom: 50px;
 }
 
 .div2 {
     display: inline-block;
     width: 220pt;
+}
+
+.booth_label {
+    font-size: 24pt;
+}
+
+.booth_data {
+    font-size: 20pt;
+    margin-top: 20px;
 }
 
 header {
