@@ -6,7 +6,7 @@ body {
 
 .div1 {
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 38px;
 }
 
 .div2 {
@@ -151,11 +151,11 @@ footer {
 @media screen and (device-width:1920px) and (hover: none) {
 
     .booth_label {
-        font-size: 33.5pt;
+        font-size: 31pt;
     }
 
     .booth_data {
-        font-size: 28.5pt;
+        font-size: 27pt;
     }
 
     .div2 {
