@@ -73,3 +73,21 @@ def outgoing_kbitrate():
     tree = ET.fromstring(tree)
     bitrate = tree.find('outgoing_kbitrate').text
     return bitrate
+
+def user_agent_ip(mount):
+    icecast_URL = f"http://npl.streamguys1.com:/admin/listclients?mount=/{mount}"
+    ev = EV()
+    tree = requests.get(icecast_URL, auth=(ev.icecast_user, ev.icecast_pass))
+    tree = tree.text
+    tree = ET.fromstring(tree)
+    mountpoint = tree.find('source')
+    try:
+        agents = []
+        listeners = mountpoint.findall('listener')
+        for listener in listeners:
+            user_agent = listener.find('UserAgent').text
+            print(user_agent)
+            agents.append(user_agent)
+        return agents
+    except:
+        return []

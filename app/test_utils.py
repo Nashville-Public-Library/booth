@@ -5,6 +5,7 @@ import pytest
 
 from app.booth.utils import check_banner, are_we_closed, is_holiday
 from app.booth.hours import hour1, hour2
+from app.status.ping import user_agent_ip
 
 @pytest.fixture
 def icecast_template():
@@ -13,7 +14,6 @@ def icecast_template():
         'VIC_password': 'nothing!'
     }
     with patch.dict('os.environ', mock_EVs):
-        print(os.environ['VIC_user'])
         from app.stream.icecast import Icecast
         yield Icecast()
 
@@ -40,3 +40,8 @@ def test_check_icecast_2(icecast_template):
     '''parsing the JSON (dict)'''
     now_playing = icecast_template.now_playing
     assert type(now_playing['title']) == str
+
+def test_user_agent_ip_1(icecast_template):
+    a = user_agent_ip(mount='/live')
+    print(a)
+    assert type(a) == list
