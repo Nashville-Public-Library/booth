@@ -34,5 +34,4 @@ def stream():
 
 @app.route('/status/useragent/<mount>', methods=['POST'])
 def user_agent(mount):
-     print(mount)
      return {'userAgent': user_agent_ip(mount=mount)}
