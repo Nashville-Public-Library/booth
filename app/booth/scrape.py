@@ -5,7 +5,6 @@
 
 import os
 from datetime import datetime
-import subprocess
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
@@ -14,12 +13,11 @@ from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
 from app.booth.hours import hour1, hour2
-from app.booth.utils import are_we_closed
 from app.ev import EV
 from app.booth.utils import is_weekend
 
 
-def scrape_VIC():
+def scrape_VIC(date):
 
     chrome_options = webdriver.ChromeOptions()
     chrome_options.add_argument('--no-sandbox')
@@ -38,14 +36,9 @@ def scrape_VIC():
     if os_name == 'nt':
         driver = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
     else:
-        print('CWD')
-        print(os.getcwd())
-        print('chromedriver')
-        print(os.path.isfile('chromedriver'))
         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
-    date_for_URL = datetime.now().strftime('%m%d%Y')
-    driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date_for_URL}')
+    driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
 
     driver.implicitly_wait(5)
 
@@ -62,9 +55,8 @@ def scrape_VIC():
 
     driver.implicitly_wait(10)
 
-    '''this is so ugly. TODO REFACTOR so it makes sense!'''
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
-    # driver.quit()
+
     return shifts
 
 def remove_extra_text(booth: str, shift: str, hour: str) -> str:
@@ -77,10 +69,10 @@ def remove_extra_text(booth: str, shift: str, hour: str) -> str:
         booth_return = 'Empty'
     return booth_return
 
-def get_scrape_and_filter() -> dict:
+def get_scrape_and_filter(date) -> dict:
     '''
     get all the elements via selenium and loop through them to match booth numbers and hours. start out assuming all booths are closed,
-    and update the dictionary only when there is a match.
+    and update the dictionary only when there is a match.p
     '''
     booth1 = "Booth 1"
     booth2 = "Booth 2"
@@ -110,7 +102,7 @@ def get_scrape_and_filter() -> dict:
     two = "2:00pm - 3:00pm"
     three = "3:00pm - 4:30pm"
     
-    shifts = scrape_VIC()
+    shifts = scrape_VIC(date)
     for shift in shifts:
         shift = shift.text
 
@@ -186,4 +178,4 @@ def get_scrape_and_filter() -> dict:
         if (booth3 in shift) and (three in shift):
             schedule['15']["booth3"] = remove_extra_text(booth=booth3, shift=shift, hour=three)
    
-    return(schedule) 
+    return schedule

@@ -23,7 +23,6 @@ function redGreen(responseIsTrue, id) {
 async function fetchUserAgent(mount) {
     let response = await fetch('/status/useragent' + mount, {method: "POST"});
     let responseJSON = await response.json();
-    console.log(responseJSON.userAgent)
     return responseJSON.userAgent;
 }
 
