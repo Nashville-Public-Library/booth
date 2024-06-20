@@ -20,6 +20,33 @@ function redGreen(responseIsTrue, id) {
     }
 }
 
+async function fetchUserAgent(mount) {
+    let response = await fetch('/status/useragent' + mount, {method: "POST"});
+    let responseJSON = await response.json();
+    console.log(responseJSON.userAgent)
+    return responseJSON.userAgent;
+}
+
+async function userAgent() {
+    const url = "/status/stream";
+    let response = await fetch(url, {method: "POST"});
+    let responseJSON = await response.json();
+
+    const userAgentElement = document.getElementById('userAgent');
+    userAgentElement.innerHTML = ""
+
+    let mounts = responseJSON.mounts;
+    for (mount of mounts) {
+        const userAgentArray = await fetchUserAgent(mount['mount']['name']);
+        userAgentArray.forEach(user => {
+            let element = document.createElement("div");
+            let userAgent = document.createTextNode(user);
+            element.appendChild(userAgent);
+            userAgentElement.appendChild(element)
+        })
+    }
+}
+
 async function mountpoints() {
     // yeah this isn't a mess AT ALL
     const url = "/status/stream";
@@ -38,7 +65,8 @@ async function mountpoints() {
     const mountpointElement = document.getElementById('mountpoints');
     mountpointElement.innerHTML = ''
     let mounts = responseJSON.mounts;
-    mounts.forEach(mount => {
+    for (mount of mounts) {
+        
         let containerElement = document.createElement("div")
         containerElement.classList.add("border")
 
@@ -74,9 +102,9 @@ async function mountpoints() {
         containerElement.appendChild(titleElement)
         containerElement.appendChild(metadata_updatedElement)
         mountpointElement.appendChild(containerElement)
-    });
-}
 
+    };
+}
 
   async function schedule() {
 
@@ -201,6 +229,7 @@ function main() {
     ping();
     mountpoints();
     banner()
+    userAgent()
 }
 
 main()
