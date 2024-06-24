@@ -35,9 +35,9 @@ class Icecast:
             title = mount.find('title').text
             metadata_updated = mount.find('metadata_updated').text
         except:
-            yp_currently_playing = '-'
-            title = '-'
-            metadata_updated = '-'
+            yp_currently_playing = None
+            title = None
+            metadata_updated = None
         return {
             'yp_currently_playing': yp_currently_playing, 
             'title': title, 
