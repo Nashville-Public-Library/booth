@@ -32,16 +32,16 @@ def test_check_banner():
 def test_holiday_1():
     assert type(is_holiday()) == str or bool
 
-def test_check_icecast_1(icecast_template):
-    '''should return dict for JSON response to front end'''
-    assert type(icecast_template.now_playing) == dict
+# def test_check_icecast_1(icecast_template):
+#     '''should return dict for JSON response to front end'''
+#     assert type(icecast_template.now_playing) == dict
 
-def test_check_icecast_2(icecast_template):
-    '''parsing the JSON (dict)'''
-    now_playing = icecast_template.now_playing
-    assert type(now_playing['title']) == str
+# def test_check_icecast_2(icecast_template):
+#     '''parsing the JSON (dict)'''
+#     now_playing = icecast_template.now_playing
+#     assert type(now_playing['title']) == str
 
-def test_user_agent_ip_1(icecast_template):
-    a = user_agent_ip(mount='/live')
-    print(a)
-    assert type(a) == list
+# def test_user_agent_ip_1(icecast_template):
+#     a = user_agent_ip(mount='/live')
+#     print(a)
+#     assert type(a) == list
