@@ -30,9 +30,14 @@ class Icecast:
         or else submit a patch to the NPL web team.
         '''
         mount = self.parse_full_tree_for_live_mount()
-        yp_currently_playing = mount.find('yp_currently_playing').text
-        title = mount.find('title').text
-        metadata_updated = mount.find('metadata_updated').text
+        try:
+            yp_currently_playing = mount.find('yp_currently_playing').text
+            title = mount.find('title').text
+            metadata_updated = mount.find('metadata_updated').text
+        except:
+            yp_currently_playing = '-'
+            title = '-'
+            metadata_updated = '-'
         return {
             'yp_currently_playing': yp_currently_playing, 
             'title': title, 
