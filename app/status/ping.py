@@ -22,27 +22,47 @@ def check_mounts():
     tree = tree.text
     tree = ET.fromstring(tree)
     mountpoints = tree.findall('source')
+    '''
+    I hate these try/except blocks, too. I tried iterating through all the elements of each source mount,
+    but I just couldn't get it working. The Problem is the "name" for the source is not in the element.text attribute.
+    you have to use element.get('source') to get the name. So that messes up the loop and I tried for hours but
+    couldn't get it working. So just grab the few elements we actually need manually like this:
+    '''
     for mount in mountpoints:
+        try: 
+            stream_start = mount.find("stream_start").text
+        except:
+            stream_start = '-'
+
+        try: 
+            listeners = mount.find("listeners").text
+        except:
+            listeners = "-"
+
         try:
-            mount_list.append({"mount": 
-                    {"name": mount.get('mount'),
-                    "stream_start": mount.find("stream_start").text,
-                    "listeners": mount.find("listeners").text,
-                    "outgoing_kbitrate": mount.find("outgoing_kbitrate").text,
-                    "title": mount.find('title').text,
-                    "metadata_updated": mount.find("metadata_updated").text
-                    }
-                    })
-        except: #some mountpoints may not have 'title' or 'metadata_updated' tags, which could cause an error
-            mount_list.append({"mount": 
-                    {"name": mount.get('mount'), 
-                    "stream_start": mount.find("stream_start").text,
-                    "listeners": mount.find("listeners").text,
-                    "outgoing_kbitrate": mount.find("outgoing_kbitrate").text,
-                    "title": '-',
-                    "metadata_updated": "-"
-                    }
-                    })
+            outgoing_kbitrate = mount.find("outgoing_kbitrate").text
+        except:
+            outgoing_kbitrate = "-"
+
+        try: 
+            title = mount.find('title').text
+        except:
+            title = "-"
+
+        try:
+            metadata_updated = mount.find("metadata_updated").text
+        except:
+            metadata_updated = "-"
+        
+        mount_list.append({"mount": 
+                {"name": mount.get('mount'),
+                "stream_start": stream_start,
+                "listeners": listeners,
+                "outgoing_kbitrate": outgoing_kbitrate,
+                "title": title,
+                "metadata_updated": metadata_updated
+                }
+                })
 
 
     return mount_list
