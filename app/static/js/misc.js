@@ -13,7 +13,7 @@ let dateNumber = today.getDate();
 document.getElementById('date').innerHTML = day + " " + month + " " + dateNumber
 }
 real_date()
-setInterval(real_date, 60000)
+setInterval(real_date, 60000) // 1 minute
 
 
 /*
@@ -44,7 +44,7 @@ var realtime = hour + ':' + minute + ampm
 document.getElementById('time').innerHTML = realtime
 }
 real_time()
-setInterval(real_time, 1000)
+setInterval(real_time, 1000) // 1 second
 
 async function weather() {
   const url = "/booth/weather";
@@ -57,6 +57,7 @@ async function weather() {
         temp.innerHTML = `${responseJSON.temp}&deg | `;
 } 
 weather()
+setInterval(weather, 900000) // 15 minutes
 
 async function holiday() {
   const url = "/booth/holiday";
