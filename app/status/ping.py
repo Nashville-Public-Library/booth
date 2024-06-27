@@ -105,9 +105,9 @@ def user_agent_ip(mount):
         agents = []
         listeners = mountpoint.findall('listener')
         for listener in listeners:
+            IP_address = listener.find("IP").text
             user_agent = listener.find('UserAgent').text
-            print(user_agent)
-            agents.append(user_agent)
+            agents.append(IP_address + ": " + user_agent)
         return agents
     except:
         return []
