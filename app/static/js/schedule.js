@@ -1,5 +1,6 @@
 async function schedule(date=undefined) {
     document.getElementById("dots").style.display = 'block'
+    document.getElementById("calendarContainer").style.display = 'none'
     const url = `/booth/data`;
     let response = await fetch(url, {
         headers: {
@@ -42,6 +43,7 @@ async function schedule(date=undefined) {
 
     //remove "dots" from page
     document.getElementById("dots").style.display = 'none'
+    document.getElementById("calendarContainer").style.display = 'block'
 
 }
 
