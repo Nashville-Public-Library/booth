@@ -37,13 +37,20 @@ async function userAgent() {
 
     let mounts = responseJSON.mounts;
     for (mount of mounts) {
-        const userAgentArray = await fetchUserAgent(mount['mount']['name']);
-        userAgentArray.forEach(user => {
-            let element = document.createElement("div");
-            let userAgent = document.createTextNode(user);
-            element.appendChild(userAgent);
-            userAgentElement.appendChild(element)
+        let outerElement = document.createElement("div")
+        outerElement.classList.add("border")
+        let mountpointLabel = document.createTextNode(mount['mount']['name']);
+        outerElement.append(mountpointLabel)
+
+        const mountpointArray = await fetchUserAgent(mount['mount']['name']);
+        mountpointArray.forEach(mountpoint => {
+            let innerElement = document.createElement("div");
+            let innertext = document.createTextNode(mountpoint)
+            innerElement.appendChild(innertext);
+            outerElement.appendChild(innerElement)
         })
+
+        userAgentElement.appendChild(outerElement)
     }
 }
 
