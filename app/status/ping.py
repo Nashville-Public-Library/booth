@@ -101,13 +101,18 @@ def user_agent_ip(mount):
     tree = tree.text
     tree = ET.fromstring(tree)
     mountpoint = tree.find('source')
+    agents = []
     try:
-        agents = []
         listeners = mountpoint.findall('listener')
         for listener in listeners:
             IP_address = listener.find("IP").text
+
             user_agent = listener.find('UserAgent').text
-            agents.append(IP_address + ": " + user_agent)
+
+            connected = listener.find("Connected").text
+            connected = str(round(int(connected) / 60, 1)) # convert to minutes, round to one decimal
+
+            agents.append(IP_address + " | " + user_agent + " | " + connected + " minutes")
         return agents
     except:
-        return []
+        return agents
