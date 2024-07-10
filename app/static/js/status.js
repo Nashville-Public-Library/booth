@@ -33,7 +33,12 @@ function redGreen(responseIsTrue, id) {
 
 async function fetchUserAgent(mount) {
     mount = mount.replace("/", "")
-    let response = await fetch('/status/useragent/' + mount, {method: "POST"});
+    let url = '/status/useragent'
+    let response = await fetch(url, {
+        headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+        method: "POST",
+        body: JSON.stringify({"mount": mount})
+        });
     let responseJSON = await response.json();
     return responseJSON.userAgent;
 }

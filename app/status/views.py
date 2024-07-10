@@ -28,8 +28,10 @@ def stream():
          'outgoing_kbitrate': icecast.outgoing_kbitrate()
          }
 
-@app.route('/status/useragent/<mount>', methods=['POST'])
-# @requires_auth
-def user_agent(mount):
+@app.route('/status/useragent', methods=['POST'])
+@requires_auth
+def user_agent():
      icecast = Icecast()
+     mount:dict = request.get_json()
+     mount = mount.get("mount")
      return {'userAgent': icecast.user_agent_ip(mount=mount)}
