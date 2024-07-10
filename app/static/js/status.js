@@ -4,7 +4,8 @@ async function ping() {
         "wpln": "12.247.152.50",
         "SGmetadata": "204.93.152.147",
         "metro": "170.190.43.1",
-        "npl": "library.nashville.org"
+        "npl": "library.nashville.org",
+        "vic": "www.volgistics.com"
     }
     document.getElementById("ping").style.color = "yellow"
     for (const [title, host] of Object.entries(pingList)) {
@@ -251,5 +252,5 @@ function main() {
 
 main()
 setInterval(main, 30000)
-// schedule()
-// setInterval(check_time, 60000)
+schedule()
+setInterval(check_time, 60000)
