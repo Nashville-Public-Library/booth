@@ -8,11 +8,17 @@ from app.ev import EV
 
 def ping(host):
     param = '-n' if 'nt' in os.name.lower() else '-c'
-
-    # Building the command. Ex: "ping -c 1 google.com"
     command = ['ping', param, '1', host]
 
-    return subprocess.call(command) == 0
+    if 'nt' in os.name.lower():
+        command.extend(['>', 'nul', '2>&1'])
+    else:
+        command.extend(['>', '/dev/null', '2>&1'])
+
+    # Join the command list into a single string for subprocess.call
+    command_str = ' '.join(command)
+
+    return subprocess.call(command_str, shell=True) == 0
 
 def check_mounts():
     mount_list = []
