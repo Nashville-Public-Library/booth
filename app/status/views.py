@@ -10,6 +10,7 @@ def status():
         return render_template('status.html')
 
 @app.route('/status/ping', methods=['POST'])
+@requires_auth
 def ping_ip():
     icecast = ping(host='npl.streamguys1.com')
     wpln = ping(host='12.247.152.50')
@@ -24,6 +25,7 @@ def ping_ip():
         'npl': npl}
 
 @app.route('/status/stream', methods=['POST'])
+@requires_auth
 def stream():
     return {
          'mounts': check_mounts(), 
@@ -33,5 +35,6 @@ def stream():
          }
 
 @app.route('/status/useragent/<mount>', methods=['POST'])
+# @requires_auth
 def user_agent(mount):
      return {'userAgent': user_agent_ip(mount=mount)}

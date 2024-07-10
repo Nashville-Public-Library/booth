@@ -23,6 +23,7 @@ def schedule():
     return render_template('schedule.html')
 
 @app.route('/booth/data', methods=['POST'])
+@requires_auth
 def booth_data():
     try:
         date: dict = request.get_json()
