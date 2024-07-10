@@ -1,14 +1,23 @@
 async function ping() {
-    const url = "/status/ping";
-          let response = await fetch(url, {method: "POST"});
-          let responseJSON = await response.json();
-
-          redGreen(responseJSON.icecast, 'icecast');
-          redGreen(responseJSON.wpln, 'wpln');
-          redGreen(responseJSON.SGmetadata, 'SGmetadata');
-          redGreen(responseJSON.metro, 'metro');
-          redGreen(responseJSON.npl, 'npl')
-          }
+    let pingList = {
+        "icecast": "npl.streamguys1.com",
+        "wpln": "12.247.152.50",
+        "SGmetadata": "204.93.152.147",
+        "metro": "170.190.43.1",
+        "npl": "library.nashville.org"
+    }
+    for (const [title, host] of Object.entries(pingList)) {
+        const url = "/status/ping";
+        let response = await fetch(url, {
+            headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+            method: "POST", 
+            body: JSON.stringify({"host": host})
+        });
+        let responseJSON = await response.json();
+        result = responseJSON.result
+        redGreen(responseIsTrue=result, id=title)
+    }
+    }
 
 function redGreen(responseIsTrue, id) {
     element = document.getElementById(id)
@@ -241,5 +250,5 @@ function main() {
 
 main()
 setInterval(main, 30000)
-schedule()
-setInterval(check_time, 60000)
+// schedule()
+// setInterval(check_time, 60000)
