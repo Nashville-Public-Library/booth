@@ -50,12 +50,25 @@ async function fetchBooths() {
         italicizeMe("Booth1_2_data")
         italicizeMe("Booth2_2_data")
         italicizeMe("Booth3_2_data")
-
-        nowPlaying()
     }
     catch (err) {
-        console.log(err)
+        // remove dot-elastic from all elements
+        let dots = document.querySelectorAll('.dot-elastic');
+        for (let i = 0; i < dots.length; i++) {
+            dots[i].classList.remove('dot-elastic');
+            }
+        let sorry = "?"
+        booth1_1_display.innerText = sorry;
+        booth2_1_display.innerText = sorry;
+        booth3_1_display.innerText = sorry;
+        booth1_2_display.innerText = sorry;
+        booth2_2_display.innerText = sorry;
+        booth3_2_display.innerText = sorry;
+
+        document.getElementById('refresh').remove()
+        alert('please tell Ben there is a problem: ' + err)
     }
+    nowPlaying()
 }
 
 /*
