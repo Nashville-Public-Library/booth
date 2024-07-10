@@ -9,6 +9,7 @@ async function ping() {
     }
     document.getElementById("ping").style.color = "yellow"
     for (const [title, host] of Object.entries(pingList)) {
+        document.getElementById(title).style.color = "yellow"
         const url = "/status/ping";
         let response = await fetch(url, {
             headers: {'Accept': 'application/json','Content-Type': 'application/json'},
