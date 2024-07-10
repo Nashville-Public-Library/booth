@@ -6,6 +6,7 @@ async function ping() {
         "metro": "170.190.43.1",
         "npl": "library.nashville.org"
     }
+    document.getElementById("ping").style.color = "yellow"
     for (const [title, host] of Object.entries(pingList)) {
         const url = "/status/ping";
         let response = await fetch(url, {
