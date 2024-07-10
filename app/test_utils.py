@@ -5,7 +5,6 @@ import pytest
 
 from app.booth.utils import check_banner, are_we_closed, is_holiday
 from app.booth.hours import hour1, hour2
-from app.status.ping import user_agent_ip
 
 @pytest.fixture
 def icecast_template():
