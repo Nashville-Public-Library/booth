@@ -1,7 +1,7 @@
 from flask import render_template, request
 
 from app import app
-from app.status.ping import ping, check_mounts, listeners, server_start, outgoing_kbitrate, user_agent_ip
+from app.status.ping import ping, Icecast
 from app.auth import requires_auth
 
 @app.route('/status')
@@ -20,14 +20,16 @@ def ping_ip():
 @app.route('/status/stream', methods=['POST'])
 @requires_auth
 def stream():
+    icecast = Icecast()
     return {
-         'mounts': check_mounts(), 
-         'listeners': listeners(), 
-         'serverStart': server_start(), 
-         'outgoing_kbitrate': outgoing_kbitrate()
+         'mounts': icecast.check_mounts(), 
+         'listeners': icecast.listeners(), 
+         'serverStart': icecast.server_start(), 
+         'outgoing_kbitrate': icecast.outgoing_kbitrate()
          }
 
 @app.route('/status/useragent/<mount>', methods=['POST'])
 # @requires_auth
 def user_agent(mount):
-     return {'userAgent': user_agent_ip(mount=mount)}
+     icecast = Icecast()
+     return {'userAgent': icecast.user_agent_ip(mount=mount)}
