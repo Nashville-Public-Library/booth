@@ -257,6 +257,6 @@ function main() {
 }
 
 main()
-setInterval(main, 30000)
+setInterval(main, 45000)
 schedule()
 setInterval(check_time, 60000)
