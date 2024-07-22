@@ -22,10 +22,10 @@ def ping_ip():
 def stream():
     icecast = Icecast()
     return {
-         'mounts': icecast.check_mounts(), 
-         'listeners': icecast.listeners(), 
-         'serverStart': icecast.server_start(), 
-         'outgoing_kbitrate': icecast.outgoing_kbitrate()
+         'mounts': icecast.mounts, 
+         'listeners': icecast.listeners, 
+         'serverStart': icecast.server_start, 
+         'outgoing_kbitrate': icecast.outgoing_kbitrate
          }
 
 @app.route('/status/useragent', methods=['POST'])

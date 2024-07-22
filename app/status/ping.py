@@ -29,6 +29,10 @@ class Icecast:
         self.icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
         self.ev = EV()
         self.icecast_tree = self.get_tree()
+        self.mounts = self.check_mounts()
+        self.listeners = self.get_listeners()
+        self.server_start = self.get_server_start()
+        self.outgoing_kbitrate = self.get_outgoing_kbitrate()
 
     def get_tree(self) -> ET.ElementTree:
         tree = requests.get(self.icecast_URL, auth=(self.ev.icecast_user, self.ev.icecast_pass))
@@ -85,17 +89,17 @@ class Icecast:
 
         return mount_list
 
-    def listeners(self):
+    def get_listeners(self):
         tree = self.icecast_tree
         listeners = tree.find('listeners').text
         return listeners
 
-    def server_start(self):
+    def get_server_start(self):
         tree = self.icecast_tree
         server_start = tree.find('server_start').text
         return server_start
 
-    def outgoing_kbitrate(self):
+    def get_outgoing_kbitrate(self):
         tree = self.icecast_tree
         bitrate = tree.find('outgoing_kbitrate').text
         return bitrate
