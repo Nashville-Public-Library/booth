@@ -44,9 +44,17 @@ async function fetchUserAgent(mount) {
     return responseJSON.userAgent;
 }
 
+// pass in the text node you want to create. the TEXT/CONTENT of the element
+function createTextNodeInsideDiv(element) {
+    let outer = document.createElement("div");
+    let inner = document.createTextNode(element)
+    outer.append(inner);
+    return outer;
+}
+
 async function userAgent() {
     const url = "/status/stream";
-    let response = await fetch(url, {method: "POST"});
+    let response = await fetch(url, { method: "POST" });
     let responseJSON = await response.json();
 
     const userAgentElement = document.getElementById('userAgent');
@@ -54,19 +62,14 @@ async function userAgent() {
 
     let mounts = responseJSON.mounts;
     for (mount of mounts) {
-        let outerElement = document.createElement("div")
+        let outerElement = createTextNodeInsideDiv(mount['mount']['name']);
         outerElement.classList.add("border")
-        let mountpointLabel = document.createTextNode(mount['mount']['name']);
-        outerElement.append(mountpointLabel)
 
         const mountpointArray = await fetchUserAgent(mount['mount']['name']);
         mountpointArray.forEach(mountpoint => {
-            let innerElement = document.createElement("div");
-            let innertext = document.createTextNode(mountpoint)
-            innerElement.appendChild(innertext);
+            let innerElement = createTextNodeInsideDiv(mountpoint)
             outerElement.appendChild(innerElement)
         })
-
         userAgentElement.appendChild(outerElement)
     }
 }
@@ -77,14 +80,9 @@ async function mountpoints() {
     let response = await fetch(url, {method: "POST"});
     let responseJSON = await response.json();
 
-    const listenerCountElement = document.getElementById('listenerCount');
-    listenerCountElement.innerText = responseJSON.listeners
-
-    const serverStartElement = document.getElementById("serverStart");
-    serverStartElement.innerText = responseJSON.serverStart
-
-    const outgoing_kbitrateElement = document.getElementById('outgoing_kbitrate');
-    outgoing_kbitrateElement.innerText = `${responseJSON.outgoing_kbitrate}kbps`
+    document.getElementById('listenerCount').innerHTML = responseJSON.listeners;
+    document.getElementById("serverStart").innerText = responseJSON.serverStart;
+    document.getElementById('outgoing_kbitrate').innerText = `${responseJSON.outgoing_kbitrate}kbps`;
 
     const mountpointElement = document.getElementById('mountpoints');
     mountpointElement.innerHTML = ''
@@ -94,39 +92,14 @@ async function mountpoints() {
         let containerElement = document.createElement("div")
         containerElement.classList.add("border")
 
-        let nameElement = document.createElement("div");
-        var name = document.createTextNode(`Name: ${mount['mount']['name']}`);
-        nameElement.appendChild(name);
+        containerElement.appendChild(createTextNodeInsideDiv(`Name: ${mount['mount']['name']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Stream Start: ${mount['mount']['stream_start']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Listeners: ${mount['mount']['listeners']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Outgoing Bitrate: ${mount['mount']['outgoing_kbitrate']}kbps`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Title: ${mount['mount']['title']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Metadata Updated: ${mount['mount']['metadata_updated']}`))
 
-        let streamStartElement = document.createElement("div");
-        var streamStart = document.createTextNode(`Stream Start: ${mount['mount']['stream_start']}`);
-        streamStartElement.appendChild(streamStart);
-
-        let listenersElement = document.createElement("div");
-        var listeners = document.createTextNode(`Listeners: ${mount['mount']['listeners']}`);
-        listenersElement.appendChild(listeners);
-
-        let outgoing_kbitrateElement = document.createElement("div");
-        var outgoing_kbitrate = document.createTextNode(`Outgoing Bitrate: ${mount['mount']['outgoing_kbitrate']}kbps`);
-        outgoing_kbitrateElement.appendChild(outgoing_kbitrate);
-
-        let titleElement = document.createElement("div");
-        var title = document.createTextNode(`Title: ${mount['mount']['title']}`);
-        titleElement.appendChild(title);
-
-        let metadata_updatedElement = document.createElement("div");
-        var metadata_updated = document.createTextNode(`Metadata Updated: ${mount['mount']['metadata_updated']}`);
-        metadata_updatedElement.appendChild(metadata_updated);
-
-
-        containerElement.appendChild(nameElement)
-        containerElement.appendChild(streamStartElement)
-        containerElement.appendChild(listenersElement)
-        containerElement.appendChild(outgoing_kbitrateElement)
-        containerElement.appendChild(titleElement)
-        containerElement.appendChild(metadata_updatedElement)
         mountpointElement.appendChild(containerElement)
-
     };
 }
 
@@ -257,6 +230,6 @@ function main() {
 }
 
 main()
-setInterval(main, 45000)
+setInterval(main, 30000)
 schedule()
 setInterval(check_time, 60000)
