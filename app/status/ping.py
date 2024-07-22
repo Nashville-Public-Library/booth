@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
 import os
 import subprocess
+import time
 
 import requests
 
@@ -18,6 +19,8 @@ def ping(host):
 
     # Join the command list into a single string for subprocess.call
     command_str = ' '.join(command)
+
+    time.sleep(0.5)
 
     return subprocess.call(command_str, shell=True) == 0
 
