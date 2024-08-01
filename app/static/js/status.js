@@ -5,17 +5,20 @@ async function ping() {
         "SGmetadata": "204.93.152.147",
         "metro": "170.190.43.1",
         "npl": "library.nashville.org",
-        "vic": "www.volgistics.com"
+        "vic": "www.volgistics.com",
+        "zeno": "fluoz.zeno.fm"
     }
     document.getElementById("ping").style.color = "yellow"
     for (const [title, host] of Object.entries(pingList)) {
         document.getElementById(title).style.color = "yellow"
+        
         const url = "/status/ping";
-        let response = await fetch(url, {
+        const options = {
             headers: {'Accept': 'application/json','Content-Type': 'application/json'},
             method: "POST", 
             body: JSON.stringify({"host": host})
-        });
+            }
+        let response = await fetch(url, options);
         let responseJSON = await response.json();
         result = responseJSON.result
         redGreen(responseIsTrue=result, id=title)
