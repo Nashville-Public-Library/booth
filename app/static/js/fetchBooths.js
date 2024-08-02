@@ -66,7 +66,6 @@ async function fetchBooths() {
         booth3_2_display.innerText = sorry;
 
         document.getElementById('refresh').remove()
-        alert('please tell Ben there is a problem: ' + err)
     }
     nowPlaying()
 }
