@@ -3,6 +3,7 @@ import os
 import subprocess
 import time
 
+import ipinfo
 import requests
 
 from app.ev import EV
@@ -23,6 +24,15 @@ def ping(host):
     time.sleep(0.5)
 
     return subprocess.call(command_str, shell=True) == 0
+
+def geolocation(ip: str):
+    try:
+        token = EV().IPInfoToken
+        handler = ipinfo.getHandler(token)
+        details = handler.getDetails(ip)
+        return f"{details.city} ({details.region})"
+    except:
+        return "geolocation?"
 
 class Icecast:
     def __init__(self) -> None:
@@ -115,13 +125,14 @@ class Icecast:
             listeners = mountpoint.findall('listener')
             for listener in listeners:
                 IP_address = listener.find("IP").text
+                geo = geolocation(ip=IP_address)
 
                 user_agent = listener.find('UserAgent').text
 
                 connected = listener.find("Connected").text
                 connected = str(round(int(connected) / 60, 1)) # convert to minutes, round to one decimal
 
-                agents.append(IP_address + " | " + user_agent + " | " + connected + " minutes")
+                agents.append(f" {IP_address} | {geo} | {user_agent} | {connected} minutes")
             return agents
         except:
             return agents
