@@ -7,4 +7,4 @@ class EV():
         self.VIC_user = os.environ['VIC_user']
         self.VIC_pass = os.environ['VIC_password']
         self.BF_pass = os.environ['BF_pass']
-        self.IPInfoToken = os.environ['IPInfoToken']
+        self.IPInfoToken = os.environ['IPINFOTOKEN']
