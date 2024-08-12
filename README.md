@@ -17,4 +17,7 @@ Run `pytest` at the top level directory to run the basic tests.
 
 ### Misc
 
-Don't forget to continually update your `requirement.txt` file as you go (via `pip freeze > requirements.txt`).
+Don't forget to continually update your `requirement.txt` file as you go: 
+````python
+pip freeze > requirements.txt
+````
