@@ -39,11 +39,14 @@ def are_we_closed() -> bool:
 def check_banner():
     banner = open('message.txt', 'r')
     banner = banner.read()
-
-    if banner == '':
-        banner == False
         
     return banner
+
+def bannerColor():
+    color = open('bannerColor.txt', 'r')
+    color = color.read()
+    
+    return color
 
 def get_weather():
     url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'

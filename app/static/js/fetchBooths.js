@@ -108,4 +108,15 @@ async function nowPlaying() {
     }
 }
 
+async function fetchBanner() {
+    let bannerElement = document.getElementById("banner");
+    const url = "/booth/banner/content";
+    let response = await fetch(url, { method: "POST" });
+    let responseJSON = await response.json();
+    let bannerColor = responseJSON.bannerColor
+    bannerElement.style.borderColor = bannerColor
+    
+}
+
+fetchBanner()
 fetchBooths()
