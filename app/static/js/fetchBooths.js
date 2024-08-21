@@ -115,7 +115,6 @@ async function fetchBanner() {
     let responseJSON = await response.json();
     let bannerColor = responseJSON.bannerColor
     bannerElement.style.borderColor = bannerColor
-    
 }
 
 fetchBanner()
