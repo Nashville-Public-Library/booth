@@ -69,6 +69,7 @@ def test_banner_post(client: FlaskClient):
     response = client.post('/booth/banner', data=
                            {"password": "something",
                             "message": "something",
+                            "bannerColor": "something",
                             })
     assert response.status_code == 200
 
@@ -88,6 +89,7 @@ def test_banner_message(client: FlaskClient):
     response = client.post('/booth/banner', data=
                            {"password": "talk5874",
                             "message": message,
+                            "bannerColor": "something"
                             })
     assert check_banner() == message
 
