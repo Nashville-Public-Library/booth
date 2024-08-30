@@ -98,6 +98,7 @@ async function mountpoints() {
         containerElement.appendChild(createTextNodeInsideDiv(`Name: ${mount['mount']['name']}`))
         containerElement.appendChild(createTextNodeInsideDiv(`Stream Start: ${mount['mount']['stream_start']}`))
         containerElement.appendChild(createTextNodeInsideDiv(`Listeners: ${mount['mount']['listeners']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Incoming Bitrate: ${mount['mount']['incoming_bitrate']}kbps`))
         containerElement.appendChild(createTextNodeInsideDiv(`Outgoing Bitrate: ${mount['mount']['outgoing_kbitrate']}kbps`))
         containerElement.appendChild(createTextNodeInsideDiv(`Title: ${mount['mount']['title']}`))
         containerElement.appendChild(createTextNodeInsideDiv(`Metadata Updated: ${mount['mount']['metadata_updated']}`))

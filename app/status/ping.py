@@ -72,6 +72,12 @@ class Icecast:
                 listeners = "-"
 
             try:
+                incoming_bitrate = mount.find("incoming_bitrate").text
+                incoming_bitrate = round(int(incoming_bitrate)/1000, 0)
+            except:
+                incoming_bitrate = "-"
+
+            try:
                 outgoing_kbitrate = mount.find("outgoing_kbitrate").text
             except:
                 outgoing_kbitrate = "-"
@@ -90,6 +96,7 @@ class Icecast:
                     {"name": mount.get('mount'),
                     "stream_start": stream_start,
                     "listeners": listeners,
+                    "incoming_bitrate": incoming_bitrate,
                     "outgoing_kbitrate": outgoing_kbitrate,
                     "title": title,
                     "metadata_updated": metadata_updated
