@@ -28,12 +28,11 @@ def booth_data():
     try:
         date: dict = request.get_json()
         date = date.get('date') # date sent from front end
-        response = make_response(get_scrape_and_filter(date=date))
-        return response
     except:
         date = datetime.now().strftime('%m%d%Y') # today
-        response = make_response(get_scrape_and_filter(date=date))
-        return response
+
+    response = make_response(get_scrape_and_filter(date=date))
+    return response
 
 @app.route('/booth/banner', methods=['GET', 'POST'])
 def banner():
