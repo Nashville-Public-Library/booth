@@ -16,8 +16,11 @@ def client():
         client =  app.test_client()
         yield client
         
-        # one of the tests writes a banner message. erase it.
+        # one of the tests writes to the banner files. erase them.
         with open('message.txt', 'w') as banner:
+            banner = banner.write('')
+
+        with open('bannerColor.txt', 'w') as banner:
             banner = banner.write('')
 
 '''
