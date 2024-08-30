@@ -92,7 +92,7 @@ class Icecast:
             except:
                 metadata_updated = "-"
             
-            mount_list.append({"mount": 
+            mount_list.append( 
                     {"name": mount.get('mount'),
                     "stream_start": stream_start,
                     "listeners": listeners,
@@ -101,7 +101,7 @@ class Icecast:
                     "title": title,
                     "metadata_updated": metadata_updated
                     }
-                    })
+                    )
 
 
         return mount_list

@@ -65,10 +65,10 @@ async function userAgent() {
 
     let mounts = responseJSON.mounts;
     for (mount of mounts) {
-        let outerElement = createTextNodeInsideDiv(mount['mount']['name']);
+        let outerElement = createTextNodeInsideDiv(mount['name']);
         outerElement.classList.add("border")
 
-        const mountpointArray = await fetchUserAgent(mount['mount']['name']);
+        const mountpointArray = await fetchUserAgent(mount['name']);
         mountpointArray.forEach(mountpoint => {
             let innerElement = createTextNodeInsideDiv(mountpoint)
             outerElement.appendChild(innerElement)
@@ -95,13 +95,13 @@ async function mountpoints() {
         let containerElement = document.createElement("div")
         containerElement.classList.add("border")
 
-        containerElement.appendChild(createTextNodeInsideDiv(`Name: ${mount['mount']['name']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Stream Start: ${mount['mount']['stream_start']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Listeners: ${mount['mount']['listeners']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Incoming Bitrate: ${mount['mount']['incoming_bitrate']}kbps`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Outgoing Bitrate: ${mount['mount']['outgoing_kbitrate']}kbps`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Title: ${mount['mount']['title']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Metadata Updated: ${mount['mount']['metadata_updated']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Name: ${mount['name']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Stream Start: ${mount['stream_start']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Listeners: ${mount['listeners']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Incoming Bitrate: ${mount['incoming_bitrate']}kbps`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Outgoing Bitrate: ${mount['outgoing_kbitrate']}kbps`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Title: ${mount['title']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Metadata Updated: ${mount['metadata_updated']}`))
 
         mountpointElement.appendChild(containerElement)
     };
@@ -221,19 +221,20 @@ function meterButton() {
 function check_time() {
     const current_time = new Date()
     var minute = current_time.getMinutes()
-    if (minute == 0 || minute == 15 || minute == 30 || minute == 45) {
-        schedule()
+    const updateTimes = [0, 15, 30, 45];
+    if (updateTimes.includes(minute)) {
+        schedule();
     }
 }
 
 function main() {
-    ping();
     mountpoints();
-    banner()
-    userAgent()
+    userAgent();
+    banner();
+    ping();
 }
 
 main()
-setInterval(main, 30000)
+setInterval(main, 45000)
 schedule()
 setInterval(check_time, 60000)
