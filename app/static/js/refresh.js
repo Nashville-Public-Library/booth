@@ -3,10 +3,12 @@ function refresh_page() {
     window.location.reload();
 }
 function check_time() {
-    const current_time = new Date()
-    var minute = current_time.getMinutes()
-    if (minute == 0 || minute == 30) {
-        refresh_page()
+    // if the current minute matches one of the minutes below, refresh the page
+    const current_time = new Date();
+    let minute = current_time.getMinutes();
+    const updateTimes = [0, 15, 30, 45];
+    if (updateTimes.includes(minute)) {
+        refresh_page();
     }
 }
 setInterval(check_time, 60000)
