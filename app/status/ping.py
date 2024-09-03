@@ -62,7 +62,7 @@ class Icecast:
         tree = ET.fromstring(tree)
         return tree
 
-    def check_mounts(self):
+    def check_mounts(self) -> list:
         mount_list = []
         tree = self.icecast_tree
         mountpoints = tree.findall('source')
@@ -113,22 +113,22 @@ class Icecast:
 
         return mount_list
 
-    def get_listeners(self):
+    def get_listeners(self) -> str:
         tree = self.icecast_tree
         listeners = tree.find('listeners').text
         return listeners
 
-    def get_server_start(self):
+    def get_server_start(self) -> str:
         tree = self.icecast_tree
         server_start = tree.find('server_start').text
         return server_start
 
-    def get_outgoing_kbitrate(self):
+    def get_outgoing_kbitrate(self) -> str:
         tree = self.icecast_tree
         bitrate = tree.find('outgoing_kbitrate').text
         return bitrate
 
-    def user_agent_ip(self, mount):
+    def user_agent_ip(self, mount) -> list:
         icecast_URL = f"http://npl.streamguys1.com:/admin/listclients?mount=/{mount}"
         tree = requests.get(icecast_URL, auth=(self.ev.icecast_user, self.ev.icecast_pass))
         tree = tree.text
