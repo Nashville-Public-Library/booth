@@ -8,6 +8,8 @@ import requests
 
 from app.ev import EV
 
+geo_cache:dict = {}
+
 def ping(host):
     param = '-n' if 'nt' in os.name.lower() else '-c'
     command = ['ping', param, '1', host]
@@ -26,12 +28,22 @@ def ping(host):
     return subprocess.call(command_str, shell=True) == 0
 
 def geolocation(ip: str):
+    '''
+    the service we use to retreive this data rate limits us. since IP addresses
+    tend not to change too much, we can safely cache the values. We're
+    only caching to a global variable, so every time you restart the program (redeploy),
+    the cache is emptied.
+    '''
     try:
         token = EV().IPInfoToken
+        if ip in geo_cache:
+            return geo_cache.get(ip)
         handler = ipinfo.getHandler(token)
         details = handler.getDetails(ip)
+        geo_cache.update({ip: f"{details.city} ({details.region})"})
         return f"{details.city} ({details.region})"
     except:
+        # if we've exceeded our request limit for the month
         return "geolocation?"
 
 class Icecast:
@@ -54,12 +66,7 @@ class Icecast:
         mount_list = []
         tree = self.icecast_tree
         mountpoints = tree.findall('source')
-        '''
-        I hate these try/except blocks, too. I tried iterating through all the elements of each source mount,
-        but I just couldn't get it working. The Problem is the "name" for the source is not in the element.text attribute.
-        you have to use element.get('source') to get the name. So that messes up the loop and I tried for hours but
-        couldn't get it working. So just grab the few elements we actually need manually like this:
-        '''
+        # Unfortunately not all mounts return the same data.
         for mount in mountpoints:
             try: 
                 stream_start = mount.find("stream_start").text
