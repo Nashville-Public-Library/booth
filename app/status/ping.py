@@ -40,8 +40,9 @@ def geolocation(ip: str):
             return geo_cache.get(ip)
         handler = ipinfo.getHandler(token)
         details = handler.getDetails(ip)
-        geo_cache.update({ip: f"{details.city} ({details.region})"})
-        return f"{details.city} ({details.region})"
+        location = f"{details.city} ({details.region})"
+        geo_cache.update({ip: location})
+        return location
     except:
         # if we've exceeded our request limit for the month
         return "geolocation?"
