@@ -1,3 +1,9 @@
+async function fetchPost(fetchURL, fetchOptions=null) {
+    let response = await fetch(fetchURL, fetchOptions);
+    let responseJSON = await response.json();
+    return responseJSON;
+}
+
 async function ping() {
     let pingList = {
         "icecast": "npl.streamguys1.com",
@@ -18,10 +24,10 @@ async function ping() {
             method: "POST", 
             body: JSON.stringify({"host": host})
             }
-        let response = await fetch(url, options);
-        let responseJSON = await response.json();
-        result = responseJSON.result
-        redGreen(responseIsTrue=result, id=title)
+        let response = await fetchPost(fetchURL=url, fetchOptions=options);
+        
+        result = response.result;
+        redGreen(responseIsTrue=result, id=title);
     }
     }
 
@@ -36,15 +42,16 @@ function redGreen(responseIsTrue, id) {
 }
 
 async function fetchUserAgent(mount) {
-    mount = mount.replace("/", "")
-    let url = '/status/useragent'
-    let response = await fetch(url, {
+    mount = mount.replace("/", "");
+    const url = '/status/useragent';
+
+    const options = {
         headers: {'Accept': 'application/json','Content-Type': 'application/json'},
         method: "POST",
         body: JSON.stringify({"mount": mount})
-        });
-    let responseJSON = await response.json();
-    return responseJSON.userAgent;
+        }
+    let response = await fetchPost(fetchURL=url, fetchOptions=options);
+    return response.userAgent;
 }
 
 // pass in the text node you want to create. the TEXT/CONTENT of the element
@@ -57,13 +64,13 @@ function createTextNodeInsideDiv(element) {
 
 async function userAgent() {
     const url = "/status/stream";
-    let response = await fetch(url, { method: "POST" });
-    let responseJSON = await response.json();
+    const options = { method: "POST" }
+    let response = await fetchPost(fetchURL=url, fetchOptions=options);
 
     const userAgentElement = document.getElementById('userAgent');
     userAgentElement.innerHTML = ""
 
-    let mounts = responseJSON.mounts;
+    let mounts = response.mounts;
     for (mount of mounts) {
         let outerElement = createTextNodeInsideDiv(mount['name']);
         outerElement.classList.add("border")
@@ -80,16 +87,16 @@ async function userAgent() {
 async function mountpoints() {
     // yeah this isn't a mess AT ALL
     const url = "/status/stream";
-    let response = await fetch(url, {method: "POST"});
-    let responseJSON = await response.json();
+    const options = {method: "POST"}
+    let response = await fetchPost(fetchURL=url, fetchOptions=options);
 
-    document.getElementById('listenerCount').innerHTML = responseJSON.listeners;
-    document.getElementById("serverStart").innerText = responseJSON.serverStart;
-    document.getElementById('outgoing_kbitrate').innerText = `${responseJSON.outgoing_kbitrate}kbps`;
+    document.getElementById('listenerCount').innerHTML = response.listeners;
+    document.getElementById("serverStart").innerText = response.serverStart;
+    document.getElementById('outgoing_kbitrate').innerText = `${response.outgoing_kbitrate}kbps`;
 
     const mountpointElement = document.getElementById('mountpoints');
     mountpointElement.innerHTML = ''
-    let mounts = responseJSON.mounts;
+    let mounts = response.mounts;
     for (mount of mounts) {
         
         let containerElement = document.createElement("div");
@@ -109,11 +116,11 @@ async function mountpoints() {
 
 async function audioElements() {
     const url = "/status/stream";
-    let response = await fetch(url, {method: "POST"});
-    let responseJSON = await response.json();
+    const options = {method: "POST"}
+    let response = await fetchPost(fetchURL=url, fetchOptions=options);
 
     const AudioElement = document.getElementById('audio');
-    let mounts = responseJSON.mounts;
+    let mounts = response.mounts;
     for (mount of mounts) {
         let containerElement = document.createElement("div");
         let audio = new Audio(mount['listenurl']);
@@ -130,18 +137,18 @@ async function audioElements() {
 
     document.getElementById("dots").style.display = 'block'
     const url = "/booth/data";
-    let response = await fetch(url, {method: "POST"});
-    let responseJSON = await response.json();
+    const options = {method: "POST"}
+    let response = await fetchPost(fetchURL=url, fetchOptions=options);
 
 
-    document.getElementById("newspaper").innerText = `Newspaper: ${responseJSON.newspaper}`;
-    document.getElementById("9").innerText = `09am: 1: ${responseJSON[9].booth1} 2: ${responseJSON[9].booth2} 3: ${responseJSON[9].booth3}`;
-    document.getElementById("10").innerText = `10am: 1: ${responseJSON[10].booth1} 2: ${responseJSON[10].booth2} 3: ${responseJSON[10].booth3}`;
-    document.getElementById("11").innerText = `11am: 1: ${responseJSON[11].booth1} 2: ${responseJSON[11].booth2} 3: ${responseJSON[11].booth3}`;
-    document.getElementById("12").innerText = `12pm: 1: ${responseJSON[12].booth1} 2: ${responseJSON[12].booth2} 3: ${responseJSON[12].booth3}`;
-    document.getElementById("13").innerText = `01pm: 1: ${responseJSON[13].booth1} 2: ${responseJSON[13].booth2} 3: ${responseJSON[13].booth3}`;
-    document.getElementById("14").innerText = `02pm: 1: ${responseJSON[14].booth1} 2: ${responseJSON[14].booth2} 3: ${responseJSON[14].booth3}`;
-    document.getElementById("15").innerText = `03pm: 1: ${responseJSON[15].booth1} 2: ${responseJSON[15].booth2} 3: ${responseJSON[15].booth3}`;
+    document.getElementById("newspaper").innerText = `Newspaper: ${response.newspaper}`;
+    document.getElementById("9").innerText = `09am: 1: ${response[9].booth1} 2: ${response[9].booth2} 3: ${response[9].booth3}`;
+    document.getElementById("10").innerText = `10am: 1: ${response[10].booth1} 2: ${response[10].booth2} 3: ${response[10].booth3}`;
+    document.getElementById("11").innerText = `11am: 1: ${response[11].booth1} 2: ${response[11].booth2} 3: ${response[11].booth3}`;
+    document.getElementById("12").innerText = `12pm: 1: ${response[12].booth1} 2: ${response[12].booth2} 3: ${response[12].booth3}`;
+    document.getElementById("13").innerText = `01pm: 1: ${response[13].booth1} 2: ${response[13].booth2} 3: ${response[13].booth3}`;
+    document.getElementById("14").innerText = `02pm: 1: ${response[14].booth1} 2: ${response[14].booth2} 3: ${response[14].booth3}`;
+    document.getElementById("15").innerText = `03pm: 1: ${response[15].booth1} 2: ${response[15].booth2} 3: ${response[15].booth3}`;
 
     // remove loading indicator 'dots' CSS from element
     document.getElementById("dots").style.display = 'none'
@@ -149,10 +156,10 @@ async function audioElements() {
 
 async function banner() {
     const url = "/booth/banner/content";
-    let response = await fetch(url, {method: "POST"});
-    let responseJSON = await response.json();
+    const options = {method: "POST"}
+    let response = await fetchPost(fetchURL=url, fetchOptions=options);
 
-    const banner = responseJSON.banner
+    const banner = response.banner
     const bannerElement = document.getElementById("banner");
     if (banner) {
         bannerElement.innerText = banner
@@ -256,5 +263,5 @@ function main() {
 main()
 setInterval(main, 120000)
 audioElements()
-schedule()
-setInterval(check_time, 60000)
+// schedule()
+// setInterval(check_time, 60000)
