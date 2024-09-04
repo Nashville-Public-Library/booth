@@ -46,10 +46,10 @@ def banner():
                 text.write(message)
             with open('bannerColor.txt', 'w') as color:
                 color.write(BannerColor)
-            return render_template('banner.html', emoji='&#128077;', banner_text=check_banner()) # emoji = thumbs up
+            return render_template('banner.html', emoji='&#128077;') # emoji = thumbs up
         else:
-            return render_template('banner.html', emoji='&#128078;', banner_text=check_banner()) # emoji thumbs down
-    return render_template('banner.html', banner_text=check_banner())
+            return render_template('banner.html', emoji='&#128078;') # emoji thumbs down
+    return render_template('banner.html')
 
 @app.route('/booth/banner/content', methods=['POST'])
 def banner_content():
