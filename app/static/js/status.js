@@ -263,5 +263,5 @@ function main() {
 main()
 setInterval(main, 120000)
 audioElements()
-// schedule()
-// setInterval(check_time, 60000)
+schedule()
+setInterval(check_time, 60000)
