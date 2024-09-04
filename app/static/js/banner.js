@@ -1,3 +1,10 @@
+document.getElementById("selectMessage").addEventListener('change', fillBanner)
+function fillBanner() {
+    let selectMessage = document.getElementById("selectMessage");
+    let box = document.getElementById("message");
+    box.value = selectMessage.value;
+}
+
 function validateBanner() {
     password = document.getElementById('password');
     if (password.value == '') {
@@ -13,11 +20,21 @@ function validateBanner() {
     }
 }
 
-const selectMessage = document.getElementById("selectMessage");
-selectMessage.addEventListener('change', fillBanner)
-function fillBanner() {
-    let selectMessage = document.getElementById("selectMessage");
-    let box = document.getElementById("message");
-    box.value = selectMessage.value;
-    console.log(x.value)
+async function bannerColor() {
+    const url = "/booth/banner/content"
+    const options = {method: "POST"}
+    let response = await fetch(url, options)
+    let responseJSON = await response.json()
+    let color = responseJSON.bannerColor
+
+    const bannerColorElement = document.getElementById("bannerColor");
+
+    if (color) {
+        bannerColorElement.value = color
+    }
+    else{
+        bannerColorElement.value = "#a52a2a"
+    }
 }
+
+bannerColor()
