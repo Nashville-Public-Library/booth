@@ -99,6 +99,11 @@ class Icecast:
                 metadata_updated = mount.find("metadata_updated").text
             except:
                 metadata_updated = "-"
+
+            try:
+                listenurl = mount.find("listenurl").text
+            except:
+                listenurl = "-"
             
             mount_list.append( 
                     {"name": mount.get('mount'),
@@ -107,7 +112,8 @@ class Icecast:
                     "incoming_bitrate": incoming_bitrate,
                     "outgoing_kbitrate": outgoing_kbitrate,
                     "title": title,
-                    "metadata_updated": metadata_updated
+                    "metadata_updated": metadata_updated,
+                    "listenurl": listenurl
                     }
                     )
 

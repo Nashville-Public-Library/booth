@@ -92,19 +92,38 @@ async function mountpoints() {
     let mounts = responseJSON.mounts;
     for (mount of mounts) {
         
-        let containerElement = document.createElement("div")
-        containerElement.classList.add("border")
+        let containerElement = document.createElement("div");
+        containerElement.classList.add("border");
 
-        containerElement.appendChild(createTextNodeInsideDiv(`Name: ${mount['name']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Stream Start: ${mount['stream_start']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Listeners: ${mount['listeners']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Incoming Bitrate: ${mount['incoming_bitrate']}kbps`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Outgoing Bitrate: ${mount['outgoing_kbitrate']}kbps`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Title: ${mount['title']}`))
-        containerElement.appendChild(createTextNodeInsideDiv(`Metadata Updated: ${mount['metadata_updated']}`))
+        containerElement.appendChild(createTextNodeInsideDiv(`Name: ${mount['name']}`));
+        containerElement.appendChild(createTextNodeInsideDiv(`Stream Start: ${mount['stream_start']}`));
+        containerElement.appendChild(createTextNodeInsideDiv(`Listeners: ${mount['listeners']}`));
+        containerElement.appendChild(createTextNodeInsideDiv(`Incoming Bitrate: ${mount['incoming_bitrate']}kbps`));
+        containerElement.appendChild(createTextNodeInsideDiv(`Outgoing Bitrate: ${mount['outgoing_kbitrate']}kbps`));
+        containerElement.appendChild(createTextNodeInsideDiv(`Title: ${mount['title']}`));
+        containerElement.appendChild(createTextNodeInsideDiv(`Metadata Updated: ${mount['metadata_updated']}`));
 
-        mountpointElement.appendChild(containerElement)
+        mountpointElement.appendChild(containerElement);
     };
+}
+
+async function audioElements() {
+    const url = "/status/stream";
+    let response = await fetch(url, {method: "POST"});
+    let responseJSON = await response.json();
+
+    const AudioElement = document.getElementById('audio');
+    let mounts = responseJSON.mounts;
+    for (mount of mounts) {
+        let containerElement = document.createElement("div");
+        let audio = new Audio(mount['listenurl']);
+        audio.controls = true;
+        audio.preload = "none";
+        containerElement.appendChild(createTextNodeInsideDiv(mount['name']))
+        containerElement.appendChild(audio);
+
+        AudioElement.appendChild(containerElement)
+    }
 }
 
   async function schedule() {
@@ -235,6 +254,7 @@ function main() {
 }
 
 main()
-setInterval(main, 45000)
+setInterval(main, 120000)
+audioElements()
 schedule()
 setInterval(check_time, 60000)

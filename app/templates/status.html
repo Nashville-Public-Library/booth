@@ -7,12 +7,17 @@
 <div class="statsContainer">
 
     <div style="text-align: center;">Mountpoints
+        <button onclick="mountpoints()">Refresh</button>
         <div class="statsContainer border" id="mountpoints"></div>
+    </div>
+
+    <div  style="text-align: center;">Audio
+        <div style="text-align: left;" class="border" id="audio"></div>
     </div>
 
     <br>
     <div style="text-align: center;"> Ping
-
+        <button onclick="ping()">Refresh</button>
         <div style="text-align: left;" class="border" id="ping">
             <div id="icecast">Icecast</div>
             <div id="wpln">WPLN</div>
