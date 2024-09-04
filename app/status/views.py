@@ -4,7 +4,7 @@ from app import app
 from app.status.ping import ping, Icecast
 from app.auth import requires_auth
 
-@app.route('/status')
+@app.route('/status', methods=['GET'])
 @requires_auth
 def status():
         return render_template('status.html')
