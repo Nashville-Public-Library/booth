@@ -12,8 +12,18 @@ def status():
 @app.route('/status/ping', methods=['POST'])
 @requires_auth
 def ping_ip():
+    ping_list = {
+        "icecast": "npl.streamguys1.com",
+        "wpln": "12.247.152.50",
+        "SGmetadata": "204.93.152.147",
+        "metro": "170.190.43.1",
+        "npl": "library.nashville.org",
+        "vic": "www.volgistics.com",
+        "zeno": "fluoz.zeno.fm"
+        }
     host: dict = request.get_json()
     host = host.get("host")
+    host = ping_list.get(host)
     pingable = ping(host=host)
     return {"result": pingable}
 

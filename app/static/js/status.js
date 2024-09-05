@@ -5,39 +5,37 @@ async function fetchPost(fetchURL, fetchOptions=null) {
 }
 
 async function ping() {
-    let pingList = {
-        "icecast": "npl.streamguys1.com",
-        "wpln": "12.247.152.50",
-        "SGmetadata": "204.93.152.147",
-        "metro": "170.190.43.1",
-        "npl": "library.nashville.org",
-        "vic": "www.volgistics.com",
-        "zeno": "fluoz.zeno.fm"
-    }
-    document.getElementById("ping").style.color = "yellow"
-    for (const [title, host] of Object.entries(pingList)) {
-        document.getElementById(title).style.color = "yellow"
+    /* 
+    Get all the child elements of the ping element. Loop through them all, 
+    and send their id to the server. On the server, the ids are matched to the IP/hostnames 
+    we want to ping.
+    */
+    const pingElements = document.getElementById("ping").children;
+    for (el of pingElements){
+        el = el.id;
+        const pendingColor = document.getElementById("ping").style.color // so we only have to set the pending color once
+        document.getElementById(el).style.color = pendingColor;
         
         const url = "/status/ping";
         const options = {
             headers: {'Accept': 'application/json','Content-Type': 'application/json'},
             method: "POST", 
-            body: JSON.stringify({"host": host})
+            body: JSON.stringify({"host": el})
             }
         let response = await fetchPost(fetchURL=url, fetchOptions=options);
         
         result = response.result;
-        redGreen(responseIsTrue=result, id=title);
+        redGreen(responseIsTrue=result, id=el);
     }
     }
 
 function redGreen(responseIsTrue, id) {
-    element = document.getElementById(id)
+    element = document.getElementById(id);
     if (responseIsTrue) {
-        element.style.color = 'green'
+        element.style.color = 'green';
     }
     else {
-        element.style.color = 'red'
+        element.style.color = 'red';
     }
 }
 
