@@ -14,6 +14,8 @@ jobs:
     env:
       icecast_user: ${{ secrets.icecast_user }}
       icecast_pass: ${{ secrets.icecast_pass }}
+      VIC_user: ${{ secrets.VIC_USER }}
+      VIC_password: ${{ secrets.VIC_PASSWORD }}
       BF_pass: ${{ secrets.BF_pass }}
       IPInfoToken: ${{ secrets.IPINFOTOKEN }}
       

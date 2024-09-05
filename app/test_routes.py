@@ -32,17 +32,40 @@ def test_home_get_1(client: FlaskClient):
     resp = client.get('/')
     assert resp.status_code == 200
 
-def test_banner_get_1(client: FlaskClient):
+def test_boothBanner_get_1(client: FlaskClient):
     response = client.get('/booth/banner')
+    assert response.status_code == 200
+
+def test_boothSchedule_get_1(client: FlaskClient):
+    response = client.get('/booth/schedule')
+    assert response.status_code == 200
+
+def test_status_get_1(client: FlaskClient):
+    response = client.get('/status')
     assert response.status_code == 200
 
 '''
 GET non-GET routes
 '''
 
-def test_booth_data_1(client: FlaskClient):
+def test_boothData_1(client: FlaskClient):
     '''post only'''
     response = client.get('/booth/data')
+    assert response.status_code == 405
+
+def test_statusPing_1(client: FlaskClient):
+    '''post only'''
+    response = client.get('/status/ping')
+    assert response.status_code == 405
+
+def test_statusUserAgent_1(client: FlaskClient):
+    '''post only'''
+    response = client.get('/status/useragent')
+    assert response.status_code == 405
+
+def test_statusStream_1(client: FlaskClient):
+    '''post only'''
+    response = client.get('/status/stream')
     assert response.status_code == 405
 
 def test_fake_url_1(client: FlaskClient):
@@ -111,6 +134,14 @@ def test_stream_status_post_1(client: FlaskClient):
 
 def test_stream_status_post_2(client: FlaskClient):
     response = client.post('stream/status')
+    assert response.content_type == 'application/json'
+
+def test_statusStream_post_1(client: FlaskClient):
+    response = client.post('status/stream')
+    assert response.status_code == 200
+
+def test_statusStream_post_2(client: FlaskClient):
+    response = client.post('status/stream')
     assert response.content_type == 'application/json'
 
 def test_weather_post_1(client: FlaskClient):
