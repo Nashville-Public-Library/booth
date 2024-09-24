@@ -12,7 +12,7 @@
 
     {% block content %}
 
-
+    
     <div class="div1" style="margin-top: 15px;">
         <div class="booth_label">
             {{hour}}
@@ -61,13 +61,12 @@
         </div>
     </div>
 
-    {% if banner %}
-    <br>
-    <div class="banner" role="alert" id="banner">
-        {{banner}}
-    </div>
+    <div class="weatherAlert" id="weatherAlert" style="display: none;"></div>
 
-    {% endif %}
+    <br>
+
+    <div class="banner" role="alert" id="banner" style="display: none;"></div>
+
 
     <script src="{{url_for('static', filename='js/refresh.js')}}"></script>
     <script src="{{url_for('static', filename='js/fetchBooths.js')}}"></script>

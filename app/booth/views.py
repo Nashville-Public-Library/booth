@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import render_template, request, make_response
 
 from app import app
-from app.booth.utils import are_we_closed, check_banner, bannerColor, get_weather, is_holiday
+from app.booth.utils import are_we_closed, check_banner, bannerColor, get_weather, get_weather_alert, is_holiday
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 from app.ev import EV
@@ -15,7 +15,7 @@ def dot():
     if are_we_closed():
         return render_template('closed.html')
 
-    return render_template('booth.html', hour=hour1(), hour2=hour2(), banner=check_banner())
+    return render_template('booth.html', hour=hour1(), hour2=hour2())
 
 @app.route('/booth/schedule')
 @requires_auth
@@ -58,6 +58,11 @@ def banner_content():
 @app.route('/booth/weather', methods=['POST'])
 def weather():
     return get_weather()
+
+@app.route('/booth/weather/alert', methods=['POST'])
+def weather_alert():
+    return get_weather_alert()
+    
 
 @app.route('/booth/holiday', methods=['POST'])
 def holiday():

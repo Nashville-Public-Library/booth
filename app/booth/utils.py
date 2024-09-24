@@ -69,3 +69,15 @@ def get_weather():
     except:
         response = 'failed', 500
     return response
+
+def get_weather_alert():
+    url = "https://api.weather.gov/alerts/active/zone/TNC037"
+    header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
+    response = requests.get(url=url, headers=header)
+    try:
+        alert = response.json()
+        alert = alert["features"][0]["properties"]["headline"]
+        response = {"alert": alert}
+    except:
+        response = 'failed', 500
+    return response

@@ -66,7 +66,7 @@ header {
 }
 
 footer {
-    margin-top: 6%;
+    margin-top: 4.5%;
     margin-bottom: 1%;
 }
 
@@ -183,6 +183,13 @@ footer {
     margin-left: 10%;
     margin-right: 10%;
     padding: 1%;
+    overflow: auto;
+    font-size: 21pt;
+}
+
+.weatherAlert {
+    text-align: center;
+    color: #a52a2a;
     overflow: auto;
     font-size: 21pt;
 }
