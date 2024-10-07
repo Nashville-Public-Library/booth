@@ -79,5 +79,5 @@ def get_weather_alert():
         alert = alert["features"][0]["properties"]["headline"]
         response = {"alert": alert}
     except:
-        response = 'failed', 500
+        response = {"alert": None}
     return response
