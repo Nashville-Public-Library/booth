@@ -35,7 +35,8 @@ def stream():
          'mounts': icecast.mounts, 
          'listeners': icecast.listeners, 
          'serverStart': icecast.server_start, 
-         'outgoing_kbitrate': icecast.outgoing_kbitrate
+         'outgoing_kbitrate': icecast.outgoing_kbitrate,
+         'sources': icecast.sources
          }
 
 @app.route('/status/useragent', methods=['POST'])

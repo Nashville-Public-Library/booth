@@ -56,6 +56,7 @@ class Icecast:
         self.listeners = self.get_listeners()
         self.server_start = self.get_server_start()
         self.outgoing_kbitrate = self.get_outgoing_kbitrate()
+        self.sources = self.get_sources()
 
     def get_tree(self) -> ET.ElementTree:
         tree = requests.get(self.icecast_URL, auth=(self.ev.icecast_user, self.ev.icecast_pass))
@@ -134,6 +135,11 @@ class Icecast:
         tree = self.icecast_tree
         bitrate = tree.find('outgoing_kbitrate').text
         return bitrate
+    
+    def get_sources(self) -> str:
+        tree = self.icecast_tree
+        sources = tree.find("sources").text
+        return sources
 
     def user_agent_ip(self, mount) -> list:
         icecast_URL = f"http://npl.streamguys1.com:/admin/listclients?mount=/{mount}"

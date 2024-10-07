@@ -91,6 +91,7 @@ async function mountpoints() {
     document.getElementById('listenerCount').innerHTML = response.listeners;
     document.getElementById("serverStart").innerText = response.serverStart;
     document.getElementById('outgoing_kbitrate').innerText = `${response.outgoing_kbitrate}kbps`;
+    document.getElementById("sources").innerText = response.sources;
 
     const mountpointElement = document.getElementById('mountpoints');
     mountpointElement.innerHTML = ''
