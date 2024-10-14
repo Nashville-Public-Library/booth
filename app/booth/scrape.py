@@ -61,7 +61,7 @@ def scrape_VIC(date):
 
 def remove_extra_text(booth: str, shift: str, hour: str) -> str:
     text_to_remove = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
-                'AM Newspaper Reading', 'The Tennessean', '1 more needed', 'Account Staff', booth, hour)
+                'AM Newspaper Reading', 'The Tennessean', 'Nashville Ledger', 'Nashville Scene', '"', '1 more needed', 'Account Staff', booth, hour)
     for text in text_to_remove:
         shift = shift.replace(text, '')
     booth_return = shift.strip()
