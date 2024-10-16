@@ -41,8 +41,9 @@ def test_boothSchedule_get_1(client: FlaskClient):
     assert response.status_code == 200
 
 def test_status_get_1(client: FlaskClient):
+    '''reuiqres auth'''
     response = client.get('/status')
-    assert response.status_code == 200
+    assert response.status_code == 401
 
 '''
 GET non-GET routes
@@ -137,12 +138,14 @@ def test_stream_status_post_2(client: FlaskClient):
     assert response.content_type == 'application/json'
 
 def test_statusStream_post_1(client: FlaskClient):
+    '''requires auth'''
     response = client.post('status/stream')
-    assert response.status_code == 200
+    assert response.status_code == 401
 
 def test_statusStream_post_2(client: FlaskClient):
+    '''requires auth. if auth not present, returns plain text response'''
     response = client.post('status/stream')
-    assert response.content_type == 'application/json'
+    assert 'text/html' in response.content_type
 
 def test_weather_post_1(client: FlaskClient):
     response = client.post('/booth/weather')
