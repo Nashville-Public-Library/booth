@@ -24,6 +24,15 @@ def require_auth_if_outside_metro(mah):
         return mah()
     return decorated
 
+def require_auth(mah):
+    @wraps(mah)
+    def decorated():
+        auth = request.authorization
+        if not auth or not check_auth(username=auth.username, password=auth.password):
+            return authenticate()
+        return mah()
+    return decorated
+
 def check_auth(username: str, password: str):
     """This function is called to check if a username /
     password combination is valid.
