@@ -11,7 +11,7 @@ def authenticate():
     401,
     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
-def requires_auth(mah):
+def require_auth_if_outside_metro(mah):
     """A decorator function that wraps other routes to check authentication"""
     @wraps(mah)
     def decorated():

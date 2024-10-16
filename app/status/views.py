@@ -2,15 +2,15 @@ from flask import render_template, request
 
 from app import app
 from app.status.ping import ping, Icecast
-from app.auth import requires_auth
+from app.auth import require_auth_if_outside_metro
 
 @app.route('/status', methods=['GET'])
-@requires_auth
+@require_auth_if_outside_metro
 def status():
         return render_template('status.html')
 
 @app.route('/status/ping', methods=['POST'])
-@requires_auth
+@require_auth_if_outside_metro
 def ping_ip():
     ping_list = {
         "icecast": "npl.streamguys1.com",
@@ -28,7 +28,7 @@ def ping_ip():
     return {"result": pingable}
 
 @app.route('/status/stream', methods=['POST'])
-@requires_auth
+@require_auth_if_outside_metro
 def stream():
     icecast = Icecast()
     return {
@@ -40,7 +40,7 @@ def stream():
          }
 
 @app.route('/status/useragent', methods=['POST'])
-@requires_auth
+@require_auth_if_outside_metro
 def user_agent():
      icecast = Icecast()
      mount:dict = request.get_json()

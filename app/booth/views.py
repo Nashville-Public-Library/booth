@@ -7,10 +7,10 @@ from app.booth.utils import are_we_closed, check_banner, bannerColor, get_weathe
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 from app.ev import EV
-from app.auth import requires_auth
+from app.auth import require_auth_if_outside_metro
 
 @app.route('/booth')
-@requires_auth
+@require_auth_if_outside_metro
 def dot():
     if are_we_closed():
         return render_template('closed.html')
@@ -18,12 +18,12 @@ def dot():
     return render_template('booth.html', hour=hour1(), hour2=hour2())
 
 @app.route('/booth/schedule')
-@requires_auth
+@require_auth_if_outside_metro
 def schedule():
     return render_template('schedule.html')
 
 @app.route('/booth/data', methods=['POST'])
-@requires_auth
+@require_auth_if_outside_metro
 def booth_data():
     try:
         date: dict = request.get_json()
