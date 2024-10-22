@@ -72,7 +72,6 @@ class Icecast:
             mountpoints = tree.findall("source")
             for mount in mountpoints:
                 mount = mount.get("mount")
-                mount = mount.replace("/", "")
                 mount_list.append(mount)
         except:
             mount_list.append("cannot get mounts")

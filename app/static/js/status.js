@@ -61,19 +61,19 @@ function createTextNodeInsideDiv(element) {
 }
 
 async function userAgent() {
-    const url = "/status/stream";
+    const url = "/status/mounts";
     const options = { method: "POST" }
     let response = await fetchPost(fetchURL=url, fetchOptions=options);
 
     const userAgentElement = document.getElementById('userAgent');
     userAgentElement.innerHTML = ""
 
-    let mounts = response.mounts;
+    let mounts = response.mountList;
     for (mount of mounts) {
-        let outerElement = createTextNodeInsideDiv(mount['name']);
+        let outerElement = createTextNodeInsideDiv(mount);
         outerElement.classList.add("border")
 
-        const mountpointArray = await fetchUserAgent(mount['name']);
+        const mountpointArray = await fetchUserAgent(mount);
         mountpointArray.forEach(mountpoint => {
             let innerElement = createTextNodeInsideDiv(mountpoint)
             outerElement.appendChild(innerElement)
