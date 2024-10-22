@@ -36,19 +36,19 @@ def are_we_closed() -> bool:
     
     return False
 
-def check_banner():
+def check_banner() -> str:
     banner = open('message.txt', 'r')
     banner = banner.read()
         
     return banner
 
-def bannerColor():
+def bannerColor() -> str:
     color = open('bannerColor.txt', 'r')
     color = color.read()
     
     return color
 
-def get_weather():
+def get_weather() -> dict:
     url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
     header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
     request = requests.get(url=url, headers=header)
@@ -70,7 +70,7 @@ def get_weather():
         response = 'failed', 500
     return response
 
-def get_weather_alert():
+def get_weather_alert() -> dict:
     url = "https://api.weather.gov/alerts/active/zone/TNC037"
     header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
     response = requests.get(url=url, headers=header)

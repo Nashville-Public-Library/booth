@@ -33,7 +33,7 @@ def require_auth(mah):
         return mah()
     return decorated
 
-def check_auth(username: str, password: str):
+def check_auth(username: str, password: str) -> bool:
     """This function is called to check if a username /
     password combination is valid.
     """

@@ -10,7 +10,7 @@ from app.ev import EV
 
 geo_cache:dict = {}
 
-def ping(host):
+def ping(host) -> bool:
     param = '-n' if 'nt' in os.name.lower() else '-c'
     command = ['ping', param, '1', host]
     
@@ -27,7 +27,7 @@ def ping(host):
 
     return subprocess.call(command_str, shell=True) == 0
 
-def geolocation(ip: str):
+def geolocation(ip: str) -> str:
     '''
     the service we use to retreive this data rate limits us. since IP addresses
     tend not to change too much, we can safely cache the values. We're
