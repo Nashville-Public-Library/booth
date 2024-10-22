@@ -81,56 +81,19 @@ class Icecast:
         mount_list = []
         tree = self.icecast_tree
         mountpoints = tree.findall('source')
-        # Unfortunately not all mounts return the same data.
-        for mount in mountpoints:
-            try: 
-                stream_start = mount.find("stream_start").text
-            except:
-                stream_start = '-'
-
-            try: 
-                listeners = mount.find("listeners").text
-            except:
-                listeners = "-"
-
-            try:
-                incoming_bitrate = mount.find("incoming_bitrate").text
-                incoming_bitrate = round(int(incoming_bitrate)/1000, 0)
-            except:
-                incoming_bitrate = "-"
-
-            try:
-                outgoing_kbitrate = mount.find("outgoing_kbitrate").text
-            except:
-                outgoing_kbitrate = "-"
-
-            try: 
-                title = mount.find('title').text
-            except:
-                title = "-"
-
-            try:
-                metadata_updated = mount.find("metadata_updated").text
-            except:
-                metadata_updated = "-"
-
-            try:
-                listenurl = mount.find("listenurl").text
-            except:
-                listenurl = "-"
-            
+        for mount in mountpoints:         
+            # Not all mounts have all the same data. This is a little messy but it's (perhaps) the easiest way to do it   
             mount_list.append( 
                     {"name": mount.get('mount'),
-                    "stream_start": stream_start,
-                    "listeners": listeners,
-                    "incoming_bitrate": incoming_bitrate,
-                    "outgoing_kbitrate": outgoing_kbitrate,
-                    "title": title,
-                    "metadata_updated": metadata_updated,
-                    "listenurl": listenurl
+                    "stream_start":  mount.find("stream_start").text if mount.find("stream_start") != None else "-",
+                    "listeners": mount.find("listeners").text if mount.find("listeners") != None else "-",
+                    "incoming_bitrate": round(int(mount.find("incoming_bitrate").text)/1000, 0) if mount.find("incoming_bitrate") != None else "-",
+                    "outgoing_kbitrate": mount.find("outgoing_kbitrate").text if mount.find("outgoing_kbitrate") != None else "-",
+                    "title": mount.find("title").text if mount.find("title") != None else "-",
+                    "metadata_updated": mount.find("metadata_updated").text if mount.find("metadata_updated") != None else "-",
+                    "listenurl": mount.find("listenurl").text if mount.find("listenurl") != None else "-"
                     }
-                    )
-
+                )
 
         return mount_list
 
