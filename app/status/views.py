@@ -39,6 +39,12 @@ def stream():
          'sources': icecast.sources
          }
 
+@app.route('/status/mounts', methods=['POST'])
+@require_auth
+def mount_list():
+     icecast = Icecast()
+     return {'mountList': icecast.mount_list}   
+
 @app.route('/status/useragent', methods=['POST'])
 @require_auth
 def user_agent():

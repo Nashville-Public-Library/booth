@@ -52,6 +52,7 @@ class Icecast:
         self.icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
         self.ev = EV()
         self.icecast_tree = self.get_tree()
+        self.mount_list = self.get_mount_list()
         self.mounts = self.check_mounts()
         self.listeners = self.get_listeners()
         self.server_start = self.get_server_start()
@@ -63,6 +64,19 @@ class Icecast:
         tree = tree.text
         tree = ET.fromstring(tree)
         return tree
+    
+    def get_mount_list(self) -> list:
+        mount_list = []
+        tree = self.icecast_tree
+        try:
+            mountpoints = tree.findall("source")
+            for mount in mountpoints:
+                mount = mount.get("mount")
+                mount = mount.replace("/", "")
+                mount_list.append(mount)
+        except:
+            mount_list.append("cannot get mounts")
+        return mount_list
 
     def check_mounts(self) -> list:
         mount_list = []
