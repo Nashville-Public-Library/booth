@@ -14,7 +14,8 @@ from app.auth import require_auth_if_outside_metro
 def dot():
     if are_we_closed():
         return render_template('closed.html')
-
+    if datetime.now().month == 12:
+        return render_template('booth_xmas.html', hour=hour1(), hour2=hour2())
     return render_template('booth.html', hour=hour1(), hour2=hour2())
 
 @app.route('/booth/schedule')
