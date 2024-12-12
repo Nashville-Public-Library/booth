@@ -8,7 +8,7 @@ async function schedule(date=undefined) {
             'Content-Type': 'application/json'
           },
         method: "POST",
-        body: JSON.stringify({"date": date})
+        body: JSON.stringify(date)
     });
     let responseJSON = await response.json();
     document.getElementById("newspaper").innerText = `Newspaper: ${responseJSON.newspaper}`;
@@ -57,9 +57,11 @@ function check_time() {
 
 function submitCalendar() {
     let date = document.getElementById("calendar").value;
-    let dateSplit = date.split("-")
-    let sanatizedDate = `${dateSplit[1]}${dateSplit[2]}${dateSplit[0]}`
-    schedule(date=sanatizedDate)
+    let dateSplit = date.split("-");
+    let day = `${dateSplit[2]}`;
+    let month = `${dateSplit[1]}`;
+    let year = `${dateSplit[0]}`;
+    schedule(date={"day": day, "month": month, "year": year});
 }
 submitCalendar()
 setInterval(check_time, 60000)

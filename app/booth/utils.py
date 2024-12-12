@@ -16,6 +16,12 @@ def is_weekend() -> bool:
     
     if current_day in weekend:
         return True
+
+def date_is_weekend(date: datetime) -> bool:
+    day = date.strftime("%a")
+    weekend = ['Sat', 'Sun']
+    if day in weekend:
+        return True
     
 def is_outside_business_hours() -> bool:
     current_hour = datetime.now().strftime('%H')

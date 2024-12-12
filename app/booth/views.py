@@ -27,10 +27,10 @@ def schedule():
 @require_auth_if_outside_metro
 def booth_data():
     try:
-        date: dict = request.get_json()
-        date = date.get('date') # date sent from front end
+        json: dict = request.get_json() 
+        date = datetime(day=int(json.get("day")), month=int(json.get("month")), year=int(json.get("year")))
     except:
-        date = datetime.now().strftime('%m%d%Y') # today
+        date = datetime.now() # today
 
     response = make_response(get_scrape_and_filter(date=date))
     return response

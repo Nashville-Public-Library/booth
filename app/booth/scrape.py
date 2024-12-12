@@ -14,7 +14,7 @@ from webdriver_manager.core.utils import ChromeType
 
 from app.booth.hours import hour1, hour2
 from app.ev import EV
-from app.booth.utils import is_weekend
+from app.booth.utils import date_is_weekend
 
 
 def scrape_VIC(date):
@@ -38,6 +38,7 @@ def scrape_VIC(date):
     else:
         driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
 
+    date = date.strftime('%m%d%Y')
     driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
 
     driver.implicitly_wait(5)
@@ -91,7 +92,7 @@ def get_scrape_and_filter(date) -> dict:
     }
 
     # no need to run this function on weekends
-    if is_weekend():
+    if date_is_weekend(date=date):
         return schedule
 
     nine = "9:00am - 10:00am"
