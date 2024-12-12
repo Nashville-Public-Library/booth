@@ -1,5 +1,6 @@
 import xml.etree.ElementTree as ET
 import os
+import re
 import subprocess
 import time
 
@@ -9,6 +10,14 @@ import requests
 from app.ev import EV
 
 geo_cache:dict = {}
+
+def get_request(url: str):
+    if not re.search('[a-zA-Z]', url): # if string does not contain letters (not a domain name)
+        return
+    url = "http://" + url
+    response = requests.get(url=url)
+    if response.status_code == 200:
+        return True
 
 def ping(host) -> bool:
     param = '-n' if 'nt' in os.name.lower() else '-c'
@@ -25,7 +34,11 @@ def ping(host) -> bool:
 
     time.sleep(0.5)
 
-    return subprocess.call(command_str, shell=True) == 0
+    if subprocess.call(command_str, shell=True) == 0:
+        return True
+    # some servers don't allow pings. if we have a domain name, try to make a regular GET request instead
+    if get_request(url=host):
+        return True
 
 def geolocation(ip: str) -> str:
     '''
