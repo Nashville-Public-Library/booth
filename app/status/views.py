@@ -18,6 +18,7 @@ def ping_ip():
         "SGmetadata": "204.93.152.147",
         "metro": "170.190.43.1",
         "npl": "library.nashville.org",
+        "pod": "assets.library.nashville.org",
         "vic": "www.volgistics.com",
         "zeno": "fluoz.zeno.fm"
         }
