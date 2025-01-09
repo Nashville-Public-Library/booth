@@ -6,7 +6,7 @@ function check_time() {
     // if the current minute matches one of the minutes below, refresh the page
     const current_time = new Date();
     let minute = current_time.getMinutes();
-    const updateTimes = [0, 15, 30, 45];
+    const updateTimes = [0, 30];
     if (updateTimes.includes(minute)) {
         refresh_page();
     }
