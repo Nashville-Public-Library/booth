@@ -246,7 +246,7 @@ function meterButton() {
 function check_time() {
     const current_time = new Date()
     var minute = current_time.getMinutes()
-    const updateTimes = [0, 15, 30, 45];
+    const updateTimes = [0, 20, 40];
     if (updateTimes.includes(minute)) {
         schedule();
     }
