@@ -26,7 +26,7 @@ async function fetchBooths(count=0) {
         console.log("responseJSON next line")
         console.log(responseJSON)
         // if all three current hour booths are closed, that could indicate a problem fetching from the server. fetch again to be sure
-        const allResponses = [responseJSON[currentHour]?.booth1, responseJSON[currentHour]?.booth2, responseJSON[currentHour]?.booth3];
+        const allResponses = [responseJSON[currentHour].booth1, responseJSON[currentHour].booth2, responseJSON[currentHour].booth3];
         const allClosed = allResponses.every(item => item === "closed");
         console.log("allClosed " + allClosed)
         if (allClosed) {
