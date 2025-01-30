@@ -41,7 +41,7 @@ def scrape_VIC(date):
     date = date.strftime('%m%d%Y')
     driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
 
-    driver.implicitly_wait(5)
+    driver.implicitly_wait(10)
 
     email = driver.find_element(by=By.NAME, value="email")
     password = driver.find_element(by=By.NAME, value="password")
@@ -54,7 +54,7 @@ def scrape_VIC(date):
 
     # now we're logged in
 
-    driver.implicitly_wait(10)
+    driver.implicitly_wait(15)
 
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
 
