@@ -2,7 +2,7 @@
 
 ![tests](https://github.com/Nashville-Public-Library/booth/actions/workflows/main.yml/badge.svg)
 [![GitHub issues](https://img.shields.io/github/issues/Nashville-Public-Library/booth.png)](https://github.com/Nashville-Public-Library/booth/issues)
-[![last-commit](https://img.shields.io/github/last-commit/Nashville-Public-Library/booth)](https://github.com/Nashville-Public-Library/booth/commits/master)
+[![last-commit](https://img.shields.io/github/last-commit/Nashville-Public-Library/booth)](https://github.com/Nashville-Public-Library/booth/commits/main)
 
 
 [api.nashvilletalkinglibrary.com](https://api.nashvilletalkinglibrary.com)
