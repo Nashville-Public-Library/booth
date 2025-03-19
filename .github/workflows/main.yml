@@ -19,7 +19,6 @@ jobs:
       BF_pass: ${{ secrets.BF_pass }}
       IPInfoToken: ${{ secrets.IPINFOTOKEN }}
       
-
     steps:
 
     - name: prep action  
@@ -28,7 +27,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: "3.10"
+        python-version: "3.12"
 
     - name: Install Dependencies
       run: pip install -r requirements.txt
@@ -37,27 +36,56 @@ jobs:
       run: pytest
 
   deploy:
-    needs: test
     runs-on: ubuntu-latest
+
     steps:
-      - name: prep action  
-        uses: actions/checkout@v4
+    - name: Checkout code
+      uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.10"
+    - name: Set up SSH key
+      run: |
+        mkdir -p ~/.ssh
+        echo "${{ secrets.EC2_SSH_KEY }}" > ~/.ssh/ntl_web_app.pem
+        chmod 600 ~/.ssh/ntl_web_app.pem
 
-      - name: Generate deployment package
-        run: zip -r deploy.zip . -x "*.git*" "venv/*" ".pytest_cache/*" "__pycache__/*"
+    - name: Add EC2 to known hosts
+      run: |
+        ssh-keyscan -H 3.129.4.158 >> ~/.ssh/ntl_web_app.pem
 
-      - name: Deploy to AWS
-        uses: einaregilsson/beanstalk-deploy@v21
-        with:
-          aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
-          aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
-          application_name: ntlbooth
-          environment_name: Ntlbooth-env
-          version_label: ${{ github.sha }}
-          region: us-east-2
-          deployment_package: deploy.zip
+    - name: Deploy to EC2
+      run: |
+        ssh -i ~/.ssh/ntl_web_app.pem ubuntu@3.129.4.158 << 'EOF'
+          ls -l
+          # git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git
+          # cd pointlessapi
+          # Publish
+    
+          # Restart the service
+          # sudo systemctl restart
+        EOF
+
+  # deploy:
+  #   needs: test
+  #   runs-on: ubuntu-latest
+  #   steps:
+  #     - name: prep action  
+  #       uses: actions/checkout@v4
+
+  #     - name: Set up Python
+  #       uses: actions/setup-python@v5
+  #       with:
+  #         python-version: "3.10"
+
+  #     - name: Generate deployment package
+  #       run: zip -r deploy.zip . -x "*.git*" "venv/*" ".pytest_cache/*" "__pycache__/*"
+
+  #     - name: Deploy to AWS
+  #       uses: einaregilsson/beanstalk-deploy@v21
+  #       with:
+  #         aws_access_key: ${{ secrets.AWS_ACCESS_KEY_ID }}
+  #         aws_secret_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+  #         application_name: ntlbooth
+  #         environment_name: Ntlbooth-env
+  #         version_label: ${{ github.sha }}
+  #         region: us-east-2
+  #         deployment_package: deploy.zip
