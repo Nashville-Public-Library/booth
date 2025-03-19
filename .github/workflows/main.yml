@@ -55,16 +55,16 @@ jobs:
 
     - name: Deploy to EC2
       run: |
-        ssh -i ~/.ssh/ntl_web_app.pem ubuntu@3.129.4.158 << 'EOF'
-          cd ~
-          ls -la
-          # git -C pointlessapi pull || git clone https://github.com/weddleben/pointlessapi.git
-          # cd pointlessapi
-          # Publish
-    
-          # Restart the service
-          # sudo systemctl restart
+        ssh -o StrictHostKeyChecking=no -i ~/.ssh/ntl_web_app.pem ubuntu@3.129.4.158 << 'EOF'
+          cd /home/booth
+          git pull origin main
+          
+          source /home/booth/venv/bin/activate
+          pip install -r requirements.txt
+
+          sudo systemctl restart ntl_web_app
         EOF
+
 
   # deploy:
   #   needs: test
