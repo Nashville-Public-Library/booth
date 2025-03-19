@@ -8,7 +8,7 @@ from datetime import datetime
 
 from selenium import webdriver
 from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service as ChromiumService
+from selenium.webdriver.chrome.service import Service
 from webdriver_manager.chrome import ChromeDriverManager
 from webdriver_manager.core.utils import ChromeType
 
@@ -36,7 +36,8 @@ def scrape_VIC(date):
     if os_name == 'nt':
         driver = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
     else:
-        driver = webdriver.Chrome(ChromeDriverManager().install(), options=chrome_options)
+        service = Service("/usr/bin/chromedriver")
+        driver = webdriver.Chrome(service=service, options=chrome_options)
 
     date = date.strftime('%m%d%Y')
     driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
