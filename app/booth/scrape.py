@@ -9,8 +9,6 @@ from datetime import datetime
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.service import Service
-from webdriver_manager.chrome import ChromeDriverManager
-from webdriver_manager.core.utils import ChromeType
 
 from app.booth.hours import hour1, hour2
 from app.ev import EV
@@ -25,13 +23,6 @@ def scrape_VIC(date):
     chrome_options.add_argument('--headless')
     chrome_options.add_argument('--disable-gpu')
 
-    '''
-    need to declare a specific version here. if you leave this blank, 
-    it will automatically use the latest version. This caused an issues.
-    The newest version of the driver only supported the newest version of the browser,
-    but that version of the browser was in beta only. Therefore, our 'Yum Install' command
-    on Linux wouldn't download it. So, for now, just use a recent known working version.
-    '''
     os_name = os.name
     if os_name == 'nt':
         driver = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
