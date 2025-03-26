@@ -249,6 +249,7 @@ function check_time() {
     const updateTimes = [0, 30];
     if (updateTimes.includes(minute)) {
         schedule();
+        ping();
     }
 }
 
@@ -256,11 +257,11 @@ function main() {
     mountpoints();
     userAgent();
     banner();
-    ping();
 }
 
 main()
 setInterval(main, 120000)
 audioElements()
 schedule()
+ping()
 setInterval(check_time, 60000)
