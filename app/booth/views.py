@@ -3,7 +3,7 @@ from datetime import datetime
 from flask import render_template, request, make_response
 
 from app import app
-from app.booth.utils import are_we_closed, check_banner, bannerColor, get_weather, get_weather_alert, is_holiday
+from app.booth.utils import are_we_closed, get_weather, get_weather_alert, is_holiday
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 from app.ev import EV
