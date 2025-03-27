@@ -8,6 +8,7 @@ from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 from app.ev import EV
 from app.auth import require_auth_if_outside_metro
+from app.sql import SQL
 
 @app.route('/booth')
 @require_auth_if_outside_metro
@@ -37,24 +38,25 @@ def booth_data():
 
 @app.route('/booth/banner', methods=['GET', 'POST'])
 def banner():
-    if request.method == 'POST':
-        password = request.form['password']
-        message = request.form['message']
-        BannerColor = request.form['bannerColor']
-        message = message.strip()
-        if password == EV().BF_pass:
-            with open('message.txt', 'w') as text:
-                text.write(message)
-            with open('bannerColor.txt', 'w') as color:
-                color.write(BannerColor)
-            return render_template('banner.html', emoji='&#128077;') # emoji = thumbs up
-        else:
-            return render_template('banner.html', emoji='&#128078;') # emoji thumbs down
-    return render_template('banner.html')
+    if request.method == "GET":
+        return render_template('banner.html')
+    
+    sql = SQL()
+    password = request.form['password']
+    message = request.form['message']
+    BannerColor = request.form['bannerColor']
+    message = message.strip()
+    if password == EV().BF_pass:
+        sql.write_message(message=message)
+        sql.write_color(color=BannerColor)
+        return render_template('banner.html', emoji='&#128077;') # emoji = thumbs up
+    else:
+        return render_template('banner.html', emoji='&#128078;') # emoji thumbs down
 
 @app.route('/booth/banner/content', methods=['POST'])
 def banner_content():
-    return {'banner': check_banner(), 'bannerColor': bannerColor()}
+    sql = SQL()
+    return {'banner': sql.read_message(), 'bannerColor': sql.read_color()}
 
 @app.route('/booth/weather', methods=['POST'])
 def weather():
