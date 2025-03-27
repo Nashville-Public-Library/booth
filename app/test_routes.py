@@ -1,5 +1,6 @@
+import os
+
 import pytest
-from unittest.mock import patch
 
 from app import app
 from app.sql import SQL
@@ -12,6 +13,11 @@ def client():
     app.testing = True
     client =  app.test_client()
     yield client
+    
+    try:
+        os.remove("banner.db")
+    except:
+        pass
     
 '''
 GET real GET routes
