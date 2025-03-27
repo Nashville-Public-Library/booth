@@ -2,6 +2,8 @@ import pytest
 from unittest.mock import patch
 
 from app import app
+from app.sql import SQL
+from app.ev import EV
 from flask.testing import FlaskClient
 
 
@@ -11,13 +13,6 @@ def client():
     client =  app.test_client()
     yield client
     
-    # one of the tests writes to the banner files. erase them.
-    with open('message.txt', 'w') as banner:
-        banner = banner.write('')
-
-    with open('bannerColor.txt', 'w') as banner:
-        banner = banner.write('')
-
 '''
 GET real GET routes
 '''
@@ -110,14 +105,13 @@ def test_banner_post_missing_data(client: FlaskClient):
     assert response.status_code == 400
 
 def test_banner_message(client: FlaskClient):
-    from app.booth.utils import check_banner
     message = "some message here"
     response = client.post('/booth/banner', data=
-                           {"password": "talk5874",
+                           {"password": EV().BF_pass,
                             "message": message,
                             "bannerColor": "something"
                             })
-    assert check_banner() == message
+    assert SQL().read_message() == message
 
 def test_weather_post_1(client: FlaskClient):
     response = client.post('/booth/weather')
