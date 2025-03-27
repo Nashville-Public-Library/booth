@@ -5,3 +5,5 @@ venv
 
 # too big
 chromedriver.exe
+
+banner.db
