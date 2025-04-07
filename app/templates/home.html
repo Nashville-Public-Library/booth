@@ -14,21 +14,35 @@
 
   <body>
 
-    <header>
-        {% block header %} YOU ARE IN THE WRONG PLACE {% endblock %}
-    </header>
-    <svg viewBox="0 0 1440 320" class="wave" preserveAspectRatio="none">
-        <path fill="black" d="M0,160L15,160C30,160,60,160,90,144C120,128,150,96,180,101.3C210,107,240,149,270,149.3C300,149,330,107,360,106.7C390,107,420,149,450,144C480,139,510,85,540,101.3C570,117,600,203,630,229.3C660,256,690,224,720,208C750,192,780,192,810,165.3C840,139,870,85,900,80C930,75,960,117,990,138.7C1020,160,1050,160,1080,144C1110,128,1140,96,1170,90.7C1200,85,1230,107,1260,122.7C1290,139,1320,149,1350,170.7C1380,192,1410,224,1425,240L1440,256L1440,0L1425,0C1410,0,1380,0,1350,0C1320,0,1290,0,1260,0C1230,0,1200,0,1170,0C1140,0,1110,0,1080,0C1050,0,1020,0,990,0C960,0,930,0,900,0C870,0,840,0,810,0C780,0,750,0,720,0C690,0,660,0,630,0C600,0,570,0,540,0C510,0,480,0,450,0C420,0,390,0,360,0C330,0,300,0,270,0C240,0,210,0,180,0C150,0,120,0,90,0C60,0,30,0,15,0L0,0Z"></path>
-    </svg>
-<div class="dateTimeWeather_container">
-    <h2 id="date" class="date"></h2>
+    <div class="anchor">
+        <div id="message" class="message"></div>
 
-    {% block refresh %}{% endblock %}
+        <hr>
 
-    <div class="timeWeather">
-        <h2 id="weather" style="float: left; margin-right: 5pt;"></h2>
-        <h2 id="time"></h2>
+        <div id="dayOfWeek" class="dayOfWeek"></div>
+        <div id="date" class="date"></div>
+
+        <div class="separatingDots">&#x2022; &#x2022; &#x2022; &#x2022;</div>
+        
+        <div id="time" class="time"></div>
+        <div id="weather" class="weather"></div>
+
+        <div class="separatingDots">&#x2022; &#x2022; &#x2022; &#x2022;</div>
+
+        <div style="font-size: 50pt;">On-Air</div>
+        <div id="nowPlaying" class="nowPlaying">Some Program</div>
+
+        <hr>
+
+        <div class="footerImages">
+            <img src="{{url_for('static', filename='img/NTL.svg')}}" class="footer_image_NTL" alt="NTL logo">
+            <img src="{{url_for('static', filename='img/NPL.svg')}}" class="footer_image_NPL" alt="NPL logo">
+        </div>
+        
+        <br>
+
     </div>
+
 
 </div>
 
@@ -39,12 +53,6 @@
 </div>
 {% endblock %}
 
-<footer id="footer">
-    <div style="text-align: center;">
-        <img src="{{url_for('static', filename='img/NTL.svg')}}" class="footer_image_NTL" alt="NTL logo">
-        <img src="{{url_for('static', filename='img/NPL.svg')}}" class="footer_image_NPL" alt="NPL logo">
-    </div>
-</footer>
 
 <script src="{{ url_for('static', filename='js/misc.js') }}"></script>
 

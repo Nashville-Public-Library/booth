@@ -1,56 +1,44 @@
 {% extends 'home.html' %}
 
-{% block header %} Who's in the booth? {% endblock %}
-
-{% block refresh %}
-<div class="refresh" id="refresh">REFRESHING THE SCHEDULE...JUST A MOMENT</div>
-<div class="nowPlayingContainer" id="nowPlayingContainer">
-    <h3 style="display: inline-block;">On the Air: </h3>
-    <h3 style="display: inline-block;" class="nowPlaying" id="nowPlaying"></h3>
-</div>
-{% endblock %}
-
     {% block content %}
 
-    
+    <div class="schedule">
+
     <div class="div1" style="margin-top: 15px;">
-        <div class="booth_label">
+        <div class="boothTime">
             {{hour}}
         </div>
     </div>
     
     <div class="div1">
-        <div class="div2">
-        <div class="booth_label">Booth 1</div>
+        <div class="booth_container">
+        <div >Booth 1</div>
         <b><div class="booth_data dot-elastic" id="Booth1_data"></div></b>
         </div>
 
-        <div class="div2">
+        <div class="booth_container">
         <div class="booth_label">Booth 2</div>
         <b><div class="booth_data dot-elastic" id="Booth2_data"></div></b>
         </div>
 
-        <div class="div2">
+        <div class="booth_container">
         <div class="booth_label">Booth 3</div>
         <b><div class="booth_data dot-elastic" id="Booth3_data"></div></b>
         </div>
     </div>
 
-    <hr style="width: 78%;">
-
-    <br>
 
     <div class="div1">
-        <div class="booth_label">{{hour2}}</div>
+        <div class="boothTime">{{hour2}}</div>
     </div>
 
     <div class="div1">
-        <div class="div2">
+        <div class="booth_container">
         <div class="booth_label">Booth 1</div>
         <b><div class="booth_data dot-elastic" id="Booth1_2_data"></div></b>
         </div>
 
-        <div class="div2">
+        <div class="booth_container">
         <div class="booth_label">Booth 2</div>
         <b><div class="booth_data dot-elastic" id="Booth2_2_data"></div></b>
         </div>
@@ -61,11 +49,8 @@
         </div>
     </div>
 
-    <div class="weatherAlert" id="weatherAlert" style="display: none;"></div>
+</div>
 
-    <br>
-
-    <div class="banner" role="alert" id="banner" style="display: none;"></div>
 
 
     <script src="{{url_for('static', filename='js/refresh.js')}}"></script>

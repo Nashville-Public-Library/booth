@@ -43,7 +43,7 @@ def banner():
     
     sql = SQL()
     password = request.form['password']
-    message = request.form['message']
+    message = request.form['bannerMessage']
     BannerColor = request.form['bannerColor']
     message = message.strip()
     if password == EV().BF_pass:
