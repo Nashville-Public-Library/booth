@@ -93,6 +93,10 @@ html, body {
     font-size: 16pt;
 }
 
+.onAir {
+    font-size: 50pt;
+}
+
 .nowPlaying {
     font-size: 16pt;
 }
@@ -225,7 +229,7 @@ hr {
 }
 
 /* for BrightSign */
-@media screen and (device-width:1920px) {
+@media screen and (device-width:1920px) and (hover: none){
 
     .booth_individual {
         width: 347pt;
