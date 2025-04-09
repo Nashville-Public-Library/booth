@@ -1,10 +1,8 @@
 {% extends 'home.html' %}
 
-{% block header %} Change Banner {% endblock %}
-
 {% block content %}
 
-<br>
+<div style="flex-grow: 1; margin-top: 150pt;">
 
 <div style="text-align: center">
     <form method="post" id="banner">
@@ -44,6 +42,8 @@ PLEASE SAVE YOUR FILE TO THE DESKTOP">
 <div style="font-size: 85pt; text-align: center;" id="emoji">{{ emoji|safe }}</div>
 <div class="bannerForgotPassword" id="success">
     you forgot the password</div>
+
+</div>
 
 <script src="{{url_for('static', filename='js/banner.js')}}"></script>
 
