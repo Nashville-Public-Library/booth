@@ -6,7 +6,7 @@ html, body {
 
 .container {
     display: flex;  
-    flex-wrap: wrap; 
+    /* flex-wrap: wrap;  */
     /* align-items: center;  */
     /* align-content: space-around; */
 }
@@ -165,9 +165,10 @@ hr {
 .statsContainer {
     text-align:left;
     display: flex;
+    flex-grow: 1;
     flex-wrap: wrap;
     gap: 30px;
-    flex-direction: row;
+    /* flex-direction: row; */
     justify-content:space-evenly;
     font-size: large;
 }
