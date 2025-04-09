@@ -7,13 +7,13 @@ html, body {
 .container {
     display: flex;  
     flex-wrap: wrap; 
-    align-items: center; 
-    align-content: space-around;
+    /* align-items: center;  */
+    /* align-content: space-around; */
 }
 
 .anchor {
     background-color: RGB(46,56,143);
-    float: left;
+    /* float: left; */
     color: white;
     text-align: center;
     width: 25%;
@@ -21,29 +21,53 @@ html, body {
 
 .home_header {
     flex-grow: 1;
-    justify-content: center;
+    /* justify-content: center; */
     text-align: center;
     font-size: 25pt;
     color: white;
 }
 
 .schedule {
+    flex-grow: 1;
     display: block;
+    text-align: center;
+    background-color: RGB(241, 101, 48);;
 }
 
 .booth_container {
     display: inline-block;
-    background-color: white;
     color: black;
-    border: red;
-    border-style: dotted;
-    border-radius: 2%;
-    /* width: 120pt; */
+    width: 100%;
 }
 
 .booth_individual {
     display: inline-block;
     text-align: center;
+    background-color: white;
+    width: 315pt;
+    height: 275pt;
+    margin-left: 4.5pt;
+    margin-right: 4.5pt;
+
+}
+
+.booth_label {
+    margin-top: 10pt;
+    font-size: 19pt;
+    font-weight: bold;
+}
+
+.booth_data {
+    font-size: 23pt;
+    font-weight: bold;
+}
+
+.volunteerPhoto {
+    height: 150px;
+    margin-top: 25pt;
+    margin-bottom: 25pt;
+    border-radius: 50%;
+    border: 2px solid RGB(241, 101, 48);
 }
 
 .message {
@@ -58,7 +82,7 @@ html, body {
 }
 
 .date {
-    font-size: 15pt;
+    font-size: 16pt;
 }
 
 .time {
@@ -66,11 +90,11 @@ html, body {
 }
 
 .weather {
-    font-size: 15pt;
+    font-size: 16pt;
 }
 
 .nowPlaying {
-    font-size: 15pt;
+    font-size: 16pt;
 }
 
 .separatingDots {
@@ -89,7 +113,8 @@ hr {
 .div1 {
     display: block;
     text-align: center;
-    margin-bottom: 38px;
+    margin-bottom: 10pt;
+    margin-top: 10pt;
 }
 
 .div2 {
@@ -101,11 +126,6 @@ hr {
     text-align: center;
     font-size: 24pt;
     color: white;
-}
-
-.booth_data {
-    font-size: 20pt;
-    margin-top: 20px;
 }
 
 .refresh {
@@ -177,7 +197,7 @@ hr {
 }
 
 /* for BrightSign */
-@media screen and (device-width:1920px) and (hover: none) {
+/* @media screen and (device-width:1920px) and (hover: none) {
 
     .booth_label {
         font-size: 31pt;
@@ -201,7 +221,7 @@ hr {
     .nowPlayingContainer {
         position: unset;
     }
-  }
+  } */
 
 .weatherAlert {
     text-align: center;

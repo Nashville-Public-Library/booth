@@ -54,7 +54,7 @@ async function fetchBooths(count=0) {
             booth3_2_display.innerText = responseJSON[nextHour].booth3;
         }
 
-        document.getElementById('refresh').remove()
+        // document.getElementById('refresh').remove()
 
         // wait until all elements are populated to italicize
         italicizeMe("Booth1_data")
