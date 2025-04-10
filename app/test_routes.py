@@ -95,7 +95,7 @@ def test_banner_post(client: FlaskClient):
     '''this is NOT testing whether the credentials are correct! only if the post request is formatted correctly'''
     response = client.post('/booth/banner', data=
                            {"password": "something",
-                            "message": "something",
+                            "bannerMessage": "something",
                             "bannerColor": "something",
                             })
     assert response.status_code == 200
@@ -114,7 +114,7 @@ def test_banner_message(client: FlaskClient):
     message = "some message here"
     response = client.post('/booth/banner', data=
                            {"password": EV().BF_pass,
-                            "message": message,
+                            "bannerMessage": message,
                             "bannerColor": "something"
                             })
     assert SQL().read_message() == message
