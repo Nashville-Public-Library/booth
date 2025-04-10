@@ -1,10 +1,10 @@
 {% extends 'home.html' %}
 
-{% block header %} Station Status {% endblock %}
-
 {% block content %}
 
 <div class="statsContainer">
+
+    <div style="padding-bottom: 10pt;"></div>
 
     <div style="text-align: center;">Mountpoints
         <button onclick="mountpoints()">Refresh</button>
@@ -18,7 +18,7 @@
     <br>
     <div style="text-align: center;"> Ping
         <button onclick="ping()">Refresh</button>
-        <div style="text-align: left; color: yellow;" class="border" id="ping">
+        <div style="text-align: left; color: yellow; background-color: white;" class="border" id="ping">
             <div id="icecast">Icecast</div>
             <div id="wpln">WPLN</div>
             <div id="SGmetadata">SGmetadata</div>
@@ -79,7 +79,7 @@
         <div class="border" style="text-align: left;" id="userAgent"></div>
     </div>
 
-</div>
+
 
 <br>
 <br>
@@ -103,6 +103,7 @@
     </div>
 </div>
 
+</div>
 
 
 <script src="{{ url_for('static', filename='js/status.js') }}"></script>

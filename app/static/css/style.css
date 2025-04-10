@@ -2,6 +2,7 @@ html, body {
     background-color: RGB(241, 101, 48);
     padding: 0%;
     margin: 0%;
+    font-family: sans-serif;
 }
 
 .container {
@@ -147,14 +148,14 @@ hr {
 }
 
 .footer_image_NPL {
-    height: 130px;
+    height: 145px;
     margin-right: 10pt;
     margin-left: 10pt;
 }
 
 .footer_image_NTL {
-    height: 140px;
-    margin-right: 10pt;
+    height: 160px;
+    margin-right: 20pt;
     margin-left: 10pt;
 }
 
@@ -169,12 +170,13 @@ hr {
 .statsContainer {
     text-align:left;
     display: flex;
+    justify-content:space-evenly;
     flex-grow: 1;
     flex-wrap: wrap;
     gap: 30px;
-    /* flex-direction: row; */
-    justify-content:space-evenly;
+    flex-direction: row;
     font-size: large;
+    color: white;
 }
 
 .border {
@@ -198,6 +200,7 @@ hr {
 }
 
 .schedule-fonts {
+    color: white;
     font-size: 17pt;
 }
 
