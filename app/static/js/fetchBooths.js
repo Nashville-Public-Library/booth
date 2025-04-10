@@ -147,4 +147,4 @@ async function fetchWeatherAlert() {
 
 fetchBanner()
 fetchWeatherAlert()
-// fetchBooths()
+fetchBooths()
