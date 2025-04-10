@@ -54,8 +54,6 @@ async function weather() {
         let responseJSON = await response.json();
 
         let temp = document.getElementById('weather');
-        let degree = '&deg';
-
         temp.innerHTML = `${responseJSON.temp}&deg`;
 } 
 weather()
@@ -104,8 +102,6 @@ async function fetchBanner() {
   let response = await fetch(url, { method: "POST" });
   let responseJSON = await response.json();
   if (responseJSON.banner) {
-  let bannerColor = responseJSON.bannerColor
-  bannerElement.style.borderColor = bannerColor
   bannerElement.innerHTML = responseJSON.banner
   bannerElement.style.display= "block"
   }
