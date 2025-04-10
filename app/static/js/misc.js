@@ -112,3 +112,4 @@ async function fetchBanner() {
 }
 
 fetchBanner()
+setInterval(fetchBanner, 1000) // 1 second
