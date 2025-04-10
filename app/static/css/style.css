@@ -107,6 +107,14 @@ html, body {
     padding-top: 10pt;
 }
 
+.weatherAlert {
+    margin-top: 14pt;
+    text-align: center;
+    color: white;
+    /* overflow: auto; */
+    font-size: 20.5pt;
+}
+
 hr {
     color: RGB(241, 101, 48);
     margin-top: 20pt;
@@ -214,13 +222,6 @@ hr {
     }
   } */
 
-.weatherAlert {
-    text-align: center;
-    color: #a52a2a;
-    overflow: auto;
-    font-size: 21pt;
-}
-
 .bannerForgotPassword {
     font-size: 20pt;
     text-align: center;
@@ -236,7 +237,7 @@ hr {
 
     .booth_individual {
         width: 347pt;
-        height: 350pt;
+        height: 327pt;
         margin-left: 4pt;
         margin-right: 4pt;
     }

@@ -77,10 +77,7 @@ async function fetchBooths(count=0) {
         booth1_2_display.innerText = sorry;
         booth2_2_display.innerText = sorry;
         booth3_2_display.innerText = sorry;
-
-        document.getElementById('refresh').remove()
     }
-    nowPlaying()
 }
 
 /*
@@ -98,29 +95,6 @@ function italicizeMe(x) {
     }
 }
 
-async function nowPlaying() {
-    let titleElement = document.getElementById('nowPlaying');
-    let notAvailable = "Program Name Not Available";
-    try {
-        const url = "/stream/status";
-        let response = await fetch(url, { method: "POST" });
-        let icecast = await response.json();
-        let nowPlaying = icecast.title;
-        if (nowPlaying.trim() == "") {
-            titleElement.innerText = notAvailable;
-            document.getElementById('nowPlayingContainer').style.display = 'block';
-        }
-        else {
-            titleElement.innerText = nowPlaying;
-            document.getElementById('nowPlayingContainer').style.display = 'block';
-        }
-    }
-    catch (whoops) {
-        titleElement.innerText = notAvailable;
-        document.getElementById('nowPlayingContainer').style.display = 'block';
-    }
-}
-
 async function fetchWeatherAlert() {
     let weatherAlertElement = document.getElementById("weatherAlert");
     const url = "/booth/weather/alert";
@@ -128,10 +102,14 @@ async function fetchWeatherAlert() {
     let responseJSON = await response.json();
     if (responseJSON.alert) {
     weatherAlertElement.innerHTML = responseJSON.alert
-    weatherAlertElement.style.display= "block"
+    }
+    else {
+        const backupURL = "/booth/weather";
+        let backupResponse = await fetch(backupURL, {method: "POST"});
+        let backupReponseJSON = await backupResponse.json();
+        weatherAlertElement.innerHTML = backupReponseJSON.forecast
     }
 }
 
-fetchBanner()
 fetchWeatherAlert()
-// fetchBooths()
+fetchBooths()
