@@ -108,4 +108,4 @@ async function fetchBanner() {
 }
 
 fetchBanner()
-setInterval(fetchBanner, 60000) // 1 minute
+setInterval(fetchBanner, 30000) // 30 seconds
