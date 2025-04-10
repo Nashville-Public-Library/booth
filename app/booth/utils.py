@@ -63,7 +63,7 @@ def get_weather() -> dict:
 
         temp = weather['properties']['periods'][0]['temperature']
 
-        forcast = weather['properties']['periods'][0]['shortForecast']
+        forecast = weather['properties']['periods'][0]['shortForecast']
 
         chance_of_rain = weather['properties']['periods'][0]['probabilityOfPrecipitation']['value']
 
@@ -71,7 +71,7 @@ def get_weather() -> dict:
         photo = photo.replace('medium', 'small')
         photo = photo.replace(',0', '') #seems to be an error with API...
 
-        response = {'temp': temp, 'photo': photo, 'forcast': forcast, 'chance_of_rain': chance_of_rain}
+        response = {'temp': temp, 'photo': photo, 'forecast': forecast, 'chance_of_rain': chance_of_rain}
     except:
         response = 'failed', 500
     return response
