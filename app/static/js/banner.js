@@ -26,7 +26,6 @@ async function bannerContent() {
     let response = await fetch(url, options)
     let responseJSON = await response.json()
 
-    const bannerColorElement = document.getElementById("bannerColor");
     const bannerMessageElement = document.getElementById("bannerMessage")
 
     bannerMessageElement.innerText = responseJSON.banner
