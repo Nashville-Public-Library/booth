@@ -1,10 +1,8 @@
 {% extends 'home.html' %}
 
-{% block header %} Change Banner {% endblock %}
-
 {% block content %}
 
-<br>
+<div style="flex-grow: 1; margin-top: 150pt;">
 
 <div style="text-align: center">
     <form method="post" id="banner">
@@ -23,14 +21,10 @@ PLEASE SAVE YOUR FILE TO THE DESKTOP">
                 Save to desktop
             </option>
         </select>
-        <br><br>
+        <br>
 
-        <label for="bannerColor">Border color
-            <input type="color" id="bannerColor" name="bannerColor">
-        </label>
-        
         <br><br>
-        <textarea id="message" name="message" style="width: 50%; height: 100px;"
+        <textarea id="bannerMessage" name="bannerMessage" style="width: 50%; height: 100px;"
             placeholder="your message here (or leave blank to erase existing message)"></textarea>
         <br><br>
         <input type="password" name="password" id="password" placeholder="password" style="text-align: start;">
@@ -44,6 +38,8 @@ PLEASE SAVE YOUR FILE TO THE DESKTOP">
 <div style="font-size: 85pt; text-align: center;" id="emoji">{{ emoji|safe }}</div>
 <div class="bannerForgotPassword" id="success">
     you forgot the password</div>
+
+</div>
 
 <script src="{{url_for('static', filename='js/banner.js')}}"></script>
 

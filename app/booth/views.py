@@ -43,12 +43,10 @@ def banner():
     
     sql = SQL()
     password = request.form['password']
-    message = request.form['message']
-    BannerColor = request.form['bannerColor']
+    message = request.form['bannerMessage']
     message = message.strip()
     if password == EV().BF_pass:
         sql.write_message(message=message)
-        sql.write_color(color=BannerColor)
         return render_template('banner.html', emoji='&#128077;') # emoji = thumbs up
     else:
         return render_template('banner.html', emoji='&#128078;') # emoji thumbs down

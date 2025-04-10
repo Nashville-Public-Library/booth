@@ -9,8 +9,10 @@ const days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", 
 let month = months[today.getMonth()];
 let day = days[today.getDay()];
 let dateNumber = today.getDate();
+let year = today.getFullYear();
 
-document.getElementById('date').innerHTML = day + " " + month + " " + dateNumber
+document.getElementById('dayOfWeek').innerHTML = day
+document.getElementById('date').innerHTML = month + " " + dateNumber + "," + " " + year
 }
 real_date()
 setInterval(real_date, 60000) // 1 minute
@@ -54,7 +56,7 @@ async function weather() {
         let temp = document.getElementById('weather');
         let degree = '&deg';
 
-        temp.innerHTML = `${responseJSON.temp}&deg | `;
+        temp.innerHTML = `${responseJSON.temp}&deg`;
 } 
 weather()
 setInterval(weather, 900000) // 15 minutes
@@ -72,3 +74,42 @@ async function holiday() {
         catch {'oh well'};
 } 
 holiday()
+
+async function nowPlaying() {
+  let titleElement = document.getElementById('nowPlaying');
+  let notAvailable = "Program Name Not Available";
+  try {
+      const url = "/stream/status";
+      let response = await fetch(url, { method: "POST" });
+      let icecast = await response.json();
+      let nowPlaying = icecast.title;
+      console.log(icecast.title)
+      if (nowPlaying.trim() == "") {
+          titleElement.innerText = notAvailable;
+      }
+      else {
+          titleElement.innerText = nowPlaying;
+
+      }
+  }
+  catch (whoops) {
+      titleElement.innerText = notAvailable;
+  }
+}
+nowPlaying()
+
+async function fetchBanner() {
+  let bannerElement = document.getElementById("message");
+  const url = "/booth/banner/content";
+  let response = await fetch(url, { method: "POST" });
+  let responseJSON = await response.json();
+  if (responseJSON.banner) {
+  let bannerColor = responseJSON.bannerColor
+  bannerElement.style.borderColor = bannerColor
+  bannerElement.innerHTML = responseJSON.banner
+  bannerElement.style.display= "block"
+  }
+}
+
+fetchBanner()
+setInterval(fetchBanner, 1000) // 1 second
