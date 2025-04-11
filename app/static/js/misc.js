@@ -101,10 +101,7 @@ async function fetchBanner() {
   const url = "/booth/banner/content";
   let response = await fetch(url, { method: "POST" });
   let responseJSON = await response.json();
-  if (responseJSON.banner) {
   bannerElement.innerHTML = responseJSON.banner
-  bannerElement.style.display= "block"
-  }
 }
 
 fetchBanner()
