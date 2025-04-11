@@ -153,22 +153,6 @@ async function audioElements() {
     document.getElementById("dots").style.display = 'none'
 }
 
-async function banner() {
-    const url = "/booth/banner/content";
-    const options = {method: "POST"}
-    let response = await fetchPost(fetchURL=url, fetchOptions=options);
-
-    const banner = response.banner
-    const bannerElement = document.getElementById("banner");
-    if (banner) {
-        bannerElement.innerText = banner
-    }
-    else {
-        bannerElement.innerText = 'none'
-    }
-
-}
-
  function meters (audioElement, meterElement) {
     var audio = audioElement;
     var meter = meterElement;
@@ -256,7 +240,6 @@ function check_time() {
 function main() {
     mountpoints();
     userAgent();
-    banner();
 }
 
 main()
