@@ -49,8 +49,12 @@ def scrape_VIC(date):
     driver.implicitly_wait(15)
 
     shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
+    ret_val: list = []
+    for shift in shifts:
+        ret_val.append(shift.text)
 
-    return shifts
+    driver.quit()
+    return ret_val
 
 def remove_extra_text(booth: str, shift: str, hour: str) -> str:
     text_to_remove = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
@@ -97,7 +101,6 @@ def get_scrape_and_filter(date) -> dict:
     
     shifts = scrape_VIC(date)
     for shift in shifts:
-        shift = shift.text
 
         if newspaper in shift:
             schedule["newspaper"].append(remove_extra_text(booth=newspaper, shift=shift, hour="9:00am - 11:00am"))
