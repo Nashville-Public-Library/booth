@@ -7,18 +7,77 @@
 
 [api.nashvilletalkinglibrary.com](https://api.nashvilletalkinglibrary.com)
 
- a simple web app to assist with TL booth schedule, and for other purposes...
+ a simple web app to assist with various backend TL things...
 
  ----
 
- ### .ebextensions
+## Server Config
 
- It SEEMS all EC2 instances default to a different time zone (It's UTC, i think). We're able to change our instance's timezone with a `.config` file. This is the `change_timezone.config` file in the `.ebextensions` folder.
+### Linux 
+Any flavor of Linux is fine. As of this writing, we're using Ubuntu.
+7GB of storage and a 2-3GB of RAM is plenty.
 
-### Testing
+### SSH
+It should be noted that for reasons not understood, ITS blocks the SSH ports for  the entire internet. You can only SSH to servers on the Metro network.
+Log in to AWS EC2, and from there you can launch a terminal in the browser. This is the only way to connect to the server from inside Metro.
+
+### Allow Traffic
+Go to the EC2 dashboard > Select your instance > Security Tab > Inbound Rules.
+
+Allow SSH (22), HTTP (80), and HTTPS (443). For all, allow from 0.0.0.0/0.
+
+Alternatively, you could do this when first launching the EC2 instance.
+
+### Requirements
+ - Python
+ ````bash
+ sudo apt install -y python3 python3-pip
+ ````
+ - Git (probably installed already. Just run `git` and if you get an error, run this:)
+ ````bash
+ sudo apt install -y git
+ ````
+ - Gunicorn
+ ````bash
+ pip install gunicorn
+````
+- Nginx
+````bash
+sudo apt install -y nginx
+````
+- Chrome
+
+    - Instructions to install Google Chrome browser
+
+- Chromedriver
+
+    - Instructions to install Chromedriver
+
+If you get errors when installing any of these, consult the internet (or ChatGPT, which is free to use).
+
+- Timezone
+
+Next, we need to change the timezone to Central Time. The command below will automatically adjust for Daylight Saving Time.
+````bash
+sudo timedatectl set-timezone America/Chicago
+````
+
+### Environment Variables
+Set in the systemctl config file
+
+### Nginx
+nginx stuff...use IP at first to get working, then domain name
+
+### Systemctl service
+set this up...
+
+### Certbot
+SSL Cert...
+
+## Testing
 Run `pytest` at the top level directory to run the basic tests.
 
-### Misc
+## Misc
 
 Don't forget to continually update your `requirement.txt` file as you go: 
 ````python
