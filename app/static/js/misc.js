@@ -81,7 +81,6 @@ async function nowPlaying() {
       let response = await fetch(url, { method: "POST" });
       let icecast = await response.json();
       let nowPlaying = icecast.title;
-      console.log(icecast.title)
       if (nowPlaying.trim() == "") {
           titleElement.innerText = notAvailable;
       }
