@@ -1,6 +1,7 @@
 from datetime import datetime
+import os
 
-from flask import render_template, request, make_response
+from flask import render_template, request, make_response, send_from_directory
 
 from app import app
 from app.booth.utils import are_we_closed, get_weather, get_weather_alert, is_holiday
@@ -35,6 +36,15 @@ def booth_data():
 
     response = make_response(get_scrape_and_filter(date=date))
     return response
+
+@app.route('/booth/volphoto', methods=["POST"])
+def photo():
+    json: dict = request.get_json() 
+    name: str = json.get("name")
+    exists: bool = os.path.exists(f"app/static/img/vol/{name}.jpg")
+    if exists:
+        return {"path": f"static/img/vol/{name}.jpg"}
+    return {"path": False}
 
 @app.route('/booth/banner', methods=['GET', 'POST'])
 def banner():

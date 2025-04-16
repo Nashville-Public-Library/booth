@@ -1,6 +1,5 @@
 // fetch booth data and populate elements
 async function fetchBooths(count=0) {
-    console.log("count " + count)
     let date = new Date();
     let currentHour = date.getHours();
     let nextHour = currentHour + 1;
@@ -59,6 +58,8 @@ async function fetchBooths(count=0) {
         italicizeMe("Booth1_2_data")
         italicizeMe("Booth2_2_data")
         italicizeMe("Booth3_2_data")
+
+        volPhoto()
     }
     catch (err) {
         // remove dot-elastic from all elements
@@ -88,6 +89,30 @@ function italicizeMe(x) {
     }
     catch {
         console.log('oh well')
+    }
+}
+
+async function volPhoto() {
+    let booth_individual = document.getElementsByClassName("booth_individual");
+    for (let boothElement of booth_individual) {
+        for (let booth of boothElement.children) {
+            if (booth.classList.contains("booth_data")) {
+                let name = booth.innerText;
+                let formattedName = name.replaceAll(" ", "") // remove whitespace
+                let response = await fetch("/booth/volphoto", {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      },
+                    method: "POST",
+                    body: JSON.stringify({"name": formattedName})
+                });
+                let responseJSON = await response.json();
+                if (responseJSON.path) {
+                    booth.previousElementSibling.src = responseJSON.path
+                }
+            }
+        }
     }
 }
 
