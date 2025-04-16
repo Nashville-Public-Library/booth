@@ -43,7 +43,7 @@ def photo():
     name: str = json.get("name")
     exists: bool = os.path.exists(f"app/static/img/vol/{name}.jpg")
     if exists:
-        return {"path": f"static/img/vol/{name}.jpg"}
+        return {"path": f"/static/img/vol/{name}.jpg"}
     return {"path": False}
 
 @app.route('/booth/banner', methods=['GET', 'POST'])
