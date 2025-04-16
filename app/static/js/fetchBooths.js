@@ -1,6 +1,5 @@
 // fetch booth data and populate elements
 async function fetchBooths(count=0) {
-    console.log("count " + count)
     let date = new Date();
     let currentHour = date.getHours();
     let nextHour = currentHour + 1;
@@ -19,16 +18,12 @@ async function fetchBooths(count=0) {
     const booth2_2_display = document.getElementById('Booth2_2_data');
     const booth3_2_display = document.getElementById('Booth3_2_data');
     try {
-        console.log("fetching...")
         const url = "/booth/data";
         var response = await fetch(url, { method: "POST" });
         var responseJSON = await response.json();
-        console.log("responseJSON next line")
-        console.log(responseJSON)
         // if all three current hour booths are closed, that could indicate a problem fetching from the server. fetch again to be sure
         const allResponses = [responseJSON[currentHour].booth1, responseJSON[currentHour].booth2, responseJSON[currentHour].booth3];
         const allClosed = allResponses.every(item => item === "closed");
-        console.log("allClosed " + allClosed)
         if (allClosed) {
             if (count < 3) {
             return fetchBooths(count=count+1)
@@ -63,6 +58,8 @@ async function fetchBooths(count=0) {
         italicizeMe("Booth1_2_data")
         italicizeMe("Booth2_2_data")
         italicizeMe("Booth3_2_data")
+
+        volPhoto()
     }
     catch (err) {
         // remove dot-elastic from all elements
@@ -92,6 +89,30 @@ function italicizeMe(x) {
     }
     catch {
         console.log('oh well')
+    }
+}
+
+async function volPhoto() {
+    let booth_individual = document.getElementsByClassName("booth_individual");
+    for (let boothElement of booth_individual) {
+        for (let booth of boothElement.children) {
+            if (booth.classList.contains("booth_data")) {
+                let name = booth.innerText;
+                let formattedName = name.replaceAll(" ", "") // remove whitespace
+                let response = await fetch("/booth/volphoto", {
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                      },
+                    method: "POST",
+                    body: JSON.stringify({"name": formattedName})
+                });
+                let responseJSON = await response.json();
+                if (responseJSON.path) {
+                    booth.previousElementSibling.src = responseJSON.path
+                }
+            }
+        }
     }
 }
 
