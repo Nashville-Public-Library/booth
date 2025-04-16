@@ -19,16 +19,12 @@ async function fetchBooths(count=0) {
     const booth2_2_display = document.getElementById('Booth2_2_data');
     const booth3_2_display = document.getElementById('Booth3_2_data');
     try {
-        console.log("fetching...")
         const url = "/booth/data";
         var response = await fetch(url, { method: "POST" });
         var responseJSON = await response.json();
-        console.log("responseJSON next line")
-        console.log(responseJSON)
         // if all three current hour booths are closed, that could indicate a problem fetching from the server. fetch again to be sure
         const allResponses = [responseJSON[currentHour].booth1, responseJSON[currentHour].booth2, responseJSON[currentHour].booth3];
         const allClosed = allResponses.every(item => item === "closed");
-        console.log("allClosed " + allClosed)
         if (allClosed) {
             if (count < 3) {
             return fetchBooths(count=count+1)
