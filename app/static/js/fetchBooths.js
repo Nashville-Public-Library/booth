@@ -98,7 +98,7 @@ async function volPhoto() {
         for (let booth of boothElement.children) {
             if (booth.classList.contains("booth_data")) {
                 let name = booth.innerText;
-                let formattedName = name.replaceAll(" ", "") // remove whitespace
+                let formattedName = name.replace(" ", "") // remove whitespace
                 let response = await fetch("/booth/volphoto", {
                     headers: {
                         'Accept': 'application/json',
