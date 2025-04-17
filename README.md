@@ -79,6 +79,9 @@ Run `pytest` at the top level directory to run the basic tests.
 
 ## Misc
 
+## Volunteer Photos
+Crop the photo to be a headshot and copy it to `static/img/vol/`. The file should be labelled the same way their name shows up in VIC, but remove the space between the first and last name. If the name in VIC is Steve Rogers, the photo should be `SteveRogers.jpg`. All photos must be a .JPG.
+
 Don't forget to continually update your `requirement.txt` file as you go: 
 ````python
 pip freeze > requirements.txt
