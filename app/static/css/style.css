@@ -232,6 +232,13 @@ hr {
     display: none;
 }
 
+.fourZeroFour {
+    flex-grow: 1; 
+    text-align: center; 
+    margin-top: 85pt; 
+    color: aliceblue;
+}
+
 /* for BrightSign */
 @media screen and (device-width:1920px) and (hover: none){
 

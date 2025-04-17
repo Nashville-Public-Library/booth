@@ -4,24 +4,26 @@
 
 {% block content %}
 
+<div class="fourZeroFour">
+<div>
 
-<div style="text-align: center;">
-
-    <img src="{{ url_for('static', filename='img/404.gif') }}" width="380" height="380" style="vertical-align: middle;">
+    <img src="{{ url_for('static', filename='img/404.gif') }}" width="380" height="380">
 
 </div>
 
 <br>
 
-<div style="text-align: left; margin-left: 5pt; margin-top: 0%; padding-top: 0%;">
+<div>
 
-    <h2 style="color: brown; display: inline-block;">
+    <h2>
         Yep, that's a 404 error.
     </h2>
 
-    <h2 style="display: inline-block;">
-        There's nothing to see here. Are you looking for <a href="{{url_for('dot')}}">Booth Finder</a>?
+    <h2>
+        There's nothing to see here. Are you looking for <a style="color: aliceblue;" href="/booth">Booth Finder</a>?
     </h2>
+
+</div>
 
 </div>
 
