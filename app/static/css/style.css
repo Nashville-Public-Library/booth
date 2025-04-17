@@ -263,23 +263,27 @@ hr {
     }
 
     .dayOfWeek {
-        font-size: 65pt;
+        font-size: 64pt;
     }
     
     .date {
-        font-size: 30pt;
+        font-size: 28pt;
     }
     
     .time {
-        font-size: 65pt;
+        font-size: 64.5pt;
     }
     
     .weather {
-        font-size: 30pt;
+        font-size: 28pt;
+    }
+
+    .onAir {
+        font-size: 64.5pt
     }
     
     .nowPlaying {
-        font-size: 30pt;
+        font-size: 28pt;
     }
 
     .boothTime {
@@ -306,10 +310,10 @@ hr {
     }
 
     .volunteerPhoto {
-        height: 200px;
-        width: 200px;
-        margin-top: 30pt;
-        margin-bottom: 30pt;
+        height: 220px;
+        width: 220px;
+        margin-top: 20pt;
+        margin-bottom: 20pt;
     }
     
 }
