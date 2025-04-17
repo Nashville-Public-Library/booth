@@ -1,7 +1,7 @@
 from datetime import datetime
 import os
 
-from flask import render_template, request, make_response, send_from_directory
+from flask import render_template, request, make_response
 
 from app import app
 from app.booth.utils import are_we_closed, get_weather, get_weather_alert, is_holiday
