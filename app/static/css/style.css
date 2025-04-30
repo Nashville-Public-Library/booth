@@ -254,7 +254,7 @@ hr {
     }
 
     .booth_data {
-        font-size: 27pt;
+        font-size: 26.6pt;
         margin-left: 0%;
         margin-right: 0%;
         padding-left: 0%;
@@ -317,10 +317,10 @@ hr {
     }
 
     .volunteerPhoto {
-        height: 220px;
-        width: 220px;
-        margin-top: 20pt;
-        margin-bottom: 20pt;
+        height: 225px;
+        width: 225px;
+        margin-top: 19pt;
+        margin-bottom: 19pt;
     }
     
 }
