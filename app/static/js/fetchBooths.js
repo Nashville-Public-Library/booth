@@ -128,7 +128,8 @@ async function fetchWeatherAlert() {
         const backupURL = "/booth/weather";
         let backupResponse = await fetch(backupURL, {method: "POST"});
         let backupReponseJSON = await backupResponse.json();
-        weatherAlertElement.innerHTML = backupReponseJSON.forecast
+        let fullWeather = `${backupReponseJSON.temp} | ${backupReponseJSON.forecast} | Chance of Rain: ${backupReponseJSON.chance_of_rain}%`;
+        weatherAlertElement.innerHTML = fullWeather;
     }
 }
 
