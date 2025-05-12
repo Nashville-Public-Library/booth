@@ -224,8 +224,10 @@ hr {
 
 .bannerForgotPassword {
     font-size: 20pt;
+    color: white;
     text-align: center;
-    background-color: rgb(196, 64, 64);
+    border: rgb(15, 131, 167);
+    border-style:dotted;
     width: max-content;
     margin: auto;
     padding: 1%;
