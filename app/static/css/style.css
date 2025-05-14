@@ -272,7 +272,7 @@ hr {
     }
 
     .dayOfWeek {
-        font-size: 64pt;
+        font-size: 62pt;
     }
     
     .date {
@@ -280,7 +280,7 @@ hr {
     }
     
     .time {
-        font-size: 64.5pt;
+        font-size: 62.5pt;
     }
     
     .weather {
@@ -288,7 +288,7 @@ hr {
     }
 
     .onAir {
-        font-size: 64.5pt
+        font-size: 62.5pt
     }
     
     .nowPlaying {
