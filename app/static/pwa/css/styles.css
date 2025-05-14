@@ -1,0 +1,67 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+  }
+  
+  nav {
+    background: #333;
+    color: white;
+    padding: 1em;
+    display: flex;
+    gap: 1em;
+  }
+
+.icon-link svg {
+  width: 32px;
+  height: 32px;
+  fill: #ffffff; 
+  vertical-align: middle;
+}
+
+  nav a {
+    color: unset;
+    text-decoration: none;    
+    margin-right: 15px;
+  }
+  
+  main {
+    padding: 1em;
+    min-height: calc(100vh - 120px);
+  }
+  
+  #player {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: #222;
+    color: white;
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-align: center;
+    font-size: large;
+  }
+
+  .scheduleLinks a {
+    display: block;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+.logo-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 28%;
+}
+  .NTL-logo {
+    width: 325px;
+    height: 325px;
+  }
+
+  @media screen and (device-width:1920px) and (hover: none) {
+    mah {
+      text-align: center; margin-top: 50%; font-size: 50pt;
+    }
+
+  }

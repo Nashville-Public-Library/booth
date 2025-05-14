@@ -10,5 +10,6 @@ app.url_map.strict_slashes = False
 
 from app.booth import views
 from app.misc import views
+from app.pwa import views
 from app.status import views
 from app.stream import views
