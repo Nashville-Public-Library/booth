@@ -49,8 +49,8 @@ const routes = {
   
 
   const button = document.getElementById('playPauseButton');
+  const audio = document.getElementById('audio');
   button.addEventListener('click', () => {
-    const audio = document.getElementById('audio');
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
@@ -70,7 +70,7 @@ const routes = {
   function updateMetadata() {
     if ('mediaSession' in navigator) {
   navigator.mediaSession.metadata = new MediaMetadata({
-    title: nowPlaying(),
+    title: 'Nashville Talking Library',
     artist: 'Nashville Talking Library',
     album: 'Nashville Talking Library',
     artwork: [
@@ -79,5 +79,17 @@ const routes = {
     ]
   });
 }
+  navigator.mediaSession.setActionHandler('play', () => audio.play());
+  navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+
+  // 3. Disable all seek / track‐change controls:
+  ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack', 'stop']
+    .forEach(action => {
+      try {
+        navigator.mediaSession.setActionHandler(action, null);
+      } catch (e) {
+        // Some browsers may throw if they don't support the action
+      }
+    });
 
   }
