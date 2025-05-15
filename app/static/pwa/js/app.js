@@ -51,7 +51,6 @@ const routes = {
   const button = document.getElementById('playPauseButton');
   button.addEventListener('click', () => {
     const audio = document.getElementById('audio');
-  const button = document.getElementById('playPauseButton');
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
