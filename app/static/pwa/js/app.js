@@ -47,3 +47,22 @@ const routes = {
   nowPlaying()
   setInterval(nowPlaying, 60000) // 1 minute
   
+
+  const button = document.getElementById('playPauseButton');
+  button.addEventListener('click', () => {
+    const audio = document.getElementById('audio');
+  const button = document.getElementById('playPauseButton');
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+    if (audio.paused) {
+      audio.play();
+      playIcon.style.display = 'none';
+      pauseIcon.style.display = 'block';
+      button.setAttribute('aria-label', 'Pause');
+    } else {
+      audio.pause();
+      playIcon.style.display = 'block';
+      pauseIcon.style.display = 'none';
+      button.setAttribute('aria-label', 'Play');
+    }
+  });

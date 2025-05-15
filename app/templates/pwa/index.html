@@ -41,12 +41,21 @@
 
   <main id="app">Loading...</main>
 
-  <footer id="player">
-    <div>
-      <div style="display: inline-block;">Now Playing: </div>
-      <div id="nowPlaying" style="display: inline-block; padding-bottom: 11px;"></div>
-      <audio controls preload="none" id="audio" src="/stream/livestream.mp3"></audio>
-    </div>
+  <footer>
+
+    <button id="playPauseButton" class="player" aria-label="Play">
+  <!-- Play Icon -->
+  <svg id="playIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="55" height="55">
+    <path d="M8 5v14l11-7z"/>
+  </svg>
+  
+  <!-- Pause Icon (hidden initially) -->
+  <svg id="pauseIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="white" width="55" height="55" style="display: none;">
+    <path d="M6 19h4V5H6zm8-14v14h4V5h-4z"/>
+  </svg>
+      <div id="nowPlaying" style="flex-grow: 4;"></div>
+</button>
+    <audio preload="none" id="audio" src="/stream/livestream.mp3"></audio>
   </footer>
 
   <script src="{{ url_for('static', filename='pwa/js/app.js') }}"></script>

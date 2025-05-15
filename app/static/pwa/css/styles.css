@@ -35,19 +35,19 @@ nav a {
     min-height: calc(100vh - 120px);
   }
   
-  #player {
+.player {
     position: fixed;
     bottom: 0;
     left: 0;
     right: 0;
     background: #222;
     color: white;
-    padding: 1em;
+    padding: 10px;
     display: flex;
-    justify-content: space-between;
+    vertical-align: baseline;
     align-items: center;
     text-align: center;
-    font-size: large;
+    font-size: 15pt;
   }
 
   .scheduleLinks a {
