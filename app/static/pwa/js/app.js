@@ -67,7 +67,7 @@ const routes = {
     }
   });
 
-  async function updateMetadata() {
+  function updateMetadata() {
     if ('mediaSession' in navigator) {
   navigator.mediaSession.metadata = new MediaMetadata({
     title: nowPlaying(),
