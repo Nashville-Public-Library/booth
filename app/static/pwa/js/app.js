@@ -58,7 +58,6 @@ const routes = {
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'block';
       button.setAttribute('aria-label', 'Pause');
-      updateMetadata()
     } else {
       audio.pause();
       playIcon.style.display = 'block';
@@ -67,30 +66,23 @@ const routes = {
     }
   });
 
-async function updateMetadata() {
+audio.addEventListener('play', async () => {
+  let nowPlayingTitle = await nowPlaying()
   if ('mediaSession' in navigator) {
-    const nowPlaying = await nowPlaying();
     navigator.mediaSession.metadata = new MediaMetadata({
-      title: nowPlaying,
+      title: nowPlayingTitle,
       artist: 'Nashville Talking Library',
-      album: 'Nashville Talking Library',
+      album:  'Live Stream',
       artwork: [
         { src: '/static/img/NTL_new-192.png', sizes: '192x192', type: 'image/png' },
         { src: '/static/img/NTL_new-512.png', sizes: '512x512', type: 'image/png' }
       ]
     });
+
+    // Only expose play/pause, disable seek
+    navigator.mediaSession.setActionHandler('play',  () => audio.play());
+    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+    ['seekbackward','seekforward','previoustrack','nexttrack','stop']
+      .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch {} });
   }
-  navigator.mediaSession.setActionHandler('play', () => audio.play());
-  navigator.mediaSession.setActionHandler('pause', () => audio.pause());
-
-  // 3. Disable all seek / track‐change controls:
-  ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack', 'stop']
-    .forEach(action => {
-      try {
-        navigator.mediaSession.setActionHandler(action, null);
-      } catch (e) {
-        // Some browsers may throw if they don't support the action
-      }
-    });
-
-}
+});
