@@ -3,26 +3,32 @@ body {
     font-family: sans-serif;
   }
   
-  nav {
+nav {
     background: #333;
     color: white;
-    padding: 1em;
+    padding-top: 10px;
+    padding-bottom: 10px;
     display: flex;
-    gap: 1em;
+    justify-content:space-evenly;
+  }
+
+nav a {
+    color: unset;
+    text-decoration: none;    
   }
 
 .icon-link svg {
-  width: 32px;
-  height: 32px;
+  width: 55px;
+  height: 55px;
   fill: #ffffff; 
   vertical-align: middle;
+  stroke: #333;
+  transition: stroke 0.5s ease;
 }
 
-  nav a {
-    color: unset;
-    text-decoration: none;    
-    margin-right: 15px;
-  }
+.icon-link:hover svg {
+  stroke: #0011a8;
+}
   
   main {
     padding: 1em;
@@ -55,13 +61,6 @@ body {
   margin-top: 28%;
 }
   .NTL-logo {
-    width: 325px;
-    height: 325px;
-  }
-
-  @media screen and (device-width:1920px) and (hover: none) {
-    mah {
-      text-align: center; margin-top: 50%; font-size: 50pt;
-    }
-
+    width: 300px;
+    height: 300px;
   }
