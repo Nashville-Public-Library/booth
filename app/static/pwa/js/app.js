@@ -56,14 +56,14 @@ const routes = {
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
-      audio.play();
       playIcon.style.display = 'none';
+      audio.play();
       pauseIcon.style.display = 'block';
       button.setAttribute('aria-label', 'Pause');
     } else {
+      pauseIcon.style.display = 'none';
       audio.pause();
       playIcon.style.display = 'block';
-      pauseIcon.style.display = 'none';
       button.setAttribute('aria-label', 'Play');
     }
   });
