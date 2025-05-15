@@ -34,14 +34,16 @@ const routes = {
         let nowPlaying = icecast.title;
         if (nowPlaying.trim() == "") {
             titleElement.innerText = notAvailable;
+            return notAvailable;
         }
         else {
             titleElement.innerText = nowPlaying;
-  
+            return nowPlaying;
         }
     }
     catch (whoops) {
         titleElement.innerText = notAvailable;
+        return notAvailable;
     }
   }
   nowPlaying()
