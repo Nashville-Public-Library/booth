@@ -57,13 +57,13 @@ const routes = {
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
       playIcon.style.display = 'none';
-      audio.play();
       pauseIcon.style.display = 'block';
+      audio.play();
       button.setAttribute('aria-label', 'Pause');
     } else {
       pauseIcon.style.display = 'none';
-      audio.pause();
       playIcon.style.display = 'block';
+      audio.pause();
       button.setAttribute('aria-label', 'Play');
     }
   });
