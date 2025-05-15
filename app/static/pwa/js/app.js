@@ -59,6 +59,7 @@ const routes = {
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'block';
       button.setAttribute('aria-label', 'Pause');
+      updateMetadata()
     } else {
       audio.pause();
       playIcon.style.display = 'block';
@@ -66,3 +67,18 @@ const routes = {
       button.setAttribute('aria-label', 'Play');
     }
   });
+
+  async function updateMetadata() {
+    if ('mediaSession' in navigator) {
+  navigator.mediaSession.metadata = new MediaMetadata({
+    title: nowPlaying(),
+    artist: 'Nashville Talking Library',
+    album: 'Nashville Talking Library',
+    artwork: [
+      { src: '/static/img/icon-192.png',   sizes: '192x192',   type: 'image/png' },
+      { src: '/static/img/icon-512.png',   sizes: '512x512',   type: 'image/png' }
+    ]
+  });
+}
+
+  }
