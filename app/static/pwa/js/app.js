@@ -58,7 +58,6 @@ const routes = {
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'block';
       button.setAttribute('aria-label', 'Pause');
-      updateMetadata()
     } else {
       audio.pause();
       playIcon.style.display = 'block';
@@ -67,29 +66,22 @@ const routes = {
     }
   });
 
-  function updateMetadata() {
-    if ('mediaSession' in navigator) {
-  navigator.mediaSession.metadata = new MediaMetadata({
-    title: 'Nashville Talking Library',
-    artist: 'Nashville Talking Library',
-    album: 'Nashville Talking Library',
-    artwork: [
-      { src: '/static/img/icon-192.png',   sizes: '192x192',   type: 'image/png' },
-      { src: '/static/img/icon-512.png',   sizes: '512x512',   type: 'image/png' }
-    ]
-  });
-}
-  navigator.mediaSession.setActionHandler('play', () => audio.play());
-  navigator.mediaSession.setActionHandler('pause', () => audio.pause());
-
-  // 3. Disable all seek / track‐change controls:
-  ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack', 'stop']
-    .forEach(action => {
-      try {
-        navigator.mediaSession.setActionHandler(action, null);
-      } catch (e) {
-        // Some browsers may throw if they don't support the action
-      }
+audio.addEventListener('play', () => {
+  if ('mediaSession' in navigator) {
+    navigator.mediaSession.metadata = new MediaMetadata({
+      title: nowPlaying(),
+      artist: 'Nashville Talking Library',
+      album:  'Live Stream',
+      artwork: [
+        { src: '/static/img/NTL_new-192.png', sizes: '192x192', type: 'image/png' },
+        { src: '/static/img/NTL_new-512.png', sizes: '512x512', type: 'image/png' }
+      ]
     });
 
+    // Only expose play/pause, disable seek
+    navigator.mediaSession.setActionHandler('play',  () => audio.play());
+    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+    ['seekbackward','seekforward','previoustrack','nexttrack','stop']
+      .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch {} });
   }
+});
