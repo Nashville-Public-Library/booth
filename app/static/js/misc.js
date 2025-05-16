@@ -54,7 +54,7 @@ async function weather() {
         let responseJSON = await response.json();
 
         let temp = document.getElementById('weather');
-        temp.innerHTML = `${responseJSON.temp}&deg`;
+        temp.innerHTML = `${responseJSON.temp}&deg;`;
 } 
 weather()
 setInterval(weather, 900000) // 15 minutes
