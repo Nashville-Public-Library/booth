@@ -51,8 +51,8 @@ const routes = {
   
 
   const button = document.getElementById('playPauseButton');
-  const audio = document.getElementById('audio');
   button.addEventListener('click', () => {
+  const audio = document.getElementById('audio');
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
@@ -69,6 +69,7 @@ const routes = {
   });
 
 audio.addEventListener('play', async () => {
+  const audio = document.getElementById('audio');
   let nowPlayingTitle = await nowPlaying()
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
@@ -80,6 +81,7 @@ audio.addEventListener('play', async () => {
         { src: '/static/img/NTL_new-512.png', sizes: '512x512', type: 'image/png' }
       ]
     });
+    console.log(navigator.mediaSession.metadata)
 
     // Only expose play/pause, disable seek
     navigator.mediaSession.setActionHandler('play',  () => audio.play());
