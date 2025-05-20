@@ -28,21 +28,24 @@ const routes = {
     let titleElement = document.getElementById('nowPlaying');
     let notAvailable = "Program Name Not Available";
     try {
-        const url = "https://api.nashvilletalkinglibrary.com/stream/status";
+        const url = "/stream/status";
         let response = await fetch(url, { method: "POST" });
         let icecast = await response.json();
         let nowPlaying = icecast.title;
         if (nowPlaying.trim() == "") {
             titleElement.innerText = notAvailable;
+            updatePlayerMetadata(notAvailable);
             return notAvailable;
         }
         else {
             titleElement.innerText = nowPlaying;
+            updatePlayerMetadata(nowPlaying);
             return nowPlaying;
         }
     }
     catch (whoops) {
         titleElement.innerText = notAvailable;
+        updatePlayerMetadata(notAvailable);
         return notAvailable;
     }
   }
@@ -56,6 +59,7 @@ const routes = {
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
+      nowPlaying()
       audio.play();
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'block';
@@ -68,25 +72,22 @@ const routes = {
     }
   });
 
-audio.addEventListener('play', async () => {
+function updatePlayerMetadata(nowPlayingTitle) {
   const audio = document.getElementById('audio');
-  let nowPlayingTitle = await nowPlaying()
   if ('mediaSession' in navigator) {
     navigator.mediaSession.metadata = new MediaMetadata({
       title: nowPlayingTitle,
       artist: 'Nashville Talking Library',
-      album:  'Live Stream',
+      album: 'Live Stream',
       artwork: [
         { src: '/static/img/NTL_new-192.png', sizes: '192x192', type: 'image/png' },
         { src: '/static/img/NTL_new-512.png', sizes: '512x512', type: 'image/png' }
       ]
     });
-    console.log(navigator.mediaSession.metadata)
-
     // Only expose play/pause, disable seek
-    navigator.mediaSession.setActionHandler('play',  () => audio.play());
+    navigator.mediaSession.setActionHandler('play', () => audio.play());
     navigator.mediaSession.setActionHandler('pause', () => audio.pause());
-    ['seekbackward','seekforward','previoustrack','nexttrack','stop']
-      .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch {} });
+    ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack', 'stop']
+      .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch { } });
   }
-});
+}
