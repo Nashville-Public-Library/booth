@@ -39,6 +39,42 @@ function redGreen(responseIsTrue, id) {
     }
 }
 
+async function heartbeat() {
+    const url = "/status/heartbeat/listdevices"
+    const options = {
+            headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+            method: "POST", 
+            }
+    let devices = await fetchPost(url, options);
+    const heartbeartElement = document.getElementById("heartbeat");
+    heartbeartElement.innerHTML = "";
+    for (const device of devices) {
+        let hostname = device.hostname;
+        let ip_address = device.ip_address;
+        let last_seen = device.last_seen;
+        let last_seen_date = new Date(last_seen);
+        let month = last_seen_date.getMonth() + 1; // Zero based, Janurary is 0
+        let day = last_seen_date.getDate();
+        let hour = last_seen_date.getHours();
+        let minute = last_seen_date.getMinutes();
+        let outer = document.createElement("div");
+        outer.appendChild(createTextNodeInsideDiv("Hostname: " + hostname));
+        outer.appendChild(createTextNodeInsideDiv("IP: "+ ip_address));
+        outer.appendChild(createTextNodeInsideDiv("Last Seen: " + `${month}/${day} at ${hour}:${minute}`));
+        let now = new Date()
+        const diffMs = now - last_seen_date;
+        const diffSec = Math.floor(diffMs / 1000);     // Convert to seconds
+        const diffMin = Math.floor(diffSec / 60);      // Convert to minutes
+        if (diffMin > 5) {
+            outer.style.color = "red"
+        }
+        else {
+            outer.style.color = "green"
+        }
+        heartbeartElement.appendChild(outer)
+    }
+}
+
 async function fetchUserAgent(mount) {
     mount = mount.replace("/", "");
     const url = '/status/useragent';
@@ -240,6 +276,7 @@ function check_time() {
 function main() {
     mountpoints();
     userAgent();
+    heartbeat()
 }
 
 main()

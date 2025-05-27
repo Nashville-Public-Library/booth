@@ -1,8 +1,11 @@
-from flask import render_template, request
+from datetime import datetime, timezone
+
+from flask import render_template, request, jsonify
 
 from app import app
 from app.status.ping import ping, Icecast
 from app.auth import require_auth
+from app.sql import SQL
 
 @app.route('/status', methods=['GET'])
 @require_auth
@@ -53,3 +56,22 @@ def user_agent():
      mount:dict = request.get_json()
      mount = mount.get("mount")
      return {'userAgent': icecast.user_agent_ip(mount=mount)}
+
+@app.route("/status/heartbeat", methods=["POST"])
+@require_auth
+def heartbeat_post():
+     response: dict = request.get_json()
+     hostname = response.get("hostname")
+     ip_address = response.get("ip_address")
+     last_seen = datetime.now(timezone.utc).replace(microsecond=0).isoformat()
+     SQL().write_heartbeat(hostname=hostname, ip_address=ip_address, last_seen=last_seen)
+    
+     return {"response": "success"}, 200
+
+@app.route("/status/heartbeat/listdevices", methods=["POST"])
+@require_auth
+def heartbeart_devices():
+     devices =  SQL().read_heartbeat()
+     devices = jsonify(devices)
+     print(devices)
+     return devices
