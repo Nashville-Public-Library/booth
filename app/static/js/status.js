@@ -72,6 +72,7 @@ async function heartbeat() {
         else {
             outer.style.color = "green"
         }
+        outer.style.classList.add("border")
         heartbeartElement.appendChild(outer)
     }
 }
