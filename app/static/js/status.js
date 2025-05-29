@@ -57,6 +57,7 @@ async function heartbeat() {
         let day = last_seen_date.getDate();
         let hour = last_seen_date.getHours();
         let minute = last_seen_date.getMinutes();
+        if (minute < 10) {minute = `0${minute}`};
         let outer = document.createElement("div");
         outer.appendChild(createTextNodeInsideDiv("Hostname: " + hostname));
         outer.appendChild(createTextNodeInsideDiv("IP: "+ ip_address));
