@@ -6,10 +6,10 @@ html, body {
 }
 
 .container {
-    display: flex;  
-    /* flex-wrap: wrap;  */
-    /* align-items: center;  */
-    /* align-content: space-around; */
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: flex-start;
 }
 
 .anchor {
@@ -17,7 +17,9 @@ html, body {
     /* float: left; */
     color: white;
     text-align: center;
-    width: 25%;
+    min-width: 25%;
+    min-width: 300px; /* if you want a minimum for narrow screens */
+    flex-shrink: 0;
 }
 
 .home_header {
@@ -176,6 +178,7 @@ hr {
 }
 
 .statsContainer {
+    max-width: 75%;
     text-align:left;
     display: flex;
     justify-content:space-evenly;
