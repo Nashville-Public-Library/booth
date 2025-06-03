@@ -6,6 +6,6 @@ from app import app
 def pwa():
     return app.send_static_file("pwa/pages/index.html")
 
-@app.route('/pwa/sw.js')
-def service_worker():
-    return app.send_static_file('pwa/sw.js')
+# @app.route('/pwa/sw.js')
+# def service_worker():
+#     return app.send_static_file('pwa/sw.js')

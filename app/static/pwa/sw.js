@@ -1,6 +1,6 @@
-const CACHE_NAME = 'ntl-pwa-cache-0.0.3';
+const CACHE_NAME = 'ntl-pwa-cache-0.0.7';
 const FILES_TO_CACHE = [
-    '/pwa/',
+    '/static/pwa/pages/index.html',
     '/static/pwa/pages/home.html',
     '/static/pwa/pages/schedule.html',
     '/static/pwa/pages/podcasts.html',
@@ -41,20 +41,18 @@ self.addEventListener('activate', (event) => {
   self.clients.claim();
 });
 
-// Fetch — respond with cache, then network fallback
-self.addEventListener('fetch', (event) => {
-  if (event.request.method !== 'GET') return; // only handle GET requests
+self.addEventListener('fetch', event => {
+  if (event.request.method !== 'GET') return;
+
   event.respondWith(
-    caches.match(event.request).then((response) => {
-      return (
-        response ||
-        fetch(event.request).catch(() => {
-          // Optional fallback for offline
-          if (event.request.destination === 'document') {
-            return caches.match('/pwa/pages/index.html');
-          }
-        })
-      );
-    })
+    caches.match(event.request, { ignoreSearch: true })
+      .then(cached => cached || fetch(event.request))
+      .catch(() => {
+        // Fallback: Show home page if nothing is found and request is HTML
+        if (event.request.headers.get('accept').includes('text/html')) {
+          return caches.match('/static/pwa/pages/home.html');
+        }
+      })
   );
 });
+

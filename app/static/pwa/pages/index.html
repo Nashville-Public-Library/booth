@@ -65,7 +65,7 @@
   <script src="/static/pwa/js/app.js"></script>
   <script>
   if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/pwa/sw.js', { scope: '/pwa/' })
+    navigator.serviceWorker.register('/static/pwa/sw.js', { scope: '/static/pwa/' })
       .then(reg => console.log('[Service Worker] Registered with scope:', reg.scope))
       .catch(err => console.error('[Service Worker] Registration failed:', err));
   }

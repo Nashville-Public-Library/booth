@@ -1,9 +1,9 @@
 const routes = {
-    '/': 'static/pwa/pages/home.html',
-    '/schedule': 'static/pwa/pages/schedule.html',
-    '/podcasts': 'static/pwa/pages/podcasts.html',
-    '/broadcast-schedule': 'static/pwa/pages/broadcastSchedule.html',
-    '/program-guide': 'static/pwa/pages/programGuide.html'
+    '/': '/static/pwa/pages/home.html',
+    '/schedule': '/static/pwa/pages/schedule.html',
+    '/podcasts': '/static/pwa/pages/podcasts.html',
+    '/broadcast-schedule': '/static/pwa/pages/broadcastSchedule.html',
+    '/program-guide': '/static/pwa/pages/programGuide.html'
   };
   
   async function loadRoute() {
