@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ntl-pwa-cache-0.0.2';
+const CACHE_NAME = 'ntl-pwa-cache-0.0.3';
 const FILES_TO_CACHE = [
     '/pwa/',
     '/static/pwa/pages/home.html',
@@ -51,7 +51,7 @@ self.addEventListener('fetch', (event) => {
         fetch(event.request).catch(() => {
           // Optional fallback for offline
           if (event.request.destination === 'document') {
-            return caches.match('/pwa/index.html');
+            return caches.match('/pwa/pages/index.html');
           }
         })
       );
