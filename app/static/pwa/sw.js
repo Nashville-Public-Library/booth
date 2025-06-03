@@ -45,14 +45,24 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   event.respondWith(
-    caches.match(event.request, { ignoreSearch: true })
-      .then(cached => cached || fetch(event.request))
-      .catch(() => {
-        // Fallback: Show home page if nothing is found and request is HTML
-        if (event.request.headers.get('accept').includes('text/html')) {
-          return caches.match('/static/pwa/pages/home.html');
-        }
-      })
+    caches.match(event.request, { ignoreSearch: true }).then(cached => {
+      if (cached) {
+        console.log('[SW] Serving from cache:', event.request.url);
+        return cached;
+      }
+      console.log('[SW] Fetching from network:', event.request.url);
+      return fetch(event.request).then(response => {
+        return caches.open(CACHE_NAME).then(cache => {
+          cache.put(event.request, response.clone());
+          return response;
+        });
+      });
+    }).catch(() => {
+      console.log('[SW] Fetch failed; returning fallback for:', event.request.url);
+      if (event.request.headers.get('accept').includes('text/html')) {
+        return caches.match('/static/pwa/pages/home.html');
+      }
+    })
   );
 });
 
