@@ -4,8 +4,8 @@
     "description": "Listen live, check the schedule, and catch up on podcasts.",
     "start_url": "/pwa",
     "display": "standalone",
-    "background_color": "#ffffff",
-    "theme_color": "#1a1a1a",
+    "background_color": "#333",
+    "theme_color": "#333",
     "icons": [
       {
         "src": "/static/pwa/img/NTL_new-192.png",
