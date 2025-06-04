@@ -1,3 +1,26 @@
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    console.log('[SW] Registered with scope:', reg.scope);
+
+    // Example update detection logic
+    reg.onupdatefound = () => {
+      const newWorker = reg.installing;
+      newWorker.onstatechange = () => {
+        if (newWorker.state === 'installed') {
+          if (navigator.serviceWorker.controller) {
+            // There is a new version available
+            if (confirm("A new version of the app is available. Do you want to update now?")) {
+              window.location.reload();
+            }
+          }
+        }
+      };
+    };
+  }).catch(err => {
+    console.error('[SW] Registration failed:', err);
+  });
+}
+
 const routes = {
     '/': '/static/pwa/pages/home.html',
     '/schedule': '/static/pwa/pages/schedule.html',
@@ -92,29 +115,6 @@ function updatePlayerMetadata(nowPlayingTitle) {
       .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch { } });
   }
 }
-
-if ('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/sw.js').then(registration => {
-    console.log('[SW] Registered with scope:', registration.scope);
-
-    // Listen for updates to the Service Worker
-    registration.addEventListener('updatefound', () => {
-      const newWorker = registration.installing;
-      console.log('[SW] New service worker found!');
-
-      newWorker.addEventListener('statechange', () => {
-        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
-          if (confirm("A new version of the app is available. DO you want to update?")) {
-            window.location.reload();
-          }
-        }
-      });
-    });
-  }).catch(err => {
-    console.error('[SW] Registration failed:', err);
-  });
-}
-
 
 function onlineOffline() {
     if (!navigator.onLine) {
