@@ -46,7 +46,8 @@ self.addEventListener('activate', (event) => {
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
-  if (url.pathname.startsWith('/stream/')) return; // don't intercept requests to the livestream
+  const url = new URL(event.request.url);
+  if (url.pathname.startsWith('/stream/')) return; // Don't cache or intercept livestream
 
   event.respondWith(
     caches.match(event.request, { ignoreSearch: true }).then(cached => {
