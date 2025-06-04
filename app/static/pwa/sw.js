@@ -36,10 +36,12 @@ self.addEventListener('activate', (event) => {
           }
         })
       )
-    )
+    ).then(() => {
+      return self.clients.claim();  // ✅ moved inside
+    })
   );
-  self.clients.claim();
 });
+
 
 self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
