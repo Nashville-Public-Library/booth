@@ -92,3 +92,15 @@ function updatePlayerMetadata(nowPlayingTitle) {
       .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch { } });
   }
 }
+
+function onlineOffline() {
+    if (!navigator.onLine) {
+        alert("You are not connected to the internet. The stream and other features will not work until you are back online.");
+    } 
+}
+
+window.addEventListener('online', onlineOffline); // write something later that alerts the user you are back online, but don't bug them! Don't use an alert().
+window.addEventListener('offline', onlineOffline);
+
+// Optionally check on load
+onlineOffline();
