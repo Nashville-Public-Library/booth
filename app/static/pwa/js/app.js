@@ -93,6 +93,29 @@ function updatePlayerMetadata(nowPlayingTitle) {
   }
 }
 
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(registration => {
+    console.log('[SW] Registered with scope:', registration.scope);
+
+    // Listen for updates to the Service Worker
+    registration.addEventListener('updatefound', () => {
+      const newWorker = registration.installing;
+      console.log('[SW] New service worker found!');
+
+      newWorker.addEventListener('statechange', () => {
+        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+          if (confirm("A new version of the app is available. DO you want to update?")) {
+            window.location.reload();
+          }
+        }
+      });
+    });
+  }).catch(err => {
+    console.error('[SW] Registration failed:', err);
+  });
+}
+
+
 function onlineOffline() {
     if (!navigator.onLine) {
         alert("You are not connected to the internet. The stream and other features will not work until you are back online.");
