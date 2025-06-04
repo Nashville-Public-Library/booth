@@ -82,6 +82,7 @@ const routes = {
   const playIcon = document.getElementById('playIcon');
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
+      if (!navigator.onLine){return;}
       nowPlaying()
       audio.src = "/stream/livestream.mp3"
       audio.play();
