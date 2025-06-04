@@ -6,6 +6,6 @@ from app import app
 def pwa():
     return app.send_static_file("pwa/pages/index.html")
 
-# @app.route('/pwa/sw.js')
-# def service_worker():
-#     return app.send_static_file('pwa/sw.js')
+@app.route('/sw.js')
+def serve_sw():
+    return send_from_directory('static', 'sw.js', mimetype='application/javascript')
