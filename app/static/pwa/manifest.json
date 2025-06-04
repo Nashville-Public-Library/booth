@@ -2,8 +2,10 @@
     "name": "Nashville Talking Library",
     "short_name": "NTL",
     "description": "Listen live, check the schedule, and catch up on podcasts.",
+    "lang": "en",
     "start_url": "/pwa",
     "display": "standalone",
+    "orientation": "portrait",
     "background_color": "#333",
     "theme_color": "#333",
     "icons": [
