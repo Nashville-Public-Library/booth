@@ -60,6 +60,7 @@ const routes = {
   const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
       nowPlaying()
+      audio.src = "/stream/livestream.mp3"
       audio.play();
       playIcon.style.display = 'none';
       pauseIcon.style.display = 'block';
