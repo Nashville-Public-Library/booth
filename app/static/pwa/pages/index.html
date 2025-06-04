@@ -11,6 +11,15 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="/static/pwa/img/NTL_new-192.png">
+
+  <script>
+    if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/sw.js')
+        .then(reg => console.log('[Service Worker] Registered with scope:', reg.scope))
+        .catch(err => console.error('[Service Worker] Registration failed:', err));
+    }
+  </script>
 
 </head>
 
@@ -65,13 +74,6 @@
   </footer>
 
   <script src="/static/pwa/js/app.js"></script>
-  <script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/static/pwa/sw.js', { scope: '/static/pwa/' })
-      .then(reg => console.log('[Service Worker] Registered with scope:', reg.scope))
-      .catch(err => console.error('[Service Worker] Registration failed:', err));
-  }
-</script>
 
 
   <script> 
