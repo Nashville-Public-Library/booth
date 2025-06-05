@@ -84,3 +84,10 @@ nav a {
     width: 300px;
     height: 300px;
   }
+
+.podcastsContainer {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 25px;
+    margin-bottom: 80px;
+}
