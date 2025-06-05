@@ -98,23 +98,33 @@ const routes = {
   const button = document.getElementById('playPauseButton');
   button.addEventListener('click', () => {
   const audio = document.getElementById('audio');
-  const playIcon = document.getElementById('playIcon');
-  const pauseIcon = document.getElementById('pauseIcon');
     if (audio.paused) {
       if (!navigator.onLine){return;}
       nowPlaying()
       audio.src = "/stream/livestream.mp3"
       audio.play();
-      playIcon.style.display = 'none';
-      pauseIcon.style.display = 'block';
+      switchPlayPauseIcon()
       button.setAttribute('aria-label', 'Pause');
     } else {
       audio.pause();
-      pauseIcon.style.display = 'none';
-      playIcon.style.display = 'block';
+      switchPlayPauseIcon()
       button.setAttribute('aria-label', 'Play');
     }
   });
+
+function switchPlayPauseIcon() {
+  const playIcon = document.getElementById('playIcon');
+  const pauseIcon = document.getElementById('pauseIcon');
+  if (playIcon.style.display == "none") {
+    pauseIcon.style.display = "none";
+    playIcon.style.display = "block"
+  } else {
+    playIcon.style.display = "none";
+    pauseIcon.style.display = "block"
+  }
+}
+
+
 
 function updatePlayerMetadata(nowPlayingTitle) {
   const audio = document.getElementById('audio');
@@ -131,11 +141,11 @@ function updatePlayerMetadata(nowPlayingTitle) {
     // Only expose play/pause, disable seek
     navigator.mediaSession.setActionHandler('play', () => {
       audio.play();
-      button.click();
+      switchPlayPauseIcon();
     });
     navigator.mediaSession.setActionHandler('pause', () => {
       audio.pause();
-      button.click();
+      switchPlayPauseIcon();
     });
     ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack']
       .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch { } });
