@@ -2,24 +2,43 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').then(reg => {
     console.log('[SW] Registered with scope:', reg.scope);
 
-    // Example update detection logic
-    reg.onupdatefound = () => {
-      const newWorker = reg.installing;
-      newWorker.onstatechange = () => {
-        if (newWorker.state === 'installed') {
-          if (navigator.serviceWorker.controller) {
-            // There is a new version available
-            if (confirm("A new version of the app is available. Do you want to update now?")) {
-              window.location.reload();
-            }
-          }
+    // check for an update when the page becomes visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        reg.update();
+      }
+    });
+
+    // Listen for waiting service worker and prompt user
+    function promptUserToUpdate(sw) {
+      if (confirm("A new version of the app is available. Do you want to update now?")) {
+        sw.postMessage({ action: 'skipWaiting' });
+      }
+    }
+
+    // Detect when a new SW is waiting
+    if (reg.waiting) {
+      promptUserToUpdate(reg.waiting);
+    }
+
+    reg.addEventListener('updatefound', () => {
+      const newSW = reg.installing;
+      newSW.addEventListener('statechange', () => {
+        if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+          promptUserToUpdate(newSW);
         }
-      };
-    };
+      });
+    });
+
+    // Handle updated SW becoming active
+    navigator.serviceWorker.addEventListener('controllerchange', () => {
+      window.location.reload();
+    });
   }).catch(err => {
     console.error('[SW] Registration failed:', err);
   });
 }
+
 
 const routes = {
     '/': '/static/pwa/pages/home.html',
@@ -111,8 +130,8 @@ function updatePlayerMetadata(nowPlayingTitle) {
     });
     // Only expose play/pause, disable seek
     navigator.mediaSession.setActionHandler('play', () => audio.play());
-    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
-    ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack', 'stop']
+    navigator.mediaSession.setActionHandler('stop', () => audio.pause());
+    ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack', 'pause']
       .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch { } });
   }
 }
