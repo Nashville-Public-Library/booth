@@ -2,42 +2,47 @@ if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').then(reg => {
     console.log('[SW] Registered with scope:', reg.scope);
 
-    // check for an update when the page becomes visible
+    // Always check for an update when the page becomes visible
     document.addEventListener('visibilitychange', () => {
       if (document.visibilityState === 'visible') {
-        reg.update();
+        reg.update(); // 🔄 Triggers update check on visibility
       }
     });
 
-    // Listen for waiting service worker and prompt user
+    // Prompt the user when there's a waiting SW
     function promptUserToUpdate(sw) {
-      if (confirm("A new version of the app is available. Do you want to update now?")) {
-        sw.postMessage({ action: 'skipWaiting' });
+      const wantsUpdate = confirm("A new version of the app is available. Do you want to update now?");
+      if (wantsUpdate) {
+        sw.addEventListener('statechange', () => {
+          if (sw.state === 'activated') {
+            window.location.reload(); // ✅ Reload only after new SW takes control
+          }
+        });
+        sw.postMessage({ action: 'skipWaiting' }); // 🪄 Activates new SW
       }
     }
 
-    // Detect when a new SW is waiting
+    // Handle case where a new SW is already waiting
     if (reg.waiting) {
       promptUserToUpdate(reg.waiting);
     }
 
+    // Handle update found while app is running
     reg.addEventListener('updatefound', () => {
       const newSW = reg.installing;
       newSW.addEventListener('statechange', () => {
         if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
-          promptUserToUpdate(newSW);
+          promptUserToUpdate(newSW); // only prompt if old SW is controlling
         }
       });
     });
 
-    // Handle updated SW becoming active
-    navigator.serviceWorker.addEventListener('controllerchange', () => {
-      window.location.reload();
-    });
+    // 🔥 Don't reload blindly on controllerchange — user decides!
   }).catch(err => {
     console.error('[SW] Registration failed:', err);
   });
 }
+
 
 
 const routes = {

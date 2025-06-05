@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ntl-pwa-cache-0.1.7';
+const CACHE_NAME = 'ntl-pwa-cache-0.1.8';
 const FILES_TO_CACHE = [
     '/static/pwa/pages/index.html',
     '/static/pwa/pages/home.html',
@@ -22,6 +22,13 @@ self.addEventListener('install', (event) => {
   );
   self.skipWaiting();
 });
+
+self.addEventListener('message', (event) => {
+  if (event.data && event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+});
+
 
 // Activate — clean up old caches
 self.addEventListener('activate', (event) => {
