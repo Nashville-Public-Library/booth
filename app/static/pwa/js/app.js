@@ -173,6 +173,9 @@ window.addEventListener('offline', onlineOffline);
 onlineOffline();
 
 async function getArrayOfPodcasts() {
+    if (!navigator.onLine) {
+      document.getElementById("podcastsOffline").style.display = "block"
+    }
     const podcastContainer = document.getElementById("podcastsContainer");
     podcastContainer.classList.add("podcastsContainer")
     const url = "/pwa/podcasts";
