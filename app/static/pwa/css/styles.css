@@ -62,8 +62,6 @@ nav a {
     display: flex;
     align-items: center;
     vertical-align: baseline;
-    width: 68px;
-    height: 68px;
   }
 
   .nowPlaying {
