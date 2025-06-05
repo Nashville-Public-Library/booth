@@ -73,7 +73,7 @@ const routes = {
     }
   }
   nowPlaying()
-  setInterval(nowPlaying, 60000) // 1 minute
+  setInterval(nowPlaying, 30000) // 30 seconds
   
 
   const button = document.getElementById('playPauseButton');
