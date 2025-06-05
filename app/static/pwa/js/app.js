@@ -130,8 +130,8 @@ function updatePlayerMetadata(nowPlayingTitle) {
     });
     // Only expose play/pause, disable seek
     navigator.mediaSession.setActionHandler('play', () => audio.play());
-    navigator.mediaSession.setActionHandler('stop', () => audio.pause());
-    ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack', 'pause']
+    navigator.mediaSession.setActionHandler('pause', () => audio.pause());
+    ['seekbackward', 'seekforward', 'previoustrack', 'nexttrack']
       .forEach(a => { try { navigator.mediaSession.setActionHandler(a, null); } catch { } });
   }
 }
