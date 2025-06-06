@@ -195,6 +195,7 @@ async function getArrayOfPodcasts() {
         podcastContainer.appendChild(outer);
       }
       document.getElementById("podcastSpacer").remove()
+      document.getElementById("podcastsContainer").style.overflow = "auto"
     } catch (e) {
       console.error("Failed to load podcasts:", e);
     }
