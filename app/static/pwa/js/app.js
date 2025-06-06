@@ -194,7 +194,7 @@ async function getArrayOfPodcasts() {
         outer.appendChild(createAnchorElement(podcastInfo.feed, podcast));
         podcastContainer.appendChild(outer);
       }
-      // You could render the podcasts here too
+      document.getElementById("podcastSpacer").remove()
     } catch (e) {
       console.error("Failed to load podcasts:", e);
     }
