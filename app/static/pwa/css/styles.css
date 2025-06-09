@@ -11,7 +11,7 @@ nav {
     padding-top: 5px;
     padding-bottom: 10px;
     display: flex; 
-    justify-content:space-evenly;
+    justify-content: space-around;
   }
 
 footer {
@@ -37,8 +37,8 @@ nav a {
   }
 
 .icon-link svg {
-  width: 65px;
-  height: 65px;
+  width: 70px;
+  height: 70px;
   fill: #ffffff; 
   vertical-align: middle;
   stroke: #333;
