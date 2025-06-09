@@ -42,11 +42,11 @@ nav a {
   fill: #ffffff; 
   vertical-align: middle;
   stroke: #333;
-  transition: stroke 0.5s ease;
+  transition: fill 0.4s ease;
 }
 
-.icon-link:hover svg {
-  stroke: RGB(241, 101, 48);
+.icon-link:focus svg {
+  fill: RGB(241, 101, 48);
 }
   
   main {
@@ -74,6 +74,7 @@ nav a {
     display: block;
     margin-top: 20px;
     margin-bottom: 20px;
+    font-size: 20pt;
   }
 .logo-container {
   display: flex;
