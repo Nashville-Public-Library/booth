@@ -45,6 +45,7 @@ nav a {
   transition: fill 0.4s ease;
 }
 
+.icon-link:hover svg,
 .icon-link:focus svg {
   fill: RGB(241, 101, 48);
 }
