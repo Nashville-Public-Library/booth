@@ -68,7 +68,7 @@ nav a {
   .nowPlaying {
     flex-grow: 4;
     text-align: center;
-    font-size: 15pt;
+    font-size: 16pt;
   }
 
   .scheduleLinks a {
