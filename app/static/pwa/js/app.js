@@ -66,6 +66,12 @@ const routes = {
       app.innerHTML = '<h1>Something went wrong. Not Found.</h1>';
     }
 
+    if (path === '/program-guide' || path === '/broadcast-schedule') {
+    viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+  } else {
+    viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
+  }
+
     if (path === "/podcasts") {
       getArrayOfPodcasts()
     }
