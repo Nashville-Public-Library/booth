@@ -94,7 +94,7 @@ async function nowPlaying() {
   }
 }
 nowPlaying()
-setInterval(nowPlaying, 120000) // 2 minutes
+setInterval(nowPlaying, 60000) // 1 minute
 
 async function fetchBanner() {
   let bannerElement = document.getElementById("message");
