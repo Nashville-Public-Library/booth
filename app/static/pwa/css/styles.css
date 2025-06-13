@@ -1,6 +1,8 @@
 body {
     margin: 0;
     padding: 0;
+    padding-bottom: 80px;
+    padding-top: 80px;
     font-family: sans-serif;
     background-color: RGB(46,56,143);
   }
