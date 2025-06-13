@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    padding-bottom: 80px;
     font-family: sans-serif;
     background-color: RGB(46,56,143);
     overscroll-behavior: none;
