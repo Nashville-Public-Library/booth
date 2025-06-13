@@ -11,6 +11,10 @@ nav {
     padding-bottom: 10px;
     display: flex; 
     justify-content: space-around;
+    position: fixed;
+    margin-bottom: 500px;
+    width: 100%;
+    z-index: 10;
   }
 
 footer {
@@ -90,13 +94,13 @@ nav a {
     display: flex;
     flex-wrap: wrap;
     row-gap: 50px;
-    column-gap: 80px;
+    column-gap: 200px;
     margin-bottom: 80px;
-    align-items: center;
+    justify-content: center;    
 }
 
 .podcastIndividual {
-  padding-left: 5%;
+  text-align: center;
 }
 
 .podcastImages {
@@ -105,6 +109,5 @@ nav a {
 }
 
 .podcastTitle {
-  text-align: center;
   font-size: 25pt;
 }
