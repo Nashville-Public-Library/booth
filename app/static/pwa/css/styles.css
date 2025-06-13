@@ -13,7 +13,7 @@ nav {
     justify-content: space-around;
     position: fixed;
     margin-bottom: 500px;
-    top: 0;
+    box-sizing: border-box;
     width: 100%;
     z-index: 10;
   }
