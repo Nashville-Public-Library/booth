@@ -4,8 +4,8 @@ html, body {
     height: 100%;
     font-family: sans-serif;
     background-color: RGB(46,56,143);
-    /* overscroll-behavior: none;
-    overflow-x: hidden; */
+    overscroll-behavior: none;
+    overflow-x: hidden;
   }
   
 nav {
