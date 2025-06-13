@@ -73,9 +73,9 @@ const routes = {
       viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
     }
 
-    if (path === "/podcasts") {
-      getArrayOfPodcasts()
-    }
+    // if (path === "/podcasts") {
+    //   getArrayOfPodcasts()
+    // }
   }
   
   window.addEventListener('hashchange', loadRoute);

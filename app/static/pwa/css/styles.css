@@ -89,6 +89,22 @@ nav a {
 .podcastsContainer {
     display: flex;
     flex-wrap: wrap;
-    row-gap: 25px;
+    row-gap: 50px;
+    column-gap: 80px;
     margin-bottom: 80px;
+    align-items: center;
+}
+
+.podcastIndividual {
+  padding-left: 5%;
+}
+
+.podcastImages {
+  width: 300px;
+  height: 300px;
+}
+
+.podcastTitle {
+  text-align: center;
+  font-size: 25pt;
 }
