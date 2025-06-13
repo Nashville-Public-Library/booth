@@ -1,6 +1,7 @@
-body {
+html, body {
     margin: 0;
     padding: 0;
+    height: 100%;
     font-family: sans-serif;
     background-color: RGB(46,56,143);
     overscroll-behavior: none;
@@ -25,7 +26,7 @@ nav {
 footer {
   width: 100%;
   height: 80px;
-  background-color: transparent;
+  background-color: inherit;
   color: white;
   display: flex;
   flex-grow: 1;
@@ -41,18 +42,6 @@ footer {
   right: 0;
   z-index: 1000;
 }
-
-  .footer-background {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100%;
-    height: 80px; /* same height as the footer */
-    background-color: RGB(46,56,143);
-    z-index: 999; /* behind the footer content */
-    pointer-events: none; /* let clicks pass through */
-  }
-
 
 nav a {
     color: unset;
@@ -75,7 +64,7 @@ nav a {
   
   main {
     padding: 1em;
-    min-height: calc(100vh - 120px);
+    min-height: calc(100vh - 160px);
     background-color: #ffffff;
   }
   
