@@ -1,6 +1,7 @@
 body {
     margin: 0;
     padding: 0;
+    padding-top: calc(100px + env(safe-area-inset-top));
     font-family: sans-serif;
     background-color: RGB(46,56,143);
   }
