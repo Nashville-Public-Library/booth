@@ -66,6 +66,7 @@ nav a {
     padding: 1em;
     min-height: calc(100vh - 160px);
     background-color: #ffffff;
+    transition: opacity 0.2s  ease-in-out;
   }
   
 .player {
