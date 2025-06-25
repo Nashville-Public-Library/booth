@@ -1,8 +1,7 @@
-from flask import render_template, request, send_from_directory
-
-import requests
+from flask import send_from_directory
 
 from app import app
+from app.pwa.pod import Podcast
 
 @app.route('/pwa', methods=['GET'])
 def pwa():
@@ -23,8 +22,7 @@ def podcasts():
 
 @app.route('/pwa/podcasts/info/<podcast>', methods=['POST'])
 def podcasts_info(podcast):
-    base_URL = "https://assets.library.nashville.org/talkinglibrary/shows/" + podcast + "/"
-    feed = base_URL + "feed.xml"
-    image = base_URL + "image.jpg"
+    pod = Podcast(show=podcast)
+    pod = pod.to_client()
 
-    return {"feed": feed, "image": image}
+    return pod

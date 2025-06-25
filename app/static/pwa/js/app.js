@@ -180,67 +180,9 @@ window.addEventListener('offline', onlineOffline);
 // Optionally check on load
 onlineOffline();
 
-async function getArrayOfPodcasts() {
-    if (!navigator.onLine) {
-      document.getElementById("podcastsOffline").style.display = "block"
+  async function loadPodcast(show) {  
+        const url = "/pwa/podcasts/info/" + show;
+        let response = await fetch(url, { method: "POST" });
+        let responseJSON = await response.json();
+        console.log(responseJSON);
     }
-    const podcastContainer = document.getElementById("podcastsContainer");
-    podcastContainer.classList.add("podcastsContainer")
-    const url = "/pwa/podcasts";
-    try {
-      let response = await fetch(url, { method: "POST" });
-      let responseJSON = await response.json();
-      let podcasts = responseJSON.podcasts
-      for (podcast of podcasts) {
-        let outer = document.createElement("div");
-        outer.style.display = "flex"
-        outer.style.width = "100%"
-        outer.style.alignItems = "center"
-        let podcastInfo = await getPodcastInfo(podcast);
-        console.log(podcastInfo.image)
-        outer.appendChild(createImageElement(podcastInfo.image, podcastInfo.feed));
-        outer.appendChild(createAnchorElement(podcastInfo.feed, podcast));
-        podcastContainer.appendChild(outer);
-      }
-      document.getElementById("podcastSpacer").remove()
-      document.getElementById("podcastsContainer").style.overflow = "auto"
-    } catch (e) {
-      console.error("Failed to load podcasts:", e);
-    }
-  }
-
-async function getPodcastInfo(podcast) {
-  const url = "/pwa/podcasts/info/" + podcast;
-  let response = await fetch(url, { method: "POST" });
-  let responseJSON = await response.json()
-  return responseJSON
-}
-
-function createTextNodeInsideDiv(element) {
-    let outer = document.createElement("div");
-    let inner = document.createTextNode(element)
-    outer.style.display = "inline-block"
-    outer.style.marginLeft = "10px"
-    outer.append(inner);
-    return outer;
-}
-
-function createImageElement(image, text) {
-  let a = document.createElement("a");
-  a.href = text
-  let img = new Image(130, 130)
-  img.style.display = "inline-block"
-  img.src = image;
-  a.appendChild(img);
-  return a;
-}
-
-function createAnchorElement(href, text) {
-  let a = document.createElement("a");
-  a.href = href;
-  a.textContent = text;
-  a.style.display = "inline-block";
-  a.style.marginLeft = "10px";
-  a.style.fontSize = "20pt"
-  return a;
-}
