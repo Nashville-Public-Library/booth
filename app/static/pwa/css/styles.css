@@ -5,7 +5,7 @@ html, body {
     font-family: sans-serif;
     background-color: RGB(46,56,143);
     overscroll-behavior: none;
-    overflow-x: hidden;
+    /* overflow-x: hidden; */
   }
   
 nav {
