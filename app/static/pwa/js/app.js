@@ -57,6 +57,7 @@ const routes = {
     const route = routes[path];
   
     const app = document.getElementById('app');
+    app.innerHTML = "<div> Loading page... </div>"
     if (route) {
       const res = await fetch(route);
       const html = await res.text();
