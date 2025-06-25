@@ -11,15 +11,14 @@ if ('serviceWorker' in navigator) {
 
     // Prompt the user when there's a waiting SW
     function promptUserToUpdate(sw) {
-      const wantsUpdate = confirm("A new version of the app is available. Do you want to update now?");
-      if (wantsUpdate) {
+      const wantsUpdate = alert("You need to download the latest version of the app...");
         sw.addEventListener('statechange', () => {
           if (sw.state === 'activated') {
             window.location.reload(); // ✅ Reload only after new SW takes control
           }
         });
         sw.postMessage({ action: 'skipWaiting' }); // 🪄 Activates new SW
-      }
+      
     }
 
     // Handle case where a new SW is already waiting
