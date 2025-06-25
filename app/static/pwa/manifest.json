@@ -10,12 +10,12 @@
     "theme_color": "#333",
     "icons": [
       {
-        "src": "/static/pwa/img/NTL_new-192.png",
+        "src": "/static/pwa/img/NTL_new-192.jpg",
         "sizes": "192x192",
         "type": "image/png"
       },
       {
-        "src": "/static/pwa/img/NTL_new-512.png",
+        "src": "/static/pwa/img/NTL_new-512.jpg",
         "sizes": "512x512",
         "type": "image/png"
       }

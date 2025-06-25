@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ntl-pwa-cache-0.1.44';
+const CACHE_NAME = 'ntl-pwa-cache-0.1.45';
 const FILES_TO_CACHE = [
     '/static/pwa/pages/index.html',
     '/static/pwa/pages/home.html',
@@ -7,8 +7,8 @@ const FILES_TO_CACHE = [
     '/static/pwa/pages/broadcastSchedule.html',
     '/static/pwa/pages/programGuide.html',
     '/static/pwa/js/app.js',
-    '/static/pwa/img/NTL_new-192.png',
-    '/static/pwa/img/NTL_new-512.png',
+    '/static/pwa/img/NTL_new-192.jpg',
+    '/static/pwa/img/NTL_new-512.jpg',
 ];
 
 // Install — cache all static assets
