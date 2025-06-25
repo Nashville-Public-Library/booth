@@ -57,7 +57,7 @@ const routes = {
     const route = routes[path];
   
     const app = document.getElementById('app');
-    app.innerHTML = "<div> Loading page... </div>"
+    // app.innerHTML = "<div> Loading page... </div>"
     await new Promise(requestAnimationFrame);
     if (route) {
       const res = await fetch(route);
