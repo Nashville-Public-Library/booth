@@ -184,7 +184,13 @@ onlineOffline();
 
   async function loadPodcast(show) {  
     // show the loading page, then go fetch the data from the server and render when ready
+
+    if (!navigator.onLine) {
+      alert("You cannot listen to podcasts while offline.");
+      return;
+    }
     location.hash = "podcasts-individual"
+    const app = document.getElementById("app");
 
     const url = "/pwa/podcasts/info/" + show;
     let response = await fetch(url, { method: "POST", headers: {'Content-Type': 'text/html'}});
