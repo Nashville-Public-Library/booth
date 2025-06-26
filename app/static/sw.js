@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ntl-pwa-cache-0.2.0';
+const CACHE_NAME = 'ntl-pwa-cache-0.2.1';
 const FILES_TO_CACHE = [
     '/static/pwa/pages/index.html',
     '/static/pwa/pages/home.html',
@@ -55,7 +55,7 @@ self.addEventListener('fetch', event => {
   if (event.request.method !== 'GET') return;
 
   const url = new URL(event.request.url);
-  if (url.pathname.startsWith('/stream/')) return; // Don't cache or intercept livestream
+  if (url.pathname.startsWith('/stream/') || url.pathname.endsWith('.mp3') ) return; // Don't cache or intercept audio
 
   event.respondWith(
     caches.match(event.request, { ignoreSearch: true }).then(cached => {
