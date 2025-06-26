@@ -48,6 +48,7 @@ const routes = {
     '/': '/static/pwa/pages/home.html',
     '/schedule': '/static/pwa/pages/schedule.html',
     '/podcasts': '/static/pwa/pages/podcasts.html',
+    'podcasts-individual': '/static/pwa/pages/podcast-loading.html',
     '/broadcast-schedule': '/static/pwa/pages/broadcastSchedule.html',
     '/program-guide': '/static/pwa/pages/programGuide.html'
   };
@@ -67,6 +68,7 @@ const routes = {
       app.innerHTML = '<h1>Something went wrong. Not Found.</h1>';
     }
 
+    // enable zooming for these, which are PDF files
     const viewportMeta = document.getElementById("viewportMeta");
     if (path === '/program-guide' || path === '/broadcast-schedule') {
       viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
@@ -181,8 +183,22 @@ window.addEventListener('offline', onlineOffline);
 onlineOffline();
 
   async function loadPodcast(show) {  
-        const url = "/pwa/podcasts/info/" + show;
-        let response = await fetch(url, { method: "POST" });
-        let responseJSON = await response.json();
-        console.log(responseJSON);
+    // show the loading page, then go fetch the data from the server and render when ready
+    location.hash = "podcasts-individual"
+
+    const url = "/pwa/podcasts/info/" + show;
+    let response = await fetch(url, { method: "POST", headers: {'Content-Type': 'text/html'}});
+    let responseHTML = await response.text();
+    app.innerHTML = responseHTML
     }
+
+//   document.addEventListener('play', function (e) {
+//     var audios = document.getElementsByTagName('audio');
+//     button.click()
+//     for (var i = 0, len = audios.length; i < len; i++) {
+//         if (audios[i] != e.target) {
+//             audios[i].pause();
+//         }
+//     }
+//     switchPlayPauseIcon()
+// }, true);

@@ -1,4 +1,4 @@
-from flask import send_from_directory
+from flask import send_from_directory, render_template
 
 from app import app
 from app.pwa.pod import Podcast
@@ -25,4 +25,4 @@ def podcasts_info(podcast):
     pod = Podcast(show=podcast)
     pod = pod.to_client()
 
-    return pod
+    return render_template("podcast-individual.html", pod=pod)  

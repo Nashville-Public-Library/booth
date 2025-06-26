@@ -121,3 +121,42 @@ nav a {
 .podcastTitle {
   font-size: 25pt;
 }
+
+.podcastLoadingDots {
+  margin-left: 50%; 
+  margin-top: 50%
+}
+
+.podcastIndividualContainer {
+  margin-bottom: 50pt;
+}
+
+.podcastIndividualImage {
+  display: block;
+  margin-top: 10pt;
+  margin-left: auto;
+  margin-right: auto;
+  width: 250px;
+  height: 250px;
+}
+
+.podcastIndividualTitle {
+  text-align: center;
+  font-size: 20pt;
+}
+
+.podcastIndividualDescription {
+  font-size: 15pt;
+}
+
+.podcastEpisodeTitle {
+  font-size: 12pt;
+}
+
+.podcastEpisodeDuration {
+  font-size: 10pt;
+}
+
+.podcastEpisodeEnclosure {
+  text-align: center;
+}
