@@ -11,7 +11,7 @@ if ('serviceWorker' in navigator) {
 
     // Prompt the user when there's a waiting SW
     function promptUserToUpdate(sw) {
-      const wantsUpdate = alert("You need to download the latest version of the app...");
+      const wantsUpdate = alert("Your app will not be updated to the newest version.");
         sw.addEventListener('statechange', () => {
           if (sw.state === 'activated') {
             window.location.reload(); // ✅ Reload only after new SW takes control
@@ -87,6 +87,7 @@ const routes = {
 
   async function nowPlaying() {
     let titleElement = document.getElementById('nowPlaying');
+    let livestream = document.getElementById("audio");
     let notAvailable = "Program Name Not Available";
     try {
         const url = "/stream/status";
@@ -95,12 +96,13 @@ const routes = {
         let nowPlaying = icecast.title;
         if (nowPlaying.trim() == "") {
             titleElement.innerText = notAvailable;
-            updatePlayerMetadata(notAvailable);
+            if (!livestream.paused) {updatePlayerMetadata(notAvailable);}
             return notAvailable;
         }
         else {
             titleElement.innerText = nowPlaying;
-            updatePlayerMetadata(nowPlaying);
+            if (!livestream.paused) { updatePlayerMetadata(nowPlaying);}
+
             return nowPlaying;
         }
     }
@@ -179,7 +181,7 @@ function onlineOffline() {
 window.addEventListener('online', onlineOffline); // write something later that alerts the user you are back online, but don't bug them! Don't use an alert().
 window.addEventListener('offline', onlineOffline);
 
-// Optionally check on load
+// check on load
 onlineOffline();
 
   async function loadPodcast(show) {  
@@ -198,13 +200,19 @@ onlineOffline();
     app.innerHTML = responseHTML
     }
 
-//   document.addEventListener('play', function (e) {
-//     var audios = document.getElementsByTagName('audio');
-//     button.click()
-//     for (var i = 0, len = audios.length; i < len; i++) {
-//         if (audios[i] != e.target) {
-//             audios[i].pause();
-//         }
-//     }
-//     switchPlayPauseIcon()
-// }, true);
+
+document.addEventListener('play', function (e) {
+  var audios = document.getElementsByTagName('audio');
+  for (var i = 0, len = audios.length; i < len; i++) {
+    if (audios[i] != e.target) {
+      audios[i].pause();
+    }
+  }
+
+  if (e.target.id !== "audio") {
+    const playIcon = document.getElementById('playIcon');
+    const pauseIcon = document.getElementById('pauseIcon');
+    playIcon.style.display = "block";
+    pauseIcon.style.display = "none";
+  }
+}, true);

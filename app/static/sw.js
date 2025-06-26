@@ -1,4 +1,4 @@
-const CACHE_NAME = 'ntl-pwa-cache-0.2.3';
+const CACHE_NAME = 'ntl-pwa-cache-0.2.10';
 const FILES_TO_CACHE = [
     '/static/pwa/pages/index.html',
     '/static/pwa/pages/home.html',
