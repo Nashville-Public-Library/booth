@@ -11,7 +11,7 @@ if ('serviceWorker' in navigator) {
 
     // Prompt the user when there's a waiting SW
     function promptUserToUpdate(sw) {
-      const wantsUpdate = alert("Your app will not be updated to the newest version.");
+      const wantsUpdate = alert("Your app will now be updated to the newest version.");
         sw.addEventListener('statechange', () => {
           if (sw.state === 'activated') {
             window.location.reload(); // ✅ Reload only after new SW takes control
@@ -46,9 +46,10 @@ if ('serviceWorker' in navigator) {
 
 const routes = {
     '/': '/static/pwa/pages/home.html',
+    '/about': 'static/pwa/pages/about.html',
     '/schedule': '/static/pwa/pages/schedule.html',
     '/podcasts': '/static/pwa/pages/podcasts.html',
-    'podcasts-individual': '/static/pwa/pages/podcast-loading.html',
+    '/podcasts-individual': '/static/pwa/pages/podcast-loading.html',
     '/broadcast-schedule': '/static/pwa/pages/broadcastSchedule.html',
     '/program-guide': '/static/pwa/pages/programGuide.html'
   };
@@ -155,8 +156,8 @@ function updatePlayerMetadata(nowPlayingTitle) {
       artist: 'Nashville Talking Library',
       album: 'Live Stream',
       artwork: [
-        { src: '/static/img/NTL_new-192.png', sizes: '192x192', type: 'image/png' },
-        { src: '/static/img/NTL_new-512.png', sizes: '512x512', type: 'image/png' }
+        { src: '/static/pwa/img/NTL_new-192.jpg', sizes: '192x192', type: 'image/png' },
+        { src: '/static/pwa/img/NTL_new-512.jpg', sizes: '512x512', type: 'image/png' }
       ]
     });
     // Only expose play/pause, disable seek
@@ -184,6 +185,17 @@ window.addEventListener('offline', onlineOffline);
 // check on load
 onlineOffline();
 
+async function loadAboutPage() {
+  location.hash = "/about"
+
+  const url = "/pwa/version";
+  let response = await fetch(url, { method: "POST" });
+  let responseJSON = await response.json();
+  let version = responseJSON.version;
+  console.log(version)
+  document.getElementById("appVersion").innerHTML = "v" + version;
+}
+
   async function loadPodcast(show) {  
     // show the loading page, then go fetch the data from the server and render when ready
 
@@ -191,7 +203,7 @@ onlineOffline();
       alert("You cannot listen to podcasts while offline.");
       return;
     }
-    location.hash = "podcasts-individual"
+    location.hash = "/podcasts-individual"
     const app = document.getElementById("app");
 
     const url = "/pwa/podcasts/info/" + show;

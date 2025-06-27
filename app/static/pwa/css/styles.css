@@ -68,6 +68,18 @@ nav a {
     background-color: #ffffff;
     transition: opacity 0.2s  ease-in-out;
   }
+
+.aboutLink {
+  position: absolute;
+  bottom: 100px;
+  right: 10px;
+  font-size: 10pt;
+}
+
+.aboutContent {
+  margin-top: 20pt;
+  font-size: 15pt;
+}
   
 .player {
     color: white;

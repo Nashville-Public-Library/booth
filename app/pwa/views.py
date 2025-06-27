@@ -1,15 +1,26 @@
-from flask import send_from_directory, render_template
+from flask import send_from_directory, render_template, make_response
+import time
 
 from app import app
 from app.pwa.pod import Podcast
+
+VERSION = "0.2.14"
 
 @app.route('/pwa', methods=['GET'])
 def pwa():
     return app.send_static_file("pwa/pages/index.html")
 
+@app.route('/pwa/version', methods=['POST'])
+def version():
+    time.sleep(.2)
+    return {"version": VERSION}
+
 @app.route('/sw.js')
 def serve_sw():
-    return send_from_directory('static', 'sw.js', mimetype='application/javascript')
+    response = make_response(render_template("sw.js", version=VERSION))
+    response.headers["Content-Type"] = "application/javascript"
+    response.headers["Cache-Control"] = "no-cache"
+    return response
 
 @app.route('/pwa/podcasts', methods=['POST'])
 def podcasts():

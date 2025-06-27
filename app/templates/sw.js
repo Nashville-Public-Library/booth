@@ -1,7 +1,9 @@
-const CACHE_NAME = 'ntl-pwa-cache-0.2.10';
+const CACHE_NAME = 'ntl-pwa-cache-{{version}}';
+
 const FILES_TO_CACHE = [
     '/static/pwa/pages/index.html',
     '/static/pwa/pages/home.html',
+    '/static/pwa/pages/about.html',
     '/static/pwa/pages/schedule.html',
     '/static/pwa/pages/podcasts.html',
     '/static/pwa/pages/podcast-loading.html',
