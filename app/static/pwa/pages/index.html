@@ -26,6 +26,15 @@
 
 <body>
 
+  <div id="installDialog" class="installDialog">
+    <h1>To install the app: </h1>
+    <h3>On Apple Phones: </h3>
+    <h4>Tap the "share" button, then tap "Add to Home Screen" and follow the prompts.</h4>
+    <br>
+    <h3>On Android Phones: </h3>
+    <h4>Need instructions here...</h4>
+  </div>
+
   <!-- icons https://heroicons.com/ -->
     <nav>
       <a href="#/" class="icon-link" aria-label="Home">
@@ -87,8 +96,16 @@
   const hover = window.matchMedia('(hover: hover)').matches;
   if (hover) {
     let body = document.getElementsByTagName('body')[0];
-    body.innerHTML = "<div style='text-align: center; margin-top: 20%; font-size: 50pt;'>ONLY AVAILABLE ON MOBILE</div>"
+    body.innerHTML = "<div style='text-align: center; margin-top: 20%; font-size: 50pt;'>ONLY AVAILABLE ON MOBILE</div>";
+  } 
+
+  const installed = window.matchMedia("(display-mode: standalone)").matches || window.navigator.standalone === true;
+  // const installed = true;
+  if (!installed) {
+    document.getElementById("installDialog").style.display = "block"
   }
   </script>
+
+
 </body>
 </html>
