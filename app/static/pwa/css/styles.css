@@ -69,11 +69,21 @@ nav a {
     transition: opacity 0.2s  ease-in-out;
   }
 
+.onlineOfflineDot {
+  position: absolute;
+  bottom: 35px;
+  left: 8px; 
+  height: 15px;
+  width: 15px;
+  background-color: #00fc37;
+  border-radius: 50%;
+}
+
 .aboutLink {
   position: absolute;
   bottom: 100px;
   right: 10px;
-  font-size: 10pt;
+  font-size: 13pt;
 }
 
 .aboutContent {

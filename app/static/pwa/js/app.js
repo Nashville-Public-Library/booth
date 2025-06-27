@@ -175,11 +175,15 @@ function updatePlayerMetadata(nowPlayingTitle) {
 }
 
 function onlineOffline() {
-    if (!navigator.onLine) {
-        alert("You are not connected to the internet. The stream and other features will not work until you are back online.");
-    } 
+  const onlineOfflineDotColor = document.getElementById("onlineOfflineDot");
+  if (!navigator.onLine) {
+    onlineOfflineDotColor.style.backgroundColor = "#f31642";
+    alert("You are not connected to the internet. The stream and other features will not work until you are back online.");
+  } else {
+    onlineOfflineDotColor.style.backgroundColor = "#00fc37";
+  }
 }
-window.addEventListener('online', onlineOffline); // write something later that alerts the user you are back online, but don't bug them! Don't use an alert().
+window.addEventListener('online', onlineOffline);
 window.addEventListener('offline', onlineOffline);
 
 // check on load

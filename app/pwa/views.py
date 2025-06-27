@@ -12,7 +12,7 @@ def pwa():
 
 @app.route('/pwa/version', methods=['POST'])
 def version():
-    time.sleep(.2)
+    time.sleep(.4)
     return {"version": VERSION}
 
 @app.route('/sw.js')
