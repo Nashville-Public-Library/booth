@@ -94,9 +94,12 @@ nav a {
   position: absolute;
   bottom: 100px;
   right: 25px;
-  font-size: 45pt;
+  font-size: 40pt;
   border-radius: 25%;
-  padding: 10px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  padding-left: 10px;
+  padding-right: 10px;
   background-color: black;
   color: aliceblue;
 }
