@@ -4,6 +4,7 @@
     "description": "Listen live, listen on-demand, check the schedule, and more.",
     "lang": "en",
     "start_url": "/pwa",
+    "id": "/pwa",
     "display": "standalone",
     "orientation": "portrait",
     "background_color": "#333",
