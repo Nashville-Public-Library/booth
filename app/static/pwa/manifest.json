@@ -1,7 +1,7 @@
 {
     "name": "Nashville Talking Library",
     "short_name": "NTL",
-    "description": "Listen live, check the schedule, and catch up on podcasts.",
+    "description": "Listen live, listen on-demand, check the schedule, and more.",
     "lang": "en",
     "start_url": "/pwa",
     "display": "standalone",
@@ -10,15 +10,24 @@
     "theme_color": "#333",
     "icons": [
             {
-        "src": "/static/pwa/img/NTL_new-512.jpg",
+        "src": "/static/pwa/img/NTL_new-512.png",
         "sizes": "512x512",
-        "type": "image/jpg"
+        "type": "image/png"
       },
       {
-        "src": "/static/pwa/img/NTL_new-192.jpg",
+        "src": "/static/pwa/img/NTL_new-192.png",
         "sizes": "192x192",
-        "type": "image/jpg"
+        "type": "image/png"
       }
-    ]
+    ], 
+    "screenshots": [
+  {
+    "src": "/static/pwa/img/mobile-screenshot.png",
+    "sizes": "600x1200",
+    "type": "image/png",
+    "form_factor": "narrow"
+  }
+]
+
   }
   
