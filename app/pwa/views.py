@@ -33,7 +33,10 @@ def podcasts():
 
 @app.route('/pwa/podcasts/info/<podcast>', methods=['POST'])
 def podcasts_info(podcast):
-    pod = Podcast(show=podcast)
-    pod = pod.to_client()
+    try:
+        pod = Podcast(show=podcast)
+        pod = pod.to_client()
 
-    return render_template("pwa/podcast-individual.html", pod=pod)  
+        return render_template("pwa/podcast-individual.html", pod=pod)  
+    except:
+        return "", 500

@@ -212,8 +212,12 @@ async function loadAboutPage() {
 
     const url = "/pwa/podcasts/info/" + show;
     let response = await fetch(url, { method: "POST", headers: {'Content-Type': 'text/html'}});
-    let responseHTML = await response.text();
-    app.innerHTML = responseHTML
+    if (response.ok) {
+      let responseHTML = await response.text();
+      app.innerHTML = responseHTML
+      } else {
+        app.innerHTML = "<h1>Sorry, we're having trouble fetching podcasts</h1>"
+      }
     }
 
 
