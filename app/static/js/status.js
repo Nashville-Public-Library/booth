@@ -22,10 +22,14 @@ async function ping() {
             method: "POST", 
             body: JSON.stringify({"host": el})
             }
+        try {
         let response = await fetchPost(fetchURL=url, fetchOptions=options);
-        
         result = response.result;
         redGreen(responseIsTrue=result, id=el);
+        }
+        catch {
+            redGreen(responseIsTrue=false, id=el)
+        }
     }
     }
 
