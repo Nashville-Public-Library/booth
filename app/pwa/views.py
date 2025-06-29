@@ -4,7 +4,7 @@ import time
 from app import app
 from app.pwa.pod import Podcast
 
-VERSION = "0.2.16"
+VERSION = "0.2.17"
 
 @app.route('/pwa', methods=['GET'])
 def pwa():
@@ -36,4 +36,4 @@ def podcasts_info(podcast):
     pod = Podcast(show=podcast)
     pod = pod.to_client()
 
-    return render_template("podcast-individual.html", pod=pod)  
+    return render_template("pwa/podcast-individual.html", pod=pod)  
