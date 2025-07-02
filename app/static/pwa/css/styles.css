@@ -199,12 +199,10 @@ nav a {
 
 .podcastEpisodeTitle {
   font-size: 13pt;
-  display: inline-block;
 }
 
 .podcastEpisodeDuration {
-  font-size: 13pt;
-  display: inline-block;
+  font-size: 11pt;
 }
 
 .podcastEpisodeEnclosure {
