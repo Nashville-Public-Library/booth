@@ -194,16 +194,17 @@ nav a {
 }
 
 .podcastIndividualDescription {
-  text-align: center;
   font-size: 15pt;
 }
 
 .podcastEpisodeTitle {
-  font-size: 12pt;
+  font-size: 13pt;
+  display: inline-block;
 }
 
 .podcastEpisodeDuration {
-  font-size: 10pt;
+  font-size: 13pt;
+  display: inline-block;
 }
 
 .podcastEpisodeEnclosure {

@@ -8,8 +8,8 @@
     <br>
     <div id="podcastIndividualAllEpisodes" class="podcastIndividualAllEpisodes">
         {% for episode in pod.episodes %}
-            <div class="podcastEpisodeTitle">{{ episode.title }}</div>
-            <div class="podcastEpisodeDuration"> Duration: {{ episode.duration }}</div>
+            <div class="podcastEpisodeTitle">{{ episode.title }} <div class="podcastEpisodeDuration"> -  Duration: {{ episode.duration }}</div></div>
+            <!-- <div class="podcastEpisodeDuration"> Duration: {{ episode.duration }}</div> -->
             <audio class="podcastEpisodeEnclosure" controls src="{{ episode.enclosure }}" preload="none"></audio>
             <hr style="width: 50%;">
         {% endfor %}
