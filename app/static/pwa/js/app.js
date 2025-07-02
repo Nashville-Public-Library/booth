@@ -91,10 +91,11 @@ const routes = {
     let livestream = document.getElementById("audio");
     let notAvailable = "Program Name Not Available";
     try {
-        const url = "/stream/status";
-        let response = await fetch(url, { method: "POST" });
-        let icecast = await response.json();
-        let nowPlaying = icecast.title;
+        // const url = "/stream/status";
+        // let response = await fetch(url, { method: "POST" });
+        // let icecast = await response.json();
+        // let nowPlaying = icecast.title;
+        let nowPlaying = "Name of Program Here"
         if (nowPlaying.trim() == "") {
             titleElement.innerText = notAvailable;
             if (!livestream.paused) {updatePlayerMetadata(notAvailable);}
