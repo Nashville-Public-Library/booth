@@ -116,7 +116,18 @@ nav a {
   margin-top: 20pt;
   font-size: 15pt;
 }
-  
+
+.aboutIconsContainer {
+  display: flex; 
+  justify-content: center;
+  column-gap: 35px;
+}
+
+.aboutIcons {
+  width: 40px;
+  height: 40px;
+}
+
 .player {
     color: white;
     background-color: inherit;
