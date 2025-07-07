@@ -158,7 +158,11 @@ nav a {
   font-size: 20pt;
   background-color: RGB(241, 101, 48);;
   border-radius: 75%;
-  padding: 12pt;
+  padding: 15pt;
+}
+
+.dailyScheduleContainer {
+  margin-bottom: 60px;
 }
 
 
