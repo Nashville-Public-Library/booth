@@ -137,24 +137,30 @@ nav a {
     vertical-align: baseline;
   }
 
-  .nowPlaying {
+.nowPlaying {
     flex-grow: 4;
     text-align: center;
     font-size: 17pt;
   }
 
-  .scheduleLinks a {
-    display: block;
-    margin-top: 20px;
-    margin-bottom: 20px;
-    font-size: 20pt;
-    width: fit-content;
-  }
-
-.dailyScheduleContainer {
-  font-size: 17pt;
-  margin-bottom: 50pt;
+.dailyScheduleLinksContainer {
+  margin-top: 10pt;
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  column-gap: 15pt;
+  row-gap: 15pt;
 }
+
+.dailyScheduleLinks {
+  text-decoration: none;
+  color: aliceblue;
+  font-size: 20pt;
+  background-color: RGB(241, 101, 48);;
+  border-radius: 75%;
+  padding: 12pt;
+}
+
 
 .dailyScheduleHeader {
   font-size: 25pt;
@@ -181,6 +187,7 @@ nav a {
 
 .dailyScheduleTitle {
   display: inline-block;
+  font-size: 17pt;
   border-left: 1pt solid black;  
   padding-left: 8pt;
 }
