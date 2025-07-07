@@ -163,9 +163,13 @@ nav a {
 }
 
 .dailyScheduleContainerIndividual {
-  border-bottom: 1pt solid black;
-  padding-top: 10pt;
-  padding-bottom: 10pt;
+  border-bottom: 2.5pt solid black;
+  padding-top: 15pt;
+  padding-bottom: 15pt;
+}
+
+.halfHourNoBorder {
+  border-width: .1pt;
 }
 
 .dailyScheduleHour {
