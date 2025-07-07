@@ -52,7 +52,9 @@ const routes = {
     '/podcasts-individual': '/static/pwa/pages/podcast-loading.html',
     '/broadcast-schedule': '/static/pwa/pages/broadcastSchedule.html',
     '/program-guide': '/static/pwa/pages/programGuide.html',
-    '/schedule/monday': '/static/pwa/pages/daily/monday.html'
+    '/schedule/monday': '/static/pwa/pages/daily/monday.html',
+    '/schedule/tuesday': '/static/pwa/pages/daily/tuesday.html',
+    '/schedule/wednesday': '/static/pwa/pages/daily/wednesday.html'
   };
   
   async function loadRoute() {
