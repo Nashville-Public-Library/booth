@@ -54,7 +54,11 @@ const routes = {
     '/program-guide': '/static/pwa/pages/programGuide.html',
     '/schedule/monday': '/static/pwa/pages/daily/monday.html',
     '/schedule/tuesday': '/static/pwa/pages/daily/tuesday.html',
-    '/schedule/wednesday': '/static/pwa/pages/daily/wednesday.html'
+    '/schedule/wednesday': '/static/pwa/pages/daily/wednesday.html',
+    '/schedule/thursday': '/static/pwa/pages/daily/thursday.html',
+    '/schedule/friday': '/static/pwa/pages/daily/friday.html',
+    '/schedule/saturday': '/static/pwa/pages/daily/saturday.html',
+    '/schedule/sunday': '/static/pwa/pages/daily/sunday.html'
   };
   
   async function loadRoute() {
@@ -224,7 +228,7 @@ async function loadAboutPage() {
     }
 
   function noPodcastWarning (show) {
-    alert(`We do not currently offer podcasts for ${show}.`)
+    alert(`We do not currently offer a podcast for ${show}.`)
   }
 
 
