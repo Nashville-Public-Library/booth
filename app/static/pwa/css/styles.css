@@ -155,6 +155,12 @@ nav a {
   margin-bottom: 50pt;
 }
 
+.dailyScheduleHeader {
+  font-size: 25pt;
+  text-align: center;
+  padding: 5pt;
+}
+
 .dailyScheduleContainerIndividual {
   border-bottom: 1pt solid black;
   padding-top: 10pt;
