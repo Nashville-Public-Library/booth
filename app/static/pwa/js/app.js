@@ -203,7 +203,6 @@ async function loadAboutPage() {
   let response = await fetch(url, { method: "POST" });
   let responseJSON = await response.json();
   let version = responseJSON.version;
-  console.log(version)
   document.getElementById("appVersion").innerHTML = "v" + version;
 }
 
