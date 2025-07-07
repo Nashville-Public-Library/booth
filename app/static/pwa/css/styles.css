@@ -149,6 +149,30 @@ nav a {
     margin-bottom: 20px;
     font-size: 20pt;
   }
+
+.dailyScheduleContainer {
+  font-size: 17pt;
+  margin-bottom: 50pt;
+}
+
+.dailyScheduleContainerIndividual {
+  border-bottom: 1pt solid black;
+  padding-top: 10pt;
+  padding-bottom: 10pt;
+}
+
+.dailyScheduleHour {
+  display: inline-block;
+  font-size: 15pt;
+  padding-right: 4pt;
+}
+
+.dailyScheduleTitle {
+  display: inline-block;
+  border-left: 1pt solid black;  
+  padding-left: 8pt;
+}
+
 .logo-container {
   display: flex;
   justify-content: center;

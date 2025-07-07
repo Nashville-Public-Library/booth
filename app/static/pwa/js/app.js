@@ -51,7 +51,8 @@ const routes = {
     '/podcasts': '/static/pwa/pages/podcasts.html',
     '/podcasts-individual': '/static/pwa/pages/podcast-loading.html',
     '/broadcast-schedule': '/static/pwa/pages/broadcastSchedule.html',
-    '/program-guide': '/static/pwa/pages/programGuide.html'
+    '/program-guide': '/static/pwa/pages/programGuide.html',
+    '/schedule/monday': '/static/pwa/pages/daily/monday.html'
   };
   
   async function loadRoute() {
@@ -219,6 +220,10 @@ async function loadAboutPage() {
         app.innerHTML = "<h1>Sorry, we're having trouble fetching podcasts</h1>"
       }
     }
+
+  function noPodcastWarning (show) {
+    alert(`We do not currently offer podcasts for ${show}.`)
+  }
 
 
 document.addEventListener('play', function (e) {
