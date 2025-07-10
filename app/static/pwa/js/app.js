@@ -46,9 +46,9 @@ function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
   window.dispatchEvent(new Event('resize'));
   const body = document.body;
-  body.style.paddingRight = "100px";
+  body.style.transform = "scale(1.0001)";
   requestAnimationFrame(() => {
-    body.style.paddingRight = "";
+    body.style.transform = "";
   })
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
