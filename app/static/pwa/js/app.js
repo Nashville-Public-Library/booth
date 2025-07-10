@@ -44,11 +44,13 @@ if ('serviceWorker' in navigator) {
 
 function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
-  setTimeout(() => {
-    window.dispatchEvent(new Event('resize'));
-  }, 100);
-}
-window.addEventListener('focus', fixFooterAfterFocusChange)
+  
+    document.body.style.display = 'none';
+    document.body.offsetHeight;
+    document.body.style.display = '';
+  }
+
+document.addEventListener('visibilitychange', fixFooterAfterFocusChange)
 
 
 
