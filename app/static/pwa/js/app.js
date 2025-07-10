@@ -45,10 +45,11 @@ if ('serviceWorker' in navigator) {
 function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
   const footer = document.querySelector('footer');
-  footer.style.display = "none";
+  const orig = footer.style.transform;
+  footer.style.transform = 'translateY(50px)';
   requestAnimationFrame(() => {
-    footer.style.display = "";
-  })
+    footer.style.transform = orig || '';
+  });
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
 
