@@ -44,11 +44,11 @@ if ('serviceWorker' in navigator) {
 
 function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
-  const footer = document.querySelector("footer");
-  footer.style.transform = "translateY(0.5px)";
-  // requestAnimationFrame(() => {
-  //   footer.style.transform = "";
-  // })
+  const body = document.body;
+  body.style.paddingRight = "0.01px";
+  requestAnimationFrame(() => {
+    body.style.paddingRight = "";
+  })
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
 
