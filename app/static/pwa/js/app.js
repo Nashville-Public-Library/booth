@@ -46,12 +46,17 @@ function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
   window.dispatchEvent(new Event('resize'));
   const body = document.body;
-  body.style.transform = "scale(1.0001)";
+  body.style.transform = "rotate(0.01deg)";
   requestAnimationFrame(() => {
     body.style.transform = "";
   })
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
+document.addEventListener('visibilitychange', () => {
+  if (document.visibilityState === 'visible') {
+    fixFooterAfterFocusChange()
+  }
+})
 
 
 
