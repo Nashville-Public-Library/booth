@@ -51,8 +51,8 @@ footer {
   flex-grow: 1;
   align-items: center;
   padding: 5px;
-  padding-top: 10px;
-  padding-bottom: 20px; /* account for bottom of mobile devices */
+  /* padding-top: 10px;
+  padding-bottom: 20px;  */
   /* justify-content: space-evenly; */
   box-sizing: border-box;
   position: fixed;
