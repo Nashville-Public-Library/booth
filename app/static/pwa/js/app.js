@@ -44,14 +44,13 @@ if ('serviceWorker' in navigator) {
 
 function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
-  window.location.reload()
+  const footer = document.querySelector('footer');
+  footer.style.display = "none";
+  requestAnimationFrame(() => {
+    footer.style.display = "";
+  })
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    fixFooterAfterFocusChange()
-  }
-})
 
 
 
