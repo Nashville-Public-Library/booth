@@ -42,6 +42,13 @@ if ('serviceWorker' in navigator) {
   });
 }
 
+function lockViewportHeight() {
+  console.log("resizing...")
+  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+}
+window.addEventListener('resize', lockViewportHeight)
+lockViewportHeight()
+
 
 
 const routes = {
