@@ -44,11 +44,9 @@ if ('serviceWorker' in navigator) {
 
 function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
-  window.dispatchEvent(new Event('resize'));
-  const body = document.body;
-  body.style.transform = "rotate(0.01deg)";
+  document.body.style.transform = 'rotate(0.0001deg)';
   requestAnimationFrame(() => {
-    body.style.transform = "";
+    document.body.style.transform = '';
   })
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
