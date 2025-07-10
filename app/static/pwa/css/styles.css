@@ -1,11 +1,11 @@
 html, body {
     margin: 0;
     padding: 0;
-    height: 100%;
+    /* height: 100%; */
     font-family: sans-serif;
     background-color: RGB(46,56,143);
-    overscroll-behavior: none;
-    overflow-x: hidden;
+    /* overscroll-behavior: none;
+    overflow-x: hidden; */
   }
 
 .installDialog {
@@ -82,9 +82,12 @@ nav a {
 }
   
   main {
-    padding: 1em;
-    min-height: calc(100vh - 160px);
+    padding-top: 80px;
+    padding-bottom: 80px;
+    box-sizing: border-box;
+    min-height: 100vh;
     background-color: #ffffff;
+    overflow-y: auto;
     transition: opacity 0.2s  ease-in-out;
   }
 
