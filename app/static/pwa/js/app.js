@@ -48,6 +48,7 @@ function fixFooterAfterFocusChange() {
     document.body.style.display = 'none';
     document.body.offsetHeight;
     document.body.style.display = '';
+    alert('visibility change')
   }
 
 document.addEventListener('visibilitychange', fixFooterAfterFocusChange)
