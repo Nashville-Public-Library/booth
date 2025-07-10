@@ -42,17 +42,12 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-// function fixFooterAfterFocusChange() {
-//   console.log("fixing footer...")
-//   const footer = document.querySelector('footer');
-//   const orig = footer.style.transform;
-//   footer.style.transform = 'translateY(0.5px)';
-//   requestAnimationFrame(() => {
-//     console.log('putting back to normal...')
-//     footer.style.transform = 'none';
-//   });
-// }
-// window.addEventListener('focus', fixFooterAfterFocusChange)
+function fixFooterAfterFocusChange() {
+  console.log("fixing footer...")
+  window.scrollBy(0, 1);
+  window.scrollBy(0, -1);
+}
+window.addEventListener('focus', fixFooterAfterFocusChange)
 
 
 
