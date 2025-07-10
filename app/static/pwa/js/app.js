@@ -47,7 +47,7 @@ function fixFooterAfterFocusChange() {
   const footer = document.querySelector('footer');
   footer.style.display = "none";
   requestAnimationFrame(() => {
-    // footer.style.display = "";
+    footer.style.display = "";
   })
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
