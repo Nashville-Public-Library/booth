@@ -44,8 +44,9 @@ if ('serviceWorker' in navigator) {
 
 function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
+  window.dispatchEvent(new Event('resize'));
   const body = document.body;
-  body.style.paddingRight = "0.01px";
+  body.style.paddingRight = "100px";
   requestAnimationFrame(() => {
     body.style.paddingRight = "";
   })
