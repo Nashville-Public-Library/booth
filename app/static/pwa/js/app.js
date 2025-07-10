@@ -46,9 +46,9 @@ function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
   const footer = document.querySelector("footer");
   footer.style.transform = "translateY(0.5px)";
-  requestAnimationFrame(() => {
-    footer.style.transform = "";
-  })
+  // requestAnimationFrame(() => {
+  //   footer.style.transform = "";
+  // })
 }
 window.addEventListener('focus', fixFooterAfterFocusChange)
 
