@@ -42,12 +42,15 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-function lockViewportHeight() {
-  console.log("resizing...")
-  document.documentElement.style.setProperty('--vh', `${window.innerHeight * 0.01}px`);
+function fixFooterAfterFocusChange() {
+  console.log("fixing footer...")
+  const footer = document.querySelector("footer");
+  footer.style.transform = "translateY(0.5px)";
+  requestAnimationFrame(() => {
+    footer.style.transform = "";
+  })
 }
-window.addEventListener('resize', lockViewportHeight)
-lockViewportHeight()
+window.addEventListener('focus', fixFooterAfterFocusChange)
 
 
 
