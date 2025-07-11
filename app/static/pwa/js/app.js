@@ -45,12 +45,11 @@ if ('serviceWorker' in navigator) {
 function fixFooterAfterFocusChange() {
   console.log("fixing footer...")
   
-    document.body.style.display = 'none';
-    document.body.offsetHeight;
-    document.body.style.display = '';
-    setTimeout(() => {
+    document.body.classList.add('forceReflow');
+    requestAnimationFrame(() => {
+      document.body.classList.remove('forceReflow');
       window.dispatchEvent(new Event('resize'));
-    }, 100);
+    });
   }
 
 document.addEventListener('visibilitychange', fixFooterAfterFocusChange)

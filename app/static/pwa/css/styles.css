@@ -266,3 +266,7 @@ nav a {
 .podcastEpisodeEnclosure {
   text-align: center;
 }
+
+.forceReflow {
+  transform: scale(1);
+}
