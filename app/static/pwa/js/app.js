@@ -42,21 +42,9 @@ if ('serviceWorker' in navigator) {
   });
 }
 
-function fixLayoutGlitch() {
-  console.log("fixing layout...");
-  
-  const old = document.body;
-  const copy = old.cloneNode(true);
-  document.documentElement.replaceChild(copy, old)
-}
-
-document.addEventListener('visibilitychange', () => {
-  if (document.visibilityState === 'visible') {
-    fixLayoutGlitch();
-  }
-});
-
-window.addEventListener('focus', fixLayoutGlitch);
+function openlinkExternalWindow(url) {
+  window.open(url, '_blank', 'noopener');
+} 
 
 
 
