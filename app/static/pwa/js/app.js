@@ -44,21 +44,15 @@ if ('serviceWorker' in navigator) {
 
 function fixLayoutGlitch() {
   console.log("fixing layout...");
-
-  const del = document.createElement("div");
-  del.style.position = 'absolute';
-  del.style.top = '0';
-  del.style.left = '0';
-  del.style.width = '1px'
-  del.style.height = '1px';
-  del.style.opacity = '0';
-  document.body.appendChild(del)
+  
+  const footer = document.querySelector('footer');
+  footer.style.position = 'absolute';
 
   requestAnimationFrame(() => {
-    del.remove()
+    footer.style.position = 'fixed';
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
-    }, 50);
+    }, 100);
   });
 }
 
