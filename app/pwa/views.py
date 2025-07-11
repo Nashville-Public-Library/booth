@@ -4,7 +4,7 @@ import time
 from app import app
 from app.pwa.pod import Podcast
 
-VERSION = "0.3.41"
+VERSION = "0.3.42"
 
 @app.route('/pwa', methods=['GET'])
 def pwa():
@@ -12,12 +12,18 @@ def pwa():
 
 @app.route('/pwa/version', methods=['POST'])
 def version():
-    time.sleep(.4)
     return {"version": VERSION}
 
 @app.route('/sw.js')
 def serve_sw():
     response = make_response(render_template("sw.js", version=VERSION))
+    response.headers["Content-Type"] = "application/javascript"
+    response.headers["Cache-Control"] = "no-cache"
+    return response
+
+@app.route('/app.js')
+def serve_app_js():
+    response = make_response(render_template("app.js", version=VERSION))
     response.headers["Content-Type"] = "application/javascript"
     response.headers["Cache-Control"] = "no-cache"
     return response

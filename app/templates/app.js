@@ -1,3 +1,5 @@
+const appVersion = "{{version}}";
+
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('/sw.js').then(reg => {
     console.log('[SW] Registered with scope:', reg.scope);
@@ -82,16 +84,16 @@ const routes = {
     }
 
     // enable zooming for these, which are PDF files
-    const viewportMeta = document.getElementById("viewportMeta");
-    if (path === '/program-guide' || path === '/broadcast-schedule') {
-      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
-    } else {
-      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-    }
-
-    // if (path === "/podcasts") {
-    //   getArrayOfPodcasts()
+    // const viewportMeta = document.getElementById("viewportMeta");
+    // if (path === '/program-guide' || path === '/broadcast-schedule') {
+    //   viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
+    // } else {
+    //   viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
     // }
+
+    if (path === "/about") {
+      loadAboutPage()
+    }
   }
   
   window.addEventListener('hashchange', loadRoute);
@@ -201,14 +203,9 @@ window.addEventListener('offline', onlineOffline);
 // check on load
 onlineOffline();
 
-async function loadAboutPage() {
-  location.hash = "/about"
-
-  const url = "/pwa/version";
-  let response = await fetch(url, { method: "POST" });
-  let responseJSON = await response.json();
-  let version = responseJSON.version;
-  document.getElementById("appVersion").innerHTML = "v" + version;
+function loadAboutPage() {
+  console.log(appVersion)
+  document.getElementById("appVersion").innerHTML = "v" + appVersion;
 }
 
   async function loadPodcast(show) {  
