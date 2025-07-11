@@ -129,6 +129,11 @@ nav a {
   height: 40px;
 }
 
+.appVersion {
+  float: right;
+  color: RGB(241, 101, 48);
+}
+
 .player {
     color: white;
     background-color: inherit;

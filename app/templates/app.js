@@ -48,9 +48,6 @@ function openlinkExternalWindow(url) {
   window.open(url, '_blank', 'noopener');
 } 
 
-
-
-
 const routes = {
     '/': '/static/pwa/pages/home.html',
     '/about': 'static/pwa/pages/about.html',
@@ -83,16 +80,8 @@ const routes = {
       app.innerHTML = '<h1>Something went wrong. Not Found.</h1>';
     }
 
-    // enable zooming for these, which are PDF files
-    // const viewportMeta = document.getElementById("viewportMeta");
-    // if (path === '/program-guide' || path === '/broadcast-schedule') {
-    //   viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes');
-    // } else {
-    //   viewportMeta.setAttribute('content', 'width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no');
-    // }
-
     if (path === "/about") {
-      loadAboutPage()
+      loadAppVersion()
     }
   }
   
@@ -203,8 +192,7 @@ window.addEventListener('offline', onlineOffline);
 // check on load
 onlineOffline();
 
-function loadAboutPage() {
-  console.log(appVersion)
+function loadAppVersion() {
   document.getElementById("appVersion").innerHTML = "v" + appVersion;
 }
 
