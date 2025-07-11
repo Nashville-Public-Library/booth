@@ -45,10 +45,17 @@ if ('serviceWorker' in navigator) {
 function fixLayoutGlitch() {
   console.log("fixing layout...");
 
-  document.body.classList.add('forceReflow');
+  const del = document.createElement("div");
+  del.style.position = 'absolute';
+  del.style.top = '0';
+  del.style.left = '0';
+  del.style.width = '1px'
+  del.style.height = '1px';
+  del.style.opacity = '0';
+  document.body.appendChild(del)
 
   requestAnimationFrame(() => {
-    document.body.classList.remove('forceReflow');
+    del.remove()
     setTimeout(() => {
       window.dispatchEvent(new Event('resize'));
     }, 50);
