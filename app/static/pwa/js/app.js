@@ -45,15 +45,9 @@ if ('serviceWorker' in navigator) {
 function fixLayoutGlitch() {
   console.log("fixing layout...");
   
-  const footer = document.querySelector('footer');
-  footer.style.position = 'absolute';
-
-  requestAnimationFrame(() => {
-    footer.style.position = 'fixed';
-    setTimeout(() => {
-      window.dispatchEvent(new Event('resize'));
-    }, 100);
-  });
+  const old = document.body;
+  const copy = old.cloneNode(true);
+  document.documentElement.replaceChild(copy, old)
 }
 
 document.addEventListener('visibilitychange', () => {
