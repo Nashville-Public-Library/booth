@@ -16,7 +16,6 @@ const FILES_TO_CACHE = [
     '/static/pwa/pages/daily/friday.html',
     '/static/pwa/pages/daily/saturday.html',
     '/static/pwa/pages/daily/sunday.html',
-    '/static/pwa/js/app.js',
     '/static/pwa/img/NTL_new-192.jpg',
     '/static/pwa/img/NTL_new-512.jpg',
 ];
