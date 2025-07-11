@@ -48,12 +48,12 @@ footer {
   background-color: inherit;
   color: white;
   display: flex;
-  flex-grow: 1;
+  /* flex-grow: 1; */
   align-items: center;
   padding: 5px;
   padding-top: 10px;
   padding-bottom: 20px; /* account for bottom of mobile devices */
-  /* justify-content: space-evenly; */
+  justify-content: flex-start;
   box-sizing: border-box;
   position: fixed;
   bottom: 0;
@@ -61,6 +61,21 @@ footer {
   right: 0;
   z-index: 1000;
 }
+
+.player {
+    color: white;
+    background-color: inherit;
+    border: 0;
+    margin-top: 5px;
+    /* display: flex; */
+  }
+
+.nowPlaying {
+    width: 83%;
+    margin-right: 38pt;
+    text-align: center;
+    font-size: 17pt;
+  }
 
 nav a {
     color: unset;
@@ -133,21 +148,6 @@ nav a {
   float: right;
   color: RGB(241, 101, 48);
 }
-
-.player {
-    color: white;
-    background-color: inherit;
-    border: 0;
-    display: flex;
-    align-items: center;
-    vertical-align: baseline;
-  }
-
-.nowPlaying {
-    flex-grow: 4;
-    text-align: center;
-    font-size: 17pt;
-  }
 
 .dailyScheduleLinksContainer {
   margin-top: 10pt;
