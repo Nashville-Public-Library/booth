@@ -48,10 +48,13 @@ function fixFooterAfterFocusChange() {
     document.body.style.display = 'none';
     document.body.offsetHeight;
     document.body.style.display = '';
-    alert('visibility change')
+    setTimeout(() => {
+      window.dispatchEvent(new Event('resize'));
+    }, 100);
   }
 
 document.addEventListener('visibilitychange', fixFooterAfterFocusChange)
+window.addEventListener('focus', fixFooterAfterFocusChange)
 
 
 
