@@ -4,7 +4,7 @@ import time
 from app import app
 from app.pwa.pod import Podcast
 
-VERSION = "0.3.33"
+VERSION = "0.3.34"
 
 @app.route('/pwa', methods=['GET'])
 def pwa():

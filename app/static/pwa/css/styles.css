@@ -268,5 +268,5 @@ nav a {
 }
 
 .forceReflow {
-  transform: scale(1);
+  transform: translateZ(0.0001px)
 }
