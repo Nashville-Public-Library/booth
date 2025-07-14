@@ -18,6 +18,11 @@ const FILES_TO_CACHE = [
     '/static/pwa/pages/daily/sunday.html',
     '/static/pwa/img/NTL_new-192.jpg',
     '/static/pwa/img/NTL_new-512.jpg',
+    '/static/pwa/img/instagram.png',
+    '/static/pwa/img/facebook.png',
+    '/static/pwa/img/website.png',
+    '/static/pwa/img/email.png',
+    '/static/pwa/img/phone.png'
 ];
 
 // Install — cache all static assets
