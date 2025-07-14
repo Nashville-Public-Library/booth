@@ -155,6 +155,15 @@ nav a {
   color: RGB(241, 101, 48);
 }
 
+.backButton {
+  width: 30px;
+  height: 30px;
+  width:fit-content;
+  margin-top: 9pt;
+  color: aliceblue;
+  position: absolute;
+}
+
 .dailyScheduleLinksContainer {
   margin-top: 10pt;
   display: flex;
