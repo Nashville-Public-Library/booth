@@ -1,7 +1,7 @@
 async function detect() {
     const hover = window.matchMedia('(hover: hover)').matches;
     if (hover) {
-        document.body.innerHTML = "<div style='text-align: center; margin-top: 20%; font-size: 50pt;'>ONLY AVAILABLE ON MOBILE</div>";
+        document.body.innerHTML = "<div style='text-align: center; margin-top: 20%; font-size: 50pt; color: aliceblue;'>ONLY AVAILABLE ON MOBILE</div>";
         return;
     }
 
