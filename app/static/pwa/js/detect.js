@@ -46,7 +46,7 @@ if ('serviceWorker' in navigator) {
 
 function isMobileDevice () {
     const hover = window.matchMedia('(hover: none)').matches;
-    const mobile = /mobi|Android|iPhone\iPad\iPod|Windows Phone/i.test(navigator.userAgent);
+    const mobile = /mobi|Android|iPhone|iPad|iPod|Windows Phone/i.test(navigator.userAgent);
     if (hover || mobile) {return true;}
 }
 
