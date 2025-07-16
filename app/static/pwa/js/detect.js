@@ -1,3 +1,49 @@
+function sw() {
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/sw.js').then(reg => {
+    console.log('[SW] Registered with scope:', reg.scope);
+
+    // Always check for an update when the page becomes visible
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        reg.update(); // 🔄 Triggers update check on visibility
+      }
+    });
+
+    // Prompt the user when there's a waiting SW
+    function promptUserToUpdate(sw) {
+      const wantsUpdate = alert("Your app will now be updated to the newest version.");
+        sw.addEventListener('statechange', () => {
+          if (sw.state === 'activated') {
+            window.location.reload(); // ✅ Reload only after new SW takes control
+          }
+        });
+        sw.postMessage({ action: 'skipWaiting' }); // 🪄 Activates new SW
+      
+    }
+
+    // Handle case where a new SW is already waiting
+    if (reg.waiting) {
+      promptUserToUpdate(reg.waiting);
+    }
+
+    // Handle update found while app is running
+    reg.addEventListener('updatefound', () => {
+      const newSW = reg.installing;
+      newSW.addEventListener('statechange', () => {
+        if (newSW.state === 'installed' && navigator.serviceWorker.controller) {
+          promptUserToUpdate(newSW); // only prompt if old SW is controlling
+        }
+      });
+    });
+
+    // 🔥 Don't reload blindly on controllerchange — user decides!
+  }).catch(err => {
+    console.error('[SW] Registration failed:', err);
+  });
+}
+}
+
 function isMobileDevice () {
     const hover = window.matchMedia('(hover: none)').matches;
     const mobile = /mobi|Android|iPhone\iPad\iPod|Windows Phone/i.test(navigator.userAgent);
@@ -18,6 +64,9 @@ async function detect() {
         let text = await response.text()
 
         document.body.innerHTML = text;
+        return;
+    } else {
+        sw()
     }
 }
 
