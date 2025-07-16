@@ -22,7 +22,10 @@ const FILES_TO_CACHE = [
     '/static/pwa/img/facebook.png',
     '/static/pwa/img/website.png',
     '/static/pwa/img/email.png',
-    '/static/pwa/img/phone.png'
+    '/static/pwa/img/phone.png',
+    '/static/pwa/img/broadcastSchedulePreview.png',
+    '/static/pwa/img/programGuidePreview.png',
+    '/static/pwa/img/back-button.png'
 ];
 
 // Install — cache all static assets
