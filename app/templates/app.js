@@ -33,7 +33,7 @@ const routes = {
       const html = await res.text();
       app.innerHTML = html;
     } else {
-      app.innerHTML = '<h1>Something went wrong. Not Found.</h1>';
+      app.innerHTML = "<h1>We're so sorry, but something went wrong. Not Found.</h1>";
     }
 
     if (path === "/about") {
