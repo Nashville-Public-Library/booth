@@ -288,6 +288,5 @@ function main() {
 main()
 setInterval(main, 120000)
 audioElements()
-schedule()
 ping()
 setInterval(check_time, 60000)
