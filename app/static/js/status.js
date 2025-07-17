@@ -274,7 +274,7 @@ function check_time() {
     var minute = current_time.getMinutes()
     const updateTimes = [0, 30];
     if (updateTimes.includes(minute)) {
-        schedule();
+        // schedule();
         ping();
     }
 }
