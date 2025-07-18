@@ -55,7 +55,7 @@ function isLandscape() {
 }
 
 function handleOrientationChange() {
-  warning = document.getElementById("orientationChange");
+  const warning = document.getElementById("orientationChange");
   if (isLandscape()) {
     warning.style.display = "block"
   } else {
@@ -81,9 +81,8 @@ async function detect() {
     } else {
         sw()
         handleOrientationChange()
+        window.addEventListener('resize', handleOrientationChange)
     }
 }
 
 detect()
-
-window.addEventListener('resize', handleOrientationChange)
