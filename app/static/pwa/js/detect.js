@@ -50,6 +50,19 @@ function isMobileDevice () {
     if (hover || mobile) {return true;}
 }
 
+function isLandscape() {
+  return window.innerWidth > window.innerHeight;
+}
+
+function handleOrientationChange() {
+  warning = document.getElementById("orientationChange");
+  if (isLandscape()) {
+    warning.style.display = "block"
+  } else {
+    warning.style.display = "none"
+  }
+}
+
 async function detect() {
     if (!isMobileDevice()) {
         document.body.innerHTML = "<div style='text-align: center; margin-top: 20%; font-size: 50pt; color: aliceblue;'>ONLY AVAILABLE ON MOBILE</div>";
@@ -67,7 +80,10 @@ async function detect() {
         return;
     } else {
         sw()
+        handleOrientationChange()
     }
 }
 
 detect()
+
+window.addEventListener('resize', handleOrientationChange)
