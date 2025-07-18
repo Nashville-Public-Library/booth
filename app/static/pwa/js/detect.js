@@ -81,8 +81,14 @@ async function detect() {
     } else {
         sw()
         handleOrientationChange()
-        window.addEventListener('resize', handleOrientationChange)
+        
+        window.addEventListener('resize', () =>{
+          let orientationTimeout;
+          clearTimeout(orientationTimeout);
+          orientationTimeout = setTimeout(handleOrientationChange, 300);
+        } )
+        }
     }
-}
+
 
 detect()
