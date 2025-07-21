@@ -180,10 +180,10 @@ nav a {
 .dailyScheduleLinksContainer {
   margin-top: 10pt;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   flex-wrap: wrap;
-  column-gap: 15pt;
-  row-gap: 15pt;
+  column-gap: 165pt;
+  row-gap: 10pt;
 }
 
 .dailyScheduleLinks {
@@ -191,8 +191,11 @@ nav a {
   color: aliceblue;
   font-size: 20pt;
   background-color: RGB(241, 101, 48);;
-  border-radius: 75%;
-  padding: 15pt;
+  border-radius: 3%;
+  padding-top: 12pt;
+  padding-bottom: 12pt;
+  padding-right: 50pt;
+  padding-left: 50pt;
 }
 
 .dailyScheduleContainer {
