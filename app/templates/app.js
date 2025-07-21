@@ -137,14 +137,15 @@ function handleMuteButton() {
   const audio = document.getElementById("audio");
   const muteButton = document.getElementById("muteButton");
   if (audio.paused) {return};
-  if (audio.muted) {
-    console.log("unmuting audio");
-    audio.muted = false;
-    muteButton.innerText = "MUTE";
+  let volume = audio.volume;
+  if (volume === 1) {
+    console.log("changing volume to 0.0001");
+    audio.volume = 0.0001;
+    muteButton.innerText = "UNMUTE"
   } else {
-    console.log("muting audio");
-    audio.muted = true;
-    muteButton.innerText = "UNMUTE";
+    console.log("changing volume to 1")
+    audio.volume = 1
+    muteButton.innerText = "MUTE"
   }
   
 }
