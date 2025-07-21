@@ -171,9 +171,10 @@ nav a {
 .backButton {
   width: 30px;
   height: 30px;
-  margin-top: 9pt;
+  margin-top: 4pt;
   color: aliceblue;
-  position: absolute;
+  position: fixed;
+  z-index: 10;
 }
 
 .dailyScheduleLinksContainer {
@@ -195,15 +196,28 @@ nav a {
 }
 
 .dailyScheduleContainer {
+  margin-top: 0;
   margin-bottom: 60px;
 }
 
 
 .dailyScheduleHeader {
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+  margin: auto;
   font-size: 25pt;
   text-align: center;
-  padding: 5pt;
-  font-weight: bold;
+  font-weight: bold;  
+  background-color: #ffffff;
+  margin-top: 0%;
+  padding-top: 0%;
+}
+
+.tapProgramNameToListen {
+  font-size: 12pt;
+  text-align: center;
 }
 
 .dailyScheduleContainerIndividual {
