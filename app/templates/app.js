@@ -133,6 +133,24 @@ function updatePlayerMetadata(nowPlayingTitle) {
   }
 }
 
+function handleMuteButton() {
+  const audio = document.getElementById("audio");
+  const muteButton = document.getElementById("muteButton");
+  if (audio.paused) {return};
+  let volume = audio.volume;
+  console.log(volume);
+  if (volume === 1) {
+    console.log("changing volume to 0");
+    audio.volume = 0;
+    muteButton.innerText = "UNMUTE"
+  } else {
+    console.log("changing volume to 1")
+    audio.volume = 1
+    muteButton.innerText = "MUTE"
+  }
+  
+}
+
 function onlineOffline() {
   const onlineOfflineDotColor = document.getElementById("onlineOfflineDot");
   if (!navigator.onLine) {

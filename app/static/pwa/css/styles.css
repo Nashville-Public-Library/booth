@@ -85,10 +85,14 @@ footer {
 
 .nowPlaying {
     width: 100%;
-    margin-right: 38pt;
+    margin-right: 18pt;
     text-align: center;
     font-size: 17pt;
   }
+
+.muteButton {
+  padding: 3pt;
+}
 
 nav a {
     color: unset;
