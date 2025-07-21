@@ -3,7 +3,7 @@ html, body {
     padding: 0;
     height: 100%;
     font-family: sans-serif;
-    background-color: RGB(46,56,143);
+    background-color: #2e388f;
     overscroll-behavior: none;
     overflow-x: hidden;
   }
