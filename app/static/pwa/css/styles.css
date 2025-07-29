@@ -271,6 +271,10 @@ nav a {
     justify-content: center;    
 }
 
+.categorySelector {
+  font-size: 18pt;
+}
+
 .podcastIndividual {
   text-align: center;
 }

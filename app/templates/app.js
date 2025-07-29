@@ -209,3 +209,23 @@ document.addEventListener('play', function (e) {
     pauseIcon.style.display = "none";
   }
 }, true);
+
+function categorySelector(category) {
+const podcasts = document.getElementsByClassName("podcastIndividual");
+for (let i=0; i < podcasts.length; i++) {
+  let podcast = podcasts[i];
+
+  // if set to 'all', show all podcasts
+  if (category == "all") {
+    podcast.style.display = "block"; 
+    continue; // next iteration
+  }
+
+  let categories = podcast.dataset.category.split(",");
+  if (categories.includes(category)) {
+    podcast.style.display = "block"
+  } else {
+    podcast.style.display = "none";
+  }
+}
+}
