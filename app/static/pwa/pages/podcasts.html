@@ -2,7 +2,7 @@
 <div id="podcastsContainer" class="podcastsContainer">
 
     <select id="categorySelector" class="categorySelector" onchange="categorySelector(this.value)">
-        <option value="" hidden>Categories</option>
+        <option value="all" selected disabled hidden>Categories</option>
         <option value="all">All</option>
         <option value="local">Local</option>
         <option value="news-politics">News & Politics</option>
@@ -56,7 +56,7 @@
         <div class="podcastTitle">Consumer Reports</div>
     </div>
 
-    <div id="diabeties" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture,">
+    <div id="diabeties" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
         <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/diabeties/image.jpg">
         <div class="podcastTitle">Diabetic News</div>
     </div>
