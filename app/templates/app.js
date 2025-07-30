@@ -247,11 +247,18 @@ function categorySelector(category) {
 }
 
 async function podcastSearch(title) {
+  const titleTrim = title.trim()
+  if (titleTrim == "") {return;}
+
   const url = "/pwa/podcasts"
   let response = await fetch(url, { method: "POST" });
   let responseJSON = await response.json();
-  let show = responseJSON.shows[title]
-  loadPodcast(show)
+  let show = responseJSON.shows[titleTrim]
+  if (show) {
+    loadPodcast(show)
+  } else {
+    alert(`Sorry, we don't have a show called ${titleTrim}. (we can change this message to anything)`)
+  }
 }
 
 async function loadShowNamesInSearchInput() {

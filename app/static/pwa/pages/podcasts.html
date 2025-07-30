@@ -2,7 +2,7 @@
 <div id="podcastsContainer" class="podcastsContainer">
 
     <datalist id="podcastSearchList"></datalist>
-    
+
     <div class="categorySearch">
 
     <select id="categorySelector" class="categorySelector" onchange="categorySelector(this.value)">
@@ -20,7 +20,8 @@
         <option value="special">Special</option>
     </select>
 
-    <input type="search" id="podcastSearch" name="podcastSearch" class="podcastSearch" placeholder="search" list="podcastSearchList" onchange="podcastSearch(this.value)"/>
+    <input type="search" id="podcastSearch" name="podcastSearch" class="podcastSearch" placeholder="search" 
+        list="podcastSearchList" minlength="2" onchange="podcastSearch(this.value)"/>
 
     </div>
 
