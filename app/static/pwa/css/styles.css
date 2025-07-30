@@ -277,6 +277,8 @@ nav a {
 
 .podcastIndividual {
   text-align: center;
+  opacity: 1;
+  transition: opacity 0.25s ease, max-height 0.3s ease;
 }
 
 .podcastImages {

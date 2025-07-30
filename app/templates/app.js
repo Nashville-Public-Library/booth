@@ -211,21 +211,33 @@ document.addEventListener('play', function (e) {
 }, true);
 
 function categorySelector(category) {
-const podcasts = document.getElementsByClassName("podcastIndividual");
-for (let i=0; i < podcasts.length; i++) {
-  let podcast = podcasts[i];
+  const podcasts = document.getElementsByClassName("podcastIndividual");
+  const speed = 250;
 
-  // if set to 'all', show all podcasts
-  if (category == "all") {
-    podcast.style.display = "block"; 
-    continue; // next iteration
-  }
+  for (let i = 0; i < podcasts.length; i++) {
+    let podcast = podcasts[i];
 
-  let categories = podcast.dataset.category.split(",");
-  if (categories.includes(category)) {
-    podcast.style.display = "block"
-  } else {
-    podcast.style.display = "none";
+    // if set to 'all', show all podcasts
+    if (category == "all") {
+      podcast.style.display = "block";
+      setTimeout(() => {
+        podcast.style.opacity = '1';
+      }, speed);
+      continue; // next iteration
+    }
+
+    let categories = podcast.dataset.category.split(",");
+    if (categories.includes(category)) {
+      podcast.style.display = "block";
+      setTimeout(() => {
+        podcast.style.opacity = '1'
+      }, speed);
+    } else {
+      podcast.style.opacity = "0";
+      setTimeout(() => {
+        podcast.style.display = "none";
+      }, speed);
+
+    }
   }
-}
 }
