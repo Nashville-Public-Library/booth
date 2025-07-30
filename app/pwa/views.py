@@ -31,12 +31,14 @@ def serve_app_js():
 @app.route('/pwa/podcasts', methods=['POST'])
 def podcasts():
     shows = {"AARP Report": "aarp", "Able Living": "able", "Around the World": "aroundworld", "Atlantic": "atlantic", "Book Page": "bookpage", 
-             "Checklist": "checklist", "Community News": "community", "Consumer Reports": "consumer", "Diabetic News": "diabeties", "Discover": "discover",
-             "Economist": "economist", "Entertainment Weekly": "entertainment", "Eyes on Success": "eyes", "Fortune": "fortune", "Historical View": "historical", 
-             "An Hour of Short Stories": "hourshortstories", "Independent Living": "independent", "Nashville Ledger": "ledger", "LGBTQ News & Culture": "lgbt", 
-             "Men's Hours": "mens", "Money Talk": "moneytalk", "National Geographic": "nationalgeo", "Newsweek": "newsweek", "New Yorker": "newyorker", 
-             "New York Times": "nyt", "Tennessean Opinions": "opinion", "People": "people", "Pet Potpourri": "pet", "Poetry in the Air": "poetry", 
-             "Prevention": "prevention", "Reader's Digest": "readersdigest", "Rolling Stone": "rollingstone", "Nashville Scene": "scene", "New Scientist": "science", 
+             "Checklist": "checklist", "Hourly Weather Forecast": "cirrus", "Community News": "community", "Consumer Reports": "consumer", 
+             "Diabetic News": "diabeties", "Discover": "discover", "Economist": "economist", "Entertainment Weekly": "entertainment", 
+             "Eyes on Success": "eyes", "Fortune": "fortune", "Historical View": "historical", "An Hour of Short Stories": "hourshortstories", 
+             "Independent Living": "independent", "Nashville Ledger": "ledger", "LGBTQ News & Culture": "lgbt", "Men's Hours": "mens", 
+             "Money Talk": "moneytalk", "National Geographic": "nationalgeo", "Newsweek": "newsweek", "New Yorker": "newyorker", 
+             "New York Times": "nyt", "Tennessean Opinions": "opinion", "People": "people", "Pet Potpourri": "pet", "PNS 2025 Talks": "pnstalks", 
+             "PNS Daily Newscast": "pns", "PNS Yonder Report": "pnsyonder", "Poetry in the Air": "poetry", "Prevention": "prevention", 
+             "Reader's Digest": "readersdigest", "Rolling Stone": "rollingstone", "Nashville Scene": "scene", "New Scientist": "science", 
              "Smithsonian": "smithsonian", "Spotlight on Sports": "sports", "Tennessean": "tennessean", "Time": "time", "Town & Country": "town", 
              "Vanity Fair": "vanity", "Wired": "wired", "Woman's World": "woman", "Wall Street Journal": "wsj"}
     return {"shows": shows}
