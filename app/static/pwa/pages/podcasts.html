@@ -1,6 +1,10 @@
 <h1 style="text-align: center;">PODCASTS</h1>
 <div id="podcastsContainer" class="podcastsContainer">
 
+    <datalist id="podcastSearchList"></datalist>
+    
+    <div class="categorySearch">
+
     <select id="categorySelector" class="categorySelector" onchange="categorySelector(this.value)">
         <option value="all" selected disabled hidden>Categories</option>
         <option value="all">All</option>
@@ -16,7 +20,9 @@
         <option value="special">Special</option>
     </select>
 
-    <input type="text" id="podcastSearch" name="name" required minlength="3" size="15" placeholder="search TEST"/>
+    <input type="search" id="podcastSearch" name="podcastSearch" class="podcastSearch" placeholder="search" list="podcastSearchList" onchange="podcastSearch(this.value)"/>
+
+    </div>
 
     <div id="aarp" class="podcastIndividual" onclick="loadPodcast(this.id)" data-category="health-fitness,lifestyle-culture">
         <img class="podcastImages" src="https://assets.library.nashville.org/talkinglibrary/shows/aarp/image.jpg">

@@ -39,6 +39,10 @@ const routes = {
     if (path === "/about") {
       loadAppVersion()
     }
+
+    if (path === "/podcasts") {
+      loadShowNamesInSearchInput()
+    }
   }
   
   window.addEventListener('hashchange', loadRoute);
@@ -239,5 +243,28 @@ function categorySelector(category) {
       }, speed);
 
     }
+  }
+}
+
+async function podcastSearch(title) {
+  const url = "/pwa/podcasts"
+  let response = await fetch(url, { method: "POST" });
+  let responseJSON = await response.json();
+  let show = responseJSON.shows[title]
+  loadPodcast(show)
+}
+
+async function loadShowNamesInSearchInput() {
+  const datalist = document.getElementById("podcastSearchList");
+
+  const url = "/pwa/podcasts"
+  let response = await fetch(url, { method: "POST" });
+  let responseJSON = await response.json();
+  let shows = responseJSON.shows
+
+  for (const key in shows) {
+    const option = document.createElement("option");
+    option.value = key;
+    datalist.appendChild(option)
   }
 }

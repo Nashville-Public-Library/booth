@@ -271,8 +271,24 @@ nav a {
     justify-content: center;    
 }
 
+.categorySearch {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  row-gap: 8px;
+  margin-bottom: 0%;
+}
+
 .categorySelector {
   font-size: 18pt;
+  width: 65%; 
+}
+
+.podcastSearch {
+  text-align: left;
+  font-size: 18pt;
+  width: 65%;
 }
 
 .podcastIndividual {
