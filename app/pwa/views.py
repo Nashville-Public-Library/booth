@@ -30,12 +30,16 @@ def serve_app_js():
 
 @app.route('/pwa/podcasts', methods=['POST'])
 def podcasts():
-    shows = ("aarp", "able", "aroundworld", "atlantic", "bookpage", "checklist", "community", "consumer", "diabeties", "discover",
-             "economist", "entertainment", "eyes", "fortune", "historical", "hourshortstories", "independent", "ledger", "lgbt",
-             "mens", "moneytalk", "nationalgeo", "newsweek", "newyorker", "nyt", "opinion", "people", "pet", "poetry", "prevention",
-             "readersdigest", "rollingstone", "scene", "science", "smithsonian", "sports", "tennessean", "time", "town", "vanity",
-             "wired", "woman", "wsj")
-    return {"podcasts": shows}
+    shows = {"AARP Report": "aarp", "Able Living": "able", "Around the World": "aroundworld", "Atlantic": "atlantic", "Book Page": "bookpage", 
+             "Checklist": "checklist", "Community News": "community", "Consumer Reports": "consumer", "Diabetic News": "diabeties", "Discover": "discover",
+             "Economist": "economist", "Entertainment Weekly": "entertainment", "Eyes on Success": "eyes", "Fortune": "fortune", "Historical View": "historical", 
+             "An Hour of Short Stories": "hourshortstories", "Independent Living": "independent", "Nashville Ledger": "ledger", "LGBTQ News & Culture": "lgbt", 
+             "Men's Hours": "mens", "Money Talk": "moneytalk", "National Geographic": "nationalgeo", "Newsweek": "newsweek", "New Yorker": "newyorker", 
+             "New York Times": "nyt", "Tennessean Opinions": "opinion", "People": "people", "Pet Potpourri": "pet", "Poetry in the Air": "poetry", 
+             "Prevention": "prevention", "Reader's Digest": "readersdigest", "Rolling Stone": "rollingstone", "Nashville Scene": "scene", "New Scientist": "science", 
+             "Smithsonian": "smithsonian", "Spotlight on Sports": "sports", "Tennessean": "tennessean", "Time": "time", "Town & Country": "town", 
+             "Vanity Fair": "vanity", "Wired": "wired", "Woman's World": "woman", "Wall Street Journal": "wsj"}
+    return {"shows": shows}
 
 @app.route('/pwa/podcasts/info/<podcast>', methods=['POST'])
 def podcasts_info(podcast):
