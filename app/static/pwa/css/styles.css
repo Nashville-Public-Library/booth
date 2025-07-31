@@ -15,6 +15,7 @@ html, body {
 }
 
 .installLogo {
+  width: 320px;
   display: block;
   margin: auto;
 }
