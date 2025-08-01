@@ -42,6 +42,10 @@ const routes = {
 
     if (path === "/podcasts") {
       loadShowNamesInSearchInput()
+      let categorySelected = sessionStorage.getItem("pocastCategory");
+      let categoryDropdown = document.getElementById("categorySelector");
+      categoryDropdown.value = categorySelected
+      categorySelector(categorySelected);
     }
   }
   
@@ -217,6 +221,8 @@ document.addEventListener('play', function (e) {
 function categorySelector(category) {
   const podcasts = document.getElementsByClassName("podcastIndividual");
   const speed = 250;
+
+  sessionStorage.setItem("pocastCategory", category)
 
   for (let i = 0; i < podcasts.length; i++) {
     let podcast = podcasts[i];
