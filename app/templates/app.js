@@ -43,9 +43,11 @@ const routes = {
     if (path === "/podcasts") {
       loadShowNamesInSearchInput()
       let categorySelected = sessionStorage.getItem("pocastCategory");
-      let categoryDropdown = document.getElementById("categorySelector");
-      categoryDropdown.value = categorySelected
-      categorySelector(categorySelected);
+      if (categorySelected) {
+        let categoryDropdown = document.getElementById("categorySelector");
+        categoryDropdown.value = categorySelected
+        categorySelector(categorySelected);
+      }
     }
   }
   
