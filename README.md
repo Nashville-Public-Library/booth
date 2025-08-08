@@ -86,3 +86,59 @@ Don't forget to continually update your `requirement.txt` file as you go:
 ````python
 pip freeze > requirements.txt
 ````
+
+## Development
+
+- Clone this depository
+    ````bash
+    https://github.com/Nashville-Public-Library/booth.git
+    ````
+
+- cd into the folder in the terminal or open the folder in your IDE
+    ````bash
+    cd booth
+    ````
+
+- Create a virtual environment
+    ````bash 
+    py -m venv venv
+    ````
+    - Depending on your OS, you may need to use `python` or `python3` instead of `py`
+
+- Activate virtual environment
+    - On Windows:
+
+    ````bash
+    venv\Scripts\activate
+    ````
+    - On Mac:
+
+    ````bash
+    source venv/bin/activate
+    ````
+
+    >[IMPORTANT]
+    >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
+	
+- Install the requirements file
+    ````bash
+    pip install -r requirements.txt
+    ````
+- Update pip
+    ````bash
+    py -m pip install --upgrade pip
+    ````
+    - Depending on your OS, you may need to run `pip3` instead of `pip`
+
+- Run Pytest
+    ````bash
+    pytest
+    ````
+    - to see code coverage, use this instead
+    ````bash
+    pytest --cov=booth
+    ````
+    - The tests can take a while to run. Watch the terminal output for progress.
+    - If the tests fail, you may have installed something incorrectly. 
+    - You must be connected to the internet to run the tests.
+    - To update the version on PyPI, you must increment the version number in `pyproject.toml`
