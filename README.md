@@ -86,3 +86,53 @@ Don't forget to continually update your `requirement.txt` file as you go:
 ````python
 pip freeze > requirements.txt
 ````
+
+## Development
+
+- Clone this depository
+    ````bash
+    git clone https://github.com/Nashville-Public-Library/booth.git
+    ````
+
+- cd into the folder in the terminal or open the folder in your IDE
+    ````bash
+    cd booth
+    ````
+
+- Create a virtual environment
+    ````bash 
+    py -m venv venv
+    ````
+    - Depending on your OS, you may need to use `python` or `python3` instead of `py`
+
+- Activate virtual environment
+    - On Windows:
+
+    ````bash
+    venv\Scripts\activate
+    ````
+    - On Mac:
+
+    ````bash
+    source venv/bin/activate
+    ````
+
+    >[IMPORTANT]
+    >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
+
+- Update pip
+    ````bash
+    pip install --upgrade pip
+    ````
+
+- Install dependencies
+    ````bash
+    pip install -r requirements.txt
+    ````
+
+    - Depending on your OS, you may need to run `pip3` instead of `pip`
+
+- Run Pytest
+    ````bash
+    pytest
+    ````
