@@ -91,7 +91,7 @@ pip freeze > requirements.txt
 
 - Clone this depository
     ````bash
-    https://github.com/Nashville-Public-Library/booth.git
+    git clone https://github.com/Nashville-Public-Library/booth.git
     ````
 
 - cd into the folder in the terminal or open the folder in your IDE
