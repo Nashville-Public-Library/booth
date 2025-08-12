@@ -119,26 +119,20 @@ pip freeze > requirements.txt
 
     >[IMPORTANT]
     >If done correctly, you should see `(venv)` in the terminal. Don't run the rest of these commands unless you see `(venv)` in the terminal.
-	
-- Install the requirements file
+
+- Update pip
+    ````bash
+    pip install --upgrade pip
+    ````
+
+- Install dependencies
     ````bash
     pip install -r requirements.txt
     ````
-- Update pip
-    ````bash
-    py -m pip install --upgrade pip
-    ````
+
     - Depending on your OS, you may need to run `pip3` instead of `pip`
 
 - Run Pytest
     ````bash
     pytest
     ````
-    - to see code coverage, use this instead
-    ````bash
-    pytest --cov=booth
-    ````
-    - The tests can take a while to run. Watch the terminal output for progress.
-    - If the tests fail, you may have installed something incorrectly. 
-    - You must be connected to the internet to run the tests.
-    - To update the version on PyPI, you must increment the version number in `pyproject.toml`
