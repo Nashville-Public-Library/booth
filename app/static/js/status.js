@@ -151,13 +151,27 @@ async function mountpoints() {
         containerElement.appendChild(createTextNodeInsideDiv(`Title: ${mount['title']}`));
         containerElement.appendChild(createTextNodeInsideDiv(`Metadata Updated: ${mount['metadata_updated']}`));
 
-        let audioElement = document.createElement("audio");
-        audioElement.src = mount['listenurl'];
-        audioElement.controls = true;
-        containerElement.appendChild(audioElement);
-
         mountpointElement.appendChild(containerElement);
     };
+}
+
+async function audioElements() {
+    const url = "/status/stream";
+    const options = {method: "POST"}
+    let response = await fetchPost(fetchURL=url, fetchOptions=options);
+
+    const AudioElement = document.getElementById('audio');
+    let mounts = response.mounts;
+    for (mount of mounts) {
+        let containerElement = document.createElement("div");
+        let audio = new Audio(mount['listenurl']);
+        audio.controls = true;
+        audio.preload = "none";
+        containerElement.appendChild(createTextNodeInsideDiv(mount['name']))
+        containerElement.appendChild(audio);
+
+        AudioElement.appendChild(containerElement)
+    }
 }
 
   async function schedule() {
@@ -273,5 +287,6 @@ function main() {
 
 main()
 setInterval(main, 120000)
+audioElements()
 ping()
 setInterval(check_time, 60000)
