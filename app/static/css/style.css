@@ -202,7 +202,7 @@ hr {
     width: 100px; /* Adjust the width of the meter as needed */
     height: 30px; /* Adjust the height of the meter as needed */
     background-color: #27bd22; /* Background color of the meter */
-    border: 5px solid #ccc; /* Border of the meter */
+    border: 2px solid #ccc; /* Border of the meter */
 }
 
 .schedule-top {

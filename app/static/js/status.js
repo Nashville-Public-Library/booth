@@ -164,11 +164,16 @@ async function audioElements() {
     let mounts = response.mounts;
     for (mount of mounts) {
         let containerElement = document.createElement("div");
+        let meterElement = document.createElement("div");
         let audio = new Audio(mount['listenurl']);
+        audio.id = mount['listenurl'];
         audio.controls = true;
         audio.preload = "none";
+        audio.crossOrigin = "anonymous";
+        audio.addEventListener("play", () => meters(audio, meterElement));
         containerElement.appendChild(createTextNodeInsideDiv(mount['name']))
         containerElement.appendChild(audio);
+        containerElement.appendChild(meterElement);
 
         AudioElement.appendChild(containerElement)
     }
@@ -196,6 +201,8 @@ async function audioElements() {
 }
 
  function meters (audioElement, meterElement) {
+    if (audioElement.paused) {console.log('return early'); return};
+    meterElement.classList.add("meter");
     var audio = audioElement;
     var meter = meterElement;
     var meterWidth = 900; // Adjust meter width as needed
@@ -232,41 +239,6 @@ async function audioElements() {
     }
 
    startAudio()
-}
-
-function meterButton() {
-    let live = document.getElementById("audio-live");
-    let liveMeter = document.getElementById("audio-live-meter");
-    liveMeter.classList.add("meter")
-    if (live.paused) {
-        live.play();
-        meters(audioElement=live, meterElement=liveMeter);
-    }
-    else {
-        live.pause()
-    }
-
-    let wpln = document.getElementById("audio-wpln");
-    let wplnMeter = document.getElementById("audio-wpln-meter");
-    wplnMeter.classList.add("meter")
-    if (wpln.paused) {
-        wpln.play();
-        meters(audioElement=wpln, meterElement=wplnMeter);
-    }
-    else {
-        wpln.pause()
-    }
-
-    let fallback = document.getElementById("audio-fallback");
-    let fallbackMeter = document.getElementById("audio-fallback-meter")
-    fallbackMeter.classList.add("meter")
-    if (fallback.paused) {
-        fallback.play()
-        meters(audioElement=fallback, meterElement=fallbackMeter)
-    }
-    else {
-        fallback.pause()
-    }
 }
 
 function check_time() {
