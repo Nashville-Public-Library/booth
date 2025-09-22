@@ -12,3 +12,4 @@ from app.booth import views
 from app.misc import views
 from app.status import views
 from app.stream import views
+from app.upload import views
