@@ -247,13 +247,14 @@ hr {
 .uploadContainer {
     flex-grow: 1;
     color: #ffff;
+    justify-items: center;
     text-align: center;
     margin-top: 55px;
-    font-size: 30pt;
 }
 
 .uploadHeader {
-    color: #ffff;
+    font-size: 30pt;
+    margin-bottom: 55px;
 }
 
 /* for BrightSign */

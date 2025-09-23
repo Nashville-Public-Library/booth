@@ -10,13 +10,7 @@ def upload():
 
 @app.route("/upload/file", methods=["POST"])
 def upload_to_server():
-    file = request.files["file"]
-
-    file_like = io.BytesIO(file.read())
-
-    upload_file = waifuvault.FileUpload(target=file_like, target_name=file.filename, expires="20d")
-    upload_res = waifuvault.upload_file(upload_file)
-    print(f"{upload_res.url}")
-    
+    json: dict = request.get_json() 
+    print(json)
 
     return {'response': "OK"}, 200

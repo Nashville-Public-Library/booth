@@ -6,45 +6,98 @@
 
     <div class="uploadHeader">UPLOAD FILES</div>
     
-    <br><br><br>
+    <br><br>
 
-    <div style="display: block;">
+    <div style="display: block; font-size: 25pt;">
     
-        <div style="display: inline-block; margin-right: 50px;">Choose your file:</div>
-        <input type="file" style="display: inline-block;" id="uploadFile">
+        <div style="display: inline-block; margin-right: 15px; ">Choose your file:</div>
+        <input type="file" style="display: inline-block; font-size: 15pt;" id="uploadFile" onclick="hideNoFileWarning()">
 
     </div>
 
-     <br><br>
+    <div style="font-size: 18pt; margin-top: 75px;">
+    <input type="password" placeholder="password" id="uploadPassword" style="font-size: inherit;">
+    <button onclick="uploadFile()" style="margin: 10px; font-size: inherit;">UPLOAD</button>
+    </div>
 
-    <button onclick="uploadFile()">UPLOAD</button>
-
+    <div style="font-size: 20pt; text-align: center; display: block; margin-top: 10px;">
+        <div id="noFileWarning" style="display: none; border: red 3pt solid; padding: 12px;">no file selected</div>
+        <div id="passwordWarning"  style="display: none; border: red 3pt solid; padding: 12px;"></div>
+    </div>
 
     </div>
+
 <script>
     async function uploadFile() {
+        if (!checkPassword()) {return;}
+        if(!checkFileSelected()) {return;}
+
         const file = document.getElementById("uploadFile").files[0];
+        let data = new FormData();
+        data.append("file", file)
 
-        if (!file) {
-            alert("no file selected!");
-            return;
-        }
+        const url = "https://waifuvault.moe/rest?expires=1h";
+        let response = await fetch(url, {
+            method: "PUT",
+            body: data
+        });
 
-        const formData = new FormData();
-        formData.append("file", file);
+        let responseJSON = await response.json();
+        let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "file": file.name};
+        uploadFileDataToDB(submissionData);
 
+        alert("file successfully uploaded!");
+        window.location.reload()
+    }
+
+    async function uploadFileDataToDB(data) {
         const url = "/upload/file";
         let response = await fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
             method: "POST",
-            body: formData
-        });
-        let responseJSON = await response.json()
-        if (response.ok) {
-            alert("File uploaded successfully!")
-        } else {
-            alert("Something went wrong! File did not upload. Please leave the file on the desktop for now.")
+            body: JSON.stringify(data)
+        })
+        let responseJSON = await response.json();
+        console.log(responseJSON)
+    }
+
+    function hideNoFileWarning() {
+        document.getElementById("noFileWarning").style.display = "none";
+    }
+
+    function checkPassword() {
+        const password = document.getElementById("uploadPassword").value;
+        let element = document.getElementById("passwordWarning");
+        if (!password) {
+            element.innerText = "you forgot the password";
+            element.style.display = "inline-block";
+            return false
+        } 
+        if (password != "stayingalive") {
+            element.innerText = "wrong password";
+            element.style.display = "inline-block";
+        }
+        else {
+            element.style.display = "none";
+            return true;
         }
     }
+
+    function checkFileSelected() {
+        const file = document.getElementById("uploadFile").files[0];
+        let noFileWarning = document.getElementById("noFileWarning");
+        if (!file) {
+            noFileWarning.style.display = "inline-block";
+            return false;
+        } else { 
+            noFileWarning.style.display = "none";
+        return true;
+        }
+    }
+
 </script>
 
     {% endblock %}
