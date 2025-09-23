@@ -1,0 +1,41 @@
+{% extends 'home.html' %}
+
+    {% block content %}
+
+    <div style="color: #ffff; font-size: 18pt; margin: 25px;">
+        {% for file in files %}
+        <div style="margin-bottom: 15px;">
+            <div style="display: inline-block;">{{loop.index}}</div>
+            <div style="display: inline-block; margin-right: 13px;">{{file.get("filename")}}</div>
+            <a style="display: inline-block; color: #ffffff; margin-right: 13px;" href="{{file.get('url')}}">link</a>
+            <div style="display: inline-block; margin-right: 13px;">{{file.get("timestamp")}}</div>
+            <button style="font-size: inherit;" id="{{file.get('filename')}}" onclick="deleteItem(this.id)">delete</button>
+        </div>
+        <hr style="width: 100%;">    
+         {% endfor %}
+    </div>
+
+
+    <script>
+        async function deleteItem(item) {
+            const url = "/upload/deletefile";
+            let file = {"filename": item}
+            let response = await fetch(url, {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                method: "DELETE",
+                body: JSON.stringify(file)
+            })
+            if (!response.ok){
+                alert(`something went wrong! could not delete ${item}`)
+            }
+            let responseJSON = await response.json();
+            console.log(responseJSON);
+            window.location.reload();
+        }
+    </script>
+
+    {% endblock %}
+

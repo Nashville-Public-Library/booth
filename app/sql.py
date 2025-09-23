@@ -41,7 +41,8 @@ class SQL:
                                          id INTEGER PRIMARY KEY AUTOINCREMENT,
                                          filename TEXT,
                                          url TEXT,
-                                         token TEXT
+                                         token TEXT,
+                                         timestamp TEXT
                                          )''')
 
     def write_message(self, message):
@@ -86,11 +87,11 @@ class SQL:
             ret_val.append(dict(device))
         return ret_val
     
-    def write_uploads(self, filename: str, url: str, token: str):
+    def write_uploads(self, filename: str, url: str, token: str, timestamp:str):
         self.connection.execute('''
-            INSERT INTO uploads (filename, url, token)
-            VALUES (?, ?, ?)
-        ''', (filename, url, token))
+            INSERT INTO uploads (filename, url, token, timestamp)
+            VALUES (?, ?, ?, ?)
+        ''', (filename, url, token, timestamp))
         self.connection.commit()
 
     def read_uploads(self):
@@ -101,3 +102,7 @@ class SQL:
         for upload in uploads:
             ret_val.append(dict(upload))
         return ret_val
+    
+    def delete_uploads(self, filename:str):
+        self.connection.execute("DELETE FROM uploads WHERE filename = ?", (filename,))
+        self.connection.commit()    

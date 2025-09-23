@@ -50,15 +50,18 @@
         });
 
         let responseJSON = await response.json();
+
         let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "filename": file.name};
         uploadFileDataToDB(submissionData);
+
+        console.log(responseJSON.retentionPeriod)
 
         alert(`${file.name} successfully uploaded!`);
         window.location.reload()
     }
 
     async function uploadFileDataToDB(data) {
-        const url = "/upload/file";
+        const url = "/upload/newfile";
         let response = await fetch(url, {
             headers: {
                 'Accept': 'application/json',
