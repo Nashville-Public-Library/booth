@@ -7,6 +7,7 @@ class SQL:
         self.create_message_table_if_not_exists()
         self.create_color_table_if_not_exists()
         self.create_heartbeat_table_if_not_exists()
+        self.create_uploads_table_if_not_exists()
 
     def __del__(self):
         self.connection.close()
@@ -34,6 +35,14 @@ class SQL:
                         ip_address TEXT,
                         last_seen TEXT
                         )''')
+        
+    def create_uploads_table_if_not_exists(self):
+        self.connection.cursor().execute('''CREATE TABLE IF NOT EXISTS uploads (
+                                         id INTEGER PRIMARY KEY AUTOINCREMENT,
+                                         filename TEXT,
+                                         url TEXT,
+                                         token TEXT
+                                         )''')
 
     def write_message(self, message):
         self.connection.execute('DELETE FROM message')
@@ -75,4 +84,20 @@ class SQL:
         ret_val = []
         for device in devices:
             ret_val.append(dict(device))
+        return ret_val
+    
+    def write_uploads(self, filename: str, url: str, token: str):
+        self.connection.execute('''
+            INSERT INTO uploads (filename, url, token)
+            VALUES (?, ?, ?)
+        ''', (filename, url, token))
+        self.connection.commit()
+
+    def read_uploads(self):
+        cursor = self.connection.cursor()
+        cursor.execute("SELECT * FROM uploads")
+        uploads = cursor.fetchall()
+        ret_val = []
+        for upload in uploads:
+            ret_val.append(dict(upload))
         return ret_val

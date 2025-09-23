@@ -20,6 +20,11 @@
     <button onclick="uploadFile()" style="margin: 10px; font-size: inherit;">UPLOAD</button>
     </div>
 
+    <div id="uploadStatus" style="display: none;">
+    <div class="dot-elastic" style="display: inline-block; margin-right: 20px;"></div>
+    <div style="display: inline-block; font-size: 18pt;">uploading...</div>
+    </div>
+
     <div style="font-size: 20pt; text-align: center; display: block; margin-top: 10px;">
         <div id="noFileWarning" style="display: none; border: red 3pt solid; padding: 12px;">no file selected</div>
         <div id="passwordWarning"  style="display: none; border: red 3pt solid; padding: 12px;"></div>
@@ -32,6 +37,8 @@
         if (!checkPassword()) {return;}
         if(!checkFileSelected()) {return;}
 
+        document.getElementById("uploadStatus").style.display = "block";
+
         const file = document.getElementById("uploadFile").files[0];
         let data = new FormData();
         data.append("file", file)
@@ -43,10 +50,10 @@
         });
 
         let responseJSON = await response.json();
-        let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "file": file.name};
+        let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "filename": file.name};
         uploadFileDataToDB(submissionData);
 
-        alert("file successfully uploaded!");
+        alert(`${file.name} successfully uploaded!`);
         window.location.reload()
     }
 
