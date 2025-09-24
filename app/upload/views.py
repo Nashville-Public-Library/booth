@@ -6,12 +6,14 @@ import io
 
 from app import app
 from app.sql import SQL
+from app.auth import require_auth
 
 @app.route("/upload", methods=['GET'])
 def upload():
     return render_template("upload.html")
 
 @app.route("/upload/viewfiles", methods=["GET"])
+@require_auth
 def view_files():
     sql = SQL()
     files = sql.read_uploads()
@@ -27,6 +29,7 @@ def upload_to_server():
     return {'response': "OK"}, 200
 
 @app.route("/upload/deletefile", methods=["DELETE"])
+@require_auth
 def delete_file():
     file:dict = request.get_json()
     file = file.get("filename")
