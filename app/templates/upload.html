@@ -43,7 +43,7 @@
         let data = new FormData();
         data.append("file", file)
 
-        const url = "https://waifuvault.moe/rest?expires=1h";
+        const url = "https://waifuvault.moe/rest?expires=14d";
         let response = await fetch(url, {
             method: "PUT",
             body: data
