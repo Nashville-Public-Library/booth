@@ -244,6 +244,19 @@ hr {
     color: aliceblue;
 }
 
+.uploadContainer {
+    flex-grow: 1;
+    color: #ffff;
+    justify-items: center;
+    text-align: center;
+    margin-top: 55px;
+}
+
+.uploadHeader {
+    font-size: 30pt;
+    margin-bottom: 55px;
+}
+
 /* for BrightSign */
 @media screen and (device-width:1920px) and (hover: none){
 
