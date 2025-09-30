@@ -40,18 +40,10 @@ def upload_to_server():
 def delete_file():
     file:dict = request.get_json()
     file = file.get("filename")
-    sql = SQL()
-    sql.delete_uploads(filename=file)
+    SQL().delete_uploads(filename=file)
+    # do we want to delete the file from WaifuVault or just leave it until it expires?
+    # this is only deleting the record of the file from the DB...
     return {"response": "OK"}, 200
-
-@app.route("/upload/setpassword")
-def set_password():
-    password = EV().VIC_user
-    upload:dict = request.get_json()
-    if upload.get("password") == password:
-        waifuvault.file_update(token=upload.get("token"), password=EV().VIC_user)
-        return {"response": "OK"}, 200
-    return {"response": "bad password"}, 401
 
 @app.route("/upload/checkpassword", methods=["POST"])
 def check_password():
