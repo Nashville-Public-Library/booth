@@ -16,7 +16,7 @@
     </div>
 
     <div style="font-size: 18pt; margin-top: 75px;">
-    <input type="password" placeholder="password" id="uploadPassword" style="font-size: inherit;">
+    <input type="text" placeholder="password" id="uploadPassword" style="font-size: inherit;">
     <button onclick="uploadFile()" style="margin: 10px; font-size: inherit;">UPLOAD</button>
     </div>
 
@@ -33,8 +33,10 @@
     </div>
 
 <script>
+    // 
     async function uploadFile() {
-        if (!checkPassword()) {return;}
+        let passwordOK = await checkPassword();
+        if (!passwordOK) {return;}
         if(!checkFileSelected()) {return;}
 
         document.getElementById("uploadStatus").style.display = "block";
@@ -51,13 +53,10 @@
 
         let responseJSON = await response.json();
 
-        let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "filename": file.name};
+        const password = document.getElementById("uploadPassword").value;
+
+        let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "filename": file.name, "password": password};
         uploadFileDataToDB(submissionData);
-
-        console.log(responseJSON.retentionPeriod)
-
-        alert(`${file.name} successfully uploaded!`);
-        window.location.reload()
     }
 
     async function uploadFileDataToDB(data) {
@@ -70,15 +69,22 @@
             method: "POST",
             body: JSON.stringify(data)
         })
-        let responseJSON = await response.json();
-        console.log(responseJSON)
+        if (!response.ok) {
+            alert(`Could not upload ${data.filename}! Please try again or contact the tech team.`);
+            document.getElementById("uploadStatus").style.display = "none";
+        } else {
+            console.log("about to window reload...")
+            alert(`${data.filename} successfully uploaded!`);
+            window.location.href = window.location.href;
+            console.log("window reloaded?")
+        }
     }
 
     function hideNoFileWarning() {
         document.getElementById("noFileWarning").style.display = "none";
     }
 
-    function checkPassword() {
+    async function checkPassword() {
         const password = document.getElementById("uploadPassword").value;
         let element = document.getElementById("passwordWarning");
         if (!password) {
@@ -86,14 +92,26 @@
             element.style.display = "inline-block";
             return false
         } 
-        if (password != "stayingalive") {
+
+        let toSend = {"password": password};
+        let response = await fetch("/upload/checkpassword", {
+                        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(toSend)
+        })
+
+        if (!response.ok) {
             element.innerText = "wrong password";
             element.style.display = "inline-block";
-        }
-        else {
+            return false;
+        } else {
             element.style.display = "none";
             return true;
         }
+
     }
 
     function checkFileSelected() {
