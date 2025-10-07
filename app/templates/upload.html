@@ -131,9 +131,13 @@
     window.addEventListener("drop", handleFileDrop)
 
     function handleFileDrop(drop) {
-        drop.preventDefault()
-        let fileDrop = drop.dataTransfer.items[0];
-        console.log(fileDrop);
+        drop.preventDefault();
+        let fileDrop = drop.dataTransfer.files[0]; // only allow one file at a time
+        let dataTransfer = new DataTransfer();
+        dataTransfer.items.add(fileDrop);
+        let element = document.getElementById("uploadFile");
+        element.files = dataTransfer.files;    
+        
     }
 
 </script>
