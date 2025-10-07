@@ -250,6 +250,9 @@ hr {
     justify-items: center;
     text-align: center;
     margin-top: 55px;
+    border: 1pt dotted #ffffff;
+    padding: 15px;
+    margin: 25px;
 }
 
 .uploadHeader {
