@@ -18,7 +18,7 @@ html, body {
     color: white;
     text-align: center;
     width: 25%;
-    min-width: 300px; /* if you want a minimum for narrow screens */
+    min-width: 300px; /* minimum for narrow screens */
     flex-shrink: 0;
 }
 
@@ -199,8 +199,8 @@ hr {
 
 
 .meter {
-    width: 100px; /* Adjust the width of the meter as needed */
-    height: 30px; /* Adjust the height of the meter as needed */
+    width: 100px;
+    height: 30px;
     background-color: #27bd22; /* Background color of the meter */
     border: 2px solid #ccc; /* Border of the meter */
 }
@@ -250,8 +250,9 @@ hr {
     justify-items: center;
     text-align: center;
     margin-top: 55px;
-    border: 1pt dotted #ffffff;
-    padding: 15px;
+    border: 2pt dotted #2e388f;
+    width: max-content;
+    padding: 25px;
     margin: 25px;
 }
 
