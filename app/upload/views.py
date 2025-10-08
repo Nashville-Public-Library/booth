@@ -37,11 +37,13 @@ def upload_to_server():
 
 @app.route("/upload/fetchfile", methods=["POST"])
 def fetch_file():
-    json:dict = request.get_json()
-    token: str = json.get("token")
-    url = waifuvault.file_update(token=token, previous_password=EV().VIC_user, password="")
-    url = url.url
-    return {"url": url}, 200
+    try:
+        json:dict = request.get_json()
+        token: str = json.get("token")
+        url = waifuvault.file_update(token=token, previous_password=EV().VIC_user, password="")
+        url = url.url
+        return {"url": url}, 200
+    except: return {'resposne': "whoops"}, 500
 
 @app.route("/upload/deletefile", methods=["DELETE"])
 @require_auth

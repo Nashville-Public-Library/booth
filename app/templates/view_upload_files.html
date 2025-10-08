@@ -47,8 +47,12 @@
                 method: "POST",
                 body: JSON.stringify(file)
             });
-            let responseJSON = await response.json();
-            window.open(responseJSON.url, "_blank");
+            if (response.ok) {
+                let responseJSON = await response.json();
+                window.open(responseJSON.url, "_blank");
+            } else {
+                alert("There was a problem unencrypting and downloading the file...")
+            }
         }
     </script>
 
