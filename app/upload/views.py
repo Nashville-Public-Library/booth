@@ -1,8 +1,8 @@
 from datetime import datetime
 
 from flask import render_template, request
+import requests
 import waifuvault
-import io
 
 from app import app
 from app.ev import EV
@@ -34,6 +34,14 @@ def upload_to_server():
 
         return {'response': "OK"}, 200
     except Exception as e: return {"response": "problem on server..."}, 500
+
+@app.route("/upload/fetchfile", methods=["POST"])
+def fetch_file():
+    json:dict = request.get_json()
+    token: str = json.get("token")
+    url = waifuvault.file_update(token=token, previous_password=EV().VIC_user, password="")
+    url = url.url
+    return {"url": url}, 200
 
 @app.route("/upload/deletefile", methods=["DELETE"])
 @require_auth
