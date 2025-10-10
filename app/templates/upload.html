@@ -55,7 +55,7 @@
 
         const request = new XMLHttpRequest();
 
-        request.upload.addEventListener("progress", function(event){
+        request.upload.addEventListener("progress", function(event) {
             // Get a suitable number for the progress bar. 
             // Do not actually reach 100% because we still have to call OUR server to put it in the DB after the file is uploaded to WaifuVault
             const percent = ((event.loaded / event.total) * 100) -1;
@@ -64,9 +64,8 @@
             document.getElementById("progressPercent").innerText = rounded + "%"
         })
 
-        request.addEventListener("load", function(){
+        request.addEventListener("load", function() {
             const responseJSON = JSON.parse(request.responseText);
-            console.log(responseJSON);
             const password = document.getElementById("uploadPassword").value;
 
             let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "filename": file.name, "password": password};
