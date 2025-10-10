@@ -28,8 +28,9 @@
     <br>
 
     <div id="uploadStatus" style="display: none;">
-    <div class="dot-elastic" style="display: inline-block; margin-right: 20px;"></div>
-    <div style="display: inline-block; font-size: 18pt;">uploading...</div>
+        <div style="display: inline-block; font-size: 18pt; margin-right: 10px;" id="progressPercent"></div>
+        <progress id="progress" value="0", max="99" style="margin-right: 10px; font-size: 18pt;"></progress>
+        <div style="display: inline-block; font-size: 18pt;">uploading...</div>
     </div>
 
     <div style="font-size: 20pt; text-align: center; display: block; margin-top: 10px;">
@@ -52,18 +53,30 @@
         let data = new FormData();
         data.append("file", file)
 
+        const request = new XMLHttpRequest();
+
+        request.upload.addEventListener("progress", function(event){
+            // Get a suitable number for the progress bar. 
+            // Do not actually reach 100% because we still have to call OUR server to put it in the DB after the file is uploaded to WaifuVault
+            const percent = ((event.loaded / event.total) * 100) -1;
+            const rounded = Math.floor(percent);
+            document.getElementById("progress").value = rounded;
+            document.getElementById("progressPercent").innerText = rounded + "%"
+        })
+
+        request.addEventListener("load", function(){
+            const responseJSON = JSON.parse(request.responseText);
+            console.log(responseJSON);
+            const password = document.getElementById("uploadPassword").value;
+
+            let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "filename": file.name, "password": password};
+            uploadFileDataToDB(submissionData);
+        })
+
         const url = "https://waifuvault.moe/rest?expires=14d";
-        let response = await fetch(url, {
-            method: "PUT",
-            body: data
-        });
+        request.open("PUT", url);
+        request.send(data);
 
-        let responseJSON = await response.json();
-
-        const password = document.getElementById("uploadPassword").value;
-
-        let submissionData = {"url": responseJSON.url, "token": responseJSON.token, "filename": file.name, "password": password};
-        uploadFileDataToDB(submissionData);
     }
 
     async function uploadFileDataToDB(data) {
@@ -80,6 +93,7 @@
             alert(`Could not upload ${data.filename}! Please try again or contact the tech team.`);
             document.getElementById("uploadStatus").style.display = "none";
         } else {
+            document.getElementById("progressPercent").innerText = "100%"
             alert(`${data.filename} successfully uploaded!`);
             window.location.href = window.location.href;
         }
