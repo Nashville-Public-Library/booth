@@ -29,7 +29,7 @@
 
     <div id="uploadStatus" style="display: none;">
         <div style="display: inline-block; font-size: 18pt; margin-right: 10px;" id="progressPercent"></div>
-        <progress id="progress" value="0", max="99" style="margin-right: 10px; font-size: 18pt;"></progress>
+        <progress id="progress" value="0", max="100" style="margin-right: 10px; font-size: 18pt;"></progress>
         <div style="display: inline-block; font-size: 18pt;">uploading...</div>
     </div>
 
@@ -92,7 +92,8 @@
             alert(`Could not upload ${data.filename}! Please try again or contact the tech team.`);
             document.getElementById("uploadStatus").style.display = "none";
         } else {
-            document.getElementById("progressPercent").innerText = "100%"
+            document.getElementById("progressPercent").innerText = "100%";
+            await new Promise(requestAnimationFrame); // allow time for updating content before alert() box
             alert(`${data.filename} successfully uploaded!`);
             window.location.href = window.location.href;
         }
