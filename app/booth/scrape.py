@@ -25,7 +25,8 @@ def scrape_VIC(date):
 
     os_name = os.name
     if os_name == 'nt':
-        driver = webdriver.Chrome(executable_path='chromedriver.exe', options=chrome_options)
+        service = Service("chromedriver.exe")
+        driver = webdriver.Chrome(service=service, options=chrome_options)
     else:
         service = Service("/usr/bin/chromedriver")
         driver = webdriver.Chrome(service=service, options=chrome_options)
