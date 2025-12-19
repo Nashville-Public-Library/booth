@@ -1,13 +1,16 @@
 import xml.etree.ElementTree as ET
 
+from diskcache import Cache
 import requests
 
 from app.ev import EV
 
+now_playing_cache = Cache("cache")
+
 class Icecast:
     def __init__(self) -> None:
         self.icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
-        self.now_playing = self.parse_mount_for_elements()
+        self.now_playing = self.get_now_playing()
 
     def get_tree_from_icecast(self) -> str:
         ev = EV()
@@ -43,3 +46,15 @@ class Icecast:
             'title': title, 
             'metadata_updated': metadata_updated
             }
+
+    def get_now_playing(self):
+        '''If we have a cached value, return it. If not, make a call to Icecast, cache the response, then return it.'''
+        try:
+            cached = now_playing_cache["now_playing"]
+            print("cached: " + str(cached))
+            return cached
+        except:
+            new = self.parse_mount_for_elements()
+            now_playing_cache.set(key="now_playing", value=new, expire=12)
+            print("updating cache: " + str(new))
+            return new
