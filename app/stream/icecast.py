@@ -55,6 +55,6 @@ class Icecast:
             return cached
         except:
             new = self.parse_mount_for_elements()
-            now_playing_cache.set(key="now_playing", value=new, expire=10)
+            now_playing_cache.set(key="now_playing", value=new, expire=12)
             print("updating cache: " + str(new))
             return new
