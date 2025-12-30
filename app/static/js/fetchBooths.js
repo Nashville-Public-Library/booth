@@ -25,7 +25,7 @@ async function fetchBooths(count=0) {
         const allResponses = [responseJSON[currentHour].booth1, responseJSON[currentHour].booth2, responseJSON[currentHour].booth3];
         const allClosed = allResponses.every(item => item === "closed");
         if (allClosed) {
-            if (count < 3) {
+            if (count < 2) {
             return fetchBooths(count=count+1)
             }
         }
