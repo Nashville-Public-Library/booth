@@ -37,7 +37,7 @@ pyee==13.0.0
 Pygments==2.19.2
 PyJWT==2.8.0
 PySocks==1.7.1
-pytest==8.4.1
+pytest==9.0.2
 python-dateutil==2.9.0.post0
 python-dotenv==0.21.0
 PyVirtualDisplay==3.0
