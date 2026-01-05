@@ -61,7 +61,8 @@ jobs:
           
           source /home/booth/venv/bin/activate
           pip install -r requirements.txt
-          playwright install
+          playwright install-deps
+          playwright install chromium
 
           sudo systemctl restart ntl_web_app
           sudo systemctl restart nginx
