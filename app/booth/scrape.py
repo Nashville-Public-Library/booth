@@ -3,59 +3,43 @@
 © Ben Weddle is to blame for this code. Anyone is free to use it.
 '''
 
-import os
 from datetime import datetime
 
-from selenium import webdriver
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.service import Service
+from playwright.sync_api import sync_playwright
 
-from app.booth.hours import hour1, hour2
 from app.ev import EV
 from app.booth.utils import date_is_weekend
 
 
-def scrape_VIC(date):
+def scrape_VIC(date: datetime):
 
-    chrome_options = webdriver.ChromeOptions()
-    chrome_options.add_argument('--no-sandbox')
-    chrome_options.add_argument('--window-size=1420,1080')
-    chrome_options.add_argument('--headless')
-    chrome_options.add_argument('--disable-gpu')
+    with sync_playwright() as p:
+        browser = p.chromium.launch(headless=True)
+        page = browser.new_page()
+        date = date.strftime('%m%d%Y')
+        page.goto(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
 
-    os_name = os.name
-    if os_name == 'nt':
-        service = Service("chromedriver.exe")
-        driver = webdriver.Chrome(service=service, options=chrome_options)
-    else:
-        service = Service("/usr/bin/chromedriver")
-        driver = webdriver.Chrome(service=service, options=chrome_options)
+        email = page.locator("[name='email']")
+        password = page.locator("[name='password']")
 
-    date = date.strftime('%m%d%Y')
-    driver.get(f'https://www.volgistics.com/vicnet/15495/schedule?view=day&date={date}')
+        email.fill(EV().VIC_user)
+        password.fill(EV().VIC_pass)
 
-    driver.implicitly_wait(10)
+        submit = page.locator('#log-in-button')
+        submit.click()
 
-    email = driver.find_element(by=By.NAME, value="email")
-    password = driver.find_element(by=By.NAME, value="password")
+        # now we're logged in
 
-    email.send_keys(EV().VIC_user)
-    password.send_keys(EV().VIC_pass)
+        page.wait_for_selector('.column-details-desktop') # wait for new page to load
 
-    submit = driver.find_element(by=By.CLASS_NAME, value="mat-mdc-raised-button")
-    submit.click()
+        initial_shift = page.locator('.column-details-desktop')
+        shifts = initial_shift.all()
+        ret_val: list = []
+        for shift in shifts:
+            text = shift.text_content()
+            ret_val.append(text)
 
-    # now we're logged in
-
-    driver.implicitly_wait(15)
-
-    shifts = driver.find_elements(By.CLASS_NAME, 'column-details-desktop')
-    ret_val: list = []
-    for shift in shifts:
-        ret_val.append(shift.text)
-
-    driver.quit()
-    return ret_val
+        return ret_val
 
 def remove_extra_text(booth: str, shift: str, hour: str) -> str:
     text_to_remove = ('• Other - Talking Library\Staff Service', '• Other - Talking Library\Collection Service', 
@@ -100,7 +84,11 @@ def get_scrape_and_filter(date) -> dict:
     two = "2:00pm - 3:00pm"
     three = "3:00pm - 4:30pm"
     
-    shifts = scrape_VIC(date)
+    try:
+        shifts = scrape_VIC(date)
+    except Exception as e:
+        print(e)
+        return schedule
     for shift in shifts:
 
         if newspaper in shift:

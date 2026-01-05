@@ -61,6 +61,7 @@ jobs:
           
           source /home/booth/venv/bin/activate
           pip install -r requirements.txt
+          playwright install
 
           sudo systemctl restart ntl_web_app
           sudo systemctl restart nginx
