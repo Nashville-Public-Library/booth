@@ -34,14 +34,11 @@ def scrape_VIC(date: datetime):
 
         initial_shift = page.locator('.column-details-desktop')
         shifts = initial_shift.all()
-        print(shifts)
         ret_val: list = []
         for shift in shifts:
             text = shift.text_content()
             ret_val.append(text)
-            print(text)
 
-        # browser.close()
         return ret_val
 
 def remove_extra_text(booth: str, shift: str, hour: str) -> str:
@@ -87,7 +84,11 @@ def get_scrape_and_filter(date) -> dict:
     two = "2:00pm - 3:00pm"
     three = "3:00pm - 4:30pm"
     
-    shifts = scrape_VIC(date)
+    try:
+        shifts = scrape_VIC(date)
+    except Exception as e:
+        print(e)
+        return schedule
     for shift in shifts:
 
         if newspaper in shift:
