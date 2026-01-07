@@ -30,7 +30,7 @@ def scrape_VIC(date: datetime):
 
         # now we're logged in
 
-        page.wait_for_selector('.column-details-desktop') # wait for new page to load
+        page.wait_for_selector('.column-details-desktop', timeout=9000) # wait 9 seconds for new page to load
 
         initial_shift = page.locator('.column-details-desktop')
         shifts = initial_shift.all()
