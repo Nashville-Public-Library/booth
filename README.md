@@ -132,6 +132,11 @@ pip freeze > requirements.txt
 
     - Depending on your OS, you may need to run `pip3` instead of `pip`
 
+- Install Browser Drivers
+    ````bash
+    playwright install chromium
+    ````
+
 - Run Pytest
     ````bash
     pytest
