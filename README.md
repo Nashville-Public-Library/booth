@@ -5,7 +5,7 @@
 [![last-commit](https://img.shields.io/github/last-commit/Nashville-Public-Library/booth)](https://github.com/Nashville-Public-Library/booth/commits/main)
 
 
-[api.nashvilletalkinglibrary.com](https://api.nashvilletalkinglibrary.com)
+[api.talkinglibrary.nashville.gov](https://api.talkinglibrary.nashville.gov)
 
  a simple web app to assist with various backend TL things...
 
@@ -13,20 +13,6 @@
 
 ## Server Config
 
-### Linux 
-Any flavor of Linux is fine. As of this writing, we're using Ubuntu.
-7GB of storage and a 2-3GB of RAM is plenty.
-
-### SSH
-It should be noted that for reasons not understood, ITS blocks the SSH ports for  the entire internet. You can only SSH to servers on the Metro network.
-Log in to AWS EC2, and from there you can launch a terminal in the browser. This is the only way to connect to the server from inside Metro.
-
-### Allow Traffic
-Go to the EC2 dashboard > Select your instance > Security Tab > Inbound Rules.
-
-Allow SSH (22), HTTP (80), and HTTPS (443). For all, allow from 0.0.0.0/0.
-
-Alternatively, you could do this when first launching the EC2 instance.
 
 ### Requirements
  - Python
