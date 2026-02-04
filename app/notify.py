@@ -3,7 +3,7 @@ import smtplib
 
 from app.ev import EV
 
-addresses: list = ["ben.weddle@nashville.gov"]
+addresses: list = ["ben.weddle@nashville.gov", "travis.humbert@nashville.gov", "cynthia.moynihan@nashville.gov"]
 
 def send_mail_on_new_file_upload(filename: str):
     for address in addresses:
