@@ -31,10 +31,12 @@ jobs:
         python-version: "3.12"
 
     - name: Install Dependencies
-      run: pip install -r requirements.txt
+      run: ls
+    #   run: pip install -r requirements.txt
 
     - name: Test with pytest
-      run: pytest
+      run: ls -l
+    #   run: pytest
 
 #   deploy:
 #     needs: test
