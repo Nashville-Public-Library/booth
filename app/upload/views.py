@@ -8,6 +8,7 @@ from app import app
 from app.ev import EV
 from app.sql import SQL
 from app.auth import require_auth
+from app.notify import send_mail_on_new_file_upload
 
 @app.route("/upload", methods=['GET'])
 def upload():
@@ -31,6 +32,8 @@ def upload_to_server():
 
         timestamp = datetime.now().strftime("%b %d, %I:%M%p")
         SQL().write_uploads(filename=json.get("filename"), url=json.get("url"), token=json.get("token"), timestamp=timestamp)
+
+        send_mail_on_new_file_upload(filename=json.get("filename"))
 
         return {'response': "OK"}, 200
     except Exception as e: return {"response": "problem on server..."}, 500

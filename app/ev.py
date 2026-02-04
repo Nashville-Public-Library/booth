@@ -8,3 +8,4 @@ class EV():
         self.VIC_pass = os.environ['VIC_password']
         self.BF_pass = os.environ['BF_pass']
         self.IPInfoToken = os.environ['IPInfoToken']
+        self.mail_server_external = os.environ['mail_server_external']
