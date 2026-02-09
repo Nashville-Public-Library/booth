@@ -8,9 +8,10 @@
             <div style="display: inline-block;">{{loop.index}}</div>
             <div style="display: inline-block; margin-right: 13px;">{{file.get("filename")}}</div>
             <button style="display: inline-block; margin-right: 13px; font-size: inherit;" id="{{file.get('token')}}" onclick="fetchFile(this.id)">download</button>
-            <div style="display: inline-block; margin-right: 13px;">{{file.get("timestamp")}}</div>
+            <div style="display: inline-block; margin-right: 13px;">Uploaded: {{file.get("timestamp")}}</div>
             <button style="font-size: inherit;" id="{{file.get('filename')}}" onclick="deleteItem(this.id)">delete</button>
         </div>
+        <div style="display: inline-block; margin-right: 13px; font-size: 16pt;">Expires: {{file.get("retention")}}</div>
         <hr style="width: 100%;">    
          {% endfor %}
     </div>

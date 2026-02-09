@@ -3,12 +3,24 @@ from datetime import datetime
 from flask import render_template, request
 import requests
 import waifuvault
+from waifuvault import FileResponse
 
 from app import app
 from app.ev import EV
 from app.sql import SQL
 from app.auth import require_auth
 from app.notify import send_mail_on_new_file_upload
+
+def get_file_retention(files: list[dict]):
+    '''grab each file and call out to WaifuVault to check the retention period'''
+    ret_val = []
+    for file in files:
+        token = file.get("token")
+        waifu:FileResponse = waifuvault.file_info(token=token, formatted=True)
+        retention = waifu.retentionPeriod
+        file.update({"retention": retention})
+        ret_val.append(file)
+    return ret_val
 
 @app.route("/upload", methods=['GET'])
 def upload():
@@ -19,7 +31,8 @@ def upload():
 def view_files():
     sql = SQL()
     files = sql.read_uploads()
-    return render_template("view_upload_files.html", files=files)
+    files_with_retention = get_file_retention(files=files)
+    return render_template("view_upload_files.html", files=files_with_retention)
 
 @app.route("/upload/newfile", methods=["POST"])
 def upload_to_server():
