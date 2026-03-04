@@ -1,0 +1,16 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div style="color: rgb(255, 255, 255);">
+    {% for file in files %}
+
+    <div>
+        <h3 style="display: inline-block;">{{file}}</h3>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+{% endblock %}

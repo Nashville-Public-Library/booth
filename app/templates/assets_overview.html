@@ -1,0 +1,24 @@
+{% extends 'home.html' %}
+
+{% block content %}
+<div style="color: rgb(255, 255, 255);">
+    {% for folder in folders %}
+
+    <div>
+        <h3 style="display: inline-block;">{{loop.index}}</h3>
+        <h2 style="display: inline-block;" onclick=show(this.innerText)>{{folder}}</h2>
+        <a href=></a>
+    </div>
+
+    {% endfor %}
+</div>
+
+
+
+<script>
+    function show(name) {
+        location.href = `/assets/folder/${name}`
+    }
+</script>
+
+{% endblock %}
