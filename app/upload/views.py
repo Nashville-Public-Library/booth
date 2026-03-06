@@ -78,9 +78,3 @@ def check_password():
     if password == EV().VIC_user:
         return {"response": "OK"}, 200
     return {"response": "bad password"}, 401
-
-@app.route("/upload/uploads", methods=["POST"])
-def uploads():
-    sql = SQL()
-    files = sql.read_uploads()
-    return {"files": files}
