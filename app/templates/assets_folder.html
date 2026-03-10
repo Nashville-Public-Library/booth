@@ -1,16 +1,53 @@
 {% extends 'home.html' %}
 
 {% block content %}
-<div style="color: rgb(255, 255, 255);">
-    {% for file in files %}
 
-    <div>
-        <h3 style="display: inline-block;">{{file}}</h3>
+<div style="all: unset; max-width: 75%;">
+
+    <h1 style="color: aliceblue; text-align: center;">{{folder}}</h1>
+
+    <div class="AssetsFolderContainer">
+
+        {% for file in files %}
+
+        <div>
+            {{file}}
+        </div>
+
+        {% endfor %}
     </div>
 
-    {% endfor %}
+    <br>
+    <textarea id="feedText" style="margin: 10px;">just a moment...</textarea>
+    <br>
+    <button onclick="confirmFeedChange()">Submit Changes</button>
+
+
 </div>
 
+<script>
+    async function editFeed() {
+        const folder = "{{folder}}";
+        const url = `/assets/folder/${folder}/feed`;
+
+        let response = await fetch(url, {method: "POST"});
+        let responseJSON = await response.json();
+
+        feedElement = document.getElementById("feedText");
+        feedElement.innerHTML = responseJSON.feed
+        // feedElement.innerText = responseJSON.feed;
+        feedElement.style.width  = "99%";
+        feedElement.style.height = "600px";
+    }
+
+    function confirmFeedChange() {
+        const confirm = "Are you sure??? Cannot be undone...";
+        let confirmed = window.confirm(confirm);
+        console.log(confirmed)
+    }
+
+    editFeed()
+</script>
 
 
 {% endblock %}

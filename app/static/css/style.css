@@ -259,6 +259,22 @@ hr {
     margin-bottom: 55px;
 }
 
+.AssetsFolderContainer {
+    margin-top: 50px;
+    margin-left: 2.5%;
+    margin-right:2.5%;
+    max-width: 70%;
+    display: flex;
+    justify-content:flex-start;
+    align-content: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 28px;
+    /* flex-direction: row; */
+    font-size: 16pt;
+    color: white;
+}
+
 /* for BrightSign */
 @media screen and (device-width:1920px) and (hover: none){
 
