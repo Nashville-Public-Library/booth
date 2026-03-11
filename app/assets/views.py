@@ -38,4 +38,4 @@ def assets_folder_feed_edit(folder):
         path.unlink()
         return {"response": f"The RSS feed for {folder} has been updated"}
     except Exception as e:
-        return {"response": e}
+        return {"response": f"Error uploading to server: {e}"}, 500
