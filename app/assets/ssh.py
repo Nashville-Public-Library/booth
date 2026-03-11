@@ -1,3 +1,5 @@
+from pathlib import Path
+
 from fabric import Connection, Result
 
 class SSH:
@@ -23,3 +25,6 @@ class SSH:
             if file != "": # exclude files without names?
                 ret_val.append(file.lower())
         return ret_val
+    
+    def upload_file(self, folder: str, file: Path):
+        self.connection.put(local=file, remote=f"shows/{folder}", preserve_mode=False)

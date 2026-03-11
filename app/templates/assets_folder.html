@@ -2,6 +2,12 @@
 
 {% block content %}
 
+<dialog id="modalAlert" class="modalAlert">
+    <div id="modalAlertMessage" class="modalAlertMessage"></div>
+    <br>
+    <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
+</dialog>
+
 <div style="all: unset; max-width: 75%;">
 
     <h1 style="color: aliceblue; text-align: center;">{{folder}}</h1>
@@ -30,20 +36,73 @@
         const folder = "{{folder}}";
         const url = `/assets/folder/${folder}/feed`;
 
-        let response = await fetch(url, {method: "POST"});
+        let response = await fetch(url, { method: "POST" });
         let responseJSON = await response.json();
 
-        feedElement = document.getElementById("feedText");
-        feedElement.innerHTML = responseJSON.feed
+        const feedElement = document.getElementById("feedText");
+        feedElement.textContent = responseJSON.feed 
         // feedElement.innerText = responseJSON.feed;
-        feedElement.style.width  = "99%";
+        feedElement.style.width = "99%";
         feedElement.style.height = "600px";
     }
 
     function confirmFeedChange() {
         const confirm = "Are you sure??? Cannot be undone...";
         let confirmed = window.confirm(confirm);
-        console.log(confirmed)
+        if (confirmed) {
+            const feedElement = document.getElementById("feedText");
+            const text = feedElement.value;
+            const errors = validateFeedSyntax(text);
+            if (errors) { 
+                let message = formatXMLValidationModalAlert(errors.innerHTML)
+                modalAlert(message); 
+                return; 
+            }
+            sendEditedFeedToServer(text);
+        }
+    }
+
+    function validateFeedSyntax(feed) {
+        const parser = new DOMParser();
+        const XML = parser.parseFromString(feed, "application/xml");
+        const errors = XML.querySelector("parsererror");
+        return errors;
+    }
+
+    async function sendEditedFeedToServer(feed) {
+        const data = { "feed": feed }
+        const folder = "{{folder}}";
+        const url = `/assets/folder/${folder}/feed/edit`;
+        let response = await fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+        let responseJSON = await response.json();
+        modalAlert(responseJSON.response)
+    }
+
+    function formatXMLValidationModalAlert(message) {
+        const pre = "There is a problem with the formatting of the XML: \n\n";
+        const post = "\n\nYour changes have NOT been uploaded to the server."
+        const newMessage = pre + message + post;
+        return newMessage;
+    }
+
+    function modalAlert(message) {
+        const parent = document.getElementById("modalAlert");
+        const content = document.getElementById("modalAlertMessage");
+        content.innerText = message;
+        parent.style.display = "block";
+    }
+
+    function closeModalAlert() {
+        const modalElement = document.getElementById("modalAlert");
+        modalElement.style.display = "none";
+        return;
     }
 
     editFeed()

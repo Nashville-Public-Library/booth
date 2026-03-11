@@ -1,4 +1,6 @@
-from flask import render_template
+from pathlib import Path
+
+from flask import render_template, request
 import requests
 
 from app import app
@@ -22,3 +24,18 @@ def assets_folder_feed(folder):
     request = requests.get(url)
     feed = request.text
     return {"feed": feed}
+
+@app.route("/assets/folder/<folder>/feed/edit", methods=["POST"])
+def assets_folder_feed_edit(folder):
+    try:
+        json: dict = request.json
+        feed = json.get("feed")
+        path = Path(f"tmp/feeds/{folder}/feed.xml")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(feed)
+        ssh = SSH()
+        ssh.upload_file(folder=folder, file=path)
+        path.unlink()
+        return {"response": f"The RSS feed for {folder} has been updated"}
+    except Exception as e:
+        return {"response": e}
