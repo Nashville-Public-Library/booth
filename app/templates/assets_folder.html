@@ -32,11 +32,20 @@
 </div>
 
 <script>
-    async function editFeed() {
-        const folder = "{{folder}}";
-        const url = `/assets/folder/${folder}/feed`;
+    // {{folder}} is passed in via the Jinja template
 
-        let response = await fetch(url, { method: "POST" });
+    async function editFeed() {
+        const data = { "folder": "{{folder}}" };
+        const url = `/assets/folder/feed`;
+
+        let response = await fetch(url, { 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        });
         let responseJSON = await response.json();
 
         const feedElement = document.getElementById("feedText");
@@ -70,9 +79,8 @@
     }
 
     async function sendEditedFeedToServer(feed) {
-        const data = { "feed": feed }
-        const folder = "{{folder}}";
-        const url = `/assets/folder/${folder}/feed/edit`;
+        const data = { "feed": feed, "folder": "{{folder}}" }
+        const url = `/assets/folder/feed/edit`;
         let response = await fetch(url, {
             headers: {
                 'Accept': 'application/json',

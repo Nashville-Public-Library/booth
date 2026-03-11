@@ -18,18 +18,21 @@ def assets_folder(folder):
     files = ssh.get_items_in_folder(folder=folder)
     return render_template("assets_folder.html", files=files, folder=folder)
 
-@app.route("/assets/folder/<folder>/feed", methods=['POST'])
-def assets_folder_feed(folder):
+@app.route("/assets/folder/feed", methods=['POST'])
+def assets_folder_feed():
+    json: dict = request.json
+    folder = json.get("folder")
     url: str = f"https://assets.library.nashville.gov/talkinglibrary/shows/{folder}/feed.xml"
-    request = requests.get(url)
-    feed = request.text
+    req = requests.get(url)
+    feed = req.text
     return {"feed": feed}
 
-@app.route("/assets/folder/<folder>/feed/edit", methods=["POST"])
-def assets_folder_feed_edit(folder):
+@app.route("/assets/folder/feed/edit", methods=["POST"])
+def assets_folder_feed_edit():
     try:
         json: dict = request.json
         feed = json.get("feed")
+        folder = json.get("folder")
         path = Path(f"tmp/feeds/{folder}/feed.xml")
         path.parent.mkdir(parents=True, exist_ok=True)
         path.write_text(feed)
