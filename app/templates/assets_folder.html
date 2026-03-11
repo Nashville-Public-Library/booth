@@ -40,7 +40,7 @@
         let responseJSON = await response.json();
 
         const feedElement = document.getElementById("feedText");
-        feedElement.textContent = responseJSON.feed 
+        feedElement.textContent = responseJSON.feed
         // feedElement.innerText = responseJSON.feed;
         feedElement.style.width = "99%";
         feedElement.style.height = "600px";
@@ -53,10 +53,10 @@
             const feedElement = document.getElementById("feedText");
             const text = feedElement.value;
             const errors = validateFeedSyntax(text);
-            if (errors) { 
+            if (errors) {
                 let message = formatXMLValidationModalAlert(errors.innerHTML)
-                modalAlert(message); 
-                return; 
+                modalAlert(message);
+                return;
             }
             sendEditedFeedToServer(text);
         }
