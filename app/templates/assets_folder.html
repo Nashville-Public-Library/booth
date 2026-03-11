@@ -12,15 +12,23 @@
 
     <h1 style="color: aliceblue; text-align: center;">{{folder}}</h1>
 
+    <div style="font-size: 22pt; border: white; padding: 5px; border-style: dotted; color: white; text-align: center;">FILES:
     <div class="AssetsFolderContainer">
+
 
         {% for file in files %}
 
         <div>
-            {{file}}
+            <a  href="https://assets.library.nashville.gov/talkinglibrary/shows/{{folder}}/{{file}}"
+                style="color: white;"
+                target="_blank"
+                >
+                {{file}}</a>
         </div>
 
         {% endfor %}
+    </div>
+
     </div>
 
     <br>
