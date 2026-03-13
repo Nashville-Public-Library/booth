@@ -39,3 +39,8 @@ def assets_folder_upload():
         return response
     except Exception as e:
         return {"response": f"Error uploading to server: {e}"}, 500 
+    
+@app.route("/assets/folder/new", methods=["POST"])
+def assets_folder_new():
+    response = SSH().assets_folder_new(request_json=request)
+    return response

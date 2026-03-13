@@ -43,6 +43,16 @@ class SSH:
         self._upload_file(folder=folder, file=path)
         path.unlink()
         return {"response": f"{file_name} has been uploaded to {folder}"}, 200
+    
+    def assets_folder_new(self, request_json: Request) -> None:
+        json: dict = request_json.json
+        folder = json.get("folder")
+        try:
+            self._make_new_folder(folder=folder)
+            return {"response": f"{folder} folder created successfully"}
+        except Exception as e:
+            return {"response": f"Error: {e}"}
+
 
     def _get_folders(self) -> list:
         result: Result = self.connection.run("cd shows && ls", hide=True)
@@ -73,3 +83,8 @@ class SSH:
         folders = self._get_folders()
         if folder.lower() in folders:
             return True
+        
+    def _make_new_folder(self, folder: str) -> None:
+        if self._check_folder_exists(folder=folder):
+            raise Exception (f"{folder} already exists on assets server!")
+        self.connection.run(f"cd shows && mkdir {folder}", hide=True)
