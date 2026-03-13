@@ -175,6 +175,9 @@
 
     async function uploadFile() {
         if(!checkFileSelected()) {return;}
+        const confirm = "Are you sure??? Cannot be undone...";
+        let confirmed = window.confirm(confirm);
+        if (!confirmed){return;}
 
         document.getElementById("uploadStatus").style.display = "block";
 
