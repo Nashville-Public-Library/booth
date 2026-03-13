@@ -34,13 +34,8 @@ def assets_folder_feed_edit():
 
 @app.route("/assets/folder/upload", methods=["PUT"])
 def assets_folder_upload():
-    file = request.files["file"]
-    file_name = file.filename
-    print(file_name)
-    folder = request.form.get("folder")
-    path = Path(f"tmp/{folder}/{file_name}")
-    path.parent.mkdir(parents=True, exist_ok=True)
-    file.save(path)
-    SSH()._upload_file(folder=folder, file=path)
-    path.unlink()
-    return {"response": f"{file_name} has been uploaded to {folder}"}, 200
+    try:
+        response = SSH().assets_folder_upload(request_json=request)
+        return response
+    except Exception as e:
+        return {"response": f"Error uploading to server: {e}"}, 500 

@@ -33,6 +33,17 @@ class SSH:
         path.unlink()
         return {"response": f"The RSS feed for {folder} has been updated"} 
 
+    def assets_folder_upload(self, request_json: Request):
+        file = request_json.files["file"]
+        file_name = file.filename
+        folder = request_json.form.get("folder")
+        path = Path(f"tmp/{folder}/{file_name}")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        file.save(path)
+        self._upload_file(folder=folder, file=path)
+        path.unlink()
+        return {"response": f"{file_name} has been uploaded to {folder}"}, 200
+
     def _get_folders(self) -> list:
         result: Result = self.connection.run("cd shows && ls", hide=True)
         result_stdout:str = result.stdout
