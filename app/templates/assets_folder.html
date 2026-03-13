@@ -33,7 +33,7 @@
     <br>
     <div style="font-size: 22pt; border: white; padding: 5px; padding-bottom: 50px; border-style: dotted; color: white; text-align: center;">
         Add new files to {{folder}}
-        <div style="font-style: italic; font-size: 16pt;">drap-and-drop here</div>
+        <div style="font-style: italic; font-size: 16pt;">drap-and-drop</div>
 
             <div style="font-size: 25pt;">
                 <input type="file" style="font-size: 15pt; text-align: center;" id="uploadFile" onclick="hideNoFileWarning()">
@@ -58,7 +58,7 @@
     <textarea id="feedText" style="margin: 10px;">just a moment...</textarea>
     <br>
     <button onclick="confirmFeedChange()">Submit Changes</button>
-
+    <br><br>
 
 </div>
 
@@ -193,10 +193,16 @@
             const rounded = Math.floor(percent);
             document.getElementById("progress").value = rounded;
             document.getElementById("progressPercent").innerText = rounded + "%"
+
+            if (percent == 99) {
+                modalAlert("transferring to assets server...just a moment...")
+            }
         })
 
         request.addEventListener("load", function() {
             const responseJSON = JSON.parse(request.responseText);
+            document.getElementById("uploadStatus").style.display = "none";
+            document.getElementById("uploadFile").value = "";
             modalAlert(responseJSON.response)
         })
 
