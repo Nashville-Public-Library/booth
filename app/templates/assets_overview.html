@@ -41,6 +41,7 @@
         const url = `/assets/folder/new`;
         const newFolderInputElement = document.getElementById("newFolderInputElement");
         const name = newFolderInputElement.value
+        if (name == ""){modalAlert("Whoops, you must enter a folder name..."); return;}
         const data = {"folder": name}
 
         let response = await fetch(url, { 
