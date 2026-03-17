@@ -19,7 +19,10 @@ class SSH:
         folder = json.get("folder")
         url: str = f"https://assets.library.nashville.gov/talkinglibrary/shows/{folder}/feed.xml"
         req = requests.get(url)
-        feed = req.text
+        if req.status_code == 404:
+            feed = f"No RSS feed found in {folder}"
+        else:
+            feed = req.text
         return {"feed": feed}        
     
     def assets_folder_feed_edit(self, request_json: Request):
