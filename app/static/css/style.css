@@ -259,6 +259,56 @@ hr {
     margin-bottom: 55px;
 }
 
+.AssetsOverviewContainer {
+    margin-top: 50px;
+    margin-left: 2.5%;
+    margin-right:2.5%;
+    max-width: 70%;
+    display: flex;
+    justify-content:flex-start;
+    align-content: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 28px;
+    /* flex-direction: row; */
+    font-size: 17pt;
+    color: white;
+}
+
+.AssetsFolderContainer {
+    margin-left: 2.5%;
+    margin-right:2.5%;
+    display: flex;
+    justify-content:flex-start;
+    align-content: center;
+    flex-grow: 1;
+    flex-wrap: wrap;
+    gap: 28px;
+    /* flex-direction: row; */
+    font-size: 17pt;
+    color: white;
+}
+.modalAlert {
+  display: none;
+  z-index: 1;
+  position: fixed;
+  margin-top: 25px;
+  padding: 20px;
+  max-width: 85%;
+  overflow: auto;
+  font-size: 18pt;
+  color: #ffffff;
+  text-align: left;
+  background-color: rgba(0, 0, 0, 0.8);
+  /* Black, 80% opacity */
+}
+
+.modalAlertButton {
+  display: block;
+  margin: 0 auto;
+  font-size: 17pt;
+}
+
 /* for BrightSign */
 @media screen and (device-width:1920px) and (hover: none){
 

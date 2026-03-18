@@ -8,6 +8,7 @@ from flask import Flask
 app = Flask(__name__)
 app.url_map.strict_slashes = False
 
+from app.assets import views
 from app.booth import views
 from app.misc import views
 from app.status import views

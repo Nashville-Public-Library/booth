@@ -13,60 +13,13 @@
 
 ## Server Config
 
-### Requirements
- - Python
- ````bash
- sudo apt install -y python3 python3-pip
- ````
- - Git (probably installed already. Just run `git` and if you get an error, run this:)
- ````bash
- sudo apt install -y git
- ````
- - Gunicorn
- ````bash
- pip install gunicorn
-````
-- Nginx
-````bash
-sudo apt install -y nginx
-````
-- Chrome
+move this elsewhere...
 
-    - Instructions to install Google Chrome browser
-
-- Chromedriver
-
-    - Instructions to install Chromedriver
-
-If you get errors when installing any of these, consult the internet (or ChatGPT, which is free to use).
-
-- Timezone
-
-Next, we need to change the timezone to Central Time. The command below will automatically adjust for Daylight Saving Time.
-````bash
-sudo timedatectl set-timezone America/Chicago
-````
-
-### Environment Variables
-Set in the systemctl config file
-
-### Nginx
-nginx stuff...use IP at first to get working, then domain name
-
-### Systemctl service
-set this up...
-
-### Certbot
-SSL Cert...
-
-## Testing
-Run `pytest` at the top level directory to run the basic tests.
-
-## Misc
 
 ## Volunteer Photos
 Crop the photo to be a headshot and copy it to `static/img/vol/`. The file should be labelled the same way their name shows up in VIC, but remove the space between the first and last name. If the name in VIC is Steve Rogers, the photo should be `SteveRogers.jpg`. All photos must be a .JPG.
 
+## Misc
 Don't forget to continually update your `requirement.txt` file as you go: 
 ````python
 pip freeze > requirements.txt
@@ -126,3 +79,10 @@ pip freeze > requirements.txt
     ````bash
     pytest
     ````
+    If there are failing tests, you may have installed something incorrectly...
+
+- Start the site
+    ````bash
+    flask run --debug
+    ````
+    To open the site in your browser, follow the directions in your terminal

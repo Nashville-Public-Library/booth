@@ -1,0 +1,207 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<dialog id="modalAlert" class="modalAlert">
+    <div id="modalAlertMessage" class="modalAlertMessage"></div>
+    <br>
+    <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
+</dialog>
+
+<div style="all: unset; max-width: 75%;">
+
+    <h1 style="color: aliceblue; text-align: center;">{{folder}}</h1>
+
+    <div style="font-size: 22pt; border: white; padding: 5px; border-style: dotted; color: white; text-align: center;">FILES:
+    <div class="AssetsFolderContainer">
+
+
+        {% for file in files %}
+
+        <div>
+            <a  href="https://assets.library.nashville.gov/talkinglibrary/shows/{{folder}}/{{file}}"
+                style="color: white;"
+                target="_blank"
+                >
+                {{file}}</a>
+        </div>
+
+        {% endfor %}
+    </div>
+
+    </div>
+    <br>
+    <div style="font-size: 22pt; border: white; padding: 5px; padding-bottom: 50px; border-style: dotted; color: white; text-align: center;">
+        Add new files to {{folder}}
+        <div style="font-style: italic; font-size: 16pt;">drap-and-drop</div>
+
+            <div style="font-size: 25pt;">
+                <input type="file" style="font-size: 15pt; text-align: center;" id="uploadFile">
+            </div>
+
+            <div style="font-size: 18pt; margin-top: 75px;">
+                <button onclick="uploadFile()" style="margin: 10px; font-size: inherit;">UPLOAD</button>
+            </div>
+
+            <div id="uploadStatus" style="display: none;">
+                <div style="display: inline-block; font-size: 18pt; margin-right: 10px;" id="progressPercent"></div>
+                <progress id="progress" value="0", max="100" style="margin-right: 10px; font-size: 18pt;"></progress>
+                <div style="display: inline-block; font-size: 18pt;">uploading...</div>
+            </div>
+    </div>
+
+    <br>
+    <textarea id="feedText" style="margin: 10px;">just a moment...</textarea>
+    <br>
+    <button onclick="confirmFeedChange()">Submit Changes</button>
+    <br><br>
+
+</div>
+
+<script>
+    async function editFeed() { // {{folder}} is passed in via the Jinja template
+        const data = { "folder": "{{folder}}" };
+        const url = `/assets/folder/feed`;
+
+        let response = await fetch(url, { 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+        let responseJSON = await response.json();
+
+        const feedElement = document.getElementById("feedText");
+        feedElement.textContent = responseJSON.feed
+        feedElement.style.width = "99%";
+        feedElement.style.height = "600px";
+    }
+    editFeed()
+
+    function confirmFeedChange() {
+        const confirm = "Are you sure??? Cannot be undone...";
+        let confirmed = window.confirm(confirm);
+        if (confirmed) {
+            const feedElement = document.getElementById("feedText");
+            const text = feedElement.value;
+            const errors = validateFeedSyntax(text);
+            if (errors) {
+                let message = formatXMLValidationModalAlert(errors.innerHTML)
+                modalAlert(message);
+                return;
+            }
+            sendEditedFeedToServer(text);
+        }
+    }
+
+    function validateFeedSyntax(feed) {
+        const parser = new DOMParser();
+        const XML = parser.parseFromString(feed, "application/xml");
+        const errors = XML.querySelector("parsererror");
+        return errors;
+    }
+
+    async function sendEditedFeedToServer(feed) {
+        const data = { "feed": feed, "folder": "{{folder}}" }
+        const url = `/assets/folder/feed/edit`;
+        let response = await fetch(url, {
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+        let responseJSON = await response.json();
+        modalAlert(responseJSON.response)
+    }
+
+    function formatXMLValidationModalAlert(message) {
+        const pre = "There is a problem with the formatting of the XML: \n\n";
+        const post = "\n\nYour changes have NOT been uploaded to the server."
+        const newMessage = pre + message + post;
+        return newMessage;
+    }
+
+    function modalAlert(message) {
+        const parent = document.getElementById("modalAlert");
+        const content = document.getElementById("modalAlertMessage");
+        content.innerText = message;
+        parent.style.display = "block";
+    }
+
+    function closeModalAlert() {
+        const modalElement = document.getElementById("modalAlert");
+        modalElement.style.display = "none";
+        return;
+    }
+
+    window.addEventListener("dragover", (e) => {e.preventDefault()})
+    window.addEventListener("drop", handleFileDrop)
+    function handleFileDrop(drop) {
+        drop.preventDefault();
+        let fileDrop = drop.dataTransfer.files[0]; // only allow one file at a time
+        let dataTransfer = new DataTransfer();
+        dataTransfer.items.add(fileDrop);
+        let element = document.getElementById("uploadFile");
+        element.files = dataTransfer.files;    
+        console.log(element.files)
+    }
+
+    function checkFileSelected() {
+        const file = document.getElementById("uploadFile").files[0];
+        if (!file) {
+            modalAlert("Whoops, you must select a file");
+            return false;
+        }
+        return true;
+    }
+
+    async function uploadFile() {
+        if(!checkFileSelected()) {return;}
+        const confirm = "Are you sure??? Cannot be undone...";
+        let confirmed = window.confirm(confirm);
+        if (!confirmed){return;}
+
+        document.getElementById("uploadStatus").style.display = "block";
+
+        const file = document.getElementById("uploadFile").files[0];
+        const folder = "{{folder}}"
+        let data = new FormData();
+        data.append("file", file)
+        data.append("folder", folder)
+
+        const request = new XMLHttpRequest();
+
+        request.upload.addEventListener("progress", function(event) {
+            // Get a suitable number for the progress bar. 
+            // Do not actually reach 100% because we still have to upload it to the Assets server after it reaches the BF server.
+            const percent = ((event.loaded / event.total) * 100) -1;
+            const rounded = Math.floor(percent);
+            document.getElementById("progress").value = rounded;
+            document.getElementById("progressPercent").innerText = rounded + "%"
+
+            if (percent == 99) {
+                modalAlert("transferring to assets server...just a moment...")
+            }
+        })
+
+        request.addEventListener("load", function() {
+            const responseJSON = JSON.parse(request.responseText);
+            document.getElementById("uploadStatus").style.display = "none";
+            document.getElementById("uploadFile").value = "";
+            modalAlert(responseJSON.response)
+        })
+
+        const url = "/assets/folder/upload";
+        request.open("PUT", url);
+        request.send(data);
+
+    }
+
+</script>
+
+
+{% endblock %}

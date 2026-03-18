@@ -1,0 +1,73 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<dialog id="modalAlert" class="modalAlert">
+    <div id="modalAlertMessage" class="modalAlertMessage"></div>
+    <br>
+    <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
+</dialog>
+
+<div style="all: unset; max-width: 75%;">
+    <div class="AssetsOverviewContainer">
+        {% for folder in folders %}
+
+        <div id="{{folder}}" onclick=show(this.id)>
+            <span style="display: inline-block;">{{loop.index}}</span>
+            <span style="display: inline-block;">{{folder}}</span>
+            <a href=></a>
+        </div>
+
+        {% endfor %}
+
+        <br>
+
+        <div style="font-size: 22pt; border: white; padding: 15px; border-style: dotted; color: white; text-align: center;">
+            <div>Create New Folder</div>
+            <input id="newFolderInputElement" type="text" placeholder="folder name">
+            <button onclick="newFolder()">Create</button>
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function show(name) {
+        location.href = `/assets/folder/${name}`
+    }
+
+    async function newFolder() {
+        const url = `/assets/folder/new`;
+        const newFolderInputElement = document.getElementById("newFolderInputElement");
+        const name = newFolderInputElement.value
+        if (name == ""){modalAlert("Whoops, you must enter a folder name..."); return;}
+        const data = {"folder": name}
+
+        let response = await fetch(url, { 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+        let responseJSON = await response.json();
+        modalAlert(responseJSON.response)
+    }
+
+    function modalAlert(message) {
+        const parent = document.getElementById("modalAlert");
+        const content = document.getElementById("modalAlertMessage");
+        content.innerText = message;
+        parent.style.display = "block";
+    }
+
+    function closeModalAlert() {
+        const modalElement = document.getElementById("modalAlert");
+        modalElement.style.display = "none";
+        return;
+    }
+</script>
+
+{% endblock %}
