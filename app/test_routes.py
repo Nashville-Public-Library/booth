@@ -42,9 +42,9 @@ def test_boothSchedule_get_1(client: FlaskClient):
     assert response.status_code == 200
 
 def test_status_get_1(client: FlaskClient):
-    '''reuiqres auth'''
+    '''reuiqres auth, should redirect to login screen'''
     response = client.get('/status')
-    assert response.status_code == 401
+    assert response.status_code == 302
 
 '''
 GET non-GET routes
@@ -180,9 +180,9 @@ def test_holiday_post_2(client: FlaskClient):
     assert response.content_type == 'application/json'
 
 def test_statusStream_post_1(client: FlaskClient):
-    '''requires auth'''
+    '''reuiqres auth, should redirect to login screen'''
     response = client.post('status/stream')
-    assert response.status_code == 401
+    assert response.status_code == 302
 
 def test_statusStream_post_2(client: FlaskClient):
     '''requires auth. if auth not present, returns plain text response'''
@@ -190,19 +190,19 @@ def test_statusStream_post_2(client: FlaskClient):
     assert 'text/html' in response.content_type
 
 def test_statusPing_post_1(client: FlaskClient):
-    '''requires auth'''
+    '''reuiqres auth, should redirect to login screen'''
     response = client.post('status/ping')
-    assert response.status_code == 401
+    assert response.status_code == 302
 
 def test_statusMounts_post_1(client: FlaskClient):
-    '''requires auth'''
+    '''reuiqres auth, should redirect to login screen'''
     response = client.post('status/mounts')
-    assert response.status_code == 401
+    assert response.status_code == 302
 
 def test_statusUserAgent_post_1(client: FlaskClient):
-    '''requires auth'''
+    '''reuiqres auth, should redirect to login screen'''
     response = client.post('status/useragent')
-    assert response.status_code == 401
+    assert response.status_code == 302
 
 '''
 POST non-POST routes
