@@ -12,25 +12,24 @@ def authenticate():
     {'WWW-Authenticate': 'Basic realm="Login Required"'})
 
 def require_auth_if_outside_metro(mah):
-    """A decorator function that wraps other routes to check authentication"""
     @wraps(mah)
-    def decorated():
+    def decorated(*args, **kwargs):
         ip = request.headers.get('X-Forwarded-For', request.remote_addr).split(',')
         if ip[0] in ('170.190.43.1', '127.0.0.1'):
-             return mah()
+            return mah(*args, **kwargs)
         auth = request.authorization
         if not auth or not check_auth(auth.username, auth.password):
             return authenticate()
-        return mah()
+        return mah(*args, **kwargs)
     return decorated
 
 def require_auth(mah):
     @wraps(mah)
-    def decorated():
+    def decorated(*args, **kwargs):
         auth = request.authorization
         if not auth or not check_auth(username=auth.username, password=auth.password):
             return authenticate()
-        return mah()
+        return mah(*args, **kwargs)
     return decorated
 
 def check_auth(username: str, password: str) -> bool:
