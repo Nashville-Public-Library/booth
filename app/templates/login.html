@@ -1,0 +1,64 @@
+{% extends 'home.html' %}
+
+{% block content %}
+
+<dialog id="modalAlert" class="modalAlert">
+    <div id="modalAlertMessage" class="modalAlertMessage"></div>
+    <br>
+    <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
+</dialog>
+
+<div style="color: white; margin-left: 25%; margin-top: 10%;">
+    <h1>Log In</h1>
+    <div style="font-size: 18pt;">
+        <div>
+            <input style="font-size: inherit;" type="text" id="username" placeholder="username">
+        </div>
+        <br>
+        <div>
+            <input style="font-size: inherit;" type="password" , id="password" , placeholder="password">
+        </div>
+        <br>
+        <button style="font-size: 16pt;" onclick="(login())">Submit</button>
+    </div>
+</div>
+
+<script>
+    redirectURL = "{{ next_url }}";
+    async function login() {
+        const username = document.getElementById("username").value;
+        const password = document.getElementById("password").value;
+        if (username == "" || password == "") {modalAlert("please enter your credentials..."); return;}
+
+        const data = {"username": username, "password": password};
+        const url = "/login/auth";
+        let response = await fetch(url, { 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        });
+        if (response.status == 401){modalAlert("Nope, that's not it!"); return;}
+
+        if (!redirectURL) {modalAlert("You are now logged in!"); return;}
+        window.location.href = redirectURL;
+        return;
+    }
+
+       function modalAlert(message) {
+        const parent = document.getElementById("modalAlert");
+        const content = document.getElementById("modalAlertMessage");
+        content.innerText = message;
+        parent.style.display = "block";
+    }
+
+    function closeModalAlert() {
+        const modalElement = document.getElementById("modalAlert");
+        modalElement.style.display = "none";
+        return;
+    }
+</script>
+
+{% endblock %}

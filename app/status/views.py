@@ -4,7 +4,7 @@ from flask import render_template, request, jsonify
 
 from app import app
 from app.status.ping import ping, Icecast
-from app.auth import require_auth
+from app.auth import require_auth, check_auth
 from app.sql import SQL
 
 @app.route('/status', methods=['GET'])
@@ -58,8 +58,10 @@ def user_agent():
      return {'userAgent': icecast.user_agent_ip(mount=mount)}
 
 @app.route("/status/heartbeat", methods=["POST"])
-@require_auth
 def heartbeat_post():
+     auth = request.authorization
+     if not auth or not check_auth(username=auth.username, password=auth.password):
+          return "you're no good, you're no good", 401
      response: dict = request.get_json()
      hostname = response.get("hostname")
      ip_address = response.get("ip_address")

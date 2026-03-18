@@ -5,8 +5,11 @@
 
 from flask import Flask
 
+from app.ev import EV
+
 app = Flask(__name__)
 app.url_map.strict_slashes = False
+app.secret_key = EV().icecast_pass
 
 from app.assets import views
 from app.booth import views
