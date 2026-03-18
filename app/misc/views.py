@@ -1,11 +1,28 @@
-from flask import render_template
+from flask import render_template, request, session, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 
 from app import app
+from app.auth import check_auth
 
 @app.route('/')
 def home():
     return render_template('home.html')
+
+@app.route("/login")
+def login():
+    next_url = request.args.get("next")
+    print(next_url)
+    return render_template("login.html", next_url=next_url)
+
+@app.route("/login/auth", methods=["POST"])
+def login_auth():
+    req: dict = request.json
+    username: str = req.get("username")
+    password: str = req.get("password")
+    if (check_auth(username=username, password=password)):
+        session["logged_in"] = True
+        return {"response": "OK"}
+    return {"response": "bad login"}, 401
 
 @app.route('/health', methods=['GET', 'POST'])
 def health_check():
