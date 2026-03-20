@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from flask import render_template, request
+from flask import render_template, request, abort
 from app.auth import require_auth
 
 from app import app
@@ -19,7 +19,7 @@ def assets_folder(folder):
         files = SSH().assets_folder_folder(folder=folder)
         return render_template("assets_folder.html", files=files, folder=folder)
     except FileExistsError as e:
-        return f"{e}", 400
+        return abort(404)
 
 @app.route("/assets/folder/feed", methods=['POST'])
 @require_auth
