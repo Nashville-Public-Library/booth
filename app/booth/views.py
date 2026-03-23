@@ -8,7 +8,7 @@ from app.booth.utils import are_we_closed, get_weather, get_weather_alert, is_ho
 from app.booth.hours import hour1, hour2
 from app.booth.scrape import get_scrape_and_filter
 from app.ev import EV
-from app.auth import require_auth_if_outside_metro
+from app.auth import require_auth_if_outside_metro, require_auth
 from app.sql import SQL
 
 @app.route('/booth')
@@ -19,7 +19,7 @@ def dot():
     return render_template('booth.html', hour=hour1(), hour2=hour2())
 
 @app.route('/booth/schedule')
-@require_auth_if_outside_metro
+@require_auth
 def schedule():
     return render_template('schedule.html')
 

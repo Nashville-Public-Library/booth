@@ -39,7 +39,7 @@ def test_boothBanner_get_1(client: FlaskClient):
 
 def test_boothSchedule_get_1(client: FlaskClient):
     response = client.get('/booth/schedule')
-    assert response.status_code == 200
+    assert response.status_code == 302
 
 def test_status_get_1(client: FlaskClient):
     '''reuiqres auth, should redirect to login screen'''
