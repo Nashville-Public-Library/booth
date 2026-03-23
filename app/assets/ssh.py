@@ -47,7 +47,7 @@ class SSH:
         path.unlink()
         return {"response": f"{file_name} has been uploaded to {folder}"}, 200
     
-    def assets_folder_new(self, request_json: Request) -> None:
+    def assets_folder_new(self, request_json: Request) -> dict:
         json: dict = request_json.json
         folder = json.get("folder")
         try:
@@ -55,7 +55,15 @@ class SSH:
             return {"response": f"{folder} folder created successfully"}
         except Exception as e:
             return {"response": f"Error: {e}"}
-
+        
+    def assets_folder_delete(self, request_json: Request) -> dict:
+        json: dict = request_json.json
+        folder = json.get("folder")
+        file = json.get("file")
+        if not self._check_folder_exists(folder=folder):
+            raise FileExistsError (f"{folder} does not exist on {self.connection.host}")
+        self.connection.sftp().remove(f"shows/{folder}/{file}")
+        return {"response": f"{file} deleted from {folder}"}
 
     def _get_folders(self) -> list:
         result: Result = self.connection.run("cd shows && ls", hide=True)

@@ -288,6 +288,16 @@ hr {
     font-size: 17pt;
     color: white;
 }
+
+.assetsFolderDeleteButton {
+    color: #ffffff;
+    border: 2px solid #ffffff;
+    padding: 9px;
+    border-radius: 50%;
+    background-color: #b10000;
+    font-size: 14pt;
+}
+
 .modalAlert {
   display: none;
   z-index: 1;

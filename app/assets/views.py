@@ -50,3 +50,12 @@ def assets_folder_upload():
 def assets_folder_new():
     response = SSH().assets_folder_new(request_json=request)
     return response
+
+@app.route("/assets/folder/delete", methods=["DELETE"])
+@require_auth
+def assets_folder_delete():
+    try:
+        response = SSH().assets_folder_delete(request_json=request)
+        return response
+    except Exception as e:
+        return {"response": f"Error: Could not delete file: {e}"}, 500

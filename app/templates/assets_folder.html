@@ -24,6 +24,8 @@
                 target="_blank"
                 >
                 {{file}}</a>
+
+                <button onclick="deleteFile('{{file}}')" class="assetsFolderDeleteButton">DELETE</button>
         </div>
 
         {% endfor %}
@@ -199,6 +201,30 @@
         request.open("PUT", url);
         request.send(data);
 
+    }
+
+    async function deleteFile(file) {
+        const folder = "{{folder}}";
+        const confirm = `Are you sure you want to delete ${file} from ${folder}? This is irreversible...`;
+        let confirmed = window.confirm(confirm);
+        if (!confirmed){return;}
+        let confirmAgain = "Are you SURE? Once it's gone, it's gone";
+        let confirmedAgain = window.confirm(confirmAgain);
+        if (!confirmedAgain){return;}
+        
+        const data = { "folder": folder, "file": file };
+        const url = "/assets/folder/delete";
+
+        let response = await fetch(url, { 
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "DELETE",
+            body: JSON.stringify(data)
+        });
+        let responseJSON = await response.json();
+        modalAlert(responseJSON.response);
     }
 
 </script>
