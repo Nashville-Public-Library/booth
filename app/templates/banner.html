@@ -4,8 +4,14 @@
 
 <div style="flex-grow: 1; margin-top: 150pt;">
 
+    <dialog id="modalAlert" class="modalAlert">
+        <div id="modalAlertMessage" class="modalAlertMessage"></div>
+        <br>
+        <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
+    </dialog>
+
 <div style="text-align: center">
-    <form method="post" id="banner">
+    <form onsubmit="submitNewBanner(); return false;">
         <select name="selectMessage" id="selectMessage" style="width: 50%;">
             <option value="" selected disabled hidden>Select</option>
             <option
@@ -21,23 +27,15 @@ PLEASE SAVE YOUR FILE TO THE DESKTOP">
                 Save to desktop
             </option>
         </select>
-        <br>
 
         <br><br>
         <textarea id="bannerMessage" name="bannerMessage" style="width: 50%; height: 100px;"
             placeholder="your message here (or leave blank to erase existing message)"></textarea>
         <br><br>
-        <input type="password" name="password" id="password" placeholder="password" style="text-align: start;">
+        <button type="submit" style="width: 100px; height: 30px;">SUBMIT</button>
     </form>
     <br><br>
-    <button onclick="validateBanner()" style="width: 100px; height: 30px;">SUBMIT</button>
 </div>
-
-<br>
-
-<div style="font-size: 85pt; text-align: center;" id="emoji">{{ emoji|safe }}</div>
-<div class="bannerForgotPassword" id="success">
-    you forgot the password</div>
 
 </div>
 
