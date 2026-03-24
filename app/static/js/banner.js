@@ -5,19 +5,25 @@ function fillBanner() {
     box.value = selectMessage.value;
 }
 
-function validateBanner() {
-    password = document.getElementById('password');
-    if (password.value == '') {
-        success = document.getElementById('success');
-        success.style.display = 'block'
-        // clear the emoji
-        emoji = document.getElementById('emoji');
-        emoji.remove()
-    }
-    else {
-        form = document.getElementById('banner');
-        form.submit();
-    }
+async function submitNewBanner() {
+    const bannerElement = document.getElementById("bannerMessage");
+    const bannerMessage = bannerElement.value;
+    const data = { "bannerMessage": bannerMessage };
+
+    const url = "/booth/banner";
+    const options = {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json',
+            'Content-Type': 'application/json'
+        },
+        method: "POST",
+        body: JSON.stringify(data)
+    };
+    let response = await fetch(url, options);
+    let responseJSON = await response.json();
+    modalAlert(responseJSON.response);
+    fetchBanner();
 }
 
 async function bannerContent() {

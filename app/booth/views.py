@@ -45,19 +45,21 @@ def photo():
     return {"path": False}
 
 @app.route('/booth/banner', methods=['GET', 'POST'])
+@require_auth
 def banner():
     if request.method == "GET":
         return render_template('banner.html')
     
-    sql = SQL()
-    password = request.form['password']
-    message = request.form['bannerMessage']
-    message = message.strip()
-    if password == EV().BF_pass:
+    try:
+        message: dict = request.json
+        message: str = message.get("bannerMessage")
+        message = message.strip()
+        sql = SQL()
         sql.write_message(message=message)
-        return render_template('banner.html', emoji='&#128077;') # emoji = thumbs up
-    else:
-        return render_template('banner.html', emoji='&#128078;') # emoji thumbs down
+        return {"response": "The Banner message has been updated :)"}
+    except Exception as e:
+        return {"response": f"Could not update banner message: {e}"}
+
 
 @app.route('/booth/banner/content', methods=['POST'])
 def banner_content():
