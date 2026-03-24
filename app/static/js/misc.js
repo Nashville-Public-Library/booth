@@ -106,3 +106,16 @@ async function fetchBanner() {
 
 fetchBanner()
 setInterval(fetchBanner, 30000) // 30 seconds
+
+function modalAlert(message) {
+    const parent = document.getElementById("modalAlert");
+    const content = document.getElementById("modalAlertMessage");
+    content.innerText = message;
+    parent.style.display = "block";
+}
+
+function closeModalAlert() {
+    const modalElement = document.getElementById("modalAlert");
+    modalElement.style.display = "none";
+    return;
+}

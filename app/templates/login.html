@@ -41,24 +41,12 @@
             body: JSON.stringify(data)
         });
         if (response.status == 401){modalAlert("Nope, that's not it!"); return;}
-
-        if (!redirectURL) {modalAlert("You are now logged in!"); return;}
-        window.location.href = redirectURL;
+        console.log(redirectURL);
+        if (redirectURL == "None") {modalAlert("You are now logged in!"); return;}
+        // window.location.href = redirectURL;
         return;
     }
-
-       function modalAlert(message) {
-        const parent = document.getElementById("modalAlert");
-        const content = document.getElementById("modalAlertMessage");
-        content.innerText = message;
-        parent.style.display = "block";
-    }
-
-    function closeModalAlert() {
-        const modalElement = document.getElementById("modalAlert");
-        modalElement.style.display = "none";
-        return;
-    }
+  
 </script>
 
 {% endblock %}

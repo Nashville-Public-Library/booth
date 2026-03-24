@@ -127,19 +127,6 @@
         return newMessage;
     }
 
-    function modalAlert(message) {
-        const parent = document.getElementById("modalAlert");
-        const content = document.getElementById("modalAlertMessage");
-        content.innerText = message;
-        parent.style.display = "block";
-    }
-
-    function closeModalAlert() {
-        const modalElement = document.getElementById("modalAlert");
-        modalElement.style.display = "none";
-        return;
-    }
-
     window.addEventListener("dragover", (e) => {e.preventDefault()})
     window.addEventListener("drop", handleFileDrop)
     function handleFileDrop(drop) {

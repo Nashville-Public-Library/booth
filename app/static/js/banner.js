@@ -37,17 +37,4 @@ async function bannerContent() {
     bannerMessageElement.innerText = responseJSON.banner
 }
 
-function modalAlert(message) {
-    const parent = document.getElementById("modalAlert");
-    const content = document.getElementById("modalAlertMessage");
-    content.innerText = message;
-    parent.style.display = "block";
-}
-
-function closeModalAlert() {
-    const modalElement = document.getElementById("modalAlert");
-    modalElement.style.display = "none";
-    return;
-}
-
 window.onload = bannerContent()
