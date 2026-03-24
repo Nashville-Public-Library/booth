@@ -10,7 +10,7 @@
 
 <div style="color: white; margin-left: 25%; margin-top: 10%;">
     <h1>Log In</h1>
-    <div style="font-size: 18pt;">
+    <form onsubmit="login(); return false;" style="font-size: 18pt;">
         <div>
             <input style="font-size: inherit;" type="text" id="username" placeholder="username">
         </div>
@@ -19,8 +19,8 @@
             <input style="font-size: inherit;" type="password" , id="password" , placeholder="password">
         </div>
         <br>
-        <button style="font-size: 16pt;" onclick="(login())">Submit</button>
-    </div>
+        <button type="submit" style="font-size: 16pt;">Submit</button>
+    </form>
 </div>
 
 <script>
