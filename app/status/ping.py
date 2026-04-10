@@ -15,7 +15,8 @@ def get_request(url: str):
     if not re.search('[a-zA-Z]', url): # if string does not contain letters (not a domain name)
         return
     url = "http://" + url
-    response = requests.get(url=url)
+    header: dict = {'User-Agent': 'Booth Finder ping (nashvilletalkinglibrary@gmail.com)'}
+    response = requests.get(url=url, headers=header)
     if response.status_code == 200:
         return True
 
