@@ -14,7 +14,8 @@ class Icecast:
 
     def get_tree_from_icecast(self) -> str:
         ev = EV()
-        tree = requests.get(self.icecast_URL, auth=(ev.icecast_user, ev.icecast_pass))
+        header = {'User-Agent': 'Booth Finder'}
+        tree = requests.get(self.icecast_URL, auth=(ev.icecast_user, ev.icecast_pass), headers=header)
         if tree.status_code == 200:
             return tree.text
 
