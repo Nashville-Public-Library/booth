@@ -73,7 +73,8 @@ class Icecast:
         self.sources = self.get_sources()
 
     def get_tree(self) -> ET.ElementTree:
-        tree = requests.get(self.icecast_URL, auth=(self.ev.icecast_user, self.ev.icecast_pass))
+        header = {'User-Agent': 'Booth Finder'}
+        tree = requests.get(self.icecast_URL, auth=(self.ev.icecast_user, self.ev.icecast_pass), headers=header)
         tree = tree.text
         tree = ET.fromstring(tree)
         return tree
