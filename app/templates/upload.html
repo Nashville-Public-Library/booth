@@ -22,7 +22,7 @@
 
     <div style="font-size: 25pt;">
     
-        <input type="file" style="font-size: 15pt; text-align: center;" id="uploadFile" onclick="hideNoFileWarning()">
+        <input type="file" style="font-size: 15pt; text-align: center;" id="uploadFile">
 
     </div>
 
@@ -37,11 +37,6 @@
         <div style="display: inline-block; font-size: 18pt; margin-right: 10px;" id="progressPercent"></div>
         <progress id="progress" value="0", max="100" style="margin-right: 10px; font-size: 18pt;"></progress>
         <div style="display: inline-block; font-size: 18pt;">uploading...</div>
-    </div>
-
-    <div style="font-size: 20pt; text-align: center; display: block; margin-top: 10px;">
-        <div id="noFileWarning" style="display: none; border: red 3pt solid; padding: 12px;">no file selected</div>
-        <div id="passwordWarning"  style="display: none; border: red 3pt solid; padding: 12px;"></div>
     </div>
 
     </div>
@@ -109,17 +104,11 @@
         }
     }
 
-    function hideNoFileWarning() {
-        document.getElementById("noFileWarning").style.display = "none";
-    }
-
     async function checkPassword() {
         const password = document.getElementById("uploadPassword").value;
-        let element = document.getElementById("passwordWarning");
         if (!password) {
-            element.innerText = "you forgot the password";
-            element.style.display = "inline-block";
-            return false
+            modalAlert("you forgot the password");
+            return false;
         } 
 
         let toSend = {"password": password};
@@ -133,26 +122,17 @@
         })
 
         if (!response.ok) {
-            element.innerText = "wrong password";
-            element.style.display = "inline-block";
+            modalAlert("wrong password");
             return false;
-        } else {
-            element.style.display = "none";
-            return true;
-        }
-
+        } else {return true;}
     }
 
     function checkFileSelected() {
         const file = document.getElementById("uploadFile").files[0];
-        let noFileWarning = document.getElementById("noFileWarning");
         if (!file) {
-            noFileWarning.style.display = "inline-block";
+            modalAlert("no file selected");
             return false;
-        } else { 
-            noFileWarning.style.display = "none";
-        return true;
-        }
+        } else {return true;}
     }
 
     async function fileAlreadyExistsInDB() {
