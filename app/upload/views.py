@@ -78,3 +78,15 @@ def check_password():
     if password == EV().VIC_user:
         return {"response": "OK"}, 200
     return {"response": "bad password"}, 401
+
+@app.route("/upload/checkduplicate", methods=["POST"])
+def check_duplicate():
+    filename: dict = request.get_json()
+    filename = filename.get("filename")
+    existing_files: list[dict] = SQL().read_uploads()
+    for file in existing_files:
+        if file.get("filename") == filename:
+            return {"response": "We already have a file with an identical name! "
+            f"It looks like you have already uploaded this file: {filename}. "
+            "Please check your filename and try again."}, 400
+    return {"response": "OK"}, 200
