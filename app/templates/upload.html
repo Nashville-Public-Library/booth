@@ -2,6 +2,12 @@
 
     {% block content %}
 
+    <dialog id="modalAlert" class="modalAlert">
+        <div id="modalAlertMessage" class="modalAlertMessage"></div>
+        <br>
+        <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
+    </dialog>
+
     <div class="uploadContainer" id="dropArea">
 
     <div class="uploadHeader">UPLOAD FILES</div>    
@@ -45,7 +51,11 @@
     async function uploadFile() {
         let passwordOK = await checkPassword();
         if (!passwordOK) {return;}
+
         if(!checkFileSelected()) {return;}
+
+        let fileExists = await fileAlreadyExistsInDB();
+        if (fileExists){return;}
 
         document.getElementById("uploadStatus").style.display = "block";
 
@@ -143,6 +153,26 @@
             noFileWarning.style.display = "none";
         return true;
         }
+    }
+
+    async function fileAlreadyExistsInDB() {
+        const filename = document.getElementById("uploadFile").files[0].name;
+        const data = {"filename": filename};
+        let response = await fetch("/upload/checkduplicate", {
+                        headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            method: "POST",
+            body: JSON.stringify(data)
+        })
+
+        if (response.ok) {
+            return false;
+        }
+        let responseJSON = await response.json();
+        modalAlert(responseJSON.response);
+        return true;
     }
 
     window.addEventListener("dragover", (e) => {e.preventDefault()})
