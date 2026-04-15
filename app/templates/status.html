@@ -2,6 +2,12 @@
 
 {% block content %}
 
+<dialog id="modalAlert" class="modalAlert">
+    <div id="modalAlertMessage" class="modalAlertMessage"></div>
+    <br>
+    <button id="modalAlertButton" class="modalAlertButton" onclick="closeModalAlert()">close</button>
+</dialog>
+
 <div class="statsContainer">
 
     <div style="padding-bottom: 10pt;"></div>
@@ -13,6 +19,16 @@
 
     <div  style="text-align: center;">Audio
         <div style="text-align: left;" class="border" id="audio"></div>
+    </div>
+
+    <div style="text-align: center;">Now Playing
+        <form onsubmit="submitNowPlaying(); return false;" class="border">
+            <select name="nowPlayingMountpoint" id="nowPlayingMountpoint">
+                <option value="" selected disabled hidden>Select</option>
+            </select>
+            <input type="text" id="nowPlayingTitle">
+            <button type="submit">SUBMIT</button>
+        </form>
     </div>
 
     <br>
