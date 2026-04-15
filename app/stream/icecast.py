@@ -52,10 +52,8 @@ class Icecast:
         '''If we have a cached value, return it. If not, make a call to Icecast, cache the response, then return it.'''
         try:
             cached = now_playing_cache["now_playing"]
-            print("cached: " + str(cached))
             return cached
         except:
             new = self.parse_mount_for_elements()
             now_playing_cache.set(key="now_playing", value=new, expire=12)
-            print("updating cache: " + str(new))
             return new
