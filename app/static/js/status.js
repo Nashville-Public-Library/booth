@@ -259,7 +259,7 @@ async function fillNowPlayingMountpointSelect() {
         };
     let responseJSON = await fetchPost(url, options);
     let mountpoints = responseJSON.mountList;
-    const nowPlayingMountpointElement = document.getElementById("nowPlayingMountpoint");
+    const nowPlayingMountpointElement = document.getElementById("mountpointSelection");
     for (let mount of mountpoints) {
         let mountStripped = mount.replace("/", "");
         const option = document.createElement("option");
@@ -270,12 +270,12 @@ async function fillNowPlayingMountpointSelect() {
 }
 
 async function submitNowPlaying() {
-    const nowPlayingSelection = document.getElementById("nowPlayingMountpoint").value;
+    const mountpointSelection = document.getElementById("mountpointSelection").value;
     const nowPlayingTitle = document.getElementById("nowPlayingTitle").value;
-    if (!nowPlayingSelection) {modalAlert("no mountpoint selected");return;}
+    if (!mountpointSelection) {modalAlert("no mountpoint selected");return;}
     if (!nowPlayingTitle) {modalAlert("new title is empty!"); return;}
 
-    const data = {"mountpoint": nowPlayingSelection, "title": nowPlayingTitle}
+    const data = {"mountpoint": mountpointSelection, "title": nowPlayingTitle}
 
     const url = "/status/nowplayingupdate";
     const options = {
