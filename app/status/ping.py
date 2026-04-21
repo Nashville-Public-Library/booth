@@ -155,3 +155,12 @@ class Icecast:
             return agents
         except:
             return agents
+        
+    def metadata_to_icecast(self, mountpoint, title):
+        user: str = self.ev.icecast_user
+        password: str = self.ev.icecast_pass
+        url = f'https://npl.streamguys1.com/admin/metadata?mount=/{mountpoint}&mode=updinfo&song={title}'
+        send = requests.get(url, auth = (user, password))
+        if send.status_code == 200:
+            return {"response": f"Now Playing title for /{mountpoint} has been updated to {title}"}, 200
+        return {"response": "Unable to update Now Playing title...problem on server..."}, 500

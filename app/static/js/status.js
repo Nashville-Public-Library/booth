@@ -251,6 +251,48 @@ function check_time() {
     }
 }
 
+async function fillNowPlayingMountpointSelect() {
+    const url = "/status/mounts";
+    const options = {
+        headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+        method: "POST", 
+        };
+    let responseJSON = await fetchPost(url, options);
+    let mountpoints = responseJSON.mountList;
+    const nowPlayingMountpointElement = document.getElementById("mountpointSelection");
+    for (let mount of mountpoints) {
+        let mountStripped = mount.replace("/", "");
+        const option = document.createElement("option");
+        option.textContent = mountStripped;
+        option.value = mountStripped;
+        nowPlayingMountpointElement.append(option)
+    }
+}
+
+async function submitNowPlaying() {
+    const mountpointSelection = document.getElementById("mountpointSelection").value;
+    const nowPlayingTitle = document.getElementById("nowPlayingTitle").value;
+    if (!mountpointSelection) {modalAlert("no mountpoint selected");return;}
+    if (!nowPlayingTitle) {modalAlert("new title is empty!"); return;}
+
+    const data = {"mountpoint": mountpointSelection, "title": nowPlayingTitle}
+
+    const url = "/status/nowplayingupdate";
+    const options = {
+        headers: {'Accept': 'application/json','Content-Type': 'application/json'},
+        method: "POST",
+        body: JSON.stringify(data)
+        };
+    try {
+        let responseJSON = await fetchPost(url, options);
+        modalAlert(responseJSON.response);
+        mountpoints(); // update elements so user can see it was successful
+    } catch (whoops) {
+        modalAlert(whoops);
+    }
+
+}
+
 function main() {
     mountpoints();
     userAgent();
@@ -262,3 +304,4 @@ setInterval(main, 120000)
 audioElements()
 ping()
 setInterval(check_time, 60000)
+fillNowPlayingMountpointSelect()

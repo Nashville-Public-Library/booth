@@ -57,6 +57,15 @@ def user_agent():
      mount = mount.get("mount")
      return {'userAgent': icecast.user_agent_ip(mount=mount)}
 
+@app.route("/status/nowplayingupdate", methods=["POST"])
+@require_auth
+def now_playing_update():
+     icecast = Icecast()
+     json: dict = request.get_json()
+     mountpoint: str = json.get("mountpoint")
+     title: str = json.get("title")
+     return icecast.metadata_to_icecast(mountpoint=mountpoint, title=title)
+
 @app.route("/status/heartbeat", methods=["POST"])
 def heartbeat_post():
      auth = request.authorization
