@@ -133,7 +133,7 @@ class Icecast:
         return sources
 
     def user_agent_ip(self, mount) -> list:
-        icecast_URL = f"http://npl.streamguys1.com:/admin/listclients?mount=/{mount}"
+        icecast_URL = f"https://npl.streamguys1.com/admin/listclients?mount=/{mount}"
         header = {'User-Agent': 'Booth Finder'}
         tree = requests.get(icecast_URL, auth=(self.ev.icecast_user, self.ev.icecast_pass), headers=header)
         tree = tree.text
