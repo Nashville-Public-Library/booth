@@ -9,7 +9,7 @@ now_playing_cache = Cache("cache")
 
 class Icecast:
     def __init__(self) -> None:
-        self.icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
+        self.icecast_URL = "https://npl.streamguys1.com/admin/stats.xml"
         self.now_playing = self.get_now_playing()
 
     def get_tree_from_icecast(self) -> str:
