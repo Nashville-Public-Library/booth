@@ -63,7 +63,7 @@ def geolocation(ip: str) -> str:
 
 class Icecast:
     def __init__(self) -> None:
-        self.icecast_URL = "http://npl.streamguys1.com:/admin/stats.xml"
+        self.icecast_URL = "https://npl.streamguys1.com/admin/stats.xml"
         self.ev = EV()
         self.icecast_tree = self.get_tree()
         self.mount_list = self.get_mount_list()
