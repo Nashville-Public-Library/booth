@@ -86,3 +86,13 @@ pip freeze > requirements.txt
     flask run --debug
     ````
     To open the site in your browser, follow the directions in your terminal
+
+
+- Deactivate Virtual Environment
+    
+    If you need to deactivate the virtual environment, type/run the following in the terminal:
+    ````bash
+    deactivate
+    ````
+
+
