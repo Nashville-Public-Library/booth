@@ -1,8 +1,16 @@
+import subprocess
+
 from flask import render_template, request, session, redirect
 from twilio.twiml.messaging_response import MessagingResponse
 
 from app import app
 from app.auth import check_auth
+
+def get_version():
+    commands: list = ['git', 'log', '-1', '--date=short', '--pretty=format:%cd']
+    version = subprocess.run(commands, capture_output=True)
+    version = str(version.stdout).strip("b'")
+    return version
 
 @app.route('/')
 def home():
@@ -34,6 +42,11 @@ def twilio_response():
     resp.message("Messages sent to this number are not monitored. Please contact Ben directly if you need something.")
 
     return str(resp)
+
+@app.route("/version")
+def version():
+    version = get_version()
+    return {"Date_Modified": version}
 
 # do something to explicitly handle HTTP errors so we don't get some general nginx page
 
