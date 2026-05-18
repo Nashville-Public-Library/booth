@@ -1,3 +1,4 @@
+import shutil
 import subprocess
 
 from flask import render_template, request, session, redirect
@@ -7,7 +8,8 @@ from app import app
 from app.auth import check_auth
 
 def get_version():
-    commands: list = ['git', 'log', '-1', '--date=short', '--pretty=format:%cd']
+    git = shutil.which("git")
+    commands: list = [git, 'log', '-1', '--date=short', '--pretty=format:%cd']
     version = subprocess.run(commands, capture_output=True)
     version = str(version.stdout).strip("b'")
     return version
