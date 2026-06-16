@@ -40,8 +40,6 @@ class SQL:
         self.connection.cursor().execute('''CREATE TABLE IF NOT EXISTS uploads (
                                          id INTEGER PRIMARY KEY AUTOINCREMENT,
                                          filename TEXT,
-                                         url TEXT,
-                                         token TEXT,
                                          timestamp TEXT
                                          )''')
 
@@ -87,11 +85,11 @@ class SQL:
             ret_val.append(dict(device))
         return ret_val
     
-    def write_uploads(self, filename: str, url: str, token: str, timestamp:str):
+    def write_uploads(self, filename: str, timestamp:str):
         self.connection.execute('''
-            INSERT INTO uploads (filename, url, token, timestamp)
-            VALUES (?, ?, ?, ?)
-        ''', (filename, url, token, timestamp))
+            INSERT INTO uploads (filename, timestamp)
+            VALUES (?, ?)
+        ''', (filename, timestamp))
         self.connection.commit()
 
     def read_uploads(self):
