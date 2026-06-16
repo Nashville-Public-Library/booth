@@ -9,9 +9,11 @@ async function uploadFile() {
 
     document.getElementById("uploadStatus").style.display = "block";
 
-    const file = document.getElementById("uploadFile").files[0];
     let data = new FormData();
+    const file = document.getElementById("uploadFile").files[0];
     data.append("file", file)
+    const password = document.getElementById("uploadPassword").value;
+    data.append("password", password)
 
     const request = new XMLHttpRequest();
 
@@ -25,38 +27,20 @@ async function uploadFile() {
     })
 
     request.addEventListener("load", function () {
-        const responseJSON = JSON.parse(request.responseText);
-        const password = document.getElementById("uploadPassword").value;
-
-        let submissionData = { "url": responseJSON.url, "token": responseJSON.token, "filename": file.name, "password": password };
-        uploadFileDataToDB(submissionData);
+        if (request.status == 200){
+            document.getElementById("progressPercent").innerText = "100%";
+            // await new Promise(requestAnimationFrame); // allow time for updating content before alert() box
+            alert(`${file.name} successfully uploaded!`);
+        } else {
+            alert(`Could not upload ${file.name}! Please try again or contact the tech team.`);
+            document.getElementById("uploadStatus").style.display = "none";
+        }
     })
 
-    const url = "https://waifuvault.moe/rest?expires=14d";
+    const url = "/upload/newfile";
     request.open("PUT", url);
     request.send(data);
 
-}
-
-async function uploadFileDataToDB(data) {
-    const url = "/upload/newfile";
-    let response = await fetch(url, {
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        method: "POST",
-        body: JSON.stringify(data)
-    })
-    if (!response.ok) {
-        alert(`Could not upload ${data.filename}! Please try again or contact the tech team.`);
-        document.getElementById("uploadStatus").style.display = "none";
-    } else {
-        document.getElementById("progressPercent").innerText = "100%";
-        await new Promise(requestAnimationFrame); // allow time for updating content before alert() box
-        alert(`${data.filename} successfully uploaded!`);
-        window.location.href = window.location.href;
-    }
 }
 
 async function checkPassword() {
