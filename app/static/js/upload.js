@@ -19,7 +19,6 @@ async function uploadFile() {
 
     request.upload.addEventListener("progress", function (event) {
         // Get a suitable number for the progress bar. 
-        // Do not actually reach 100% because we still have to call OUR server to put it in the DB after the file is uploaded to WaifuVault
         const percent = ((event.loaded / event.total) * 100) - 1;
         const rounded = Math.floor(percent);
         document.getElementById("progress").value = rounded;

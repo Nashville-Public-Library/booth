@@ -4,8 +4,6 @@ import shutil
 
 from flask import render_template, request, send_file, redirect
 import requests
-import waifuvault
-from waifuvault import FileResponse
 
 from app import app
 from app.ev import EV
