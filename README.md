@@ -80,3 +80,12 @@ Crop the photo to be a headshot and copy it to `static/img/vol/`. The file shoul
     ````python
     pip freeze > requirements.txt
     ````
+
+- Deactivate Virtual Environment
+    
+    If you need to deactivate the virtual environment, type/run the following in the terminal:
+    ````bash
+    deactivate
+    ````
+
+
