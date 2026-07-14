@@ -83,7 +83,7 @@ italicize empty/closed booth fields
 function italicizeMe(x) {
     try {
         var me = document.getElementById(x).textContent;
-        if ((me.toLowerCase() == "empty") || (me == "closed")) {
+        if ((me.toLowerCase() == "open") || (me == "closed")) {
             document.getElementById(x).style.fontStyle = 'italic';
         }
     }
