@@ -34,14 +34,10 @@ class Icecast:
         or else submit a patch to the NPL web team.
         '''
         mount = self.parse_full_tree_for_live_mount()
-        try:
-            yp_currently_playing = mount.find('yp_currently_playing').text
-            title = mount.find('title').text
-            metadata_updated = mount.find('metadata_updated').text
-        except:
-            yp_currently_playing = None
-            title = None
-            metadata_updated = None
+        yp_currently_playing = mount.find("yp_currently_playing").text if mount.find("yp_currently_playing") != None else None
+        title = mount.find("title").text if mount.find("title") != None else None
+        metadata_updated = mount.find("metadata_updated").text if mount.find("metadata_updated") != None else None
+
         return {
             'yp_currently_playing': yp_currently_playing, 
             'title': title, 
