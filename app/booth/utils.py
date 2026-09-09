@@ -1,8 +1,10 @@
 from datetime import datetime
 
+from diskcache import Cache
 import holidays
 import requests
 
+weather_cache = Cache("weather_cache")
 
 def is_holiday():
     '''returns None if not a holiday'''
@@ -43,6 +45,10 @@ def are_we_closed() -> bool:
     return False
 
 def get_weather() -> dict:
+    forecast = check_weather_cache("forecast")
+    if forecast:
+        return forecast
+    
     url = 'https://api.weather.gov/gridpoints/OHX/50,57/forecast/hourly'
     header = {'User-Agent': 'Darth Vader'}  # usually helpful to identify yourself
     request = requests.get(url=url, headers=header)
@@ -50,16 +56,11 @@ def get_weather() -> dict:
         weather = request.json()
 
         temp = weather['properties']['periods'][0]['temperature']
-
         forecast = weather['properties']['periods'][0]['shortForecast']
-
         chance_of_rain = weather['properties']['periods'][0]['probabilityOfPrecipitation']['value']
 
-        photo:str = weather['properties']['periods'][0]['icon']
-        photo = photo.replace('medium', 'small')
-        photo = photo.replace(',0', '') #seems to be an error with API...
-
-        response = {'temp': temp, 'photo': photo, 'forecast': forecast, 'chance_of_rain': chance_of_rain}
+        response = {'temp': temp, 'forecast': forecast, 'chance_of_rain': chance_of_rain}
+        save_to_cache(key="forecast", value=response)
     except:
         response = 'failed', 500
     return response
@@ -75,3 +76,10 @@ def get_weather_alert() -> dict:
     except:
         response = {"alert": None}
     return response
+
+def check_weather_cache(key: str):
+    result: str = weather_cache.get(key=key)
+    return result
+
+def save_to_cache(key: str, value: str):
+    weather_cache.add(key=key, value=value, expire=120)
