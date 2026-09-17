@@ -26,3 +26,13 @@ async function fetchFile(filename) {
         alert("There was a problem downloading the file...")
     }
 }
+
+function NoFiles() {
+    const element = document.getElementById("files");    
+    const count = element.children.length;
+    if (count == 1) {
+        document.getElementById("noFiles").style.display = "block" 
+    }
+}
+
+NoFiles()

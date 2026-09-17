@@ -2,7 +2,8 @@
 
     {% block content %}
 
-    <div style="color: #ffff; font-size: 17pt; margin: 25px;">
+    <div id="files" style="color: #ffff; font-size: 17pt; margin: 25px;">
+      <p id="noFiles" style="display: none">I am sad because there are no files....</p>
         {% for file in files %}
         <div style="margin-bottom: 15px;">
             <div style="display: inline-block;">{{loop.index}}</div>
