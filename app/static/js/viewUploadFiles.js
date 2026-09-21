@@ -30,8 +30,8 @@ async function fetchFile(filename) {
 function NoFiles() {
     const element = document.getElementById("files");    
     const count = element.children.length;
-    if (count == 1) {
-        document.getElementById("noFiles").style.display = "block" 
+    if (count == 0) {
+        document.getElementById("noFiles").style.display = "block";  
     }
 }
 
