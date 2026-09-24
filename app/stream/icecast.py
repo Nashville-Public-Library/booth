@@ -9,7 +9,7 @@ now_playing_cache = Cache("cache")
 
 class Icecast:
     def __init__(self) -> None:
-        self.icecast_URL = "https://npl.streamguys1.com/admin/stats.xml"
+        self.icecast_URL = "https://stream.talkinglibrary.nashville.gov/admin/stats.xml"
         self.now_playing = self.get_now_playing()
 
     def get_tree_from_icecast(self) -> str:
@@ -24,7 +24,7 @@ class Icecast:
         tree = ET.fromstring(tree)
         mountpoints = tree.findall('source')
         for mount in mountpoints:
-            if mount.get('mount') == '/live':
+            if mount.get('mount') == '/live_64_intro.mp3':
                 return mount
     
     def parse_mount_for_elements(self) -> dict:
