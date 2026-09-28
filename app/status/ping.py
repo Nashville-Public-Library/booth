@@ -63,7 +63,7 @@ def geolocation(ip: str) -> str:
 
 class Icecast:
     def __init__(self) -> None:
-        self.icecast_URL = "https://npl.streamguys1.com/admin/stats.xml"
+        self.icecast_URL = "https://stream.talkinglibrary.nashville.gov/admin/stats.xml"
         self.ev = EV()
         self.icecast_tree = self.get_tree()
         self.mount_list = self.get_mount_list()
@@ -102,10 +102,8 @@ class Icecast:
                     {"name": mount.get('mount'),
                     "stream_start":  mount.find("stream_start").text if mount.find("stream_start") != None else "-",
                     "listeners": mount.find("listeners").text if mount.find("listeners") != None else "-",
-                    "incoming_bitrate": round(int(mount.find("incoming_bitrate").text)/1000, 0) if mount.find("incoming_bitrate") != None else "-",
-                    "outgoing_kbitrate": mount.find("outgoing_kbitrate").text if mount.find("outgoing_kbitrate") != None else "-",
+                    "audio_info": mount.find("audio_info").text if mount.find("audio_info") != None else "-",
                     "title": mount.find("title").text if mount.find("title") != None else "-",
-                    "metadata_updated": mount.find("metadata_updated").text if mount.find("metadata_updated") != None else "-",
                     "listenurl": mount.find("listenurl").text if mount.find("listenurl") != None else "-"
                     }
                 )
@@ -114,26 +112,37 @@ class Icecast:
 
     def get_listeners(self) -> str:
         tree = self.icecast_tree
-        listeners = tree.find('listeners').text
-        return listeners
+        try:
+            listeners = tree.find('listeners').text
+            return listeners
+        except:
+            return "-"
 
     def get_server_start(self) -> str:
         tree = self.icecast_tree
-        server_start = tree.find('server_start').text
-        return server_start
+        try:
+            server_start = tree.find('server_start').text
+            return server_start
+        except: 
+            return "-"
 
     def get_outgoing_kbitrate(self) -> str:
         tree = self.icecast_tree
-        bitrate = tree.find('outgoing_kbitrate').text
-        return bitrate
+        try:
+            bitrate = tree.find('outgoing_kbitrate').text
+            return bitrate
+        except: return "-"
     
     def get_sources(self) -> str:
         tree = self.icecast_tree
-        sources = tree.find("sources").text
-        return sources
+        try:
+            sources = tree.find("sources").text
+            return sources
+        except:
+            return "-"
 
     def user_agent_ip(self, mount) -> list:
-        icecast_URL = f"https://npl.streamguys1.com/admin/listclients?mount=/{mount}"
+        icecast_URL = f"https://stream.talkinglibrary.nashville.gov/admin/listclients?mount=/{mount}"
         header = {'User-Agent': 'Booth Finder'}
         tree = requests.get(icecast_URL, auth=(self.ev.icecast_user, self.ev.icecast_pass), headers=header)
         tree = tree.text
@@ -143,12 +152,12 @@ class Icecast:
         try:
             listeners = mountpoint.findall('listener')
             for listener in listeners:
-                IP_address = listener.find("IP").text
+                IP_address = listener.find("ip").text
                 geo = geolocation(ip=IP_address)
 
-                user_agent = listener.find('UserAgent').text
+                user_agent = listener.find('useragent').text
 
-                connected = listener.find("Connected").text
+                connected = listener.find("connected").text
                 connected = str(round(int(connected) / 60, 1)) # convert to minutes, round to one decimal
 
                 agents.append(f" {IP_address} • {geo} • {user_agent} • {connected} minutes")
@@ -159,7 +168,7 @@ class Icecast:
     def metadata_to_icecast(self, mountpoint, title):
         user: str = self.ev.icecast_user
         password: str = self.ev.icecast_pass
-        url = f'https://npl.streamguys1.com/admin/metadata?mount=/{mountpoint}&mode=updinfo&song={title}'
+        url = f'https://stream.talkinglibrary.nashville.gov/admin/metadata?mount=/{mountpoint}&mode=updinfo&song={title}'
         send = requests.get(url, auth = (user, password))
         if send.status_code == 200:
             return {"response": f"Now Playing title for /{mountpoint} has been updated to {title}"}, 200
