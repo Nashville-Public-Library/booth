@@ -16,9 +16,7 @@ def status():
 @require_auth
 def ping_ip():
     ping_list = {
-        "icecast": "npl.streamguys1.com",
-        "wpln": "12.247.152.50",
-        "SGmetadata": "204.93.152.147",
+        "icecast": "stream.talkinglibrary.nashville.gov",
         "metro": "170.190.43.1",
         "npl": "library.nashville.org",
         "assets": "assets.library.nashville.gov",
