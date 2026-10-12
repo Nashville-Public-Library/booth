@@ -48,7 +48,7 @@ def remove_extra_text(booth: str, shift: str, hour: str) -> str:
         shift = shift.replace(text, '')
     booth_return = shift.strip()
     if booth_return == '':
-        booth_return = 'Empty'
+        booth_return = 'Open'
     return booth_return
 
 def get_scrape_and_filter(date) -> dict:
