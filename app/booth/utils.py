@@ -7,10 +7,14 @@ import requests
 weather_cache = Cache("weather_cache")
 
 def is_holiday():
-    '''returns None if not a holiday'''
-    holiday: dict = holidays.US()
+    '''returns None if not a holiday.'''
+    all_holidays: dict = holidays.US()
     today = datetime.now().strftime('%Y-%m-%d') # YYYY-MM-DD
-    return holiday.get(today)
+    holiday:str = all_holidays.get(today)
+    exclusions: tuple = ("Columbus Day")
+    if holiday not in exclusions:
+        return holiday
+    return None
 
 def is_weekend() -> bool:
     current_day = datetime.now().strftime('%a')
