@@ -3,6 +3,8 @@ import os
 import re
 import subprocess
 import time
+from ipaddress import IPv4Address, IPv4Network
+from urllib.parse import urlsplit, urlunsplit
 
 import ipinfo
 import requests
@@ -41,6 +43,14 @@ def ping(host) -> bool:
     if get_request(url=host):
         return True
 
+def is_local_IP(ip: str) -> bool:
+    """Return whether the address is valid IPv4 in the 10.0.0.0/8 range."""
+    try:
+        return IPv4Address(ip) in IPv4Network("10.0.0.0/8")
+    except ValueError:
+        return False
+
+
 def geolocation(ip: str) -> str:
     '''
     the service we use to retreive this data rate limits us. since IP addresses
@@ -48,6 +58,9 @@ def geolocation(ip: str) -> str:
     only caching to a global variable, so every time you restart the program (redeploy),
     the cache is emptied.
     '''
+    if is_local_IP(ip):
+        return "Metro/Local"
+
     try:
         token = EV().IPInfoToken
         if ip in geo_cache:
@@ -96,7 +109,13 @@ class Icecast:
         mount_list = []
         tree = self.icecast_tree
         mountpoints = tree.findall('source')
-        for mount in mountpoints:         
+        for mount in mountpoints:
+            listenurl = mount.findtext("listenurl") or "-"
+            parts = urlsplit(listenurl)
+            if parts.port == 8000:
+                parts = parts._replace(netloc=parts.netloc.rsplit(":", 1)[0])
+                listenurl = urlunsplit(parts)
+
             # Not all mounts have all the same data. This is a little messy but it's (perhaps) the easiest way to do it   
             mount_list.append( 
                     {"name": mount.get('mount'),
@@ -104,7 +123,7 @@ class Icecast:
                     "listeners": mount.find("listeners").text if mount.find("listeners") != None else "-",
                     "audio_info": mount.find("audio_info").text if mount.find("audio_info") != None else "-",
                     "title": mount.find("title").text if mount.find("title") != None else "-",
-                    "listenurl": mount.find("listenurl").text if mount.find("listenurl") != None else "-"
+                    "listenurl": listenurl
                     }
                 )
 
