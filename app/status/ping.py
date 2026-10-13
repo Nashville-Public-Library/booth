@@ -3,6 +3,7 @@ import os
 import re
 import subprocess
 import time
+from urllib.parse import urlsplit, urlunsplit
 
 import ipinfo
 import requests
@@ -96,7 +97,13 @@ class Icecast:
         mount_list = []
         tree = self.icecast_tree
         mountpoints = tree.findall('source')
-        for mount in mountpoints:         
+        for mount in mountpoints:
+            listenurl = mount.findtext("listenurl") or "-"
+            parts = urlsplit(listenurl)
+            if parts.port == 8000:
+                parts = parts._replace(netloc=parts.netloc.rsplit(":", 1)[0])
+                listenurl = urlunsplit(parts)
+
             # Not all mounts have all the same data. This is a little messy but it's (perhaps) the easiest way to do it   
             mount_list.append( 
                     {"name": mount.get('mount'),
@@ -104,7 +111,7 @@ class Icecast:
                     "listeners": mount.find("listeners").text if mount.find("listeners") != None else "-",
                     "audio_info": mount.find("audio_info").text if mount.find("audio_info") != None else "-",
                     "title": mount.find("title").text if mount.find("title") != None else "-",
-                    "listenurl": mount.find("listenurl").text if mount.find("listenurl") != None else "-"
+                    "listenurl": listenurl
                     }
                 )
 
