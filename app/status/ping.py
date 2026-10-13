@@ -3,6 +3,7 @@ import os
 import re
 import subprocess
 import time
+from ipaddress import IPv4Address, IPv4Network
 from urllib.parse import urlsplit, urlunsplit
 
 import ipinfo
@@ -42,6 +43,14 @@ def ping(host) -> bool:
     if get_request(url=host):
         return True
 
+def is_local_IP(ip: str) -> bool:
+    """Return whether the address is valid IPv4 in the 10.0.0.0/8 range."""
+    try:
+        return IPv4Address(ip) in IPv4Network("10.0.0.0/8")
+    except ValueError:
+        return False
+
+
 def geolocation(ip: str) -> str:
     '''
     the service we use to retreive this data rate limits us. since IP addresses
@@ -49,6 +58,9 @@ def geolocation(ip: str) -> str:
     only caching to a global variable, so every time you restart the program (redeploy),
     the cache is emptied.
     '''
+    if is_local_IP(ip):
+        return "Metro/Local"
+
     try:
         token = EV().IPInfoToken
         if ip in geo_cache:
