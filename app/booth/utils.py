@@ -12,8 +12,9 @@ def is_holiday():
     today = datetime.now().strftime('%Y-%m-%d') # YYYY-MM-DD
     holiday:str = all_holidays.get(today)
     exclusions: tuple = ("Columbus Day")
-    if holiday not in exclusions:
-        return holiday
+    if holiday:
+        if holiday not in exclusions:
+            return holiday
     return None
 
 def is_weekend() -> bool:
