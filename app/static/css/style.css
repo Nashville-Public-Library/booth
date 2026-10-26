@@ -205,6 +205,56 @@ hr {
     border: 2px solid #ccc; /* Border of the meter */
 }
 
+.listenersSection {
+    flex-basis: 100%;
+    min-width: 0;
+}
+
+.listenerMount + .listenerMount {
+    margin-top: 24px;
+}
+
+.listenerMount h3 {
+    margin: 0 0 8px;
+    font-size: 1em;
+    overflow-wrap: anywhere;
+}
+
+.listenerTableScroll {
+    overflow-x: auto;
+}
+
+.listenerTable {
+    width: 100%;
+    border-collapse: collapse;
+    color: inherit;
+    text-align: left;
+    font-size: 0.9em;
+}
+
+.listenerTable caption {
+    color: white;
+    text-align: left;
+    padding-bottom: 8px;
+}
+
+.listenerTable th,
+.listenerTable td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #ccc;
+    vertical-align: top;
+}
+
+.listenerTable td:nth-child(3) {
+    min-width: 180px;
+    overflow-wrap: anywhere;
+}
+
+.listenerTable td:last-child {
+    text-align: right;
+    font-variant-numeric: tabular-nums;
+}
+
 .schedule-top {
     display: inline-block;
     width: 185pt;

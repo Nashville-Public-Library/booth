@@ -90,7 +90,7 @@ async function fetchUserAgent(mount) {
         method: "POST",
         body: JSON.stringify({"mount": mount})
         }
-    let response = await fetchPost(fetchURL=url, fetchOptions=options);
+    let response = await fetchPost(url, options);
     return response.userAgent;
 }
 
@@ -105,22 +105,61 @@ function createTextNodeInsideDiv(element) {
 async function userAgent() {
     const url = "/status/mounts";
     const options = { method: "POST" }
-    let response = await fetchPost(fetchURL=url, fetchOptions=options);
-
     const userAgentElement = document.getElementById('userAgent');
-    userAgentElement.innerHTML = ""
+    const content = document.createDocumentFragment();
 
-    let mounts = response.mountList;
-    for (mount of mounts) {
-        let outerElement = createTextNodeInsideDiv(mount);
-        outerElement.classList.add("border")
+    try {
+        const response = await fetchPost(url, options);
+        if (response.mountList.length === 0) {
+            content.appendChild(createTextNodeInsideDiv("No active mountpoints."));
+        }
+        for (const mount of response.mountList) {
+            const section = document.createElement("section");
+            section.classList.add("listenerMount");
+            const heading = document.createElement("h3");
+            heading.textContent = mount;
+            section.appendChild(heading);
+            content.appendChild(section);
 
-        const mountpointArray = await fetchUserAgent(mount);
-        mountpointArray.forEach(mountpoint => {
-            let innerElement = createTextNodeInsideDiv(mountpoint)
-            outerElement.appendChild(innerElement)
-        })
-        userAgentElement.appendChild(outerElement)
+            try {
+                const listeners = await fetchUserAgent(mount);
+                if (listeners.length === 0) {
+                    section.appendChild(createTextNodeInsideDiv("No listeners connected."));
+                    continue;
+                }
+
+                const scroll = document.createElement("div");
+                scroll.classList.add("listenerTableScroll");
+                scroll.tabIndex = 0;
+                scroll.setAttribute("role", "region");
+                scroll.setAttribute("aria-label", `Listeners on ${mount}`);
+                const table = document.createElement("table");
+                table.classList.add("listenerTable");
+                const caption = table.createCaption();
+                caption.textContent = `${listeners.length} connected ${listeners.length === 1 ? "listener" : "listeners"}`;
+                const header = table.createTHead().insertRow();
+                for (const label of ["IP address", "Location", "User agent", "Connected (minutes)"]) {
+                    const cell = document.createElement("th");
+                    cell.scope = "col";
+                    cell.textContent = label;
+                    header.appendChild(cell);
+                }
+                const body = table.createTBody();
+                for (const listener of listeners) {
+                    const row = body.insertRow();
+                    for (const value of [listener.ip, listener.location, listener.user_agent, listener.connected_minutes]) {
+                        row.insertCell().textContent = value ?? "—";
+                    }
+                }
+                scroll.appendChild(table);
+                section.appendChild(scroll);
+            } catch {
+                section.appendChild(createTextNodeInsideDiv("Unable to load listeners. Try refreshing."));
+            }
+        }
+        userAgentElement.replaceChildren(content);
+    } catch {
+        userAgentElement.textContent = "Unable to load mountpoints. Try refreshing.";
     }
 }
 

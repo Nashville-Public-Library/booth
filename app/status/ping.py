@@ -179,7 +179,12 @@ class Icecast:
                 connected = listener.find("connected").text
                 connected = str(round(int(connected) / 60, 1)) # convert to minutes, round to one decimal
 
-                agents.append(f" {IP_address} • {geo} • {user_agent} • {connected} minutes")
+                agents.append({
+                    "ip": IP_address,
+                    "location": geo,
+                    "user_agent": user_agent,
+                    "connected_minutes": connected,
+                })
             return agents
         except:
             return agents
