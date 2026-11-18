@@ -12,7 +12,7 @@
  ----
 
 ## Volunteer Photos
-Crop the photo to be a headshot and copy it to `static/img/vol/`. The file should be labelled the same way their name shows up in VIC, but remove the space between the first and last name. If the name in VIC is Steve Rogers, the photo should be `SteveRogers.jpg`. All photos must be a .JPG.
+Crop the photo to be a headshot and copy it to `static/img/vol/`. The file should be labeled the same way their name shows up in VIC, but remove the space between the first and last name. If the name in VIC is Steve Rogers, the photo should be `SteveRogers.jpg`. All photos must be a .JPG.
 
 ## Development
 
